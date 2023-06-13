@@ -47,6 +47,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: 0.6s ease;
 }
 
 .login-items h1 {
@@ -70,6 +71,7 @@ body {
   padding-bottom: 5px;
   display: flex;
   justify-content: center;
+  transition: 0.6s ease;
 }
 
 .input-box input {
@@ -91,6 +93,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.6s ease;
 }
 .login-button input[type="submit"] {
   margin: 20px;
@@ -138,6 +141,7 @@ body {
   font-size: 120px;
   color: var(--main-background);
   line-height: 0.85;
+  transition: 0.6s ease-out;
 }
 
 .line {
@@ -147,9 +151,11 @@ body {
   margin-right: 40px;
   background-color: var(--main-background);
   display: inline-block;
+  transition: 0.6s ease-out;
 }
 
 .subtitle {
   display: inline;
   color: var(--main-background);
+  transition: 0.6s ease-in-out;
 }
