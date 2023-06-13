@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+.banner {
+    display: block;
+    background-color: #64B6AC;
+    width: 100%;
+    
+    border-radius: 10px 10px 10px 10px;
+    margin: 0px 0px 20px 0px;
+    font-size: 100%;
+    text-align: center;
+}
+
+.banner h1 {
+    margin: 0px;
+    color: #FFFFFF;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.banner-children {
+    display: flex;
+    justify-content: center;
+}
+
+#line {
+    margin: 0px 0px 0px 0px;
+    padding-right: 5px;
+    color: #FFFFFF;
+}
+#tagline {
+    margin: 0px;
+    padding-left: 5px;
+    font-family: 'Montserrat', 'sans-serif';
+    color: #FFFFFF;
+    font-size: 60%;
+    line-height: 20px;
+}
+
+.banner input {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    background-color: #F6F7FB;
+    border-radius: 0px 0px 10px 10px;
+    border: none;
+    color: #64B6AC;
+    width: 100%;
+    line-height: 200%;
+    font-size: 12px;
+}
+
+.registration-section {
+    width: 100%;
+    text-align: center;
+    color: #000000;
+    
+}
+
+.instruction-section h1{
+    margin: 0px 0px 0px 0px;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    font-size: 150%;
+    
+}
+
+.instruction-section p {
+    margin: 0px;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: lighter;
+    font-size: 70%;
+    opacity: 0.70;
+    padding-right: 12em;
+}
+
+.input-section {
+    margin: 10px;
+}
+
+#email, #password, #confirm {
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: lighter;
+    background-color: #B9D2D2;
+    border-radius: 10px;
+    border: none;
+    width: 250px;
+    line-height: 230%;
+    margin: 5px;
+}
+
+#email::placeholder, #password::placeholder, #confirm::placeholder {
+    font-size: 0.8em;
+    padding: 0% 0% 0% 5%;
+}
+
+#register {
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    background-color: #64B6AC;
+    border-radius: 10px;
+    border: none;
+    color: #F6F7FB;
+    width: 250px;
+    line-height: 250%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 12px
+}
+
+.others-section {
+    text-align: center;
+}
+
+#dont {
+    margin: 5px;
+    color:#000000;
+    opacity: 0.70;
+    font-size: 70%;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+#create {
+    margin: 2px;
+    color: #64B6AC;
+    font-size: 70%;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+@media only screen and (min-width: 768px) {
+
+    body {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .registration-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    /*start of banner section*/
+    .banner {
+        background-color: #64B6AC;
+        border-radius: 10px 10px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .banner input {
+        width: 25%;
+        border-radius: 10px;
+    }
+
+    /*end of banner section*/
+
+}
