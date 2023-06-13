@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+/* start of header section */
+#when{
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    margin: 0px;
+    padding: 5% 0% 0% 5%;
+}
+
+.navbar  {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: left;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.register-nav {
+    visibility: hidden;
+}
+
+
+.navbar ul li{
+    list-style: none;
+}
+
+.navbar .home{
+    text-decoration: none;
+    font-weight: bold;
+    color: #64B6AC;
+    margin-left: 9%;
+}
+
+.navbar .restaurants {
+    text-decoration: none;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    color: #464545;
+    margin-left: 8%;
+}
+
+#anonymouspic {
+    max-width: 10vw;
+    float: right;
+    padding-top: 30px;
+    padding-right: 2vw;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+#header-divider {
+    width: 70%;
+    color: #000000;
+    float: left;
+    padding: 0px;
+    margin-left: 8vw;
+}
+
+.search-section {
+    display: flex;
+    padding-left: 50vw;
+}
+
+.search-section img {
+    max-width: 30px;
+}
+
+.search-section input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #000000;
+    border-width: 1px;
+    width: 20vw;
+}
+
+/*end of header section*/
+
+#oneLook {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 1.3rem;
+    padding: 0% 0% 0% 10%;
+    margin: 0px;
+}
+
+.home-banner-tagline {
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%; 
+    
+}
+
+#choose {
+    font-family: 'Montserrat', 'sans-serif';
+    padding-left: 10px;
+}
+
+#registerButton {
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #64B6AC;
+    width: 8rem;
+    line-height: 1.5rem;
+    float: right;
+    margin-right: 15%;
+}
+
+.venue-section {
+    padding: 5% 10% 0% 10%;
+    text-align: center;
+}
+
+
+.slide img {
+    max-width: 50vw;
+    max-height: 45vh;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 10%;
+    
+}
+
+.slides {
+    display: flex;
+    visibility: hidden;
+}
+
+#restaurant1 {
+    visibility: visible;
+}
+
+#venue-section-divider {
+    margin: 0px;
+    max-width: 80vw;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .register-nav {
+        visibility: visible;
+        text-decoration: none;
+        font-family: 'Montserrat', 'sans-serif';
+        font-weight: bold;
+        color: #464545;
+        padding-left: 50%;
+    }
+
+    .slides {
+        visibility: visible;
+    }
+
+    #when {
+        font-size: 5vh;
+        padding-left: 3rem;
+    }
+
+    #anonymouspic {
+        max-width: 10vw;
+        padding-top: 2em;
+        padding-right: 3rem;
+    }
+
+    .navbar {
+        font-size: 2vh;
+    }
+
+    #oneLook {
+        font-size: 90%;
+        padding: 0em 1rem 0rem 3rem;
+
+    }
+
+    .search-section {
+        padding-left: 45vw;
+        padding-bottom: 2rem;
+    }
+
+    .search-section img {
+        max-width: 33px;
+    }
+
+    .search-section input {
+        width: 30vw;
+    }
+
+    #registerButton {
+        font-family: 'Montserrat', 'sans-serif';
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        background-color: #64B6AC;
+        width: 9rem;
+        line-height: 2.5rem;
+        margin-right: 15%;
+    }
+
+    .home-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .slides {
+        padding-left: 5% 10% 0% 5%;
+    }
+
+    .slides img {
+        max-width: 100%;
+        margin: 5px;
+    }
+
+    .venue-section {
+        flex: 2;
+        margin: 0px;
+        padding: 0px;
+
+    }
+
+
+    .wrapper {
+        display: flex;
+    }
+
+    #choose {
+        font-size: 0.6rem;
+    }
+
+    #registerButton {
+        background-color: #64B6AC;
+        width: 8rem;
+        line-height: 1.5rem;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .slide img {
+        max-height: 1000%;
+        max-width: 250px;
+        margin: 10px;
+    }
+
+    #when {
+        font-size: 5vw;
+        padding: 2rem 0rem 0rem 2rem;
+    }
+
+    #oneLook {
+        font-size: 2.2vw;
+    }
+
+    #choose {
+        font-size: 1vw;
+    }
+
+    .navbar {
+        font-size: 1rem;
+    }
+}
