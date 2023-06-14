@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  background-color: var(--main-background);
+  --main-font: "Montserrat", sans-serif;
+  --main-background: #f8f3ea;
+
+  /* login items */
+  --main-fieldborder-color: #c0d8fd;
+  --main-field-color: #b9d2d2;
+  --main-button-color: #64b6ac;
+
+  /* main content */
+  --main-label-color: #b09e9a;
+  --main-description-hover: #716b6b;
+  --page-menu-color: #e3e6d9;
+  --gallery-box-color: #b9d2d2;
+  --reviewbox-color: #fad4c1;
+  --user-info-outercolor: #b9d2d2;
+  --user-info-innercolor: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: var(--main-font);
+}
+
+header {
+  display: flex;
+  margin: 10px;
+  padding: 15px;
+}
+
+.RP-app-name {
+  padding: 5px;
+  margin-right: 50px;
+  margin-top: 30px;
+}
+
+.RP-app-name h1 {
+  font-size: 50px;
+}
+
+.menu-bar {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.menu-list {
+  display: flex;
+  font-weight: 700;
+  flex-grow: 4;
+}
+
+.menu-list a {
+  text-decoration: none;
+  margin-right: 50px;
+  color: rgb(50, 45, 45);
+}
+
+.view-profile {
+  flex-grow: 0.5;
+}
+
+.view-profile a {
+  font-weight: 700;
+  position: absolute;
+  text-decoration: none;
+  color: black;
+}
+
+.view-profile img {
+  margin-top: -10px;
+  margin-left: 130px;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  background-color: rgb(186, 203, 163);
+  border-radius: 90px;
+}
+
+.menu-line {
+  position: absolute;
+  height: 1.5px;
+  width: 1150px;
+  margin-top: 45px;
+  margin-left: 350px;
+  background: radial-gradient(#768581, #018452);
+}
+
+.section {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.roundblock {
+  border-radius: 20px;
+}
+
+.left-block {
+  background-color: #018452;
+  height: 500px;
+  width: 15%;
+}
+
+.center-block {
+  background-color: #64b6ac;
+  height: auto;
+  width: 50%;
+  display: block;
+  text-align: center;
+}
+
+.block1 {
+  display: inline-block;
+  background-color: #046055;
+  height: 150px;
+  width: 100%;
+  margin: 0px 0px 50px 0px;
+}
+.block2 {
+  display: inline-block;
+  background-color: #1ddac4;
+  height: 150px;
+  width: 100%;
+}
+
+.right-block {
+  background-color: #b09e9a;
+  height: 500px;
+  width: 15%;
+}
