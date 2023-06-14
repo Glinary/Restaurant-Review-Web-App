@@ -1,161 +1,264 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-:root {
-  background-color: var(--main-background);
-  --main-font: "Montserrat", sans-serif;
-  --main-background: #fff4de;
 
-  /* login items */
-  --main-fieldborder-color: #c0d8fd;
-  --main-field-color: #b9d2d2;
-  --main-button-color: #64b6ac;
-
-  /* main content */
-  --main-label-color: #b09e9a;
-  --main-description-hover: #716b6b;
-  --page-menu-color: #e3e6d9;
-  --gallery-box-color: #b9d2d2;
-  --reviewbox-color: #fad4c1;
-  --user-info-outercolor: #b9d2d2;
-  --user-info-innercolor: white;
+/* start of header section */
+#when{
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    margin: 0px;
+    padding: 5% 0% 0% 5%;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  font-family: var(--main-font);
-}
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar  {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: left;
+    font-family: 'Montserrat', 'sans-serif';
 }
 
-/* =============== LOGIN PAGE ===============*/
-
-/* ================== HALF LEFT ================== */
-
-.half-left-container {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.register-nav {
+    visibility: hidden;
 }
 
-.login-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: 0.6s ease;
+
+.navbar ul li{
+    list-style: none;
 }
 
-.login-items h1 {
-  font-size: 45px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  line-height: 1.5;
+.navbar .home{
+    text-decoration: none;
+    font-weight: bold;
+    color: #64B6AC;
+    margin-left: 9%;
 }
 
-.login-items p {
-  font-weight: 200;
-  font-size: 15px;
+.navbar .restaurants {
+    text-decoration: none;
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    color: #464545;
+    margin-left: 8%;
 }
 
-.user-login {
-  margin-top: 20px;
+#anonymouspic {
+    max-width: 10vw;
+    float: right;
+    padding-top: 30px;
+    padding-right: 2vw;
+    padding-bottom: 5px;
+    padding-left: 5px;
 }
 
-.input-box {
-  padding-top: 20px;
-  padding-bottom: 5px;
-  display: flex;
-  justify-content: center;
-  transition: 0.6s ease;
+#header-divider {
+    width: 70%;
+    color: #000000;
+    float: left;
+    padding: 0px;
+    margin-left: 8vw;
 }
 
-.input-box input {
-  width: 370px;
-  height: 25px;
-  padding: 15px;
-  border-radius: 5px;
-  border: 2px solid var(--main-fieldborder-color);
-  background-color: var(--main-field-color);
+.search-section {
+    display: flex;
+    padding-left: 50vw;
 }
 
-::placeholder {
-  padding: 20px;
-  color: #6e5353;
+.search-section img {
+    max-width: 30px;
 }
 
-.login-button {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.6s ease;
-}
-.login-button input[type="submit"] {
-  margin: 20px;
-  padding: 15px;
-  width: 400px;
-  font-weight: 600;
-  font-size: 15px;
-  border-radius: 5px;
-  border: 2px solid transparent;
-  color: white;
-  background-color: var(--main-button-color);
+.search-section input {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #000000;
+    border-width: 1px;
+    width: 20vw;
 }
 
-.user-register-container {
-  margin: auto;
-  padding: 10px;
-  width: 400px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+/*end of header section*/
+
+#oneLook {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 1.3rem;
+    padding: 0% 0% 0% 10%;
+    margin: 0px;
 }
 
-.user-register-container a {
-  text-decoration: none;
-  color: var(--main-button-color);
-  font-weight: 500;
+.home-banner-tagline {
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%; 
+    
 }
 
-/* ================== HALF RIGHT ==================  */
-
-.half-right-container {
-  background-color: #64b6ac;
-  width: 50%;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+#choose {
+    font-family: 'Montserrat', 'sans-serif';
+    padding-left: 10px;
 }
 
-.app-name {
-  margin: auto;
+#registerButton {
+    font-family: 'Montserrat', 'sans-serif';
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #64B6AC;
+    width: 8rem;
+    line-height: 1.5rem;
+    float: right;
+    margin-right: 15%;
 }
 
-.app-name h1 {
-  font-size: 120px;
-  color: var(--main-background);
-  line-height: 0.85;
-  transition: 0.6s ease-out;
+.venue-section {
+    padding: 5% 10% 0% 10%;
+    text-align: center;
 }
 
-.line {
-  width: 300px;
-  height: 2px;
-  margin-left: 50px;
-  margin-right: 40px;
-  background-color: var(--main-background);
-  display: inline-block;
-  transition: 0.6s ease-out;
+
+.slide img {
+    max-width: 50vw;
+    max-height: 45vh;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 10%;
+    
 }
 
-.subtitle {
-  display: inline;
-  color: var(--main-background);
-  transition: 0.6s ease-in-out;
+.slides {
+    display: flex;
+    visibility: hidden;
+}
+
+#restaurant1 {
+    visibility: visible;
+}
+
+#venue-section-divider {
+    margin: 0px;
+    max-width: 80vw;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .register-nav {
+        visibility: visible;
+        text-decoration: none;
+        font-family: 'Montserrat', 'sans-serif';
+        font-weight: bold;
+        color: #464545;
+        padding-left: 50%;
+    }
+
+    .slides {
+        visibility: visible;
+    }
+
+    #when {
+        font-size: 5vh;
+        padding-left: 3rem;
+    }
+
+    #anonymouspic {
+        max-width: 10vw;
+        padding-top: 2em;
+        padding-right: 3rem;
+    }
+
+    .navbar {
+        font-size: 2vh;
+    }
+
+    #oneLook {
+        font-size: 90%;
+        padding: 0em 1rem 0rem 3rem;
+
+    }
+
+    .search-section {
+        padding-left: 45vw;
+        padding-bottom: 2rem;
+    }
+
+    .search-section img {
+        max-width: 33px;
+    }
+
+    .search-section input {
+        width: 30vw;
+    }
+
+    #registerButton {
+        font-family: 'Montserrat', 'sans-serif';
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        background-color: #64B6AC;
+        width: 9rem;
+        line-height: 2.5rem;
+        margin-right: 15%;
+    }
+
+    .home-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .slides {
+        padding-left: 5% 10% 0% 5%;
+    }
+
+    .slides img {
+        max-width: 100%;
+        margin: 5px;
+    }
+
+    .venue-section {
+        flex: 2;
+        margin: 0px;
+        padding: 0px;
+
+    }
+
+
+    .wrapper {
+        display: flex;
+    }
+
+    #choose {
+        font-size: 0.6rem;
+    }
+
+    #registerButton {
+        background-color: #64B6AC;
+        width: 8rem;
+        line-height: 1.5rem;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .slide img {
+        max-height: 1000%;
+        max-width: 250px;
+        margin: 10px;
+    }
+
+    #when {
+        font-size: 5vw;
+        padding: 2rem 0rem 0rem 2rem;
+    }
+
+    #oneLook {
+        font-size: 2.2vw;
+    }
+
+    #choose {
+        font-size: 1vw;
+    }
+
+    .navbar {
+        font-size: 1rem;
+    }
 }
