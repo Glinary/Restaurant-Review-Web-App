@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/*start of header */
+
+body {
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.header {
+    display: flex;
+
+}
+
+.content-navbar {
+    flex: 2;
+    padding: 0rem 1rem 1rem 1rem;
+}
+
+.content-navbar .whenintaft {
+    font-size: 2rem;
+}
+
+.content-navbar .navbar-items {
+    font-size: 0.7rem;
+}
+.profile-navbar .anonpic {
+    max-width: 5rem;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.content-navbar .whenintaft {
+    padding: 2rem 0rem 0rem 0rem;
+    margin: 0;
+}
+
+.content-navbar .navbar-items  {
+    padding: 0;
+    margin: 0;
+}
+
+
+.navbar-items {
+    display: flex;
+}
+
+.navbar-items .navbar {
+    margin: 0rem 1rem 0rem 0rem;
+}
+
+#header-divider {
+    max-width: 90%;
+}
+
+/*end of header*/
+
+/*start of search-section*/
+.search-section {
+    display: flex;
+    padding-left: 40%;
+}
+
+.search-section .search-bar {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    max-width: 10rem;
+}
+
+.search-section .searchbutton {
+    max-width: 2rem;
+}
+
+.search-section .search-bar {
+    max-width: 2vww;
+}
+
+/*end of search-section*/
+.profile-section .profile-picture {
+    max-height: 20vh;
+    padding: 2rem 0rem 0rem 0rem;
+    border-radius: 10px;
+}
+
+/*start of profile-section*/
+.profile-section {
+    display: flex;
+}
+
+.profile-pictures-section .profile-picture {
+    min-width: 100%;
+}
+
+.profile-section .profile-pictures-section {
+    flex: 1;
+}
+
+.profile-section .profile-description {
+    flex: 2;
+}
+
+.profile-section .profile-description h1{
+    font-size: 1.5rem;
+}
+
+/*end of profile-section*/
+
+
+@media only screen and (min-width: 768px) {
+
+}
