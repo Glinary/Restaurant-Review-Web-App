@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Page</title>
-    <link rel="stylesheet" href="registrationStyles.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="registrationStyles.css" />
+  </head>
+  <body>
     <div class="banner">
-        <h1>WhenInTaft</h1>
-        <div class="banner-children">
-            <p id="line">----------------</p>
-            <p id="tagline">explore the food</p>
-        </div>
-        <div class="explore">
-            <input type="button" value="Explore">
-        </div>
-        
+      <h1>WhenInTaft</h1>
+      <div class="banner-children">
+        <div id="line"></div>
+        <div id="tagline">explore the food</div>
+      </div>
+      <div class="explore">
+        <a href="#"><input type="button" value="Explore" /></a>
+      </div>
     </div>
 
     <div class="registration-section">
-        <div class="instruction-section">
-            <span><h1>Create your Account</h1></span>
-            <span><p>Start writing reviews!</p></span>
-        </div>
+      <div class="instruction-section">
+        <span><h1>Create your Account</h1></span>
+        <span><p>Start writing reviews!</p></span>
+      </div>
 
-        <div class="input-section">
-            <form>
-                <input type="text" placeholder="Email" id="email"/><br>
-                <input type="text" placeholder="Password" id="password"/><br>
-                <input type="text" placeholder="Confirm Password" id="confirm"/><br>
-                
-            </form>
-            <input type="submit" value="REGISTER" id="register">
-        </div>
+      <div class="input-section">
+        <form>
+          <input type="text" placeholder="Email" id="email" /><br />
+          <input type="text" placeholder="Password" id="password" /><br />
+          <input
+            type="text"
+            placeholder="Confirm Password"
+            id="confirm"
+          /><br />
 
-        <div class="others-section">
-            <p id="dont">Already have an account?</p>
-            <p id="create">Login now</p>
-        </div> 
+          <input type="submit" value="REGISTER" id="register" />
+        </form>
+      </div>
+
+      <div class="others-section">
+        <p id="dont">Already have an account?</p>
+        <a href="#"><p id="create">Login now</p></a>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
