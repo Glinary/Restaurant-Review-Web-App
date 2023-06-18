@@ -147,6 +147,7 @@ body {
 .reviews-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .label-and-navigator {
@@ -158,6 +159,7 @@ body {
     margin-top: 0;
     margin-left: 1rem;
     flex: 2;
+    font-size: 1rem;
 }
 
 .label-and-navigator ul {
@@ -174,16 +176,82 @@ body {
     font-size: 0.8rem;
 }
 
-.reviews-content {
+.reviews-content-container {
     background-color: #FAD4C1;
     margin: 0 1rem 0 1rem;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
 }
 
+.reviews-left-container .left{
+    flex: 2;
+    display: flex;
+}
 
-.reviews-content .reviews-profile-pic {
-    max-width: 10vw;
+.further-details .name {
+    display: flex;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.further-details .name .firstname {
+    margin: 0.6rem 0.5rem 0rem 0.5rem;
+}
+
+.further-details .name .lastname {
+    margin-top: 0.6rem;
+    margin-bottom: 0rem;
+}
+
+.further-details .others p {
+    font-weight: bolder;
+    font-size: 0.6rem;
+}
+
+.further-details .review-count {
+    opacity: 0.8;
+}
+
+.reviews-user-details .further-details .review {
+    font-size: 0.5rem;
+}
+
+.reviews-user-details .reviews-profile-pic {
+    max-width: 13vw;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+}
+
+.others {
+    margin-left: 0.5rem;
+}
+
+.others p {
+    margin: 0;
+}
+
+.left {
+    display: flex;
+}
+
+.review p {
+    font-size: 0.8rem;
+    text-align: justify;
+    margin: 1rem;
+}
+
+.reviews-pictures {
+    margin: 1rem;
+}
+.review-image {
+    object-fit: cover;
+    max-width: 20vw;
+    min-width: 20vw;
+    max-height: 10vh;
+    min-height: 10vh;
+    border-radius: 10px;
+    margin: 5px;
 }
 
 /*end of reviews-section*/
