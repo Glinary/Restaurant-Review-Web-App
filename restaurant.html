@@ -122,23 +122,85 @@
           </div>
         </div>
       </div>
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script>
-    const sWidth = screen.width;
-    const sHeight = screen.height;
     const menu = document.querySelector("#mobile-menu");
     const menuLinks = document.querySelector(".menu-bar");
     const userPage = document.querySelector("#prof-page");
     const userPic = document.querySelector("#prof-pic");
     const searchBar = document.querySelector(".search-container");
     const hidden = document.querySelector(".hidden");
-    const occur = document.querySelectorAll("#resto-container").length;
-    let copies = occur % 3;
-    console.log(occur);
-    console.log(copies);
-    console.log(sWidth);
-    console.log(sHeight);
 
     menu.addEventListener("click", function () {
       menu.classList.toggle("is-active");
@@ -151,29 +213,33 @@
     userPage.addEventListener("mouseout", function () {
       userPic.classList.toggle("hovered");
     });
-
-    if (sWidth >= 768 && sWidth < 1440 && (occur % 3 != 0 || occur % 2 != 0)) {
-      <!-- hidden.classList.toggle("isactive"); -->
-      if (copies == 1) {
-        copies += 1;
-      } else {
-        copies -= 1;
-      }
-      console.log(copies);
-
-      document.querySelector(".restobox-cont").innerHTML +=
-        '<div class="hidden"></div>'.repeat(copies);
-    }
-
-    if (sWidth >= 1440 && (occur % 3 != 0 || occur % 2 != 0)) {
-      if (copies == 1) {
-        copies += 2;
-      } else {
-        copies += 1;
-      }
-
-      document.querySelector(".restobox-cont").innerHTML +=
-        '<div class="hidden"></div>'.repeat(copies);
-    }
   </script>
 </html>
+<!-- if (between(sWidth, 767, 959) && occur % 2 != 0) {
+  console.log(copies1);
+
+  document.querySelector(".restobox-cont").innerHTML +=
+    '<div class="hidden"></div>'.repeat(copies1);
+} -->
+
+<!-- else if (sWidth >= 960 && sWidth < 1440 && occur % 3 != 0) {
+  if (copies == 1) {
+    copies += 1;
+  } else {
+    copies -= 1;
+  }
+  console.log(copies);
+
+  document.querySelector(".restobox-cont").innerHTML +=
+    '<div class="hidden"></div>'.repeat(copies);
+} else if (sWidth >= 1440 && occur % 4 != 0) {
+  if (copies2 == 1) {
+    copies2 += 2;
+  } else if (copies2 == 2) {
+    copies2 += 1;
+  }
+  console.log(copies2);
+
+  document.querySelector(".restobox-cont").innerHTML +=
+    '<div class="hidden"></div>'.repeat(copies2);
+} -->

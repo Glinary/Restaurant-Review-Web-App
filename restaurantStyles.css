@@ -255,47 +255,26 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 0px 10px;
   }
 
   #resto-container {
     max-width: 300px;
-  }
-
-  .hidden {
-    background-color: var(--main-background);
-    display: block;
-    position: relative;
-    height: 450px;
-    width: 40%;
-    padding-top: 20px;
-    border-radius: 20px;
-    margin: 20px auto;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .hidden {
-    background-color: var(--main-background);
-    display: block;
-    position: relative;
-    height: 450px;
-    width: 30%;
-    padding-top: 20px;
-    border-radius: 20px;
-    margin: 20px auto;
+    margin: 30px;
   }
 }
 
 @media only screen and (min-width: 960px) {
-  .hidden {
-    background-color: var(--main-background);
-    display: block;
-    position: relative;
-    height: 450px;
-    width: 30%;
-    padding-top: 20px;
-    border-radius: 20px;
-    margin: 20px auto;
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 25px 15px;
+  }
+
+  #resto-container {
+    max-width: 300px;
+    margin: 20px;
   }
 }
 
@@ -304,18 +283,12 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0px 150px;
+    margin: 0px 400px;
   }
 
-  .hidden {
-    background-color: var(--main-background);
-    display: block;
-    position: relative;
-    height: 450px;
-    width: 20.5%;
-    padding-top: 20px;
-    border-radius: 20px;
-    margin: 20px auto;
+  #resto-container {
+    max-width: 350px;
+    margin: 25px 5px;
   }
 
   header {
@@ -495,7 +468,7 @@ header {
   }
 }
 
-@media only screen and (min-width: 1920px) {
+/* @media only screen and (min-width: 1920px) {
   .restobox-cont {
     display: flex;
     justify-content: space-between;
@@ -508,7 +481,7 @@ header {
     margin: 20px;
   }
   .hidden {
-    background-color: var(--main-background);
+    background-color: green;
     display: block;
     position: relative;
     height: 450px;
@@ -517,4 +490,4 @@ header {
     border-radius: 20px;
     margin: 20px;
   }
-}
+} */
