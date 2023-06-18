@@ -26,25 +26,28 @@
       </div>
       <div class="menu-bar">
         <div class="menu-list">
-          <a href="#">HOME</a>
-          <a href="#">RESTAURANTS</a>
+          <div class="part1">
+            <a href="#">HOME</a>
+            <a href="#">RESTAURANTS</a>
+          </div>
           <div class="view-profile">
             <a href="" id="prof-page">VIEW PROFILE</a>
             <img src="assets/anonymous_picture.png" id="prof-pic" />
           </div>
         </div>
+        <div class="menu-line"></div>
       </div>
-      <div class="menu-line"></div>
-      <div class="search-container">
-        <input
-          type="text"
-          placeholder="search here"
-          name="searchBar"
-          id="searchBar"
-        /><img src="assets/searchbutton.png" alt="" />
-      </div>
-      <div class="search-line"></div>
     </header>
+
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="search here"
+        name="searchBar"
+        id="searchBar"
+      /><img src="assets/searchbutton.png" alt="" />
+    </div>
+    <div class="search-line"></div>
     <!-- end of header menu -->
 
     <div class="restobox-cont">
@@ -62,9 +65,7 @@
           </div>
         </div>
       </div>
-    </div>
-    
-    <div class="restobox-cont">
+
       <div id="resto-container">
         <div id="resto-desc">
           <p>
@@ -79,9 +80,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="restobox-cont">
       <div id="resto-container">
         <div id="resto-desc">
           <p>
@@ -96,9 +94,20 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="restobox-cont">
+      <div id="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
       <div id="resto-container">
         <div id="resto-desc">
           <p>
@@ -116,11 +125,20 @@
     </div>
   </body>
   <script>
+    const sWidth = screen.width;
+    const sHeight = screen.height;
     const menu = document.querySelector("#mobile-menu");
     const menuLinks = document.querySelector(".menu-bar");
     const userPage = document.querySelector("#prof-page");
     const userPic = document.querySelector("#prof-pic");
     const searchBar = document.querySelector(".search-container");
+    const hidden = document.querySelector(".hidden");
+    const occur = document.querySelectorAll("#resto-container").length;
+    let copies = occur % 3;
+    console.log(occur);
+    console.log(copies);
+    console.log(sWidth);
+    console.log(sHeight);
 
     menu.addEventListener("click", function () {
       menu.classList.toggle("is-active");
@@ -133,5 +151,29 @@
     userPage.addEventListener("mouseout", function () {
       userPic.classList.toggle("hovered");
     });
+
+    if (sWidth >= 768 && sWidth < 1440 && (occur % 3 != 0 || occur % 2 != 0)) {
+      <!-- hidden.classList.toggle("isactive"); -->
+      if (copies == 1) {
+        copies += 1;
+      } else {
+        copies -= 1;
+      }
+      console.log(copies);
+
+      document.querySelector(".restobox-cont").innerHTML +=
+        '<div class="hidden"></div>'.repeat(copies);
+    }
+
+    if (sWidth >= 1440 && (occur % 3 != 0 || occur % 2 != 0)) {
+      if (copies == 1) {
+        copies += 2;
+      } else {
+        copies += 1;
+      }
+
+      document.querySelector(".restobox-cont").innerHTML +=
+        '<div class="hidden"></div>'.repeat(copies);
+    }
   </script>
 </html>

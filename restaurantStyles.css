@@ -186,8 +186,8 @@ header {
 }
 
 .restobox-cont {
-  display: flex;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #resto-container {
@@ -198,7 +198,11 @@ header {
   width: 60%;
   padding-top: 20px;
   border-radius: 20px;
-  margin: 20px 0px;
+  margin: 20px auto;
+}
+
+.hidden {
+  display: none;
 }
 
 #resto-desc {
@@ -214,7 +218,7 @@ header {
 #resto-desc p {
   position: relative;
   padding: 20px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--label-text-color);
 }
 
@@ -244,4 +248,273 @@ header {
 
 #star-rate {
   height: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  #resto-container {
+    max-width: 300px;
+  }
+
+  .hidden {
+    background-color: var(--main-background);
+    display: block;
+    position: relative;
+    height: 450px;
+    width: 40%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .hidden {
+    background-color: var(--main-background);
+    display: block;
+    position: relative;
+    height: 450px;
+    width: 30%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .hidden {
+    background-color: var(--main-background);
+    display: block;
+    position: relative;
+    height: 450px;
+    width: 30%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0px 150px;
+  }
+
+  .hidden {
+    background-color: var(--main-background);
+    display: block;
+    position: relative;
+    height: 450px;
+    width: 20.5%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+
+  header {
+    display: flex;
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .RP-app-name {
+    position: relative;
+    padding: 5px;
+    margin-right: 50px;
+    margin-top: 30px;
+  }
+  .RP-app-name h1 {
+    font-size: 50px;
+  }
+
+  .toggle-bars {
+    height: max-content;
+    width: max-content;
+    margin: 20px auto;
+    display: none;
+  }
+
+  .toggle-bars .toggle {
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--main-button-color);
+    display: none;
+  }
+
+  #mobile-menu.is-active .toggle:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .toggle:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .toggle:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /* 
+  .menu-bar {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    /* z-index: -1; 
+  } */
+
+  .menu-bar.active {
+    background: #131313;
+    margin: 0;
+    opacity: 0;
+    transition: all 0.5s eas e;
+    height: 10vh;
+    font-size: 1.6rem;
+    /* z-index: 99; */
+  }
+
+  .menu-bar {
+    position: relative;
+    opacity: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 75%;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+  }
+
+  .menu-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    font-weight: 700;
+    font-size: 10px;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .menu-list a {
+    text-decoration: none;
+    margin-right: 50px;
+    font-size: 16px;
+    padding: 0px;
+    color: rgb(50, 45, 45);
+    z-index: 9999;
+  }
+
+  .menu-list a:nth-child(2) {
+    color: var(--main-button-color);
+  }
+
+  .menu-list a:hover {
+    color: rgb(152, 142, 142);
+  }
+
+  .part1 {
+    display: flex;
+  }
+
+  #prof-pic.hovered {
+    filter: invert(66%) sepia(7%) saturate(321%) hue-rotate(314deg)
+      brightness(87%) contrast(78%);
+    /* SOURCE: https://stackoverflow.com/a/53356249 */
+  }
+
+  .view-profile {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .view-profile img {
+    position: absolute;
+    margin-left: 130px;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    /* background-color: rgb(186, 203, 163); */
+    border-radius: 90px;
+  }
+  .menu-line {
+    position: absolute;
+    height: 1.5px;
+    width: 1150px;
+    margin-top: 45px;
+    margin-left: -20px;
+    background: radial-gradient(#768581, #018452);
+  }
+
+  .search-container {
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    background-color: transparent;
+    max-height: 35px;
+    width: 10%;
+    right: 0;
+    margin: -115px 600px 0px 0px;
+  }
+
+  .search-container.active {
+    margin: 230px auto auto auto;
+    transition: all 0.2s ease;
+  }
+
+  .search-container input[type="text"] {
+    margin: 0;
+    height: inherit;
+    flex-grow: 1;
+    border: transparent;
+    text-align: center;
+    z-index: 9999;
+    background-color: transparent;
+  }
+
+  .search-container img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .search-line {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0px 180px;
+  }
+
+  #resto-container {
+    max-width: 350px;
+    margin: 20px;
+  }
+  .hidden {
+    background-color: var(--main-background);
+    display: block;
+    position: relative;
+    height: 450px;
+    max-width: 20%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 20px;
+  }
 }
