@@ -196,7 +196,7 @@ body {
     background-color: #64b6ac;
     margin: 8px auto;
     width: 98%;
-    height: 10vh;
+    height: 100%;
     display: block;
     padding: 0;
     border-radius: 10px 10px 10px 10px;
@@ -205,6 +205,9 @@ body {
   .app-name {
     margin: 0px;
     text-align: center;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 
   .app-name h1 {
@@ -214,25 +217,18 @@ body {
     transition: 0.6s ease-out;
   }
 
-  .login-items p {
-    font-weight: 200;
-    font-size: 15px;
-    left: 0;
-    position: absolute;
-    margin-left: 23%;
-  }
-
   .explore {
     position: relative;
     margin: 0;
     padding: 0;
+    bottom: 0;
     text-align: center;
   }
 
   .explore input[type="button"] {
     border: none;
     width: 100%;
-    padding: 5px;
+    max-height: max-content;
     font-weight: 600;
     font-size: 12px;
     background-color: white;
@@ -246,13 +242,34 @@ body {
     text-decoration: none;
   }
 
+  .subtitle {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--main-background);
+    transition: 0.6s ease-in-out;
+    padding: 5px;
+  }
+
   /* DOWN */
 
   .half-left-container {
     width: 100%;
     display: block;
     position: absolute;
-    height: 100vh;
+    height: min-content;
+  }
+
+  .login-items {
+    max-height: min-content;
+  }
+
+  .login-items p {
+    font-weight: 200;
+    font-size: 15px;
+    left: 0;
+    position: absolute;
+    margin-left: 23%;
   }
 
   .login-items h1 {
@@ -323,15 +340,4 @@ body {
     font-size: 15px;
     position: relative;
   }
-
-  .subtitle {
-    display: block;
-
-    text-align: center;
-    vertical-align: middle;
-    color: var(--main-background);
-    transition: 0.6s ease-in-out;
-    padding: 10px;
-  }
 }
-
