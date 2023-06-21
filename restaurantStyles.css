@@ -190,7 +190,7 @@ header {
   margin-right: auto;
 }
 
-#resto-container {
+.resto-container {
   display: block;
   position: relative;
   background-color: var(--page-menu-color);
@@ -199,10 +199,13 @@ header {
   padding-top: 20px;
   border-radius: 20px;
   margin: 20px auto;
+  z-index: 9999;
 }
 
-.hidden {
-  display: none;
+.resto-container:hover #resto-desc,
+.resto-container:hover #resto-innerLabel {
+  opacity: 1;
+  transition: 0.6s ease-in;
 }
 
 #resto-desc {
@@ -213,6 +216,25 @@ header {
   border-radius: 20px;
   inline-size: 80%;
   overflow-wrap: break-word;
+  opacity: 0;
+}
+
+#resto-desc.active {
+  background-color: var(--main-label-color);
+  height: 120px;
+  width: 80%;
+  margin: 30px auto;
+  border-radius: 20px;
+  inline-size: 80%;
+  overflow-wrap: break-word;
+  opacity: 1;
+}
+
+.resto-desc {
+  opacity: 1;
+}
+.active {
+  opacity: 1;
 }
 
 #resto-desc p {
@@ -231,6 +253,19 @@ header {
   margin-bottom: 50px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  opacity: 0;
+}
+
+#resto-innerLabel.active {
+  background-color: var(--main-label-color);
+  height: 50px;
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 50px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  opacity: 1;
 }
 
 .cont,
@@ -258,7 +293,7 @@ header {
     margin: 0px 10px;
   }
 
-  #resto-container {
+  .resto-container {
     max-width: 300px;
     margin: 30px;
   }
@@ -272,9 +307,19 @@ header {
     margin: 25px 15px;
   }
 
-  #resto-container {
+  .resto-container {
     max-width: 300px;
     margin: 20px;
+  }
+  .hidden {
+    background-color: transparent;
+    display: block;
+    position: relative;
+    height: 450px;
+    max-width: 20%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 0px 170px;
   }
 }
 
@@ -283,12 +328,12 @@ header {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0px 400px;
+    margin: 0px 150px;
   }
 
-  #resto-container {
+  .resto-container {
     max-width: 350px;
-    margin: 25px 5px;
+    margin: 25px 25px;
   }
 
   header {
@@ -466,28 +511,38 @@ header {
   .search-line {
     display: none;
   }
+  .hidden {
+    background-color: transparent;
+    display: block;
+    position: relative;
+    height: 450px;
+    max-width: 50%;
+    padding-top: 20px;
+    border-radius: 20px;
+    margin: 0px 200px;
+  }
 }
 
-/* @media only screen and (min-width: 1920px) {
+@media only screen and (min-width: 1920px) {
   .restobox-cont {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0px 180px;
+    margin: 0px 300px;
   }
 
-  #resto-container {
+  .resto-container {
     max-width: 350px;
-    margin: 20px;
+    margin: 25px;
   }
   .hidden {
-    background-color: green;
-    display: block;
+    background-color: transparent;
+    display: inline-block;
     position: relative;
     height: 450px;
-    max-width: 20%;
+    max-width: 80%;
     padding-top: 20px;
     border-radius: 20px;
-    margin: 20px;
+    margin: 0px 200px;
   }
-} */
+}

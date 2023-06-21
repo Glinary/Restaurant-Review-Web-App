@@ -51,7 +51,7 @@
     <!-- end of header menu -->
 
     <div class="restobox-cont">
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -80,7 +80,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -94,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -122,7 +122,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -136,7 +136,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -150,7 +150,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -164,7 +164,7 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -178,7 +178,21 @@
           </div>
         </div>
       </div>
-      <div id="resto-container">
+      <div class="resto-container">
+        <div id="resto-desc">
+          <p>
+            samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">Resto #1</p>
+          <div class="cont">
+            <img src="assets/star.png" alt="" id="star-rate" />
+            <p id="r-label">5.0</p>
+          </div>
+        </div>
+      </div>
+      <div class="resto-container">
         <div id="resto-desc">
           <p>
             samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
@@ -201,6 +215,15 @@
     const userPic = document.querySelector("#prof-pic");
     const searchBar = document.querySelector(".search-container");
     const hidden = document.querySelector(".hidden");
+    const swidth = screen.width;
+    const copies = document.querySelectorAll(".resto-container").length;
+    const restoBox = document.querySelector(".restobox-cont");
+    const restoDesc = document.querySelectorAll("#resto-desc");
+    const restoLabel = document.querySelector("#resto-innerLabel");
+    console.log(restoBox);
+
+    console.log(swidth);
+    console.log(copies);
 
     menu.addEventListener("click", function () {
       menu.classList.toggle("is-active");
@@ -213,6 +236,13 @@
     userPage.addEventListener("mouseout", function () {
       userPic.classList.toggle("hovered");
     });
+
+    if (swidth > 960 && copies % 3 == 2) {
+      console.log("copies modulo:", copies % 3);
+
+      document.querySelector(".restobox-cont").innerHTML +=
+        '<div class="hidden"></div>';
+    }
   </script>
 </html>
 <!-- if (between(sWidth, 767, 959) && occur % 2 != 0) {
