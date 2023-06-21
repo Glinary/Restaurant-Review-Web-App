@@ -157,3 +157,23 @@ body {
   color: var(--main-background);
   transition: 0.6s ease-in-out;
 }
+
+.explore {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.explore input[type="button"] {
+  border: none;
+  width: 35%;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: white;
+  color: var(--main-button-color);
+  border-radius: 10px;
+}
+
+.explore a {
+  text-decoration: none;
+}
