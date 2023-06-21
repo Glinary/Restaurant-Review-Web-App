@@ -1,161 +1,269 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+  background-color: #fff4de;
+  font-family: "Montserrat", "sans-serif";
+}
 
 .banner {
-    display: block;
-    background-color: #64B6AC;
-    width: 100%;
-    
-    border-radius: 10px 10px 10px 10px;
-    margin: 0px 0px 20px 0px;
-    font-size: 100%;
-    text-align: center;
+  display: block;
+  background-color: #64b6ac;
+  width: 100%;
+
+  border-radius: 10px 10px 10px 10px;
+  margin: 0px 0px 20px 0px;
+  font-size: 100%;
+  text-align: center;
 }
 
 .banner h1 {
-    margin: 0px;
-    color: #FFFFFF;
-    font-family: 'Montserrat', 'sans-serif';
+  margin: 0px;
+  color: #ffffff;
+  font-family: "Montserrat", "sans-serif";
 }
 
 .banner-children {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #line {
-    margin: 0px 0px 0px 0px;
-    padding-right: 5px;
-    color: #FFFFFF;
+  margin: 0px 0px 0px 0px;
+  padding-right: 5px;
+  color: #ffffff;
 }
 #tagline {
-    margin: 0px;
-    padding-left: 5px;
-    font-family: 'Montserrat', 'sans-serif';
-    color: #FFFFFF;
-    font-size: 60%;
-    line-height: 20px;
+  margin: 0px;
+  padding-left: 5px;
+  font-family: "Montserrat", "sans-serif";
+  color: #ffffff;
+  font-size: 60%;
+  line-height: 20px;
 }
 
 .banner input {
-    margin: 10px 0px 0px 0px;
-    padding: 0px;
-    font-family: 'Montserrat', 'sans-serif';
-    font-weight: bold;
-    background-color: #F6F7FB;
-    border-radius: 0px 0px 10px 10px;
-    border: none;
-    color: #64B6AC;
-    width: 100%;
-    line-height: 200%;
-    font-size: 12px;
+  margin: 10px 0px 0px 0px;
+  padding: 0px;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: bold;
+  background-color: #f6f7fb;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  color: #64b6ac;
+  width: 100%;
+  line-height: 200%;
+  font-size: 12px;
 }
 
 .registration-section {
-    width: 100%;
-    text-align: center;
-    color: #000000;
-    
+  width: 100%;
+  text-align: center;
+  color: #000000;
 }
 
-.instruction-section h1{
-    margin: 0px 0px 0px 0px;
-    font-family: 'Montserrat', 'sans-serif';
-    font-weight: bold;
-    font-size: 150%;
-    
+.instruction-section h1 {
+  margin: 0px 0px 0px 0px;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: bold;
+  font-size: 150%;
 }
 
 .instruction-section p {
-    margin: 0px;
-    font-family: 'Montserrat', 'sans-serif';
-    font-weight: lighter;
-    font-size: 70%;
-    opacity: 0.70;
-    padding-right: 12em;
+  margin: 0px;
+  font-family: "Montserrat", "sans-serif";
+  font-weight: lighter;
+  font-size: 70%;
+  opacity: 0.7;
+  padding-right: 12em;
 }
 
 .input-section {
-    margin: 10px;
+  margin: 10px;
 }
 
-#email, #password, #confirm {
-    font-family: 'Montserrat', 'sans-serif';
-    font-weight: lighter;
-    background-color: #B9D2D2;
-    border-radius: 10px;
-    border: none;
-    width: 250px;
-    line-height: 230%;
-    margin: 5px;
+#email,
+#password,
+#confirm {
+  font-family: "Montserrat", "sans-serif";
+  font-weight: lighter;
+  background-color: #b9d2d2;
+  border-radius: 10px;
+  border: none;
+  width: 250px;
+  line-height: 230%;
+  margin: 5px;
 }
 
-#email::placeholder, #password::placeholder, #confirm::placeholder {
-    font-size: 0.8em;
-    padding: 0% 0% 0% 5%;
+#email::placeholder,
+#password::placeholder,
+#confirm::placeholder {
+  font-size: 0.8em;
+  padding: 0% 0% 0% 5%;
 }
 
 #register {
-    font-family: 'Montserrat', 'sans-serif';
-    font-weight: bold;
-    background-color: #64B6AC;
-    border-radius: 10px;
-    border: none;
-    color: #F6F7FB;
-    width: 250px;
-    line-height: 250%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 12px
+  font-family: "Montserrat", "sans-serif";
+  font-weight: bold;
+  background-color: #64b6ac;
+  border-radius: 10px;
+  border: none;
+  color: #f6f7fb;
+  width: 250px;
+  line-height: 250%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 12px;
 }
 
 .others-section {
-    text-align: center;
+  text-align: center;
 }
 
 #dont {
-    margin: 5px;
-    color:#000000;
-    opacity: 0.70;
-    font-size: 70%;
-    font-family: 'Montserrat', 'sans-serif';
+  margin: 5px;
+  color: #000000;
+  opacity: 0.7;
+  font-size: 70%;
+  font-family: "Montserrat", "sans-serif";
 }
 
 #create {
-    margin: 2px;
-    color: #64B6AC;
-    font-size: 70%;
-    font-family: 'Montserrat', 'sans-serif';
+  margin: 2px;
+  color: #64b6ac;
+  font-size: 70%;
+  font-family: "Montserrat", "sans-serif";
+}
+
+.others-section a,
+.explore a {
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 
-    body {
-        display: flex;
-        flex-direction: row-reverse;
-    }
+  .registration-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
 
-    .registration-section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100vh;
-    }
+  /*start of banner section*/
+  .banner {
+    background-color: #64b6ac;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: 0.6s ease-in-out;
+  }
 
-    /*start of banner section*/
-    .banner {
-        background-color: #64B6AC;
-        border-radius: 10px 10px 10px 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .banner input {
-        width: 25%;
-        border-radius: 10px;
-    }
+  .banner input {
+    width: 25%;
+    border-radius: 10px;
+  }
 
-    /*end of banner section*/
+  #email,
+  #password,
+  #confirm {
+    font-weight: lighter;
+    height: 25px;
+    width: 370px;
+    padding: 15px;
+    border: 2px solid #c0d8fd;
+  }
 
+  .instruction-section p {
+    font-weight: 200;
+    font-size: 15px;
+    position: absolute;
+  }
+
+  .instruction-section h1 {
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .instruction-section {
+    position: relative;
+    margin: 30px auto;
+  }
+
+  #register {
+    background-color: #64b6ac;
+    margin: 20px;
+    padding: 5px;
+    width: 400px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    color: white;
+  }
+
+  .others-section {
+    font-weight: 500;
+    font-size: 23px;
+  }
+
+  .banner h1 {
+    font-size: 120px;
+    color: #fff4de;
+    line-height: 0.85;
+    transition: 0.6s ease-out;
+  }
+
+  #line {
+    width: 300px;
+    height: 2.2px;
+    margin-left: 140px;
+    margin-right: 40px;
+    background-color: #fff4de;
+    display: inline-block;
+    transition: 0.6s ease-out;
+  }
+
+  #tagline {
+    position: relative;
+    display: inline-block;
+    color: #fff4de;
+    transition: 0.6s ease-in-out;
+    font-size: 18px;
+  }
+
+  .banner-children {
+    position: absolute;
+    margin-top: 55px;
+    margin-left: 55px;
+    display: flex;
+    align-items: center;
+    float: left;
+  }
+
+  .explore {
+    margin-top: 50px;
+  }
+
+  .explore input[type="button"] {
+    padding: 5px;
+  }
+  /*end of banner section*/
+}
+
+@media only screen and (min-width: 1440px) {
+  #line {
+    width: 300px;
+    height: 2.2px;
+    margin-left: 140px;
+    margin-right: 40px;
+    background-color: #fff4de;
+    display: inline-block;
+    transition: 0.6s ease-out;
+  }
 }

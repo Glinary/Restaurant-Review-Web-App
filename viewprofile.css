@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/*start of header */
+
+#navbar-line {
+    visibility: hidden;
+    margin-bottom: 0;
+}
+
+body {
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.header {
+    display: flex;
+
+}
+
+.content-navbar {
+    padding: 0 1em 0em 1em;
+}
+
+.content-navbar .whenintaft {
+    font-size: 2rem;
+}
+
+.content-navbar .navbar-items {
+    font-size: 0.7rem;
+}
+
+#viewprofile {
+    color: #64B6AC;
+    visibility: hidden;
+}
+
+.profile-navbar .anonpic {
+    max-width: 5rem;
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.content-navbar .whenintaft {
+    padding: 2rem 0rem 0rem 0rem;
+    margin: 1rem 0 0 0;
+}
+
+.content-navbar .navbar-items  {
+    padding: 0;
+    margin: 0;
+}
+
+
+.navbar-items {
+    display: flex;
+}
+
+.navbar-items .navbar {
+    margin: 0rem 1rem 0rem 0rem;
+}
+
+#header-divider {
+    margin-top: 0;
+    max-width: 90%;
+    visibility: visible;
+}
+
+/*end of header*/
+
+/*start of search-section*/
+.search-section {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 2em 0 0;
+}
+
+.search-section .search-bar {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    max-width: 10rem;
+}
+
+.search-section .searchbutton {
+    max-width: 2rem;
+}
+
+.search-section .search-bar {
+    max-width: 2vww;
+}
+
+/*end of search-section*/
+.profile-section .profile-picture {
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+/*start of profile-section*/
+.profile-section {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.profile-section .profile-pictures-section {
+    padding: 0rem 1rem 0rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: fill;
+}
+
+.profile-pictures-section .profile-picture {
+    flex-grow: 2;
+}
+.profile-pictures-section .smaller-profiles {
+    flex-grow: 1
+}
+
+.profile-pictures-section .profile-picture img {
+    max-width: 9.4em;
+    object-fit: cover;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.profile-section .smaller-profiles img{
+    max-width: 2.8em;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+
+.profile-section .profile-description {
+    flex: 2;
+    padding-top: 0.2em;
+}
+
+.profile-section .profile-description h1{
+    font-size: 1rem;
+}
+
+.profile-section .profile-description p {
+    font-size: 0.8rem;
+    padding: 0 1em 0 0;
+    text-align: justify;
+}
+/*end of profile-section*/
+
+/*start of edit-profile-section*/
+
+.edit-profile-section {
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.edit-profile-section img {
+    padding-top: 0em;
+    max-height: 5vh;
+    object-fit: contain;
+}
+
+.edit-profile-section h4 {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/*end of edit-profile-section*/
+
+/*start of reviews-section*/
+.reviews-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.label-and-navigator {
+    display: flex;
+}
+
+.label-and-navigator h3 {
+    padding: 0;
+    margin-top: 0;
+    margin-left: 1rem;
+    flex: 2;
+    font-size: 1rem;
+}
+
+.label-and-navigator ul {
+    margin-top: 0;
+    margin-right: 1rem;
+    flex: 1;
+    display: flex;
+}
+
+.label-and-navigator li {
+    list-style: none;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.reviews-content-container {
+    background-color: #FAD4C1;
+    margin: 0 1rem 1rem 1rem;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.reviews-left-container .left{
+    flex: 2;
+    display: flex;
+}
+
+.further-details .name {
+    display: flex;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.further-details .name .firstname {
+    margin: 0.6rem 0.5rem 0rem 0.5rem;
+}
+
+.further-details .name .lastname {
+    margin-top: 0.6rem;
+    margin-bottom: 0rem;
+}
+
+.further-details .others p {
+    font-weight: bolder;
+    font-size: 0.6rem;
+}
+
+.further-details .review-count {
+    opacity: 0.8;
+}
+
+.reviews-user-details .further-details .review {
+    font-size: 0.5rem;
+}
+
+.reviews-user-details .reviews-profile-pic {
+    max-width: 13vw;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+}
+
+.others {
+    margin-left: 0.5rem;
+}
+
+.others p {
+    margin: 0;
+}
+
+.left {
+    display: flex;
+}
+
+.review p {
+    font-size: 0.8rem;
+    text-align: justify;
+    margin: 1rem;
+}
+
+.reviews-pictures {
+    margin: 1rem;
+}
+.review-image {
+    object-fit: cover;
+    max-width: 20vw;
+    min-width: 20vw;
+    max-height: 10vh;
+    min-height: 10vh;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+/*end of reviews-section*/
+
+
+@media only screen and (min-width: 768px) {
+
+
+    .profile-navbar .anonpic {
+        max-width: 5rem;
+        padding: 1.3rem 1rem 1rem 1rem;
+    }
+
+    #navbar-line {
+        visibility: visible;
+    }
+
+    #header-divider {
+        display: none;
+    }
+
+    .content-navbar {
+        display: flex;
+        margin: 0 0 0 0;
+    }
+
+    .content-navbar .whenintaft {
+        font-size: 200%;
+    }
+
+    .content-navbar .navbar-items {
+        margin-left: 4%;
+        margin-top: 5%;
+        margin-right: 20vw;
+        margin-bottom: 1rem;
+    }
+
+    .navbar-items-container {
+        margin-left: 3vw;
+    }
+
+    .content-navbar .navbar-items h2{
+        margin-top: 10px
+    }
+
+    .content-navbar .navbar-items img {
+        max-width: 6vw;
+    }
+
+    .profile-navbar {
+        margin: 0;
+        max-width: 0px;
+    }
+
+    .profile-navbar .anonpic {
+            padding: 2;
+            margin: 0;
+            float: right;
+            max-width: 3rem;
+    }
+
+    #navbar-line {
+        max-width: 50000rem;
+    }
+
+    .search-section {
+        float: top;
+    }
+
+    .profile-section .profile-description h1{
+        font-size: 4vw;
+    }
+    
+    .profile-section .profile-description p {
+        font-size: 2vw;
+        padding: 0 1em 0 0;
+        text-align: justify;
+    }
+
+    .reviews-user-details .reviews-profile-pic {
+        max-width: 7vw;
+        margin-top: 0.5rem;
+        margin-left: 0.2rem;
+    }
+
+    .further-details .name {
+        display: flex;
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    
+    .further-details .others p {
+        font-weight: bolder;
+        font-size: 0.7rem;
+    }
+    
+    .further-details .review-count {
+        opacity: 0.8;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+
+    #viewprofile {
+        visibility: visible;
+    }
+
+    .content-navbar .whenintaft {
+        font-size: 3rem;
+    }
+
+    .profile-section .profile-description h1{
+        font-size: 2vw;
+    }
+    
+    .profile-section .profile-description p {
+        font-size: 1.2vw;
+        padding: 0 2.5em 0 0;
+        text-align: justify;
+    }
+
+    .profile-section .profile-pictures-section {
+        padding: 0rem 3rem 0rem 3rem;
+    }
+    
+    .profile-pictures-section .profile-picture img {
+        max-width: 12em;
+    }
+    
+    .profile-section .smaller-profiles img{
+        max-width: 3.65em;
+    }
+
+    /*start of edit-profile-section*/
+
+    .edit-profile-section {
+        padding-right: 5rem;
+    }
+
+    .edit-profile-section img {
+        padding-top: 0em;
+        max-height: 8vh;
+    }
+
+    .edit-profile-section h4 {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    }
+
+    /*end of edit-profile-section*/
+
+    /*start of reviews-section*/
+
+    .label-and-navigator h3 {
+        padding: 0;
+        margin-top: 0;
+        margin-left: 1rem;
+        flex: 2;
+        font-size: 1.5rem;
+    }
+
+    .further-details .name {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    
+    .further-details .others p {
+        font-weight: bolder;
+        font-size: 0.8rem;
+    }
+    
+    .further-details .review-count {
+        opacity: 0.8;
+    }
+    
+    .reviews-pictures {
+        margin: 0rem;
+        padding: 1rem 0 1rem 20rem;
+    }
+    .review-image {
+        object-fit: cover;
+        max-width: 25vw;
+        min-width: 25vw;
+        max-height: 20vh;
+        min-height: 20vh;
+    }
+    
+    .reviews-section {
+        margin: 2rem;
+    }
+
+}
