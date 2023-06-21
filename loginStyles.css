@@ -27,7 +27,7 @@
 }
 body {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
 }
@@ -158,7 +158,8 @@ body {
   color: var(--main-background);
   transition: 0.6s ease-in-out;
 }
-<<<<<<< Updated upstream ======= .explore {
+
+.explore {
   margin: 50px auto;
   text-align: center;
 }
@@ -332,23 +333,4 @@ body {
     transition: 0.6s ease-in-out;
     padding: 10px;
   }
-}
->>>>>>>Stashed changes .explore {
-  margin: 50px auto;
-  text-align: center;
-}
-
-.explore input[type="button"] {
-  border: none;
-  width: 35%;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 12px;
-  background-color: white;
-  color: var(--main-button-color);
-  border-radius: 10px;
-}
-
-.explore a {
-  text-decoration: none;
 }
