@@ -196,44 +196,65 @@ header {
   background-color: var(--page-menu-color);
   height: 450px;
   width: 60%;
-  padding-top: 20px;
+  padding-top: 0px;
   border-radius: 20px;
   margin: 20px auto;
   z-index: 9999;
+  /* Edit background at the very bottom of css */
+}
+
+.resto-container img {
+  height: 450px;
+  width: 100%;
+  padding-top: 0;
+  border-radius: 20px;
+  margin: 0;
+  z-index: 1;
+}
+
+.resto-container img:hover {
+  -webkit-filter: brightness(40%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
 .resto-container:hover #resto-desc,
 .resto-container:hover #resto-innerLabel {
   opacity: 1;
   transition: 0.6s ease-in;
+  filter: blur(0px);
+  -webkit-filter: brightness(100%);
 }
 
 #resto-desc {
+  position: absolute;
   background-color: var(--main-label-color);
   height: 120px;
   width: 80%;
-  margin: 30px auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 40px auto;
   border-radius: 20px;
   inline-size: 80%;
   overflow-wrap: break-word;
+  z-index: 9999;
   opacity: 0;
 }
 
 #resto-desc.active {
   background-color: var(--main-label-color);
+  position: absolute;
   height: 120px;
   width: 80%;
   margin: 30px auto;
   border-radius: 20px;
   inline-size: 80%;
   overflow-wrap: break-word;
-  opacity: 1;
-}
-
-.resto-desc {
-  opacity: 1;
-}
-.active {
+  z-index: 9999;
   opacity: 1;
 }
 
