@@ -27,6 +27,7 @@
 }
 body {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
 }
@@ -176,4 +177,160 @@ body {
 
 .explore a {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 960px) {
+  .line {
+    opacity: 0;
+    display: none;
+  }
+
+  body {
+    display: block;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .half-right-container {
+    background-color: #64b6ac;
+    margin: 8px auto;
+    width: 98%;
+    height: 8vh;
+    display: block;
+    padding: 0;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .app-name {
+    margin: 0px;
+    text-align: center;
+  }
+
+  .app-name h1 {
+    font-size: 35px;
+    color: var(--main-background);
+    line-height: 1;
+    transition: 0.6s ease-out;
+  }
+
+  .login-items p {
+    font-weight: 200;
+    font-size: 15px;
+    left: 0;
+    position: absolute;
+    margin-left: 23%;
+  }
+
+  .explore {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .explore input[type="button"] {
+    border: none;
+    width: 100%;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: white;
+    color: var(--main-button-color);
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .explore a {
+    text-decoration: none;
+  }
+
+  /* DOWN */
+
+  .half-left-container {
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 100vh;
+  }
+
+  .login-items h1 {
+    padding-top: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items {
+    transition: 0.6s ease;
+    text-align: center;
+    display: block;
+    /* background-color: #6e5353; */
+  }
+
+  .input-box {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+
+  .input-box input {
+    width: 270px;
+    height: 5px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .login-button {
+    padding: 5px;
+    margin: auto;
+    width: min-content;
+    transition: 0.6s ease;
+  }
+  .login-button input[type="submit"] {
+    margin: 10px;
+    padding: 8px;
+    width: 300px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    color: white;
+    background-color: var(--main-button-color);
+  }
+
+  .user-register-container {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    width: max-content;
+    height: 100%;
+
+    inline-size: 300px;
+    text-align: center;
+  }
+
+  .user-register-container p {
+    margin: auto;
+    position: relative;
+  }
+  .user-register-container a {
+    text-decoration: none;
+    color: var(--main-button-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .subtitle {
+    display: block;
+
+    text-align: center;
+    vertical-align: middle;
+    color: var(--main-background);
+    transition: 0.6s ease-in-out;
+    padding: 10px;
+  }
 }
