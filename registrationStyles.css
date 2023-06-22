@@ -5,16 +5,25 @@
   font-family: "Montserrat", "sans-serif";
 }
 
+
 .banner {
   display: block;
   background-color: #64b6ac;
   width: 100%;
-
   border-radius: 10px 10px 10px 10px;
   margin: 0px 0px 20px 0px;
-  font-size: 100%;
   text-align: center;
 }
+
+.banner-logo-container {
+  margin: 100px;
+}
+
+.banner .logo {
+  font-size: 7.5vw;
+  margin-bottom: 0;
+}
+
 
 .banner h1 {
   margin: 0px;
@@ -25,10 +34,11 @@
 .banner-children {
   display: flex;
   justify-content: center;
+  margin-top: 13vh;
 }
 
 #line {
-  margin: 0px 0px 0px 0px;
+  margin: 0;
   padding-right: 5px;
   color: #ffffff;
 }
@@ -42,8 +52,8 @@
 }
 
 .banner input {
-  margin: 10px 0px 0px 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   font-family: "Montserrat", "sans-serif";
   font-weight: bold;
   background-color: #f6f7fb;
@@ -139,6 +149,7 @@
   text-decoration: none;
 }
 
+
 @media only screen and (min-width: 768px) {
   body {
     display: flex;
@@ -220,13 +231,12 @@
   }
 
   #line {
-    width: 300px;
+    width: 22vw;
     height: 2.2px;
-    margin-left: 140px;
-    margin-right: 40px;
     background-color: #fff4de;
     display: inline-block;
     transition: 0.6s ease-out;
+    margin-top: 10px;
   }
 
   #tagline {
@@ -234,21 +244,16 @@
     display: inline-block;
     color: #fff4de;
     transition: 0.6s ease-in-out;
-    font-size: 18px;
+    font-size: 1.5vw;
+    
   }
 
   .banner-children {
     position: absolute;
-    margin-top: 55px;
-    margin-left: 55px;
     display: flex;
-    align-items: center;
-    float: left;
+    width: 50%;
   }
 
-  .explore {
-    margin-top: 50px;
-  }
 
   .explore input[type="button"] {
     padding: 5px;
@@ -256,14 +261,10 @@
   /*end of banner section*/
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1000px) {
   #line {
-    width: 300px;
-    height: 2.2px;
-    margin-left: 140px;
-    margin-right: 40px;
-    background-color: #fff4de;
     display: inline-block;
     transition: 0.6s ease-out;
   }
+
 }

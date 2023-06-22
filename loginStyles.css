@@ -49,15 +49,17 @@ body {
 }
 
 .login-items h1 {
-  font-size: 45px;
+  text-align: center;
+  font-size: 2em;
   font-weight: 600;
   letter-spacing: 2px;
   line-height: 1.5;
 }
 
 .login-items p {
-  font-weight: 200;
+  opacity: 0.6;
   font-size: 15px;
+  margin-left: 2rem;
 }
 
 .user-login {
@@ -134,20 +136,20 @@ body {
 
 .app-name {
   margin: auto;
+  text-align: center;
 }
 
 .app-name h1 {
-  font-size: 110px;
+  font-size: 5vw;
   color: var(--main-background);
   line-height: 0.85;
   transition: 0.6s ease-out;
 }
 
 .line {
-  width: 300px;
-  height: 2px;
-  margin-left: 50px;
-  margin-right: 40px;
+  width: 15vw;
+  height: 1.5px;
+  margin-right: 10px;
   background-color: var(--main-background);
   display: inline-block;
   transition: 0.6s ease-out;
@@ -160,13 +162,13 @@ body {
 }
 
 .explore {
-  margin: 50px auto;
+  margin: 30px 0 0 0;
   text-align: center;
 }
 
 .explore input[type="button"] {
   border: none;
-  width: 35%;
+  width: 28%;
   padding: 10px;
   font-weight: 600;
   font-size: 12px;
@@ -211,7 +213,7 @@ body {
   }
 
   .app-name h1 {
-    font-size: 35px;
+    font-size: 7.9vw;
     color: var(--main-background);
     line-height: 1;
     transition: 0.6s ease-out;
