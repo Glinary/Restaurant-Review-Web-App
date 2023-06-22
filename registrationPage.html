@@ -2,49 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration Page</title>
-    <link rel="stylesheet" href="registrationStyles.css" />
+    <title>When In Taft</title>
+    <link rel="stylesheet" href="loginStyles.css" />
   </head>
   <body>
-    <div class="banner">
-      <div class="try">
-        <h1 class="logo">WhenInTaft</h1>
-      </div>
-      
-      <div class="banner-children">
-        <div id="line"></div>
-        <div id="tagline">explore the food</div>
-      </div>
-      <div class="explore">
-        <a href="restoNoLog.html"><input type="button" value="Explore" /></a>
+    <!-- ========================= LOGIN PAGE =====================  -->
+    <!-- ============= START OF HALF RIGHT =============  -->
+    <div class="half-right-container">
+      <!-- APP TITLE -->
+      <div class="app-name">
+        <h1>WhenInTaft</h1>
+        <!-- SUBTITLE -->
+        <div class="line"></div>
+        <div class="subtitle">explore the food</div>
+        <div class="explore">
+          <a href="restoNoLog.html"><input type="button" value="Explore" /></a>
+        </div>
       </div>
     </div>
+    <!-- ============= END OF HALF RIGHT =============  -->
 
-    <div class="registration-section">
-      <div class="instruction-section">
-        <span><h1>Create your Account</h1></span>
-        <span><p>Start writing reviews!</p></span>
-      </div>
+    <!-- =============== START OF HALF LEFT ===============  -->
+    <div class="half-left-container">
+      <div class="login-items">
+        <h1>Create your Account</h1>
+        <p>Start writing reviews!</p>
 
-      <div class="input-section">
-        <form>
-          <input type="text" placeholder="Email" id="email" /><br />
-          <input type="text" placeholder="Password" id="password" /><br />
-          <input
-            type="text"
-            placeholder="Confirm Password"
-            id="confirm"
-          /><br />
-
-          <input type="submit" value="REGISTER" id="register" />
+        <form action="#">
+          <div class="user-login">
+            <div class="input-box">
+              <input type="text" id="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-box">
+              <input type="text" id="pw" name="pw" placeholder="Password" />
+            </div>
+            <div class="input-box">
+              <input type="text" id="pw" name="confirm" placeholder="Confirm Password" />
+            </div>
+          </div>
+          <div class="login-button">
+            <input type="submit" value="LOGIN" />
+          </div>
         </form>
-      </div>
-
-      <div class="others-section">
-        <p id="dont">Already have an account?</p>
-        <a href="loginPage.html"><p id="create">Login now</p></a>
+        <div class="user-register-container">
+          <p>Don't have an account?</p>
+          <a href="registrationPage.html">Create an account</a>
+        </div>
       </div>
     </div>
+    <!-- ============= END OF HALF RIGHT ===============  -->
+
+    <!-- ========================= END OF LOGIN PAGE =====================  -->
   </body>
 </html>

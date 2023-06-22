@@ -213,7 +213,7 @@ body {
   }
 
   .app-name h1 {
-    font-size: 7.5vw;
+    font-size: 7.9vw;
     color: var(--main-background);
     line-height: 1;
     transition: 0.6s ease-out;
