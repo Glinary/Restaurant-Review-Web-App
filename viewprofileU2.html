@@ -172,6 +172,7 @@
       revs.innerHTML += '<span id="more">more</span>';
     }
 
+    // https://stackoverflow.com/a/63162630
     function truncateText(selector, maxLength) {
       var element = selector;
       truncated = element.innerText;
@@ -185,7 +186,7 @@
       return truncated;
     }
 
-    // https://stackoverflow.com/a/63162630
+    //https://stackoverflow.com/a/62555388
     reviews.forEach((cell) =>
       cell.addEventListener("click", function () {
         if (flag == true) {
