@@ -56,10 +56,19 @@ body {
   line-height: 1.5;
 }
 
-.login-items p {
+.login-items .create {
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .start {
   opacity: 0.6;
   font-size: 15px;
-  margin-left: 2rem;
+  text-align: center;
+  padding: 0 15rem 0 0;
 }
 
 .user-login {
@@ -107,6 +116,21 @@ body {
 }
 
 .user-register-container {
+  display: flex;
+  background-color: blue;
+}
+
+.user-register-container p {
+  background-color: red;
+}
+
+.user-register-container a {
+  text-decoration: none;
+  color: var(--main-button-color);
+  font-weight: 500;
+}
+
+.user-login-container {
   margin: auto;
   padding: 10px;
   width: 400px;
@@ -115,10 +139,15 @@ body {
   align-items: center;
 }
 
-.user-register-container a {
+.user-login-container a {
   text-decoration: none;
   color: var(--main-button-color);
   font-weight: 500;
+}
+
+.user-login-container .already {
+  font-size: 0.9em;
+  opacity: 0.8;
 }
 
 /* ================== HALF RIGHT ==================  */
@@ -159,6 +188,7 @@ body {
   display: inline;
   color: var(--main-background);
   transition: 0.6s ease-in-out;
+  font-size: 1rem
 }
 
 .explore {
@@ -181,7 +211,7 @@ body {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 768px) {
   .line {
     opacity: 0;
     display: none;
@@ -266,17 +296,25 @@ body {
     max-height: min-content;
   }
 
-  .login-items p {
-    font-weight: 200;
+  .login-items .start {
+    font-weight: 200px;
     font-size: 15px;
-    left: 0;
-    position: absolute;
-    margin-left: 23%;
+    text-align: center;
+    padding: 0 9rem 0 0;
   }
 
   .login-items h1 {
     padding-top: 30px;
-    font-size: 25px;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items .create {
+    padding-top: 30px;
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: normal;
     line-height: 1.5;
@@ -326,15 +364,10 @@ body {
     padding: 10px;
     width: max-content;
     height: 100%;
-
     inline-size: 300px;
-    text-align: center;
+    text-align: center; 
   }
 
-  .user-register-container p {
-    margin: auto;
-    position: relative;
-  }
   .user-register-container a {
     text-decoration: none;
     color: var(--main-button-color);
@@ -342,4 +375,28 @@ body {
     font-size: 15px;
     position: relative;
   }
+
+  .user-login-container {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    width: max-content;
+    height: 100%;
+    inline-size: 300px;
+    text-align: center;
+  }
+
+  .user-login-container a {
+    text-decoration: none;
+    color: var(--main-button-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .user-login-container .already {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
 }
