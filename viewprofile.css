@@ -287,6 +287,16 @@ body {
   .box-a a {
     display: none;
   }
+
+  .profile-section {
+    flex-wrap: wrap;
+    flex-basis: 1rem;
+  }
+
+  .edit-profile-section {
+    flex-basis: 35rem;
+    margin-top: 0rem;
+  }
 }
 @media only screen and (min-width: 768px) {
   .profile-navbar .anonpic {
@@ -380,18 +390,43 @@ body {
   .further-details .review-count {
     opacity: 0.8;
   }
-  .edit-profile-section {
-    margin-top: 25%;
-  }
+
   .box a {
     display: none;
+  }
+
+  .reviews-content-container {
+    max-height: fit-content;
+  }
+
+  .reviews-left-container .left {
+    display: flex;
+    align-items: center;
+  }
+
+  .reviews-left-container .left img {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .reviews-pictures {
+    display: flex;
+    height: min-content;
+  }
+
+  .review-image {
+    object-fit: cover;
+    max-width: 20vw;
+    min-width: 20vw;
+    max-height: 60%;
+    min-height: 60%;
   }
 }
 
 @media only screen and (min-width: 1000px) {
   .box {
     background-color: #e3e6d9;
-    width: 15%;
+    width: 55%;
     height: 500px;
     border-radius: 30px;
     margin-left: 50px;
@@ -404,6 +439,7 @@ body {
     height: max-content;
     text-decoration: none;
     color: black;
+    font-weight: 500;
   }
 
   .box a:nth-child(1) {
@@ -411,6 +447,11 @@ body {
   }
   #viewprofile {
     visibility: visible;
+  }
+
+  #profilee {
+    display: flex;
+    margin-top: 2rem;
   }
 
   .content-navbar .whenintaft {
@@ -431,7 +472,7 @@ body {
   .profile-section .profile-description p {
     font-size: 1.2vw;
     padding: 0 2.5em 0 0;
-    inline-size: 140%;
+    inline-size: 110%;
     text-align: justify;
   }
 
@@ -450,7 +491,8 @@ body {
   /*start of edit-profile-section*/
 
   .edit-profile-section {
-    padding-right: 5rem;
+    padding-right: 0rem;
+    padding-top: 5rem;
   }
 
   .edit-profile-section img {
@@ -489,19 +531,28 @@ body {
     opacity: 0.8;
   }
 
+  .reviews-left-container {
+    flex-grow: 2;
+  }
+
   .reviews-pictures {
+    flex-grow: 0;
     margin: 0rem;
-    padding: 1rem 0 1rem 20rem;
+    padding: 0.5rem;
   }
   .review-image {
     object-fit: cover;
-    max-width: 25vw;
-    min-width: 25vw;
-    max-height: 20vh;
-    min-height: 20vh;
+    max-width: 20vw;
+    min-width: 20vw;
+    max-height: 25vh;
+    min-height: 15vh;
   }
 
   .reviews-section {
     margin: 2rem;
+  }
+
+  .box a:hover {
+    color: #64b6ac;
   }
 }
