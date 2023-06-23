@@ -63,21 +63,68 @@
             <div class="slides">
                 <div class="slide">
                     <img src="assets/starbucks.jpg" id="restaurant1" >
-                </div>
-                <div class="slide">
-                    <img src="assets/starbucks.jpg" id="restaurant2" >
-                </div>
-                <div class="slide">
-                    <img src="assets/starbucks.jpg" id="restaurant" >
-                </div>
-                <div class="slide">
-                  <img src="assets/starbucks.jpg" id="restaurant" >
-                </div>
-                <div class="slide">
-                <img src="assets/starbucks.jpg" id="restaurant" >
+                    <div id="resto-desc">
+                      <p>
+                        samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                      </p>
+                    </div>
+                    <div id="resto-innerLabel">
+                      <p id="r-label">Starbucksafasdf</p>
+                      <div class="cont">
+                        <img src="assets/star.png" alt="" id="star-rate" />
+                        <p id="r-label">5.0</p>
+                      </div>
+                    </div>
                 </div>
 
+              <div class="slide">
+                <img src="assets/starbucks.jpg" id="restaurant1" >
+                <div id="resto-desc">
+                  <p>
+                    samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                  </p>
+                </div>
+                <div id="resto-innerLabel">
+                  <p id="r-label">SBSBSBSB</p>
+                  <div class="cont">
+                    <img src="assets/star.png" alt="" id="star-rate" />
+                    <p id="r-label">5.0</p>
+                  </div>
+                </div>
+              </div>
+
+            <div class="slide">
+              <img src="assets/TNB.jpeg" id="restaurant1" >
+              <div id="resto-desc">
+                <p>
+                  samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Tinuhog ni Benny</p>
+                <div class="cont">
+                  <img src="assets/star.png" alt="" id="star-rate" />
+                  <p id="r-label">5.0</p>
+                </div>
+              </div>
             </div>
+
+            <div class="slide">
+              <img src="assets/ADB.png" id="restaurant1" >
+              <div id="resto-desc">
+                <p>
+                  samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Angry Dobo</p>
+                <div class="cont">
+                  <img src="assets/star.png" alt="" id="star-rate" />
+                  <p id="r-label">5.0</p>
+                </div>
+              </div>
+            </div>
+              
 
         </div>
     </div>
@@ -90,8 +137,8 @@
     const searchBar = document.querySelector(".search-container");
     const hidden = document.querySelector(".hidden");
     const swidth = screen.width;
-    const copies = document.querySelectorAll(".resto-container").length;
-    const restoBox = document.querySelector(".restobox-cont");
+    const copies = document.querySelectorAll(".slide").length;
+    const restoBox = document.querySelector(".slides");
     const restoDesc = document.querySelectorAll("#resto-desc");
     const restoLabel = document.querySelector("#resto-innerLabel");
     console.log(restoBox);
