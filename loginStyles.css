@@ -64,11 +64,26 @@ body {
   line-height: 1.5;
 }
 
+.login-items .login {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
 .login-items .start {
   opacity: 0.6;
   font-size: 15px;
   text-align: center;
   padding: 0 15rem 0 0;
+}
+
+.login-items .welcome {
+  opacity: 0.6;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0 17.5rem 0 0;
 }
 
 .user-login {
@@ -303,6 +318,13 @@ body {
     padding: 0 9rem 0 0;
   }
 
+  .login-items .welcome {
+    font-weight: 200px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 11.5rem 0 0;
+  }
+
   .login-items h1 {
     padding-top: 30px;
     font-size: 1.65rem;
@@ -320,6 +342,16 @@ body {
     line-height: 1.5;
     /* background-color: #c0d8fd; */
   }
+
+  .login-items .login {
+    padding-top: 30px;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
 
   .login-items {
     transition: 0.6s ease;
