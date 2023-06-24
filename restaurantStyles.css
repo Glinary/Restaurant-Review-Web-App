@@ -157,7 +157,7 @@ header {
 }
 
 .search-container.active {
-  margin: 230px auto auto auto;
+  margin: 290px auto auto auto;
   transition: all 0.2s ease;
 }
 
@@ -397,15 +397,6 @@ header {
   #mobile-menu.is-active .toggle:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
-  /* 
-  .menu-bar {
-    display: flex;
-    margin: 0;
-    width: 100%;
-    opacity: 1;
-    transition: all 0.5s ease;
-    /* z-index: -1; 
-  } */
 
   .menu-bar.active {
     background: #131313;
@@ -543,6 +534,9 @@ header {
   }
 
   /* MENU */
+
+  /* !! NOTE: Change margin to this in search-container.active: 
+  -> margin: 290px auto auto auto; */
 
   .menu-bar2 {
     display: block;

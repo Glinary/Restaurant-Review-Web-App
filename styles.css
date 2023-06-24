@@ -498,7 +498,7 @@ header {
   }
 
   .search-container.active {
-    margin: 230px auto auto auto;
+    margin: 290px auto auto auto;
     transition: all 0.2s ease;
   }
 
@@ -726,6 +726,9 @@ header {
   }
 
   /* MENU  - Dropdown */
+
+  /* !! NOTE: Change margin to this in search-container.active: 
+  -> margin: 290px auto auto auto; */
 
   .view-profile {
     display: flex;
