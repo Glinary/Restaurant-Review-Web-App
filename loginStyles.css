@@ -46,18 +46,46 @@ body {
 .login-items {
   display: block;
   transition: 0.6s ease;
+  width: min-content;
+  margin: auto;
 }
 
 .login-items h1 {
-  font-size: 45px;
+  text-align: center;
+  font-size: 2em;
   font-weight: 600;
   letter-spacing: 2px;
   line-height: 1.5;
 }
 
-.login-items p {
-  font-weight: 200;
+.login-items .create {
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .login {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .start {
+  opacity: 0.6;
   font-size: 15px;
+  text-align: center;
+  padding: 0 15rem 0 0;
+}
+
+.login-items .welcome {
+  opacity: 0.6;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0 17.5rem 0 0;
 }
 
 .user-login {
@@ -87,13 +115,13 @@ body {
 }
 
 .login-button {
-  padding: 10px;
+  padding: 0px;
   margin: auto;
   width: min-content;
   transition: 0.6s ease;
 }
 .login-button input[type="submit"] {
-  margin: 20px;
+  margin: 1rem 1rem 0.5rem 1rem;
   padding: 15px;
   width: 400px;
   font-weight: 600;
@@ -105,7 +133,22 @@ body {
 }
 
 .user-register-container {
-  margin: auto;
+  display: flex;
+  background-color: blue;
+}
+
+.user-register-container p {
+  background-color: red;
+}
+
+.user-register-container a {
+  text-decoration: none;
+  color: var(--main-button-color);
+  font-weight: 500;
+}
+
+.user-login-container {
+  margin: 20px auto;
   padding: 10px;
   width: 400px;
   display: flex;
@@ -113,10 +156,27 @@ body {
   align-items: center;
 }
 
-.user-register-container a {
+.user-login-container a {
   text-decoration: none;
   color: var(--main-button-color);
   font-weight: 500;
+}
+
+.user-login-container .already {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+#remember {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#remember input[type="checkbox"] {
+  margin-top: 0;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
 }
 
 /* ================== HALF RIGHT ==================  */
@@ -134,20 +194,20 @@ body {
 
 .app-name {
   margin: auto;
+  text-align: center;
 }
 
 .app-name h1 {
-  font-size: 120px;
+  font-size: 5vw;
   color: var(--main-background);
   line-height: 0.85;
   transition: 0.6s ease-out;
 }
 
 .line {
-  width: 300px;
-  height: 2px;
-  margin-left: 50px;
-  margin-right: 40px;
+  width: 15vw;
+  height: 1.5px;
+  margin-right: 10px;
   background-color: var(--main-background);
   display: inline-block;
   transition: 0.6s ease-out;
@@ -157,16 +217,17 @@ body {
   display: inline;
   color: var(--main-background);
   transition: 0.6s ease-in-out;
+  font-size: 1rem;
 }
 
 .explore {
-  margin: 50px auto;
+  margin: 30px 0 0 0;
   text-align: center;
 }
 
 .explore input[type="button"] {
   border: none;
-  width: 35%;
+  width: 28%;
   padding: 10px;
   font-weight: 600;
   font-size: 12px;
@@ -179,7 +240,7 @@ body {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 768px) {
   .line {
     opacity: 0;
     display: none;
@@ -196,7 +257,7 @@ body {
     background-color: #64b6ac;
     margin: 8px auto;
     width: 98%;
-    height: 8vh;
+    height: 100%;
     display: block;
     padding: 0;
     border-radius: 10px 10px 10px 10px;
@@ -205,34 +266,30 @@ body {
   .app-name {
     margin: 0px;
     text-align: center;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 
   .app-name h1 {
-    font-size: 35px;
+    font-size: 7.9vw;
     color: var(--main-background);
     line-height: 1;
     transition: 0.6s ease-out;
-  }
-
-  .login-items p {
-    font-weight: 200;
-    font-size: 15px;
-    left: 0;
-    position: absolute;
-    margin-left: 23%;
   }
 
   .explore {
     position: relative;
     margin: 0;
     padding: 0;
+    bottom: 0;
     text-align: center;
   }
 
   .explore input[type="button"] {
     border: none;
     width: 100%;
-    padding: 5px;
+    max-height: max-content;
     font-weight: 600;
     font-size: 12px;
     background-color: white;
@@ -246,18 +303,63 @@ body {
     text-decoration: none;
   }
 
+  .subtitle {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--main-background);
+    transition: 0.6s ease-in-out;
+    padding: 5px;
+  }
+
   /* DOWN */
 
   .half-left-container {
     width: 100%;
     display: block;
     position: absolute;
-    height: 100vh;
+    height: min-content;
+  }
+
+  .login-items {
+    max-height: min-content;
+  }
+
+  .login-items .start {
+    font-weight: 200px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 9rem 0 0;
+  }
+
+  .login-items .welcome {
+    font-weight: 200px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 11.5rem 0 0;
   }
 
   .login-items h1 {
     padding-top: 30px;
-    font-size: 25px;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items .create {
+    padding-top: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items .login {
+    padding-top: 30px;
+    font-size: 1.65rem;
     font-weight: 700;
     letter-spacing: normal;
     line-height: 1.5;
@@ -301,21 +403,21 @@ body {
     background-color: var(--main-button-color);
   }
 
+  #remember input[type="checkbox"] {
+    margin-left: 1rem;
+    margin-right: 0.2rem;
+  }
+
   .user-register-container {
     display: block;
     margin: auto;
     padding: 10px;
     width: max-content;
     height: 100%;
-
     inline-size: 300px;
     text-align: center;
   }
 
-  .user-register-container p {
-    margin: auto;
-    position: relative;
-  }
   .user-register-container a {
     text-decoration: none;
     color: var(--main-button-color);
@@ -324,13 +426,26 @@ body {
     position: relative;
   }
 
-  .subtitle {
+  .user-login-container {
     display: block;
-
-    text-align: center;
-    vertical-align: middle;
-    color: var(--main-background);
-    transition: 0.6s ease-in-out;
+    margin: auto;
     padding: 10px;
+    width: max-content;
+    height: 100%;
+    inline-size: 300px;
+    text-align: center;
+  }
+
+  .user-login-container a {
+    text-decoration: none;
+    color: var(--main-button-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .user-login-container .already {
+    font-size: 0.8rem;
+    opacity: 0.8;
   }
 }

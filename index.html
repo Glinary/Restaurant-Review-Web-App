@@ -9,30 +9,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <div class="header-right-section">
-            <img id="anonymouspic" src="assets/anonymous_picture.png">
+    <!-- header menu -->
+    <header>
+        <div class="RP-app-name">
+          <h1>WhenInTaft</h1>
         </div>
-        <div class="header-left-section">
-            <h1 id="when">WhenInTaft</h1>
-
-            <div class="navbar">    
-                <a class="home" href="index.html">HOME</a>
-                <a class="restaurants" href="restaurants.html">RESTAURANTS</a>
-                <a class="register-nav" href="register.html">REGISTER</a>
+        <div class="toggle-bars" id="mobile-menu">
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+        </div>
+        <div class="menu-bar">
+          <div class="menu-list">
+            <div class="part1">
+              <a href="index.html">HOME</a>
+              <a href="restoNoLog.html">RESTAURANTS</a>
             </div>
+            <div class="register">
+              <a href="registrationPage.html" id="prof-page">REGISTER</a>
+            </div>
+          </div>
+          <div class="menu-line"></div>
         </div>
-        <div>
-            <hr id="header-divider">
-        </div>
+      </header>
 
-        <div class="search-section">
-            <span><input type="text" ></span>
-            <span><img src="assets/searchbutton.png" alt="search button"></span>
-            
-            
-        </div>
-    </div>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="search here"
+          name="searchBar"
+          id="searchBar"
+        /><img src="assets/searchbutton.png" alt="" />
+      </div>
+      <div class="search-line"></div>
+      <!-- end of header menu -->
 
     <div class="wrapper">
     
@@ -44,7 +54,7 @@
                 <p id="choose">choose the venue</p>
             </div>
             <div>
-                <input type="button" value="Register Now" id="registerButton"><br>
+                <a href="registrationPage.html"><input type="button" value="Register Now" id="registerButton"></a><br>
             </div>
         </div>
 
@@ -53,18 +63,106 @@
             <div class="slides">
                 <div class="slide">
                     <img src="assets/starbucks.jpg" id="restaurant1" >
-                </div>
-                <div class="slide">
-                    <img src="assets/starbucks.jpg" id="restaurant2" >
-                </div>
-                <div class="slide">
-                    <img src="assets/starbucks.jpg" id="restaurant" >
+                    <div id="resto-desc">
+                      <p>
+                        samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                      </p>
+                    </div>
+                    <div id="resto-innerLabel">
+                      <p id="r-label">Starbucksafasdf</p>
+                      <div class="cont">
+                        <img src="assets/star.png" alt="" id="star-rate" />
+                        <p id="r-label">5.0</p>
+                      </div>
+                    </div>
                 </div>
 
+              <div class="slide">
+                <img src="assets/starbucks.jpg" id="restaurant1" >
+                <div id="resto-desc">
+                  <p>
+                    samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                  </p>
+                </div>
+                <div id="resto-innerLabel">
+                  <p id="r-label">SBSBSBSB</p>
+                  <div class="cont">
+                    <img src="assets/star.png" alt="" id="star-rate" />
+                    <p id="r-label">5.0</p>
+                  </div>
+                </div>
+              </div>
+
+            <div class="slide">
+              <img src="assets/TNB.jpeg" id="restaurant1" >
+              <div id="resto-desc">
+                <p>
+                  samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Tinuhog ni Benny</p>
+                <div class="cont">
+                  <img src="assets/star.png" alt="" id="star-rate" />
+                  <p id="r-label">5.0</p>
+                </div>
+              </div>
             </div>
+
+            <div class="slide">
+              <img src="assets/ADB.png" id="restaurant1" >
+              <div id="resto-desc">
+                <p>
+                  samplesamplesamplesamplesamplesamplesamplesamplesamplesampsamplesampsamplesampsamplesamp
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Angry Dobo</p>
+                <div class="cont">
+                  <img src="assets/star.png" alt="" id="star-rate" />
+                  <p id="r-label">5.0</p>
+                </div>
+              </div>
+            </div>
+              
 
         </div>
     </div>
-    
 </body>
+<script>
+    const menu = document.querySelector("#mobile-menu");
+    const menuLinks = document.querySelector(".menu-bar");
+    const userPage = document.querySelector("#prof-page");
+    const userPic = document.querySelector("#prof-pic");
+    const searchBar = document.querySelector(".search-container");
+    const hidden = document.querySelector(".hidden");
+    const swidth = screen.width;
+    const copies = document.querySelectorAll(".slide").length;
+    const restoBox = document.querySelector(".slides");
+    const restoDesc = document.querySelectorAll("#resto-desc");
+    const restoLabel = document.querySelector("#resto-innerLabel");
+    console.log(restoBox);
+
+    console.log(swidth);
+    console.log(copies);
+
+    menu.addEventListener("click", function () {
+      menu.classList.toggle("is-active");
+      menuLinks.classList.toggle("active");
+      searchBar.classList.toggle("active");
+    });
+    userPage.addEventListener("mouseover", function () {
+      userPic.classList.toggle("hovered");
+    });
+    userPage.addEventListener("mouseout", function () {
+      userPic.classList.toggle("hovered");
+    });
+
+    if (swidth > 960 && copies % 3 == 2) {
+      console.log("copies modulo:", copies % 3);
+
+      document.querySelector(".restobox-cont").innerHTML +=
+        '<div class="hidden"></div>';
+    }
+  </script>
 </html>
