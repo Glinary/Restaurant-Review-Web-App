@@ -159,4 +159,45 @@
       </div>
     </div>
   </body>
+  <script>
+    const reviews = document.querySelectorAll(".review");
+    const times = document.querySelectorAll(".review").length;
+    let flag = true;
+
+    for (let i = 0; i < times; i = i + 1) {
+      revs = reviews[i];
+      // assign value of text shown here (change 80)
+      revs.innerText = truncateText(revs, 80);
+      revs.innerHTML += '<span id="more">more</span>';
+    }
+
+    // https://stackoverflow.com/a/63162630
+    function truncateText(selector, maxLength) {
+      var element = selector;
+      truncated = element.innerText;
+      truncate = truncated;
+
+      if (truncated.length > maxLength) {
+        truncated = truncated.substr(0, maxLength) + "...";
+      }
+      console.log("trucated: ", truncated);
+      console.log(element, "Successfully Truncated");
+      return truncated;
+    }
+
+    //https://stackoverflow.com/a/62555388
+    reviews.forEach((cell) =>
+      cell.addEventListener("click", function () {
+        if (flag == true) {
+          cell.innerHTML = truncate;
+          cell.innerHTML += '<span id="more">less</span>';
+          flag = false;
+        } else if (flag == false) {
+          cell.innerHTML = truncated;
+          cell.innerHTML += '<span id="more">more</span>';
+          flag = true;
+        }
+      })
+    );
+  </script>
 </html>

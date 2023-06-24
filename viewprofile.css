@@ -18,6 +18,7 @@ body {
   display: inline-block;
   color: rgb(143, 164, 24);
   font-size: 15px;
+  cursor: pointer;
 }
 
 .header {
