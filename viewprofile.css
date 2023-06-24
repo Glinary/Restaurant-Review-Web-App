@@ -217,20 +217,14 @@ body {
   display: flex;
 }
 
-.reviews-left-container {
-  background-color: aqua;
-}
-
 .reviews-left-container .left {
   flex: 2;
   display: flex;
-  background-color: #64b6ac;
 }
 
 .further-details {
   flex-grow: 6;
   /* FOR LIKE BUTTONS */
-  background-color: aliceblue;
 }
 
 .further-details .name {
@@ -269,7 +263,6 @@ body {
   display: flex;
   justify-content: space-evenly;
   width: max-content;
-  background-color: #df6325;
 }
 
 #helpful,
