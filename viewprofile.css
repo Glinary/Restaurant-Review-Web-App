@@ -217,9 +217,20 @@ body {
   display: flex;
 }
 
+.reviews-left-container {
+  background-color: aqua;
+}
+
 .reviews-left-container .left {
   flex: 2;
   display: flex;
+  background-color: #64b6ac;
+}
+
+.further-details {
+  flex-grow: 6;
+  /* FOR LIKE BUTTONS */
+  background-color: aliceblue;
 }
 
 .further-details .name {
@@ -252,12 +263,27 @@ body {
   opacity: 0.8;
 }
 
+#reaction {
+  flex-grow: 1;
+  margin-top: 0rem;
+  display: flex;
+  justify-content: space-evenly;
+  width: max-content;
+  background-color: #df6325;
+}
+
+#helpful,
+#unhelpful,
+.count {
+  margin: 0.5rem 0.01rem;
+}
+
 .reviews-user-details .further-details .review {
   font-size: 0.5rem;
 }
 
 .reviews-user-details .reviews-profile-pic {
-  max-width: 13vw;
+  max-width: 8vw;
   margin-top: 0.5rem;
   margin-left: 0.2rem;
 }
@@ -376,6 +402,13 @@ body {
     flex-basis: 35rem;
     margin-top: 0rem;
   }
+  #reaction {
+    flex-grow: 1;
+    margin-top: 0rem;
+  }
+  .review {
+    margin-bottom: 30%;
+  }
 }
 @media only screen and (min-width: 768px) {
   .profile-navbar .anonpic {
@@ -493,12 +526,27 @@ body {
     height: min-content;
   }
 
+  .reviews-user-details .reviews-profile-pic {
+    max-width: 8vw;
+    max-height: 8vw;
+    margin-top: 0.5rem;
+    margin-left: 0.2rem;
+  }
+
   .review-image {
     object-fit: cover;
     max-width: 20vw;
     min-width: 20vw;
     max-height: 60%;
     min-height: 60%;
+  }
+
+  #reaction {
+    flex-grow: 1;
+    margin-top: -2rem;
+  }
+  .review {
+    margin-bottom: 30%;
   }
 }
 
@@ -615,12 +663,6 @@ body {
     display: block;
     max-height: inherit;
   }
-
-  .further-details {
-    flex-grow: 8;
-    /* FOR LIKE BUTTONS */
-  }
-
   .reviews-left-container {
     padding: 0.5rem;
   }
@@ -642,6 +684,10 @@ body {
     max-height: 25vh;
     min-height: 15vh;
   }
+  #reaction {
+    flex-grow: 1;
+    margin-top: -3.5rem;
+  }
 
   .reviews-section {
     margin: 2rem;
@@ -649,5 +695,8 @@ body {
 
   .box a:hover {
     color: #64b6ac;
+  }
+  .review {
+    margin-bottom: 0%;
   }
 }
