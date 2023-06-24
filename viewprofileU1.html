@@ -99,8 +99,7 @@
             </div>
             <div class="further-details">
               <div class="name">
-                <h6 class="firstname">Harry</h6>
-                <h6 class="lastname">Potter</h6>
+                <a class="firstname" href="#">Harry Potter</a>
               </div>
               <div class="others">
                 <p class="review-count">9 Reviews</p>
@@ -120,6 +119,19 @@
         <div class="reviews-pictures">
           <img src="assets/starbucks.jpg" class="review-image" />
           <img src="assets/starbucks.jpg" class="review-image" />
+        </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -134,8 +146,7 @@
             </div>
             <div class="further-details">
               <div class="name">
-                <h6 class="firstname">Harry</h6>
-                <h6 class="lastname">Potter</h6>
+                <a class="firstname" href="#">Harry Potter</a>
               </div>
               <div class="others">
                 <p class="review-count">9 Reviews</p>
@@ -156,13 +167,29 @@
           <img src="assets/starbucks.jpg" class="review-image" />
           <img src="assets/starbucks.jpg" class="review-image" />
         </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </body>
   <script>
     const reviews = document.querySelectorAll(".review");
     const times = document.querySelectorAll(".review").length;
+    const editBar = document.querySelectorAll("#EditMenu");
+    const body = document.getElementsByTagName("BODY")[0];
     let flag = true;
+    let flag2 = true;
 
     for (let i = 0; i < times; i = i + 1) {
       revs = reviews[i];
@@ -198,6 +225,43 @@
           flag = true;
         }
       })
+    );
+
+    editBar.forEach((cell) =>
+      cell.addEventListener("click", function () {
+        if (flag2 == true) {
+          console.log(cell);
+          cld = cell.lastElementChild;
+          console.log(cld);
+          cld.style.display = "block";
+          flag2 = false;
+        } else if (flag2 == false) {
+          console.log(cell);
+          cld = cell.lastElementChild;
+          console.log(cld);
+          cld.style.display = "none";
+          flag2 = true;
+        }
+      })
+    );
+
+    //https://stackoverflow.com/a/33657471
+    body.addEventListener(
+      "click",
+      function () {
+        if (flag2 == false) {
+          cld.style.display = "none";
+          flag2 = true;
+        }
+      },
+      false
+    );
+    editBar.forEach(
+      (cell) =>
+        cell.addEventListener("click", function (ev) {
+          ev.stopPropagation(); //this is important! If removed, you'll get both alerts
+        }),
+      false
     );
   </script>
 </html>

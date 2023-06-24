@@ -4,6 +4,8 @@
 
 * {
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 #navbar-line {
   visibility: hidden;
@@ -209,7 +211,7 @@ body {
 
 .reviews-content-container {
   background-color: #fad4c1;
-  margin: 0 1rem 1rem 1rem;
+  margin: 0.5rem;
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -222,7 +224,6 @@ body {
 
 .further-details .name {
   display: flex;
-  font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -230,9 +231,16 @@ body {
   margin: 0.6rem 0.5rem 0rem 0.5rem;
 }
 
-.further-details .name .lastname {
-  margin-top: 0.6rem;
-  margin-bottom: 0rem;
+.further-details a {
+  font-size: 1rem;
+  color: black;
+  font-weight: 600;
+  letter-spacing: 0.05;
+  text-decoration: none;
+}
+
+.further-details a:hover {
+  color: rgb(152, 142, 142);
 }
 
 .further-details .others p {
@@ -284,6 +292,65 @@ body {
   border-radius: 10px;
   margin: 5px;
 }
+
+/* EDIT MENU */
+
+#editBar {
+  margin: 0;
+  /* background-color: #64b6ac; */
+  height: max-content;
+  width: max-content;
+  z-index: 99999;
+  cursor: pointer;
+}
+#editBars {
+  height: 0.2rem;
+  width: 0.2rem;
+  margin: 0.15rem;
+  border-radius: 100px;
+  background-color: black;
+}
+
+#EditMenu {
+  /* background-color: blue; */
+  height: max-content;
+  width: max-content;
+}
+#EditMenu ul li {
+  list-style-type: none;
+  /* display: flex; */
+}
+
+#EditNav {
+  display: none;
+}
+
+#EditNav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+#EditNav ul {
+  background-color: #fad4c1;
+  position: absolute;
+  margin-top: -1.2rem;
+  margin-left: -5.3rem;
+  padding: 0.8rem;
+  display: block;
+}
+#EditNav ul li {
+  display: block;
+  list-style-type: none;
+  height: max-content;
+  padding: 0.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#EditNav ul li a:hover {
+  color: rgb(152, 142, 142);
+}
+/* EDIT MENU */
 
 /*end of reviews-section*/
 
@@ -383,7 +450,7 @@ body {
     margin-left: 0.2rem;
   }
 
-  .further-details .name {
+  .further-details .name a {
     display: flex;
     font-size: 1.4rem;
     margin-bottom: 0.4rem;
@@ -524,8 +591,8 @@ body {
     font-size: 1.5rem;
   }
 
-  .further-details .name {
-    font-size: 1.8rem;
+  .further-details .name a {
+    font-size: 2rem;
     margin-bottom: 0.4rem;
   }
 
@@ -540,6 +607,22 @@ body {
 
   .reviews-left-container {
     flex-grow: 2;
+    display: block;
+    max-height: inherit;
+  }
+
+  .further-details {
+    flex-grow: 8;
+    /* FOR LIKE BUTTONS */
+  }
+
+  .reviews-left-container {
+    padding: 0.5rem;
+  }
+
+  .reviews-left-container .review {
+    max-height: 50%;
+    min-height: 50%;
   }
 
   .reviews-pictures {
