@@ -350,6 +350,11 @@ body {
 #EditNav ul li a:hover {
   color: rgb(152, 142, 142);
 }
+
+#editedIndc {
+  color: gray;
+  font-size: 0.8rem;
+}
 /* EDIT MENU */
 
 /*end of reviews-section*/
