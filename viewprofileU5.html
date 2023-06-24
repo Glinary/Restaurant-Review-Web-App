@@ -210,13 +210,16 @@
     const editBar = document.querySelectorAll("#EditMenu");
     const reactionH = document.querySelectorAll("#helpful");
     const reactionU = document.querySelectorAll("#unhelpful");
+    const reaction = document.querySelectorAll("#reaction");
     const body = document.getElementsByTagName("BODY")[0];
+    let arrH = [];
+    let arrU = [];
+    let currLike = [];
+    let currDLike = [];
     let flag = true;
     let flag2 = true;
-    let flag3 = true;
-    let flag4 = true;
-    let flag5 = 0;
-    console.log(reactionH);
+    // either helpful or unhelpful is toggled
+    console.log(reaction);
 
     // more/less event listener
     for (let i = 0; i < times; i = i + 1) {
@@ -257,7 +260,6 @@
     // more/less event listener end...
     
     // editBar div event listener (when clicked delete/edit shows)
-    // https://stackoverflow.com/a/52424677
     editBar.forEach((cell) =>
       cell.addEventListener("click", function () {
         if (flag2 == true) {
@@ -305,60 +307,60 @@
       false
     );
     
-    //helpful button event listener
-    reactionH.forEach((cell) =>
-      cell.addEventListener("click", function () {
-        if (flag5 == 0){
-        if (flag3 == true) {
-          cell.innerHTML = "<i class=\"fa-solid fa-thumbs-up\" style=\"color: #087d6f;\"></i>"
-          flag3 = false;
-          flag5 = 1;
-          current_like = parseInt(cell.nextSibling.attributes[1].value) + 1 ;
-          cell.nextSibling.innerText = current_like
-        } 
-      }else {
-        if (flag3 == true && flag4 == true) {
-          cell.innerHTML = "<i class=\"fa-solid fa-thumbs-up\" style=\"color: #087d6f;\"></i>"
-          flag3 = false;
-          flag5 = 1;
-          current_like = parseInt(cell.nextSibling.attributes[1].value) + 1 ;
-          cell.nextSibling.innerText = current_like
-        } else if (flag3 == false && flag4 == true) {   
-          cell.innerHTML = "<i class=\"fa-solid fa-thumbs-up\" style=\"color: #000000\"></i>"
-          flag3 = true;
-          flag5 = 0;
-          current_like -= 1 ;
-          cell.nextSibling.innerText = current_like;
-        }
-      }
-      })
-    );
+
     
-    //unhelpful button event listener
-    reactionU.forEach((cell) =>
-      cell.addEventListener("click", function () {
-        if (flag5 == 0){
-          if (flag4 == true) {
-            cell.innerHTML = "<i class=\"fa-solid fa-thumbs-down\" style=\"color: #087d6f;\"></i>"
-            flag4 = false;
-            flag5 = 1;
-            current_dlike = parseInt(cell.nextSibling.attributes[1].value) + 1 ;
-            cell.nextSibling.innerText = current_dlike;
+    // console.log(reaction[1]);
+
+    /*Initialize Reaction Button Data*/
+    for (let i = 0; i < reactionH.length; i++){
+      arrH.push(0);
+      arrU.push(0);
+      currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
+      currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
+
+    }
+    /**! CHECKER
+    console.log(arrH);
+    console.log(arrU);
+    console.log(currLike);
+    console.log(currDLike);
+    */
+
+    for(let j = 0; j < reactionH.length; j++) {
+      reactionH[j].addEventListener("click", function(){
+        if (arrU[j] == 0 && arrH[j] == 0){
+            reactionH[j].innerHTML = "<i class=\"fa-solid fa-thumbs-up\" style=\"color: #087d6f;\"></i>"
+            currLike[j] += 1 ;
+            reactionH[j].nextSibling.innerText = currLike[j]
+            arrH[j] = 1;
+            console.log(arrH);
+        } else if (arrU[j] == 0 && arrH[j] == 1){
+            reactionH[j].innerHTML = "<i class=\"fa-solid fa-thumbs-up\" style=\"color: #000000\"></i>"
+            currLike[j] -= 1 ;
+            reactionH[j].nextSibling.innerText = currLike[j];
+            arrH[j] = 0;
+            console.log(arrH);
           } 
-        }else{
-        if (flag4== true && flag3 == true) {
-          cell.innerHTML = "<i class=\"fa-solid fa-thumbs-down\" style=\"color: #087d6f;\"></i>"
-          flag4 = false;
-          current_dlike = parseInt(cell.nextSibling.attributes[1].value) + 1 ; // https://stackoverflow.com/a/5858509
-          cell.nextSibling.innerText = current_dlike;
-        } else if (flag4 == false && flag3 == true) {   
-          flag4 = true;
-          cell.innerHTML = "<i class=\"fa-solid fa-thumbs-down\" style=\"color: #000000\"></i>"
-          current_dlike -= 1 ;
-          cell.nextSibling.innerText = current_dlike
-        }
-      }
       })
-    );
+    }
+
+    for(let k = 0; k < reactionU.length; k++) {
+      reactionU[k].addEventListener("click", function(){
+          if (arrH[k] == 0 && arrU[k] == 0) {
+            reactionU[k].innerHTML = "<i class=\"fa-solid fa-thumbs-down\" style=\"color: #087d6f;\"></i>"
+            currDLike[k] += 1 ;
+            reactionU[k].nextSibling.innerText = currDLike[k];
+            arrU[k] = 1;
+            console.log(arrH);
+          } 
+          else if (arrH[k] == 0 && arrU[k] == 1){
+            reactionU[k].innerHTML = "<i class=\"fa-solid fa-thumbs-down\" style=\"color: #000000\"></i>"
+            currDLike[k] -= 1 ;
+            reactionU[k].nextSibling.innerText = currDLike[k];
+            arrU[k] = 0;
+            console.log(arrU);
+          }
+      })
+    }
   </script>
 </html>
