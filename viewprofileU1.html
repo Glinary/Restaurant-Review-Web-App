@@ -168,7 +168,7 @@
       revs = reviews[i];
       // assign value of text shown here (change 80)
       revs.innerText = truncateText(revs, 80);
-      revs.innerHTML += '<span id="more">more</span>';
+      revs.innerHTML += '<span id="more">&nbsp;see more</span>';
     }
 
     // https://stackoverflow.com/a/63162630
@@ -190,11 +190,11 @@
       cell.addEventListener("click", function () {
         if (flag == true) {
           cell.innerHTML = truncate;
-          cell.innerHTML += '<span id="more">less</span>';
+          cell.innerHTML += '<span id="more">&nbsp;see less</span>';
           flag = false;
         } else if (flag == false) {
           cell.innerHTML = truncated;
-          cell.innerHTML += '<span id="more">more</span>';
+          cell.innerHTML += '<span id="more">&nbsp;see more</span>';
           flag = true;
         }
       })
