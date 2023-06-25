@@ -265,6 +265,19 @@ body {
   width: max-content;
 }
 
+.overall-stars {
+  display: flex;
+  margin: 1rem 0;
+}
+
+#Ostar {
+  margin: 0.05rem;
+}
+
+.overall-stars p {
+  margin: 0rem 0.5rem;
+}
+
 #helpful,
 #unhelpful,
 .count {
