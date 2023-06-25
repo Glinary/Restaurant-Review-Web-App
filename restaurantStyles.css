@@ -460,6 +460,11 @@ header {
     /* SOURCE: https://stackoverflow.com/a/53356249 */
   }
 
+  .register {
+    padding-left: 25px;
+    padding-bottom: 0.3px;
+  }
+
   .view-profile {
     display: flex;
     justify-content: space-evenly;
