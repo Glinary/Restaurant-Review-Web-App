@@ -135,6 +135,16 @@ header {
   margin: 10px;
 }
 
+#heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#star-ratings {
+  display: flex;
+  
+}
+
 .review-section {
   box-sizing: border-box;
   height: 150px;
