@@ -724,6 +724,9 @@ header {
   }
 
   /* MENU  - Dropdown */
+  .register {
+    padding-left: 25px;
+  }
 
   .view-profile {
     display: flex;
