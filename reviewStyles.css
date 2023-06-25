@@ -142,7 +142,7 @@ header {
 }
 #star-ratings {
   display: flex;
-  
+  cursor: pointer;
 }
 
 .review-section {
