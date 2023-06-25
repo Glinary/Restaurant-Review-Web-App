@@ -52,6 +52,7 @@ body {
   font-family: var(--main-font);
 }
 
+
 header {
   display: block;
   text-align: center;
@@ -60,6 +61,7 @@ header {
 
 .RP-app-name h1 {
   font-size: 30px;
+  
 }
 
 .toggle-bars {
@@ -151,6 +153,10 @@ header {
   max-height: 35px;
   width: 50%;
   margin: 0px auto;
+}
+
+.search-container2 {
+  display: none;
 }
 
 .search-container.active {
@@ -501,9 +507,8 @@ header {
   .menu-line {
     position: absolute;
     height: 1.5px;
-    width: 1150px;
-    margin-top: 45px;
-    margin-left: -20px;
+    width: 103%;
+    margin: 45px 0 0 -20px;
     background: radial-gradient(#768581, #018452);
   }
 
@@ -518,7 +523,20 @@ header {
     margin: -115px 600px 0px 0px;
   }
 
+  .search-container2 {
+    text-align: right;
+    position: absolute;
+    top: 4.5rem;
+    right: 0;
+    margin: 0.5rem 2rem 0 0;
+  }
+
   .search-container.active {
+    margin: 290px auto auto auto;
+    transition: all 0.2s ease;
+  }
+
+  .search-container2.active {
     margin: 290px auto auto auto;
     transition: all 0.2s ease;
   }
@@ -533,7 +551,25 @@ header {
     background-color: transparent;
   }
 
+  .search-container2 input[type="text"] {
+    margin: 0;
+    height: inherit;
+    flex-grow: 1;
+    border-color: #018452;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: transparent;
+    text-align: center;
+    z-index: 9999;
+  }
+
   .search-container img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .search-container2 img {
     height: 20px;
     width: 20px;
   }
@@ -615,6 +651,7 @@ header {
 }
 
 @media only screen and (min-width: 768px) {
+  
   .register-nav {
     visibility: visible;
     text-decoration: none;
@@ -675,6 +712,15 @@ header {
 }
 
 @media only screen and (min-width: 1000px) {
+
+
+  .search-container {
+    display: none;
+  }
+
+  .search-container2 {
+    display: inline-block;
+  }
   .wrapper {
     display: flex;
   }
