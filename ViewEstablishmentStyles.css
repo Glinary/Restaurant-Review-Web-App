@@ -21,6 +21,14 @@
   --user-info-innercolor: white;
 }
 
+.top-review-image {
+  object-fit: cover;
+  max-width: 10vw;
+  min-width: 10vw;
+  max-height: 15vh;
+  min-height: 15vh;
+  border-radius: 10px;
+}
 /*start of header */
 
 * {
@@ -300,7 +308,6 @@ header {
   padding: 10px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
 }
 
 .top-reviews-left-container .top-left {
@@ -372,8 +379,7 @@ header {
 }
 
 .top-reviews-pictures {
-  margin: 0rem;
-  width: min-content;
+  margin: 1rem;
 }
 .top-preview-image {
   object-fit: cover;
@@ -383,19 +389,6 @@ header {
   min-height: 10vh;
   border-radius: 10px;
   margin: 5px;
-}
-
-.top-review-image {
-  object-fit: cover;
-  max-width: 20vw;
-  min-width: 20vw;
-  max-height: 10vh;
-  min-height: 10vh;
-  border-radius: 10px;
-  margin: 0.2rem;
-}
-.top-reviews-pictures {
-  margin: 1rem;
 }
 
 /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
@@ -495,6 +488,60 @@ header {
   color: gray;
   font-size: 0.8rem;
 }
+
+/*========== START OF REPLY SECTION ==========*/
+
+.reply-container {
+  margin: 0rem 1rem 1rem 1rem;
+  background-color: white;
+  border-radius: 10px;
+  border-left: 1rem #b09e9a solid;
+  padding: 1rem;
+}
+
+.reply-container h3 {
+  font-size: 1rem;
+}
+
+.reply-container p {
+  font-size: 0.8rem;
+}
+
+/* ========== END OF REPLY SECTION ========== */
+
+/*========== START OF GALLERY SECTION ==========*/
+
+.gallery-section h3 {
+  font-size: 1rem;
+  margin-left: 1rem;
+  color: black;
+}
+
+.gallery-container {
+  margin: 0.5rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #b9d2d2;
+}
+
+.gallery-pictures {
+  margin: 5px 0;
+
+  border-radius: 10px;
+  padding: 0.2rem 0.01rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.gallery-image {
+  background-color: white;
+  padding: 5px;
+  object-fit: cover;
+  margin: 3px;
+  max-width: 20vw;
+  border-radius: 10px;
+}
+/*========== END OF GALLERY SECTION ==========*/
 
 /*! ================ EDIT MENU: Delete/ Edit =============== */
 
@@ -1265,12 +1312,11 @@ header {
   }
 
   .top-reviews-pictures {
-    display: flex;
-    margin: 0.5rem;
+    flex-grow: 0;
+    margin: 0rem;
     padding: 0.5rem;
   }
   .top-review-image {
-    margin: 0.2rem;
     object-fit: cover;
     max-width: 10vw;
     min-width: 10vw;
