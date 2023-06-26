@@ -11,33 +11,68 @@
     ></script>
   </head>
   <body>
-    <div class="header">
-      <div class="content-navbar">
-        <div class="whenintaft-container">
-          <h1 class="whenintaft">WhenInTaft</h1>
-        </div>
+    <header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
 
-        <div class="navbar-items-container">
-          <div class="navbar-items">
-            <span><h2 class="navbar">HOME</h2></span>
-            <span><h2 class="navbar">RESTAURANTS</h2></span>
-            <span><h2 class="navbar" id="viewprofile">VIEWPROFILE</h2></span>
+      <div class="divide-this">
+
+        
+      </div>
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="indexLog.html">HOME</a>
+            <a href="restaurant.html">RESTAURANTS</a>
           </div>
-          <div class="line">
-            <hr id="navbar-line" />
+          <div class="menu-line"></div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="" id="prof-page">VIEW PROFILE</a>
+                    <img src="assets/anonymous_picture.png" id="prof-pic" />
+                  </div>
+                  <div class="dropdown-m">
+                    <ul>
+                      <li><a href="index.html">LOGOUT</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul> 
+            </nav>
           </div>
         </div>
       </div>
-      <div class="profile-navbar">
-        <img src="assets/anonymous_picture.png" class="anonpic" />
+    </header>
+     <div class="search-container">
+        <input
+          type="text"
+          placeholder="search here"
+          name="searchBar"
+          id="searchBar"
+        /><img src="assets/searchbutton.png" alt="" />
       </div>
-    </div>
-    <hr id="header-divider" />
+      <div class="search-line"></div>
+      <!-- end of header menu -->
 
-    <div class="search-section">
-      <input type="text" class="search-bar" />
-      <img src="assets/searchbutton.png" class="searchbutton" />
-    </div>
+      <div class="search-container2">
+        <input
+          type="text"
+          placeholder="search here"
+          name="searchBar"
+          id="searchBar"
+        /><img src="assets/searchbutton.png" alt="" />
+      </div>
+      
+    <!-- end of header menu -->
 
     <div id="profilee">
       <div class="box">
@@ -232,9 +267,25 @@
     let currDLike = [];
     let flag = true;
     let flag2 = true;
-    // either helpful or unhelpful is toggled
-    console.log(reaction);
 
+    const menu = document.querySelector("#mobile-menu");
+    const menuLinks = document.querySelector(".menu-bar");
+    const userPage = document.querySelector("#prof-page");
+    const userPic = document.querySelector("#prof-pic");
+    const searchBar = document.querySelector(".search-container");
+
+    menu.addEventListener("click", function () {
+      menu.classList.toggle("is-active");
+      menuLinks.classList.toggle("active");
+      searchBar.classList.toggle("active");
+    });
+    userPage.addEventListener("mouseover", function () {
+      userPic.classList.toggle("hovered");
+    });
+    userPage.addEventListener("mouseout", function () {
+      userPic.classList.toggle("hovered");
+    });
+    
     // more/less event listener
     for (let i = 0; i < times; i = i + 1) {
       revs = reviews[i];
