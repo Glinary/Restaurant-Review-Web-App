@@ -163,8 +163,7 @@
           </div>
           <div class="review">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Lorem ipsum dolor amet.
             </p>
           </div>
         </div>
@@ -225,8 +224,7 @@
           </div>
           <div class="review">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              The gods are fallen and all safety gone. And there is one sure thing about the fall of gods: they do not fall a little; they crash and shatter or sink deeply into green muck. It is a tedious job to build them up again; they never quite shine. And the child's world is never quite whole again.
             </p>
           </div>
         </div>
@@ -263,6 +261,8 @@
     let arrU = [];
     let currLike = [];
     let currDLike = [];
+    let truncate = [];
+    let truncated = [];
     let flag = true;
     let flag2 = true;
 
@@ -287,39 +287,53 @@
     // more/less event listener
     for (let i = 0; i < times; i = i + 1) {
       revs = reviews[i];
+
+      org = revs.innerText.length;
+      const orig = JSON.parse(JSON.stringify(org));
+      document.write(JSON.stringify(orig), revs.innerText.length);
+
       // assign value of text shown here (change 80)
-      revs.innerText = truncateText(revs, 80);
+      revs.innerText = truncateText(revs, 80, i);
+
+      if (orig > 80){
       revs.innerHTML += '<span id="more">&nbsp;see more</span>';
+      }
+
     }
 
     // https://stackoverflow.com/a/63162630
-    function truncateText(selector, maxLength) {
+    function truncateText(selector, maxLength, i) {
       var element = selector;
-      truncated = element.innerText;
-      truncate = truncated;
+      truncated[i] = element.innerText;
+      truncate[i] = truncated[i];
 
-      if (truncated.length > maxLength) {
-        truncated = truncated.substr(0, maxLength) + "...";
+      if (truncated[i].length > maxLength) {
+        truncated[i] = truncated[i].substr(0, maxLength) + "...";
       }
-      console.log("trucated: ", truncated);
+      console.log("trucated: ", truncated[i]);
       console.log(element, "Successfully Truncated");
-      return truncated;
+      return truncated[i];
     }
 
+
+    for (let a = 0; a < reviews.length; a++){
+      truncate.push("");
+      truncated.push("");
+    }
     //https://stackoverflow.com/a/62555388
-    reviews.forEach((cell) =>
-      cell.addEventListener("click", function () {
+    for (let b = 0; b < times; b++){
+      reviews[b].addEventListener("click", function () {
         if (flag == true) {
-          cell.innerHTML = truncate;
-          cell.innerHTML += '<span id="more">&nbsp;see less</span>';
+          reviews[b].innerHTML = truncate[b];
+          reviews[b].innerHTML += '<span id="more">&nbsp;see less</span>';
           flag = false;
         } else if (flag == false) {
-          cell.innerHTML = truncated;
-          cell.innerHTML += '<span id="more">&nbsp;see more</span>';
+          reviews[b].innerHTML = truncated[b];
+          reviews[b].innerHTML += '<span id="more">&nbsp;see more</span>';
           flag = true;
         }
       })
-    );
+    }
     // more/less event listener end...
     
     // editBar div event listener (when clicked delete/edit shows)
@@ -370,7 +384,6 @@
       false
     );
     
-
     
     // console.log(reaction[1]);
 
