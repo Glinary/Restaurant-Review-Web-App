@@ -292,11 +292,12 @@
       revs = reviews[i];
 
       org = revs.innerText.length;
+      console.log("org before: ",org);
       const orig = JSON.parse(JSON.stringify(org));
-      document.write(JSON.stringify(orig), revs.innerText.length);
 
       // assign value of text shown here (change 80)
       revs.innerText = truncateText(revs, 80, i);
+      console.log("org after: ", org)
 
       if (orig > 80){
       revs.innerHTML += '<span id="more">&nbsp;see more</span>';
