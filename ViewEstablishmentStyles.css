@@ -189,9 +189,6 @@ header {
 }
 
 /*start of profile-section*/
-
-
-
 .profile-section .profile-picture {
   padding: 1rem 0rem 0rem 0rem;
 }
@@ -838,8 +835,6 @@ header {
 /*end of reviews-section*/
 
 @media only screen and (min-width: 768px) {
-
-  /*START OF HEADER*/
   .profile-navbar .anonpic {
     max-width: 5rem;
     padding: 1.3rem 1rem 1rem 1rem;
@@ -900,8 +895,6 @@ header {
   .search-section {
     float: top;
   }
-
-  /*END OF HEADER*/
 
   .profile-section .profile-description h1 {
     font-size: 4vw;
@@ -1000,25 +993,6 @@ header {
 }
 
 @media only screen and (min-width: 1000px) {
-
-  .yohoo {
-    display: flex;
-    flex-direction: column;
-  }
-
-
-  .profile-section {
-    padding: 0;
-    flex: 2;
-  }
-
-  .edit-profile-section {
-    flex: 1;
-  }
-
-  .top-reviews-section {
-    flex: 2;
-  }
   .box {
     background-color: #e3e6d9;
     width: 55%;
@@ -1289,8 +1263,8 @@ header {
 
   .profile-section .profile-description p {
     font-size: 1.2vw;
-    padding: 0;
-    margin: 0;
+    padding: 0 2.5em 0 0;
+    inline-size: 80%;
     text-align: justify;
   }
 
@@ -1309,8 +1283,8 @@ header {
   /*start of edit-profile-section*/
 
   .edit-profile-section {
-    padding: 0;
-    margin: 0;
+    padding-right: 0rem;
+    padding-top: 5rem;
   }
 
   .edit-profile-section img {
@@ -1326,7 +1300,6 @@ header {
   /*end of edit-profile-section*/
 
   /*start of top-reviews-section*/
-
 
   .top-label-and-navigator h3 {
     padding: 0;
