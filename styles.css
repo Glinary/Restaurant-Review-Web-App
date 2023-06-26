@@ -372,11 +372,6 @@ header {
   color: var(--label-text-color);
 }
 
-#star-rate {
-  height: 20px;
-  width: 20px;
-}
-
 #restaurant1 {
   visibility: visible;
 }

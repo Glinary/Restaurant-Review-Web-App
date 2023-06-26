@@ -26,6 +26,8 @@
   padding: 0;
   margin: 0;
   font-family: var(--main-font);
+  max-height: 100vh;
+  max-width: 100%;
 }
 
 /*! NAVBAR (Menu) - Mobile */
@@ -177,8 +179,8 @@ header {
   display: block;
   position: relative;
   background-color: var(--page-menu-color);
-  height: 28.125rem;
-  width: 18.75rem;
+  height: 30rem;
+  width: 23rem;
   padding-top: 0px;
   border-radius: 1.25rem;
   margin: 1.25rem auto;
@@ -190,15 +192,15 @@ header {
   background-color: transparent;
   display: block;
   position: relative;
-  height: 28.125rem;
-  width: 18.75rem;
+  height: 30rem;
+  width: 23rem;
   padding-top: 0px;
   border-radius: 1.25rem;
   margin: 1.25rem auto;
 }
 
 .resto-container img {
-  height: 28.125rem;
+  height: 30rem;
   width: 100%;
   padding-top: 0;
   border-radius: 1.25rem;
@@ -296,10 +298,6 @@ header {
   color: var(--label-text-color);
 }
 
-#star-rate {
-  height: 20px;
-}
-
 /*! OTHER SCREENS SECTION */
 @media only screen and (min-width: 768px) {
   .restobox-cont {
@@ -310,7 +308,7 @@ header {
   }
 
   .resto-container {
-    flex-basis: 18rem;
+    flex-basis: 20rem;
   }
 
   .hidden {
@@ -382,16 +380,22 @@ header {
   }
 
   .resto-container {
-    max-width: 21.875rem;
-    margin: 1.563rem 1.563rem;
+    min-width: 23rem;
+    min-height: 30rem;
+    margin: 1.5rem 0.2rem;
+  }
+
+  .resto-container img {
+    min-width: 23rem;
+    min-height: 30rem;
   }
 
   .hidden {
     background-color: transparent;
     display: block;
     position: relative;
-    height: 28.125rem;
-    width: 18.75rem;
+    height: 30rem;
+    width: 22rem;
     padding-top: 0px;
     border-radius: 1.25rem;
     margin: 1.563rem 1.563rem;

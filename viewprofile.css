@@ -250,13 +250,13 @@ header {
 
 .edit-profile-section img {
   padding-top: 0em;
-  max-height: 5vh;
+  max-height: 2rem;
   object-fit: contain;
 }
 
 .edit-profile-section h4 {
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.5rem;
 }
 
 /*end of edit-profile-section*/
@@ -946,12 +946,12 @@ header {
 
   .edit-profile-section img {
     padding-top: 0em;
-    max-height: 8vh;
+    max-height: 2rem;
   }
 
   .edit-profile-section h4 {
     margin-top: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   /*end of edit-profile-section*/
