@@ -22,10 +22,6 @@
 }
 
 /* Scrollbar */
-body {
-  overflow-y: hidden;
-}
-
 ::-webkit-scrollbar {
   height: 0.5em;
 }
@@ -239,8 +235,8 @@ header {
 
 .venue-section {
   padding: 0% 10% 0% 0%;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 5rem;
+  margin-right: 5rem;
   text-align: center;
 }
 
@@ -262,16 +258,18 @@ header {
 .slide {
   position: relative;
   border-radius: 10px;
-  height: 55vh;
-  width: 50vw;
+  min-height: 28rem;
+  min-width: 18rem;
+  max-height: 28rem;
+  max-width: 17rem;
   padding-top: 0px;
   margin-bottom: 0;
-  margin-right: 10px;
+  margin-right: 2rem;
   z-index: 9999;
 }
 
 .slide img {
-  width: 50vw;
+  width: 17rem;
   height: 94%;
   padding-top: 0;
   border-radius: 10px;
@@ -340,7 +338,7 @@ header {
   position: absolute;
   bottom: 0;
   margin-bottom: 50px;
-  margin-left: 0px;
+  margin-left: 8px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   opacity: 0;
@@ -682,7 +680,7 @@ header {
 
   .slide img {
     max-height: 1000%;
-    max-width: 250px;
+    max-width: 17rem;
     margin: 10px;
   }
 
