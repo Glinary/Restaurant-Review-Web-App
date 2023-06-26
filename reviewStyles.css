@@ -170,8 +170,6 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  height: 80vh;
-  z-index: 9999;
 }
 
 .roundblock {
