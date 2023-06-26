@@ -449,7 +449,7 @@ header {
   }
 
   .menu-list a:nth-child(2) {
-    color: var(--main-button-color);
+    color: rgb(50, 45, 45);
   }
 
   .menu-list a:hover {
