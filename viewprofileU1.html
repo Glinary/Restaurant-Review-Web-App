@@ -293,7 +293,7 @@
 
       org = revs.innerText.length;
       console.log("org before: ",org);
-      const orig = JSON.parse(JSON.stringify(org));
+      const orig = JSON.parse(JSON.stringify(org)); //https://www.tutorialspoint.com/how-to-clone-an-object-in-javascript
 
       // assign value of text shown here (change 80)
       revs.innerText = truncateText(revs, 80, i);
