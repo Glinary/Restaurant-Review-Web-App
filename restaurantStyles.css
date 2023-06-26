@@ -28,6 +28,8 @@
   font-family: var(--main-font);
 }
 
+/*! NAVBAR (Menu) - Mobile */
+
 header {
   display: block;
   text-align: center;
@@ -37,8 +39,6 @@ header {
 .RP-app-name h1 {
   font-size: 30px;
 }
-
-/*! NAVBAR (Menu) - Mobile */
 
 .toggle-bars {
   height: max-content;
@@ -397,10 +397,12 @@ header {
     margin: 1.563rem 1.563rem;
   }
 
+  /*! NavBar/ Menu - Desktop */
+
   header {
     display: flex;
     margin: 0.625rem;
-    padding: 0.938;
+    padding: 0.938rem;
   }
 
   .RP-app-name {
@@ -412,8 +414,6 @@ header {
   .RP-app-name h1 {
     font-size: 50px;
   }
-
-  /*! NavBar/ Menu - Desktop */
 
   .toggle-bars .toggle,
   .toggle-bars {
@@ -435,7 +435,7 @@ header {
   .menu-bar.active {
     background: #131313;
     margin: 0;
-    
+
     transition: all 0.5s eas e;
     height: 10vh;
     font-size: 1.6rem;
