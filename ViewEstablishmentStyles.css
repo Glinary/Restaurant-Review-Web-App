@@ -21,14 +21,6 @@
   --user-info-innercolor: white;
 }
 
-.top-review-image {
-    object-fit: cover;
-    max-width: 10vw;
-    min-width: 10vw;
-    max-height: 15vh;
-    min-height: 15vh;
-    border-radius: 10px;
-  }
 /*start of header */
 
 * {
@@ -271,253 +263,268 @@ header {
 
 /*start of top-reviews-section*/
 .top-reviews-section {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.top-label-and-navigator {
+  display: flex;
+}
+
+.top-label-and-navigator h3 {
+  padding: 0;
+  margin-top: 0;
+  margin-left: 1rem;
+  flex: 2;
+  font-size: 1rem;
+}
+
+.top-label-and-navigator ul {
+  margin-top: 0;
+  margin-right: 1rem;
+  flex: 1;
+  display: flex;
+}
+
+.top-label-and-navigator li {
+  list-style: none;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.top-reviews-content-container {
+  background-color: #fad4c1;
+  margin: 0.5rem;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-reviews-left-container .top-left {
+  flex: 2;
+  display: flex;
+}
+
+.top-further-details {
+  flex-grow: 6;
+  /* FOR LIKE BUTTONS */
+}
+
+.top-further-details .top-name {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.top-further-details .top-name .top-firstname {
+  margin: 0.6rem 0.5rem 0rem 0.5rem;
+}
+
+.top-further-details a {
+  font-size: 1rem;
+  color: black;
+  font-weight: 600;
+  letter-spacing: 0.05;
+  text-decoration: none;
+}
+
+.top-further-details a:hover {
+  color: rgb(152, 142, 142);
+}
+
+.top-further-details .top-others p {
+  font-weight: bolder;
+  font-size: 0.6rem;
+}
+
+.top-further-details .top-review-count {
+  opacity: 0.8;
+}
+
+.top-reviews-user-details .top-further-details .top-review {
+  font-size: 0.5rem;
+}
+
+.top-reviews-user-details .top-reviews-profile-pic {
+  max-width: 3vw;
+  margin-top: 0.5rem;
+  margin-left: 0.2rem;
+}
+
+.top-others {
+  margin-left: 0.5rem;
+}
+
+.top-others p {
+  margin: 0;
+}
+
+.top-left {
+  display: flex;
+}
+
+.top-review p {
+  font-size: 0.8rem;
+  text-align: justify;
+  margin: 1rem;
+}
+
+.top-reviews-pictures {
+  margin: 0rem;
+  width: min-content;
+}
+.top-preview-image {
+  object-fit: cover;
+  max-width: 20vw;
+  min-width: 20vw;
+  max-height: 10vh;
+  min-height: 10vh;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.top-review-image {
+  object-fit: cover;
+  max-width: 20vw;
+  min-width: 20vw;
+  max-height: 10vh;
+  min-height: 10vh;
+  border-radius: 10px;
+  margin: 0.2rem;
+}
+.top-reviews-pictures {
+  margin: 1rem;
+}
+
+/*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
+
+#top-reaction {
+  flex-grow: 1;
+  margin-top: 0rem;
+  display: flex;
+  justify-content: space-evenly;
+  width: max-content;
+}
+
+#top-helpful,
+#top-unhelpful,
+.top-count {
+  margin: 0.5rem 0.01rem;
+}
+
+/*! ========== END OF REACTION SYSTEM ========= **/
+
+/*!  ================ STAR STYSTEM: Review Box stars ================= */
+
+.top-overall-stars {
+  display: flex;
+  margin: 1rem 0;
+}
+
+#top-Ostar {
+  margin: 0.05rem;
+}
+
+.top-overall-stars p {
+  margin: 0rem 0.5rem;
+}
+
+/*! ========== END OF STAR SYSTEM ========= **/
+
+/*! ================ EDIT MENU: Delete/ Edit =============== */
+#top-editBar {
+  margin: 0;
+  /* background-color: #64b6ac; */
+  height: max-content;
+  width: max-content;
+  z-index: 99999;
+  cursor: pointer;
+}
+#top-editBars {
+  height: 0.2rem;
+  width: 0.2rem;
+  margin: 0.15rem;
+  border-radius: 100px;
+  background-color: black;
+}
+
+#top-EditMenu {
+  /* background-color: blue; */
+  height: max-content;
+  width: max-content;
+}
+#top-EditMenu ul li {
+  list-style-type: none;
+  /* display: flex; */
+}
+
+#top-EditNav {
+  display: none;
+}
+
+#top-EditNav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+#top-EditNav ul {
+  background-color: #fad4c1;
+  position: absolute;
+  margin-top: -1.2rem;
+  margin-left: -5.3rem;
+  padding: 0.8rem;
+  display: block;
+}
+
+#top-EditNav ul li {
+  display: block;
+  list-style-type: none;
+  height: max-content;
+  padding: 0.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#top-EditNav ul li a:hover {
+  color: rgb(152, 142, 142);
+}
+
+#top-editedIndc {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+/*! ================ EDIT MENU: Delete/ Edit =============== */
+
+@media only screen and (max-width: 768px) {
+  .top-box {
+    display: none;
   }
-  
-  .top-label-and-navigator {
-    display: flex;
+  .top-box-a a {
+    display: none;
   }
-  
-  .top-label-and-navigator h3 {
-    padding: 0;
-    margin-top: 0;
-    margin-left: 1rem;
-    flex: 2;
-    font-size: 1rem;
+
+  .top-profile-section {
+    flex-wrap: wrap;
+    flex-basis: 1rem;
   }
-  
-  .top-label-and-navigator ul {
-    margin-top: 0;
-    margin-right: 1rem;
-    flex: 1;
-    display: flex;
+
+  .top-edit-profile-section {
+    flex-basis: 35rem;
+    margin-top: 0rem;
   }
-  
-  .top-label-and-navigator li {
-    list-style: none;
-    margin: 5px;
-    font-weight: bold;
-    font-size: 0.8rem;
-  }
-  
-  .top-reviews-content-container {
-    background-color: #fad4c1;
-    margin: 0.5rem;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-  }
-  
-  .top-reviews-left-container .top-left {
-    flex: 2;
-    display: flex;
-  }
-  
-  .top-further-details {
-    flex-grow: 6;
-    /* FOR LIKE BUTTONS */
-  }
-  
-  .top-further-details .top-name {
-    display: flex;
-    margin-bottom: 0.5rem;
-  }
-  
-  .top-further-details .top-name .top-firstname {
-    margin: 0.6rem 0.5rem 0rem 0.5rem;
-  }
-  
-  .top-further-details a {
-    font-size: 1rem;
-    color: black;
-    font-weight: 600;
-    letter-spacing: 0.05;
-    text-decoration: none;
-  }
-  
-  .top-further-details a:hover {
-    color: rgb(152, 142, 142);
-  }
-  
-  .top-further-details .top-others p {
-    font-weight: bolder;
-    font-size: 0.6rem;
-  }
-  
-  .top-further-details .top-review-count {
-    opacity: 0.8;
-  }
-  
-  .top-reviews-user-details .top-further-details .top-review {
-    font-size: 0.5rem;
-  }
-  
-  .top-reviews-user-details .top-reviews-profile-pic {
-    max-width: 3vw;
-    margin-top: 0.5rem;
-    margin-left: 0.2rem;
-  }
-  
-  .top-others {
-    margin-left: 0.5rem;
-  }
-  
-  .top-others p {
-    margin: 0;
-  }
-  
-  .top-left {
-    display: flex;
-  }
-  
-  .top-review p {
-    font-size: 0.8rem;
-    text-align: justify;
-    margin: 1rem;
-  }
-  
-  .top-reviews-pictures {
-    margin: 1rem;
-  }
-  .top-preview-image {
-    object-fit: cover;
-    max-width: 20vw;
-    min-width: 20vw;
-    max-height: 10vh;
-    min-height: 10vh;
-    border-radius: 10px;
-    margin: 5px;
-  }
-  
-  /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
-  
   #top-reaction {
     flex-grow: 1;
     margin-top: 0rem;
-    display: flex;
-    justify-content: space-evenly;
-    width: max-content;
   }
-  
-  #top-helpful,
-  #top-unhelpful,
-  .top-count {
-    margin: 0.5rem 0.01rem;
+  .top-review {
+    margin-bottom: 30%;
   }
-  
-  /*! ========== END OF REACTION SYSTEM ========= **/
-  
-  /*!  ================ STAR STYSTEM: Review Box stars ================= */
-  
-  .top-overall-stars {
-    display: flex;
-    margin: 1rem 0;
-  }
-  
-  #top-Ostar {
-    margin: 0.05rem;
-  }
-  
-  .top-overall-stars p {
-    margin: 0rem 0.5rem;
-  }
-  
-  /*! ========== END OF STAR SYSTEM ========= **/
-  
-  /*! ================ EDIT MENU: Delete/ Edit =============== */
-  #top-editBar {
-    margin: 0;
-    /* background-color: #64b6ac; */
-    height: max-content;
-    width: max-content;
-    z-index: 99999;
-    cursor: pointer;
-  }
-  #top-editBars {
-    height: 0.2rem;
-    width: 0.2rem;
-    margin: 0.15rem;
-    border-radius: 100px;
-    background-color: black;
-  }
-  
-  #top-EditMenu {
-    /* background-color: blue; */
-    height: max-content;
-    width: max-content;
-  }
-  #top-EditMenu ul li {
-    list-style-type: none;
-    /* display: flex; */
-  }
-  
-  #top-EditNav {
-    display: none;
-  }
-  
-  #top-EditNav ul li a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  #top-EditNav ul {
-    background-color: #fad4c1;
-    position: absolute;
-    margin-top: -1.2rem;
-    margin-left: -5.3rem;
-    padding: 0.8rem;
-    display: block;
-  }
-  
-  #top-EditNav ul li {
-    display: block;
-    list-style-type: none;
-    height: max-content;
-    padding: 0.2rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
-  
-  #top-EditNav ul li a:hover {
-    color: rgb(152, 142, 142);
-  }
-  
-  #top-editedIndc {
-    color: gray;
-    font-size: 0.8rem;
-  }
-  
-  /*! ================ EDIT MENU: Delete/ Edit =============== */
-  
-  @media only screen and (max-width: 768px) {
-    .top-box {
-      display: none;
-    }
-    .top-box-a a {
-      display: none;
-    }
-  
-    .top-profile-section {
-      flex-wrap: wrap;
-      flex-basis: 1rem;
-    }
-  
-    .top-edit-profile-section {
-      flex-basis: 35rem;
-      margin-top: 0rem;
-    }
-    #top-reaction {
-      flex-grow: 1;
-      margin-top: 0rem;
-    }
-    .top-review {
-      margin-bottom: 30%;
-    }
-  }
-  
-  /*end of top-reviews-section*/
+}
+
+/*end of top-reviews-section*/
 
 /*start of reviews-section*/
 .reviews-section {
@@ -539,7 +546,7 @@ header {
 }
 
 .label-and-navigator h4 {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .label-and-navigator ul {
@@ -1258,11 +1265,12 @@ header {
   }
 
   .top-reviews-pictures {
-    flex-grow: 0;
-    margin: 0rem;
+    display: flex;
+    margin: 0.5rem;
     padding: 0.5rem;
   }
   .top-review-image {
+    margin: 0.2rem;
     object-fit: cover;
     max-width: 10vw;
     min-width: 10vw;
@@ -1300,7 +1308,7 @@ header {
 
   .label-and-navigator h4 {
     margin-right: 1rem;
-}
+  }
 
   .further-details .name a {
     font-size: 2rem;
