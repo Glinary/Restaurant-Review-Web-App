@@ -488,6 +488,41 @@ header {
     color: gray;
     font-size: 0.8rem;
   }
+
+  /*========== START OF GALLERY SECTION ==========*/
+
+  .gallery-section h3 {
+    font-size: 1rem;
+    margin-left: 1rem;
+    color: black;
+  }
+
+  .gallery-container {
+    margin: 0.5rem;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #B9D2D2;
+  }
+
+  .gallery-pictures {
+    margin: 5px 0;
+    
+    border-radius: 10px;
+    padding: 0.2rem 0.01rem;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .gallery-image {
+    background-color: white;
+    padding: 5px;
+    object-fit: cover;
+    margin: 3px;
+    max-width: 20vw;
+    border-radius: 10px;
+
+  }
+  /*========== END OF GALLERY SECTION ==========*/
   
   /*! ================ EDIT MENU: Delete/ Edit =============== */
   
