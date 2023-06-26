@@ -496,10 +496,6 @@ header {
     z-index: 9999;
   }
 
-  .menu-list a:nth-child(2) {
-    color: var(--main-button-color);
-  }
-
   .menu-list a:hover {
     color: rgb(152, 142, 142);
   }
