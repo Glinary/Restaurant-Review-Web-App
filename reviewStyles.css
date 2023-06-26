@@ -21,22 +21,32 @@
 }
 
 /* start of header section */
+
 * {
-  padding: 0;
+  scroll-behavior: smooth;
   margin: 0;
-  font-family: var(--main-font);
+  padding: 0;
+}
+#navbar-line {
+  visibility: hidden;
+  margin-bottom: 0;
+}
+
+body {
+  font-family: "Montserrat", "sans-serif";
 }
 
 header {
   display: block;
   text-align: center;
   margin: 20px auto;
-  z-index: 1;
 }
 
 .RP-app-name h1 {
   font-size: 30px;
 }
+
+/*! NAVBAR (Menu) - Mobile */
 
 .toggle-bars {
   height: max-content;
@@ -87,7 +97,7 @@ header {
   display: block;
   font-weight: 700;
   font-size: 18px;
-  padding: 1rem;
+  padding: 10px;
   background-color: #64b6ac;
 }
 
@@ -95,8 +105,8 @@ header {
   display: block;
   text-decoration: none;
   color: rgb(50, 45, 45);
-  margin: 0.5rem;
-  padding: 0.5rem;
+  margin: 10px;
+  padding: 10px;
 }
 
 .menu-list a:hover {
@@ -120,6 +130,7 @@ header {
   /* background-color: rgb(186, 203, 163); */
   border-radius: 90px;
 }
+/*! END OF NAVBAR (Menu) - Mobile */
 
 /*! Search Container - Mobile */
 .search-container {
@@ -161,7 +172,7 @@ header {
   background: radial-gradient(#768581, #018452);
 }
 
-/*! Search Container - Mobile */
+  /*! END OF Search Container - Mobile */
 
 /* END OF HEADER */
 
@@ -336,11 +347,81 @@ header {
   background: #0f7b59;
 }
 
+@media only screen and (min-width: 768px) {
+
+  /*START OF HEADER*/
+  .profile-navbar .anonpic {
+    max-width: 5rem;
+    padding: 1.3rem 1rem 1rem 1rem;
+  }
+
+  #navbar-line {
+    visibility: visible;
+  }
+
+  #header-divider {
+    display: none;
+  }
+
+  .content-navbar {
+    display: flex;
+    margin: 0 0 0 0;
+  }
+
+  .content-navbar .whenintaft {
+    font-size: 200%;
+  }
+
+  .content-navbar .navbar-items {
+    margin-left: 4%;
+    margin-top: 5%;
+    margin-right: 20vw;
+    margin-bottom: 1rem;
+  }
+
+  .navbar-items-container {
+    margin-left: 3vw;
+  }
+
+  .content-navbar .navbar-items h2 {
+    margin-top: 10px;
+  }
+
+  .content-navbar .navbar-items img {
+    max-width: 6vw;
+  }
+
+  .profile-navbar {
+    margin: 0;
+    max-width: 0px;
+  }
+
+  .profile-navbar .anonpic {
+    padding: 2;
+    margin: 0;
+    float: right;
+    max-width: 3rem;
+  }
+
+  #navbar-line {
+    max-width: 50000rem;
+  }
+
+  .search-section {
+    float: top;
+  }
+
+  /*END OF HEADER*/
+}
+
 @media only screen and (min-width: 1000px) {
+  
+  /*header*/
+
   header {
     display: flex;
-    margin: 10px;
-    padding: 15px;
+    margin: 0.625rem;
+    padding: 0.938rem;
   }
 
   .RP-app-name {
@@ -353,18 +434,10 @@ header {
     font-size: 50px;
   }
 
-  .toggle-bars {
-    height: max-content;
-    width: max-content;
-    margin: 20px auto;
-    display: none;
-  }
+  /*! NavBar/ Menu - Desktop */
 
-  .toggle-bars .toggle {
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    background-color: var(--main-button-color);
+  .toggle-bars .toggle,
+  .toggle-bars {
     display: none;
   }
 
@@ -383,7 +456,7 @@ header {
   .menu-bar.active {
     background: #131313;
     margin: 0;
-    opacity: 0;
+
     transition: all 0.5s eas e;
     height: 10vh;
     font-size: 1.6rem;
@@ -459,22 +532,51 @@ header {
     background: radial-gradient(#768581, #018452);
   }
 
-  .view-profile {
-    display: flex;
-    margin: 0 auto;
-    padding: 0;
-    height: 2.8rem;
-    width: max-content;
+  /*! NavBar/ Menu - Desktop */
+
+  /*! SEARCH BOX start */
+
+  .search-container {
+    display: none;
   }
 
-  .view-profile img {
+  .search-container2 {
+    display: inline-block;
+    text-align: right;
     position: absolute;
-    margin-left: 130px;
-    height: 30px;
-    width: 30px;
-    padding: 5px;
-    border-radius: 90px;
+    top: 4.5rem;
+    right: 0;
+    margin: 0.5rem 2rem 0 0;
   }
+
+  .search-container2.active {
+    margin: 290px auto auto auto;
+    transition: all 0.2s ease;
+  }
+
+  .search-container2 input[type="text"] {
+    margin: 0;
+    height: inherit;
+    flex-grow: 1;
+    border-color: #018452;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: transparent;
+    text-align: center;
+    z-index: 9999;
+  }
+
+  .search-container2 img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .search-line {
+    display: none;
+  }
+
+  /*! END OF SEARCH BOX */
 
   /*! MENU  - Dropdown */
 
@@ -537,10 +639,8 @@ header {
 
   /*! END OF MENU - Dropdown */
 
-  /*! SEARCH BOX start */
-
-  .search-container {
-    display: none;
+  #viewprofile {
+    visibility: visible;
   }
 
   .search-container2 {

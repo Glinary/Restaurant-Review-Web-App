@@ -835,6 +835,8 @@ header {
 /*end of reviews-section*/
 
 @media only screen and (min-width: 768px) {
+
+  /*START OF HEADER*/
   .profile-navbar .anonpic {
     max-width: 5rem;
     padding: 1.3rem 1rem 1rem 1rem;
@@ -895,6 +897,8 @@ header {
   .search-section {
     float: top;
   }
+
+  /*END OF HEADER*/
 
   .profile-section .profile-description h1 {
     font-size: 4vw;
