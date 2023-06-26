@@ -172,7 +172,7 @@ header {
   background: radial-gradient(#768581, #018452);
 }
 
-  /*! END OF Search Container - Mobile */
+/*! END OF Search Container - Mobile */
 
 /* END OF HEADER */
 
@@ -222,6 +222,7 @@ header {
 }
 #star-ratings {
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -348,7 +349,6 @@ header {
 }
 
 @media only screen and (min-width: 768px) {
-
   /*START OF HEADER*/
   .profile-navbar .anonpic {
     max-width: 5rem;
@@ -415,7 +415,6 @@ header {
 }
 
 @media only screen and (min-width: 1000px) {
-  
   /*header*/
 
   header {
