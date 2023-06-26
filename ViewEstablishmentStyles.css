@@ -803,30 +803,28 @@ header {
 
 /*! ================ EDIT MENU: Delete/ Edit =============== */
 
-@media only screen and (max-width: 768px) {
-  .box {
-    display: none;
-  }
-  .box-a a {
-    display: none;
-  }
+.box {
+  display: none;
+}
+.box-a a {
+  display: none;
+}
 
-  .profile-section {
-    flex-wrap: wrap;
-    flex-basis: 1rem;
-  }
+.profile-section {
+  flex-wrap: wrap;
+  flex-basis: 1rem;
+}
 
-  .edit-profile-section {
-    flex-basis: 35rem;
-    margin-top: 0rem;
-  }
-  #reaction {
-    flex-grow: 1;
-    margin-top: 0rem;
-  }
-  .review {
-    margin-bottom: 30%;
-  }
+.edit-profile-section {
+  flex-basis: 35rem;
+  margin-top: 0rem;
+}
+#reaction {
+  flex-grow: 1;
+  margin-top: 0rem;
+}
+.review {
+  margin-bottom: 30%;
 }
 
 /*end of reviews-section*/
@@ -968,6 +966,24 @@ header {
   }
   .review {
     margin-bottom: 30%;
+  }
+
+  .top-reviews-content-container {
+    height: fit-content;
+  }
+  .top-reviews-pictures {
+    display: flex;
+    margin: 0;
+    width: min-content;
+    align-items: center;
+  }
+
+  .top-review-image {
+    object-fit: cover;
+    max-width: 20vw;
+    min-width: 20vw;
+    max-height: 80%;
+    min-height: 80%;
   }
 }
 
