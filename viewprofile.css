@@ -191,6 +191,7 @@ header {
 /*start of profile-section*/
 .profile-section {
   display: flex;
+  flex-direction: column;
   padding-top: 1rem;
 }
 
@@ -201,11 +202,8 @@ header {
   justify-content: fill;
 }
 
-.profile-pictures-section .profile-picture {
-  flex-grow: 1;
-}
-.profile-pictures-section .smaller-profiles {
-  flex-grow: 2;
+.yohoo {
+  display: flex;
 }
 
 .profile-pictures-section .profile-picture img {
@@ -238,14 +236,15 @@ header {
 /*end of profile-section*/
 
 /*start of edit-profile-section*/
-
+.profile-section {
+  margin: 0;
+  padding: 0;
+}
 .edit-profile-section {
-  margin-top: 35%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 1rem;
-  bottom: 0;
 }
 
 .edit-profile-section img {
@@ -266,6 +265,10 @@ header {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.2rem;
+}
+
+.reviews-section h4 {
+  margin-right: 1rem;
 }
 
 .label-and-navigator {
@@ -497,8 +500,7 @@ header {
   }
 
   .edit-profile-section {
-    flex-basis: 35rem;
-    margin-top: 0rem;
+    margin-bottom: 1rem;
   }
   #reaction {
     flex-grow: 1;
@@ -654,8 +656,7 @@ header {
 @media only screen and (min-width: 1000px) {
   .box {
     background-color: #e3e6d9;
-    width: 55%;
-    height: 500px;
+    width: 15%;
     border-radius: 30px;
     margin-left: 50px;
     margin-right: 50px;
@@ -909,11 +910,20 @@ header {
     font-size: 3rem;
   }
 
-  .profile-pictures-section .profile-picture {
-    flex-grow: 0;
+  .yohoo {
+    display: flex;
   }
-  .profile-pictures-section .smaller-profiles {
-    flex-grow: 0;
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+  }
+
+  .edit-profile-section {
+    margin: 0;
+    padding: 0;
+    flex: 1;
   }
 
   .profile-section .profile-description h1 {
@@ -922,9 +932,7 @@ header {
 
   .profile-section .profile-description p {
     font-size: 1.2vw;
-    padding: 0 2.5em 0 0;
-    inline-size: 110%;
-    text-align: justify;
+    padding: 0 0 0 0;
   }
 
   .profile-section .profile-pictures-section {
@@ -942,8 +950,8 @@ header {
   /*start of edit-profile-section*/
 
   .edit-profile-section {
-    padding-right: 0rem;
-    padding-top: 5rem;
+    padding: 0;
+    margin: 0;
   }
 
   .edit-profile-section img {
@@ -954,6 +962,7 @@ header {
   .edit-profile-section h4 {
     margin-top: 0.5rem;
     font-size: 1rem;
+    
   }
 
   /*end of edit-profile-section*/
