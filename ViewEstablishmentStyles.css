@@ -1250,8 +1250,6 @@ header {
 
   /*! END OF MENU - Dropdown */
 
-
-
   #viewprofile {
     visibility: visible;
   }
@@ -1319,7 +1317,7 @@ header {
   .profile-section .profile-description p {
     font-size: 1.2vw;
     padding: 0 2.5em 0 0;
-    inline-size: 80%;
+    inline-size: 100%;
     text-align: justify;
   }
 
