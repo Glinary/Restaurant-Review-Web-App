@@ -1261,7 +1261,7 @@ header {
 
   #profilee {
     display: flex;
-    margin: 2rem 3rem;
+    margin: 2rem 0rem;
     justify-content: space-evenly;
   }
 
