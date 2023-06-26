@@ -428,7 +428,7 @@ header {
 
 .top-overall-stars {
   display: flex;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 #top-Ostar {
@@ -1280,7 +1280,7 @@ header {
     width: fit-content;
     height: fit-content;
     /* background-color: aqua; */
-    margin: 1rem auto;
+    margin: 0rem auto;
     padding: 0;
   }
   .profile-pictures-section .profile-picture img {
