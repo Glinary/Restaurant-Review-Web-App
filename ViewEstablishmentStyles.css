@@ -189,6 +189,11 @@ header {
 }
 
 /*start of profile-section*/
+.profile-section .profile-picture {
+  padding: 1rem 0rem 0rem 0rem;
+}
+
+/*start of profile-section*/
 .profile-section {
   display: flex;
   padding-top: 1rem;
@@ -1258,7 +1263,7 @@ header {
   .profile-section .profile-description p {
     font-size: 1.2vw;
     padding: 0 2.5em 0 0;
-    inline-size: 110%;
+    inline-size: 80%;
     text-align: justify;
   }
 
