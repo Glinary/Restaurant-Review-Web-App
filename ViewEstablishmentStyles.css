@@ -489,6 +489,26 @@ header {
     font-size: 0.8rem;
   }
 
+  /*========== START OF REPLY SECTION ==========*/
+
+    .reply-container {
+      margin: 0rem 1rem 1rem 1rem;
+      background-color: white;
+      border-radius: 10px;
+      border-left: 1rem #B09E9A solid;
+      padding: 1rem
+    }
+
+    .reply-container h3 {
+      font-size: 1rem;
+    }
+
+    .reply-container p {
+      font-size: 0.8rem;
+    }
+
+  /* ========== END OF REPLY SECTION ========== */
+
   /*========== START OF GALLERY SECTION ==========*/
 
   .gallery-section h3 {
