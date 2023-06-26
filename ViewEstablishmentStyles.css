@@ -1269,7 +1269,7 @@ header {
     width: fit-content;
     height: fit-content;
     padding: 0;
-    margin: 0 auto;
+    margin: 1rem auto;
     box-sizing: border-box;
   }
 
@@ -1280,7 +1280,7 @@ header {
     width: fit-content;
     height: fit-content;
     /* background-color: aqua; */
-    margin: 0;
+    margin: 1rem auto;
     padding: 0;
   }
   .profile-pictures-section .profile-picture img {
