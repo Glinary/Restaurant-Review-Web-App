@@ -124,6 +124,7 @@ header {
 
 /*! Search Container - Mobile */
 .search-container {
+  visibility: hidden;
   display: flex;
   justify-content: space-between;
   max-height: 35px;
@@ -153,13 +154,6 @@ header {
 .search-container img {
   height: 20px;
   width: 20px;
-}
-
-.search-line {
-  height: 1px;
-  width: 50%;
-  margin: 0px auto;
-  background: radial-gradient(#768581, #018452);
 }
 
 /*! END OF Search Container - Mobile */
@@ -490,50 +484,6 @@ header {
   }
 
   /*! NavBar/ Menu - Desktop */
-
-  /*! SEARCH BOX start */
-
-  .search-container {
-    display: none;
-  }
-
-  .search-container2 {
-    display: inline-block;
-    text-align: right;
-    position: absolute;
-    top: 4.5rem;
-    right: 0;
-    margin: 0.5rem 2rem 0 0;
-  }
-
-  .search-container2.active {
-    margin: 290px auto auto auto;
-    transition: all 0.2s ease;
-  }
-
-  .search-container2 input[type="text"] {
-    margin: 0;
-    height: inherit;
-    flex-grow: 1;
-    border-color: #018452;
-    border-right: none;
-    border-left: none;
-    border-top: none;
-    background-color: transparent;
-    text-align: center;
-    z-index: 9999;
-  }
-
-  .search-container2 img {
-    height: 20px;
-    width: 20px;
-  }
-
-  .search-line {
-    display: none;
-  }
-
-  /*! END OF SEARCH BOX */
 
   /*! MENU  - Dropdown */
 
