@@ -995,7 +995,8 @@ header {
 @media only screen and (min-width: 1000px) {
   .box {
     background-color: #e3e6d9;
-    width: 55%;
+    max-width: 15%;
+    min-width: 15%;
     border-radius: 30px;
     margin-left: 50px;
     margin-right: 50px;
@@ -1238,8 +1239,8 @@ header {
   /*! END OF MENU - Dropdown */
 
   .yohoo {
-    min-width: 60%;
-    max-width: 80%;
+    min-width: 55%;
+    max-width: 55%;
   }
 
   #viewprofile {
@@ -1249,6 +1250,7 @@ header {
   #profilee {
     display: flex;
     margin-top: 2rem;
+    justify-content: space-evenly;
   }
 
   .content-navbar .whenintaft {
