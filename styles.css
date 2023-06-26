@@ -210,7 +210,8 @@ header {
 }
 
 #home-banner-line {
-  width: 10rem;
+  margin-left: 0rem;
+  width: 9rem;
   height: 0.2rem;
   background-color: #131313;
 }
@@ -415,6 +416,13 @@ header {
 
   .search-section input {
     width: 30vw;
+  }
+
+  #home-banner-line {
+    margin-left: 0rem;
+    width: 9rem;
+    height: 0.2rem;
+    background-color: #131313;
   }
 
   #registerButton {
@@ -673,6 +681,13 @@ header {
     justify-content: center;
     padding: 0;
     margin: 0;
+  }
+
+  #home-banner-line {
+    margin-left: 1rem;
+    width: 8.5rem;
+    height: 0.2rem;
+    background-color: #131313;
   }
 
   #oneLook {
