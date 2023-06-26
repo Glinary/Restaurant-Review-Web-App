@@ -903,7 +903,7 @@ header {
 
   #profilee {
     display: flex;
-    margin-top: 2rem;
+    margin: 2rem 3rem 2rem 3rem;
   }
 
   .content-navbar .whenintaft {
@@ -962,7 +962,6 @@ header {
   .edit-profile-section h4 {
     margin-top: 0.5rem;
     font-size: 1rem;
-    
   }
 
   /*end of edit-profile-section*/
@@ -1023,7 +1022,7 @@ header {
   }
 
   .reviews-section {
-    margin: 2rem;
+    margin: 2rem 4rem 2rem 4rem;
   }
 
   .box a:hover {
