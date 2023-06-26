@@ -1237,6 +1237,11 @@ header {
 
   /*! END OF MENU - Dropdown */
 
+  .yohoo {
+    min-width: 60%;
+    max-width: 80%;
+  }
+
   #viewprofile {
     visibility: visible;
   }
@@ -1250,11 +1255,48 @@ header {
     font-size: 3rem;
   }
 
-  .profile-pictures-section .profile-picture {
-    flex-grow: 0;
+  .profile-pictures-section {
+    /* background-color: red; */
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
+
+  .profile-pictures-section .profile-picture {
+    box-sizing: border-box;
+    flex-grow: 0;
+    object-fit: cover;
+    width: fit-content;
+    height: fit-content;
+    /* background-color: aqua; */
+    margin: 0;
+    padding: 0;
+  }
+  .profile-pictures-section .profile-picture img {
+    object-fit: cover;
+    max-width: 12vw;
+    min-width: 12vw;
+    max-height: 15vh;
+    min-height: 15vh;
+    border-radius: 10px;
+    margin: 0;
+  }
+
+  .contain-profile {
+    height: fit-content;
+    min-width: fit-content;
+    max-width: fit-content;
+    /* background-color: #018452; */
+    padding: 0.5rem;
+    margin: 0;
+  }
+
   .profile-pictures-section .smaller-profiles {
     flex-grow: 0;
+    /* background-color: #716b6b; */
+    margin: 0 auto;
   }
 
   .profile-section .profile-description h1 {
