@@ -396,7 +396,7 @@ header {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-    width: 75%;
+    width: 100%;
     height: 50%;
     padding: 0;
     margin: 0;
@@ -454,7 +454,7 @@ header {
   .menu-line {
     position: absolute;
     height: 1.5px;
-    width: 103%;
+    width: 100%;
     margin: 45px 0 0 -20px;
     background: radial-gradient(#768581, #018452);
   }
@@ -550,6 +550,7 @@ header {
     top: 4.5rem;
     right: 0;
     margin: 0.5rem 2rem 0 0;
+    width: 100%;
   }
 
   .search-container2.active {
