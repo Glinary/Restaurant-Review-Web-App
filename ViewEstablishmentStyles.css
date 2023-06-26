@@ -184,13 +184,21 @@ header {
   cursor: pointer;
 }
 
+.contain-profile {
+  height: fit-content;
+  min-width: fit-content;
+  max-width: fit-content;
+  padding: 0rem;
+  margin: 0;
+}
+
 .profile-section .profile-picture {
   padding: 1rem 0rem 0rem 0rem;
 }
 
 /*start of profile-section*/
 .profile-section .profile-picture {
-  padding: 1rem 0rem 0rem 0rem;
+  padding: 0rem 0rem 0rem 0rem;
 }
 
 /*start of profile-section*/
@@ -1257,8 +1265,8 @@ header {
     font-size: 3rem;
   }
 
+  /*! FIXED PROFILE DESCRIPTION IMAGE */
   .profile-pictures-section {
-    /* background-color: red; */
     width: fit-content;
     height: fit-content;
     padding: 0;
@@ -1291,7 +1299,7 @@ header {
     min-width: fit-content;
     max-width: fit-content;
     /* background-color: #018452; */
-    padding: 0.5rem;
+    padding: 0rem;
     margin: 0;
   }
 
@@ -1300,6 +1308,8 @@ header {
     /* background-color: #716b6b; */
     margin: 0 auto;
   }
+
+  /*! END OF FIXED PROFILE DESCRIPTION IMAGE */
 
   .profile-section .profile-description h1 {
     font-size: 2vw;
