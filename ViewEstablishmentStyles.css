@@ -1013,11 +1013,12 @@ header {
     margin-left: 50px;
     margin-right: 50px;
     display: flex;
-    justify-content: center;
   }
   .box a {
     display: block;
     margin: 50px auto;
+    padding-left: 60%;
+    width: 100%;
     height: max-content;
     text-decoration: none;
     color: black;
@@ -1500,21 +1501,15 @@ header {
 
   /*end of reviews-section*/
 
-  .gallery-container {
-    margin-top: 2rem;
-  }
-  .gallery-pictures {
-    padding: 1.5rem;
-  }
   .gallery-image {
     background-color: white;
     padding: 5px;
     object-fit: cover;
     margin: 3px;
     max-width: 20vw;
-    max-height: 30vh;
+    max-height: 35vh;
     min-width: 20vw;
-    min-height: 30vh;
+    min-height: 35vh;
     border-radius: 10px;
   }
 }
