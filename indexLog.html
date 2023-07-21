@@ -35,6 +35,21 @@
             <a href="restaurant.html">RESTAURANTS</a>
           </div>
           <div class="menu-line"></div>
+          <div class="search-container2">
+           <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+           <form action="SearchPage.html" id="searchform" method="get">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="searchBar"
+                id="searchBar"
+              />
+              <input 
+                type="submit"
+                value="submit"
+                />
+          </form>
+          </div>
           <div class="menu-bar2">
             <nav>
               <ul>
@@ -45,6 +60,7 @@
                   </div>
                   <div class="dropdown-m">
                     <ul>
+                      <li><a href="index.html">EDIT PROFILE</a></li>
                       <li><a href="index.html">LOGOUT</a></li>
                     </ul>
                   </div>
@@ -55,25 +71,27 @@
         </div>
       </div>    
     </header>
-      <div class="search-container">
-        <input
-          type="text"
-          placeholder="search here"
-          name="searchBar"
-          id="searchBar"
-        /><a href="SearchPage.html"><img src="assets/searchbutton.png" alt="" /></a>
-      </div>
-      <div class="search-line"></div>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="SearchPage.html"></a>
+    </div>
+    <div class="search-line"></div>
+  
       <!-- end of header menu -->
-
-      <div class="search-container2">
+      <!-- <div class="search-container2">
         <input
           type="text"
           placeholder="search here"
           name="searchBar"
           id="searchBar"
         /><a href="SearchPage.html"><img src="assets/searchbutton.png" alt="" /></a>
-      </div>  
+      </div>   -->
+
+      
 
     <div class="wrapper">
     
@@ -160,39 +178,65 @@
     </div>
 </body>
 <script>
-    const menu = document.querySelector("#mobile-menu");
-    const menuLinks = document.querySelector(".menu-bar");
-    const userPage = document.querySelector("#prof-page");
-    const userPic = document.querySelector("#prof-pic");
-    const searchBar = document.querySelector(".search-container");
-    const hidden = document.querySelector(".hidden");
-    const swidth = screen.width;
-    const copies = document.querySelectorAll(".slide").length;
-    const restoBox = document.querySelector(".slides");
-    const restoDesc = document.querySelectorAll("#resto-desc");
-    const restoLabel = document.querySelector("#resto-innerLabel");
-    console.log(restoBox);
+  document.addEventListener("DOMContentLoaded", function() {
+      // Mobile View Variables
+      const menu = document.querySelector("#mobile-menu");
+      const menuLinks = document.querySelector(".menu-bar");
+      const userPage = document.querySelector("#prof-page");
+      const userPic = document.querySelector("#prof-pic");
+      const searchBar = document.querySelector(".search-container");
 
-    console.log(swidth);
-    console.log(copies);
+      // Resturant Grid View Variables
+      const hidden = document.querySelector(".hidden");
+      const swidth = screen.width;
+      const copies = document.querySelectorAll(".slide").length;
+      const restoBox = document.querySelector(".slides");
+      const restoDesc = document.querySelectorAll("#resto-desc");
+      const restoLabel = document.querySelector("#resto-innerLabel");
 
-    menu.addEventListener("click", function () {
-      menu.classList.toggle("is-active");
-      menuLinks.classList.toggle("active");
-      searchBar.classList.toggle("active");
-    });
-    userPage.addEventListener("mouseover", function () {
-      userPic.classList.toggle("hovered");
-    });
-    userPage.addEventListener("mouseout", function () {
-      userPic.classList.toggle("hovered");
-    });
+      // Search Action Variables
+      const searchForm = document.querySelector("#searchform")
+      const searchSubmit = document.querySelector("input[type=\"submit\"]")
+  
+      searchSubmit.hide();
 
-    if (swidth > 960 && copies % 3 == 2) {
-      console.log("copies modulo:", copies % 3);
+      // TESTER: Delete later
+      console.log(restoBox);
+      console.log(swidth);
+      console.log(copies);
 
-      document.querySelector(".restobox-cont").innerHTML +=
-        '<div class="hidden"></div>';
-    }
+      // Rules for Menu Bar in Mobile View
+      menu.addEventListener("click", function () {
+        menu.classList.toggle("is-active");
+        menuLinks.classList.toggle("active");
+        searchBar.classList.toggle("active");
+      });
+
+      // Rules for Hovering both the "View Profile" and Avatar
+      userPage.addEventListener("mouseover", function () {
+        userPic.classList.toggle("hovered");
+      });
+      userPage.addEventListener("mouseout", function () {
+        userPic.classList.toggle("hovered");
+      });
+
+      // Rules for flushing all establishment cards to the left in Restaurant Grid View
+      if (swidth > 960 && copies % 3 == 2) {
+        console.log("copies modulo:", copies % 3);
+        document.querySelector(".restobox-cont").innerHTML +=
+          '<div class="hidden"></div>';
+      }
+
+      searchForm.addEventListener("keydown", function(e) {
+          if(e.keyCode == 13){
+            submitForm();
+          }
+      })
+
+      function submitForm(){
+        searchForm.submit()
+      }
+  });
+  
   </script>
 </html>

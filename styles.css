@@ -147,7 +147,7 @@ header {
   justify-content: space-between;
   max-height: 35px;
   width: 50%;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .search-container2 {
@@ -177,7 +177,7 @@ header {
 .search-line {
   height: 1px;
   width: 50%;
-  margin: 0px auto;
+  margin: 5px auto;
   background: radial-gradient(#768581, #018452);
 }
 
@@ -489,19 +489,19 @@ header {
     position: relative;
     opacity: 1;
     display: flex;
-    justify-content: space-between;
     margin-top: 10px;
+    margin-right: 2%;
     width: 100%;
     height: 50%;
     padding: 0;
-    margin: 0;
+
     background-color: transparent;
   }
 
   .menu-list {
     display: flex;
-    justify-content: space-between;
     align-items: start;
+    justify-content: space-between;
     font-weight: 700;
     font-size: 10px;
     padding: 0px;
@@ -512,8 +512,8 @@ header {
 
   .menu-list a {
     text-decoration: none;
-    margin-right: 50px;
     font-size: 16px;
+    margin-right: 2.8rem;
     padding: 0px;
     color: rgb(50, 45, 45);
     z-index: 9999;
@@ -558,15 +558,18 @@ header {
 
   .view-profile {
     display: flex;
+    justify-content: start;
     margin: 0 auto;
-    padding: 0;
-    height: 2.8rem;
+    padding: 1.2px 0;
+    height: max-content;
+    width: max-content;
+    border-radius: 12px;
     width: max-content;
   }
 
   .view-profile img {
     position: absolute;
-    margin-left: 130px;
+    margin-left: 8.5rem;
     height: 30px;
     width: 30px;
     padding: 5px;
@@ -575,11 +578,12 @@ header {
 
   .menu-bar2 {
     display: block;
-    position: absolute;
+    position: relative;
     margin: 0;
     right: 0;
     z-index: 99999;
     background-color: var(--main-background);
+    /* background-color: #f1e6d6; */
   }
 
   .menu-bar2 ul li {
@@ -590,8 +594,13 @@ header {
 
   .menu-bar2:hover .dropdown-m {
     display: block;
-    width: inherit;
-    margin: auto;
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 0.14rem;
+    border-top: 3px solid #e4b73a;
+
+    border-top-right-radius: 10px;
     z-index: 99999;
   }
 
@@ -599,18 +608,22 @@ header {
     display: none;
   }
   .dropdown-m ul {
-    max-width: min-content;
+    max-width: 100%;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    background-color: var(--main-background);
+    filter: drop-shadow(0rem 0.5rem 8px #0f0f13);
   }
 
   .dropdown-m ul li {
-    box-sizing: border-box;
     list-style-type: none;
-    margin: -2px auto;
-    padding: 0;
-    margin: auto;
+    margin: 0px auto;
+    padding: 1rem;
   }
+
   .dropdown-m ul li a {
     text-align: center;
+    margin: 0 auto;
   }
 
   /*! END OF MENU - Dropdown */
@@ -622,36 +635,48 @@ header {
   }
 
   .search-container2 {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    padding: inherit;
+    width: 100%;
+    border: 0.5px solid #fcd4c1;
+    border-radius: 20px;
+    z-index: 9999;
+    background-color: #e2deda;
+  }
+
+  /* .search-container {
     display: inline-block;
     text-align: right;
-    position: absolute;
+    position: relative;
     top: 4.5rem;
     right: 0;
     margin: 0.5rem 2rem 0 0;
     width: 100%;
   }
+   */
 
-  .search-container2.active {
+  .search-container.active {
     margin: 290px auto auto auto;
     transition: all 0.2s ease;
   }
 
   .search-container2 input[type="text"] {
-    margin: 0;
+    margin-left: 0.2rem;
+    padding: 0.5rem;
     height: inherit;
-    flex-grow: 1;
-    border-color: #018452;
-    border-right: none;
-    border-left: none;
-    border-top: none;
     background-color: transparent;
-    text-align: center;
-    z-index: 9999;
+    border: none;
+    width: 100%;
   }
 
-  .search-container2 img {
-    height: 20px;
-    width: 20px;
+  .search-container2 input[type="submit"] {
+    display: none;
+  }
+
+  .search-container2 input[type="text"]::placeholder {
+    color: #a4b2ac;
   }
 
   .search-line {
@@ -687,7 +712,7 @@ header {
     margin-left: 1rem;
     width: 8.5rem;
     height: 0.2rem;
-    background-color: #131313;
+    background-color: #;
   }
 
   #oneLook {
