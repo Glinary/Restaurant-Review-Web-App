@@ -238,6 +238,7 @@ header {
   float: right;
   margin-right: 15%;
   margin-top: 5%;
+  margin-bottom: 2rem;
 }
 
 .venue-section {
@@ -424,6 +425,16 @@ header {
     width: 30vw;
   }
 
+  .home-banner {
+    text-align: center;
+    margin-left: -5rem;
+  }
+
+  .home-banner-tagline {
+    text-align: center;
+    margin-left: 13rem;
+  }
+
   #home-banner-line {
     margin-left: 0rem;
     width: 9rem;
@@ -439,7 +450,8 @@ header {
     background-color: #64b6ac;
     width: 9rem;
     line-height: 2.5rem;
-    margin-right: 15%;
+    margin-right: 35%;
+    margin-bottom: 2rem;
   }
 
   .slides {
@@ -717,12 +729,18 @@ header {
     justify-content: center;
     padding: 0;
     margin: 0;
+
   }
 
   #home-banner-line {
-    margin-left: 1rem;
+    margin-left: 0rem;
     width: 8.5rem;
     height: 0.2rem;
+ 
+  }
+
+  #registerButton{
+    margin: 2rem 2rem;
   }
 
   #oneLook {
@@ -749,7 +767,8 @@ header {
   }
 
   .home-banner-tagline {
-    padding-left: 10%;
+    margin: 0;
+    padding-left: 22%;
     padding-right: 10%;
   }
 

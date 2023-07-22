@@ -439,7 +439,10 @@ header {
     background-color: #64b6ac;
     width: 9rem;
     line-height: 2.5rem;
-    margin-right: 15%;
+    margin-left: 200rem;
+    background-color: #64b6ac;
+    width: 8rem;
+    line-height: 1.5rem;
   }
 
   .slides {
@@ -450,12 +453,6 @@ header {
     flex: 2;
     margin: 0px;
     padding: 0px;
-  }
-
-  #registerButton {
-    background-color: #64b6ac;
-    width: 8rem;
-    line-height: 1.5rem;
   }
 }
 
