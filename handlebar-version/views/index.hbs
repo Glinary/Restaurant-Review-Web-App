@@ -1,0 +1,144 @@
+<header>
+    <div class="RP-app-name">
+      <h1>WhenInTaft</h1>
+    </div>
+    <div class="toggle-bars" id="mobile-menu">
+      <div class="toggle"></div>
+      <div class="toggle"></div>
+      <div class="toggle"></div>
+    </div>
+    <div class="divide-this"></div>
+      
+    <div class="menu-bar">
+      <div class="menu-list">
+        <div class="part1">
+          <a href="/index" id="current">HOME</a>
+          <a href="/restaurantLogout">RESTAURANTS</a>
+        </div>
+        <div class="menu-line"></div>
+        <div class="search-container2">
+         <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+         <form action="searchPageLogout.html" id="searchform" method="get">
+            <input
+              type="text"
+              placeholder="Type to search"
+              name="searchBar"
+              id="searchBar"
+              autocomplete="off"
+            />
+            <input 
+              type="submit"
+              value="submit"
+              />
+        </form>
+        </div>
+        <div class="menu-bar2">
+          <nav>
+            <ul>
+              <li>
+                <div class="view-profile">
+                  <a href="/loginPage" id="prof-page">LOGIN</a>
+                  <a href="/registrationPage" id="prof-page">REGISTER</a>
+                </div>
+              </li>
+            </ul>            
+          </nav>
+        </div>
+      </div>
+    </div>    
+  </header>
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Type to search"
+      name="searchBar"
+      id="searchBar"
+      autocomplete="off"
+    /><a href="searchPageLogout.html"></a>
+  </div>
+  <div class="search-line"></div>
+  <!-- END OF HEADER-->
+
+    <div class="wrapper">
+    
+        <div class="home-banner">
+            <h1 id="oneLook">ONE LOOK AROUND, TO<br>
+                SATISFY CRAVINGS!</h1>
+            <div class="home-banner-tagline">
+                <p id="home-banner-line"></p>
+                <p id="choose">choose the venue</p>
+            </div>
+            <div>
+                <a href="/registrationPage"><input type="button" value="Register Now" id="registerButton"></a><br>
+            </div>
+        </div>
+
+        <div class="venue-section">
+    
+            <div class="slides">
+                <div class="slide">
+                    <a href="RestoView-SB-out.html"><img src="{{pic1}}" id="restaurant1" ></a>
+                    <div id="resto-desc">
+                      <p>
+                        Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.
+                      </p>
+                    </div>
+                    <div id="resto-innerLabel">
+                      <p id="r-label">Starbucks</p>
+                      <div class="cont">
+                        <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+                        <p id="r-label">4.8</p>
+                      </div>
+                    </div>
+                </div>
+
+              <div class="slide">
+                <a href="RestoView-DTH-out.html"><img src="{{pic2}}" id="restaurant1" ></a>
+                <div id="resto-desc">
+                  <p>
+                    Let the authentic taste of Chinese cuisine from delicate dim sum to tantalizing stir-fries be at your reach anytime.
+                  </p>
+                </div>
+                <div id="resto-innerLabel">
+                  <p id="r-label">David's Tea House</p>
+                  <div class="cont">
+                    <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+                    <p id="r-label">4.6</p>
+                  </div>
+                </div>
+              </div>
+
+            <div class="slide">
+              <a href="RestoView-TNB-out.html"><img src="{{pic3}}" id="restaurant1" ></a>
+              <div id="resto-desc">
+                <p>
+                  Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Tinuhog ni Benny</p>
+                <div class="cont">
+                  <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+                  <p id="r-label">5.0</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <a href="/RestoView-ADBB-out"><img src="{{pic4}}" id="restaurant1" ></a>
+              <div id="resto-desc">
+                <p>
+                  Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.
+                </p>
+              </div>
+              <div id="resto-innerLabel">
+                <p id="r-label">Angry Dobo</p>
+                <div class="cont">
+                  <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+                  <p id="r-label">4.7</p>
+                </div>
+              </div>
+            </div>      
+
+        </div>
+    </div>

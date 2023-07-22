@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Profile</title>
+    <script src="ViewProfileRules.js" defer></script>
+    <link rel="stylesheet" href="ViewEstablishmentStyles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="stylesheet" href="viewprofile.css" /> -->
+    <script
+      src="https://kit.fontawesome.com/78bb10c051.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+<!--START OF HEADER--> 
+    <header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+        
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="indexLog.html" id="current">HOME</a>
+            <a href="restaurant.html">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+          <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+          <form action="SearchPage.html" id="searchform" method="get">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="searchBar"
+                id="searchBar"
+              />
+              <input 
+                type="submit"
+                value="submit"
+                />
+          </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="viewprofileU1.html" id="prof-page">VIEW PROFILE</a>
+                    <img src="assets/anonymous_picture.png" id="prof-pic" />
+                  </div>
+                  <div class="dropdown-m">
+                    <ul>
+                      <li><a href="viewprofileU1.html">VIEW PROFILE</a></li>
+                      <li><a href="editProfile.html">EDIT PROFILE</a></li>
+                      <li><a href="index.html">LOGOUT</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>            
+            </nav>
+          </div>
+        </div>
+      </div>    
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="SearchPage.html"></a>
+    </div>
+    <div class="search-line"></div>
+        
+<!-- END OF HEADER SECTION -->
+
+<!-- START OF PROFILE SECTION -->
+    <div id="profilee">
+        <div class="box"></div>
+        <div class="yohoo">
+          <div class="Rest-profile-section" id="Rest-profile">
+              <div class="Rest-profile-pictures-section">
+                  <div class="Rest-profile-picture">
+                    <img src="assets/avatar.webp" />
+                  </div>
+              </div>
+              <div class="Rest-profile-description">
+                <h1>Harry Potter</h1>
+                <p>
+                  At the age of one, Harry's parents are killed by Lord Voldemort, who
+                  then attempts to kill him with the Killing Curse. Due to The Power
+                  of Love from his mother's self-sacrifice, however, he survives and
+                  rebounds the curse upon Voldemort, getting a lightning bolt-shaped
+                  scar as a souvenir. The series' resident Eccentric Mentor,
+                  Dumbledore, then arranges to have his Muggle aunt and uncle take him
+                  in or else.
+                </p>
+              </div>
+          </div>
+          <div class="edit-profile-section">
+              <h4>Edit Profile</h4>
+              <a href="editProfile.html"><img src="assets/book_icon.png" /></a>
+          </div>
+        </div>
+        <div class="box"></div>
+    </div>
+<!-- END OF PROFILE SECTION -->
+
+<!-- START OF REVIEW SECTION -->
+    <div class="reviews-section">
+      <div class="label-and-navigator" id="review">
+        <h3>User's Reviews</h3>
+        <h4>View All</h4>
+      </div>
+      <div class="reviews-content-container">
+        <div class="reviews-left-container">
+          <div class="left">
+            <div class="reviews-user-details">
+              <img
+                src="assets/anonymous_picture.png"
+                class="reviews-profile-pic"
+              />
+            </div>
+            <div class="further-details">
+              <div class="name">
+                <a class="firstname" href="#">Harry Potter</a>
+              </div>
+              <div class="others">
+                <p class="review-count">9 Reviews</p>
+              </div>
+            </div>
+            <div id="reaction">
+              <div id="helpful">
+                <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
+              </div><span class="count" value="14">14</span>
+              <div id="unhelpful">
+                <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i></i>
+              </div><span class="count" value="1">1</span>
+            </div>
+          </div>
+          <div class="overall-stars">
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa fa-star"></i></div>
+            <div id="Ostar"><i class="fa fa-star"></i></div>
+          </div>
+          <div class="review">
+            <p>
+              The coffee was tasty as usual. The café was very clean as well. 
+              Definitely going back again.
+            </p>
+          </div>
+        </div>
+
+        <div class="reviews-pictures">
+          <img src="assets/SB1.jpg" class="review-image" />
+          <img src="assets/SB2.jpg" class="review-image" />
+        </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-content-container">
+        <div class="reviews-left-container">
+          <div class="left">
+            <div class="reviews-user-details">
+              <img
+                src="assets/anonymous_picture.png"
+                class="reviews-profile-pic"
+              />
+            </div>
+            <div class="further-details">
+              <div class="name">
+                <a class="firstname" href="#">Harry Potter</a>
+              </div>
+              <div class="others">
+                <p class="review-count">9 Reviews</p>
+               
+              </div> 
+            </div>
+            <div id="reaction">
+              <div id="helpful">
+                <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
+              </div><span class="count" value="14">14</span>
+              <div id="unhelpful">
+                <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i></i>
+              </div><span class="count" value="1">1</span>
+            </div>
+          </div>
+          <div class="overall-stars">
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+            <div id="Ostar"><i class="fa fa-star"></i></div>
+          </div>
+          <div class="review">
+            <p>
+              The taste is not that consistent. Sometimes the broccoli was cooked very well and sometimes it gets too salty. 
+              Sometimes the serving is too little for its price. Overall, most of their food is still delicious 
+              but it’s not consistent and not so affordable.
+            </p>
+          </div>
+        </div>
+
+        <div class="reviews-pictures">
+          <img src="assets/DT1.jpg" class="review-image" />
+          <img src="assets/DT2.jpg" class="review-image" />
+        </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END OF REVIEW SECTION -->
+  </body>
+</html>

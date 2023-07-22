@@ -1,0 +1,451 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  background-color: var(--main-background);
+  --main-font: "Montserrat", sans-serif;
+  --main-background: #fff4de;
+
+  /* login items */
+  --main-fieldborder-color: #c0d8fd;
+  --main-field-color: #b9d2d2;
+  --main-button-color: #64b6ac;
+
+  /* main content */
+  --main-label-color: #b09e9a;
+  --main-description-hover: #716b6b;
+  --page-menu-color: #e3e6d9;
+  --gallery-box-color: #b9d2d2;
+  --reviewbox-color: #fad4c1;
+  --user-info-outercolor: #b9d2d2;
+  --user-info-innercolor: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: var(--main-font);
+}
+body {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============== LOGIN PAGE ===============*/
+
+/* ================== HALF LEFT ================== */
+
+.half-left-container {
+  width: 50%;
+  display: block;
+  margin: auto;
+  width: auto;
+}
+
+.login-items {
+  display: block;
+  transition: 0.6s ease;
+  width: min-content;
+  margin: auto;
+}
+
+.login-items h1 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .create {
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .login {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.login-items .start {
+  opacity: 0.6;
+  font-size: 15px;
+  text-align: center;
+  padding: 0 15rem 0 0;
+}
+
+.login-items .welcome {
+  opacity: 0.6;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0 17.5rem 0 0;
+}
+
+.user-login {
+  margin-top: 20px;
+}
+
+.input-box {
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin: auto;
+  width: min-content;
+  transition: 0.6s ease;
+}
+
+.input-box input {
+  width: 370px;
+  height: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid var(--main-fieldborder-color);
+  background-color: var(--main-field-color);
+}
+
+::placeholder {
+  padding: 20px;
+  color: #6e5353;
+}
+
+.login-button {
+  padding: 0px;
+  margin: auto;
+  width: min-content;
+  transition: 0.6s ease;
+}
+.login-button input[type="submit"] {
+  margin: 1rem 1rem 0.5rem 1rem;
+  padding: 15px;
+  width: 400px;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  color: white;
+  background-color: var(--main-button-color);
+}
+
+.user-register-container {
+  display: flex;
+  background-color: blue;
+}
+
+.user-register-container p {
+  background-color: red;
+}
+
+.user-register-container a {
+  text-decoration: none;
+  color: var(--main-button-color);
+  font-weight: 500;
+}
+
+.user-login-container {
+  margin: 20px auto;
+  padding: 10px;
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-login-container a {
+  text-decoration: none;
+  color: var(--main-button-color);
+  font-weight: 500;
+}
+
+.user-login-container .already {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+#remember {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#remember input[type="checkbox"] {
+  margin-top: 0;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* ================== HALF RIGHT ==================  */
+
+.half-right-container {
+  background-color: #64b6ac;
+  margin: 10px;
+  width: 50%;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.app-name {
+  margin: auto;
+  text-align: center;
+}
+
+.app-name h1 {
+  font-size: 5vw;
+  color: var(--main-background);
+  line-height: 0.85;
+  transition: 0.6s ease-out;
+}
+
+.line {
+  width: 15vw;
+  height: 1.5px;
+  margin-right: 10px;
+  background-color: var(--main-background);
+  display: inline-block;
+  transition: 0.6s ease-out;
+}
+
+.subtitle {
+  display: inline;
+  color: var(--main-background);
+  transition: 0.6s ease-in-out;
+  font-size: 1rem;
+}
+
+.explore {
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+
+.explore input[type="button"] {
+  border: none;
+  width: 28%;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: white;
+  color: var(--main-button-color);
+  border-radius: 10px;
+}
+
+.explore a {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .line {
+    opacity: 0;
+    display: none;
+  }
+
+  body {
+    display: block;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .half-right-container {
+    background-color: #64b6ac;
+    margin: 8px auto;
+    width: 98%;
+    height: 100%;
+    display: block;
+    padding: 0;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .app-name {
+    margin: 0px;
+    text-align: center;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .app-name h1 {
+    font-size: 7.9vw;
+    color: var(--main-background);
+    line-height: 1;
+    transition: 0.6s ease-out;
+  }
+
+  .explore {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    text-align: center;
+  }
+
+  .explore input[type="button"] {
+    border: none;
+    width: 100%;
+    max-height: max-content;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: white;
+    color: var(--main-button-color);
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .explore a {
+    text-decoration: none;
+  }
+
+  .subtitle {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--main-background);
+    transition: 0.6s ease-in-out;
+    padding: 5px;
+  }
+
+  /* DOWN */
+
+  .half-left-container {
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: min-content;
+  }
+
+  .login-items {
+    max-height: min-content;
+  }
+
+  .login-items .start {
+    font-weight: 200px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 9rem 0 0;
+  }
+
+  .login-items .welcome {
+    font-weight: 200px;
+    font-size: 15px;
+    text-align: center;
+    padding: 0 11.5rem 0 0;
+  }
+
+  .login-items h1 {
+    padding-top: 30px;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items .create {
+    padding-top: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items .login {
+    padding-top: 30px;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 1.5;
+    /* background-color: #c0d8fd; */
+  }
+
+  .login-items {
+    transition: 0.6s ease;
+    text-align: center;
+    display: block;
+    /* background-color: #6e5353; */
+  }
+
+  .input-box {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+
+  .input-box input {
+    width: 270px;
+    height: 5px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .login-button {
+    padding: 5px;
+    margin: auto;
+    width: min-content;
+    transition: 0.6s ease;
+  }
+  .login-button input[type="submit"] {
+    margin: 10px;
+    padding: 8px;
+    width: 300px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    color: white;
+    background-color: var(--main-button-color);
+  }
+
+  #remember input[type="checkbox"] {
+    margin-left: 1rem;
+    margin-right: 0.2rem;
+  }
+
+  .user-register-container {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    width: max-content;
+    height: 100%;
+    inline-size: 300px;
+    text-align: center;
+  }
+
+  .user-register-container a {
+    text-decoration: none;
+    color: var(--main-button-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .user-login-container {
+    display: block;
+    margin: auto;
+    padding: 10px;
+    width: max-content;
+    height: 100%;
+    inline-size: 300px;
+    text-align: center;
+  }
+
+  .user-login-container a {
+    text-decoration: none;
+    color: var(--main-button-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+  }
+
+  .user-login-container .already {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}

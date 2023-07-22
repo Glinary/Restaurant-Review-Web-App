@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  background-color: var(--main-background);
+  --main-font: "Montserrat", sans-serif;
+  --main-background: #f8f3ea;
+
+  /* login items */
+  --main-fieldborder-color: #c0d8fd;
+  --main-field-color: #b9d2d2;
+  --main-button-color: #64b6ac;
+
+  /* main content */
+  --main-label-color: #b09e9a;
+  --main-description-hover: #716b6b;
+  --page-menu-color: #e3e6d9;
+  --label-text-color: #fff4de;
+  --gallery-box-color: #b9d2d2;
+  --reviewbox-color: #fad4c1;
+  --user-info-outercolor: #b9d2d2;
+  --user-info-innercolor: white;
+}
+
+.restobox-cont {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resto-container {
+  display: block;
+  position: relative;
+  background-color: var(--page-menu-color);
+  min-height: 30rem;
+  min-width: 23rem;
+  max-height: 30rem;
+  max-width: 23rem;
+  padding-top: 0px;
+  border-radius: 1.25rem;
+  margin: 1.25rem auto;
+  z-index: 9999;
+  /* Edit background at the very bottom of css */
+}
+
+.resto-container img {
+  height: 30rem;
+  width: 100%;
+  padding-top: 0;
+  border-radius: 1.25rem;
+  margin: 0;
+  z-index: 1;
+}
+
+.resto-container img:hover {
+  -webkit-filter: brightness(40%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.resto-container:hover #resto-desc,
+.resto-container:hover #resto-innerLabel {
+  opacity: 1;
+  transition: 0.6s ease-in;
+  filter: blur(0px);
+  -webkit-filter: brightness(100%);
+}
+
+#resto-desc {
+  position: absolute;
+  background-color: var(--main-label-color);
+  height: 120px;
+  width: 80%;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 40px auto;
+  border-radius: 20px;
+  inline-size: 80%;
+  overflow-wrap: break-word;
+  z-index: 9999;
+  opacity: 0;
+}
+
+#resto-desc.active {
+  background-color: var(--main-label-color);
+  position: absolute;
+  height: 120px;
+  width: 80%;
+  margin: 30px auto;
+  border-radius: 20px;
+  inline-size: 80%;
+  overflow-wrap: break-word;
+  z-index: 9999;
+  opacity: 1;
+}
+
+#resto-desc p {
+  position: relative;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--label-text-color);
+}
+
+#resto-innerLabel {
+  background-color: var(--main-label-color);
+  height: 50px;
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 50px;
+  left: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  opacity: 0;
+}
+
+#resto-innerLabel.active {
+  background-color: var(--main-label-color);
+  height: 50px;
+  width: 80%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 50px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  opacity: 1;
+}
+
+.cont,
+#resto-innerLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#r-label {
+  margin: 20px;
+  font-size: 15px;
+  color: var(--label-text-color);
+}
+
+/*! OTHER SCREENS SECTION */
+@media only screen and (min-width: 768px) {
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0rem 2rem;
+  }
+
+  .resto-container {
+    flex-basis: 20rem;
+  }
+
+  .register-nav {
+    visibility: visible;
+    text-decoration: none;
+    font-family: "Montserrat", "sans-serif";
+    font-weight: bold;
+    color: #464545;
+    padding-left: 50%;
+  }
+
+  #when {
+    font-size: 5vh;
+    padding-left: 3rem;
+  }
+
+  .navbar {
+    font-size: 2vh;
+  }
+
+  .search-section {
+    padding-left: 45vw;
+    padding-bottom: 2rem;
+  }
+
+  .search-section img {
+    max-width: 33px;
+  }
+
+  .search-section input {
+    width: 30vw;
+  }
+
+  #registerButton {
+    font-family: "Montserrat", "sans-serif";
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #64b6ac;
+    width: 9rem;
+    line-height: 2.5rem;
+    margin-right: 15%;
+  }
+
+  #registerButton {
+    background-color: #64b6ac;
+    width: 8rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .restobox-cont {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0px 12rem;
+  }
+
+  .resto-container {
+    min-width: 23rem;
+    min-height: 30rem;
+    max-width: 23rem;
+    max-height: 30rem;
+    margin: 1.5rem 0.2rem;
+  }
+
+  .resto-container img {
+    max-width: 23rem;
+    max-height: 30rem;
+    min-width: 23rem;
+    min-height: 30rem;
+  }
+
+  #hidden {
+    background-color: red;
+    display: block;
+    position: relative;
+    max-width: 23rem;
+    max-height: 30rem;
+    min-width: 23rem;
+    min-height: 30rem;
+    padding-top: 0px;
+    border-radius: 1.25rem;
+    margin: 1.5rem 0.2rem;
+  }
+}
