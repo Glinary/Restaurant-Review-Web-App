@@ -249,6 +249,13 @@ header {
   padding: 0;
 }
 
+.reviewStyle {
+  padding: 5rem;
+  min-width: inherit;
+  max-width: inherit;
+  background-color: white;
+}
+
 .top-reviews-content-container {
   height: max-content;
   margin: 1rem;
@@ -1240,6 +1247,47 @@ header {
     margin-top: 0.5rem;
     margin-left: 0.2rem;
   }
+
+  .review-edit {
+    box-sizing: border-box;
+    height: 13.5rem;
+    border-radius: 20px;
+    background-color: rgb(67, 15, 15);
+    margin: 0rem;
+    padding: 1rem;
+  }
+
+  .review-edit-form textarea {
+    border: none;
+    resize: none;
+    min-width: 45rem;
+    height: 7.5rem;
+    overflow: hidden;
+    border-radius: 20px;
+    font-size: 1em;
+    padding: 1rem;
+    background-color: #0f7b59;
+  }
+
+  .review-edit input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: #0f7b59;
+  }
+
+  /* .review-edit .buttons input[type="submit"] {
+    font-size: 15px;
+    color: white;
+    height: 35px;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background-color: var(--main-button-color);
+  } */
 
   .box a:hover {
     color: #64b6ac;
