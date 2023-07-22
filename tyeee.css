@@ -156,7 +156,7 @@ header {
 }
 
 .search-container.active {
-  margin: 350px auto auto auto;
+  margin: 250px auto auto auto;
   transition: all 0.2s ease;
 }
 
@@ -572,24 +572,23 @@ header {
     width: max-content;
   }
 
-  .view-profile img {
-    position: relative;
-    margin-top: -0.5rem;
-    height: 30px;
-    width: 30px;
-    padding: 10px;
-    border-radius: 90px;
-  }
-
   .view-profile a {
-    display: none;
-    margin: 0 0rem;
+    margin: 0 0.5rem;
     padding: 0.5rem 0.5rem;
   }
 
   .view-profile a:nth-child(2) {
     background-color: var(--main-button-color);
     border-radius: 10px;
+  }
+
+  .view-profile img {
+    position: absolute;
+    margin-left: 8.5rem;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border-radius: 90px;
   }
 
   .menu-bar2 {
@@ -611,11 +610,11 @@ header {
   .menu-bar2:hover .dropdown-m {
     display: block;
     position: absolute;
-    width: max-content;
+    width: 100%;
     margin: 0 auto;
-    margin-top: -0.02rem;
-    margin-left: -5rem;
+    margin-top: 0.14rem;
     border-top: 3px solid #e4b73a;
+
     border-top-right-radius: 10px;
     z-index: 99999;
   }
@@ -626,24 +625,21 @@ header {
   .dropdown-m ul {
     max-width: 100%;
     border-radius: 10px;
-    padding: 0.5rem;
     border-top-left-radius: 0;
     background-color: var(--main-background);
     filter: drop-shadow(0rem 0.5rem 8px #0f0f13);
   }
 
   .dropdown-m ul li {
-    box-sizing: border-box;
     list-style-type: none;
-    margin: 0rem auto;
+    margin: 0px auto;
     padding: 1rem;
     height: max-content;
-    width: 100%;
+    width: inherit;
   }
 
   .dropdown-m ul li a {
     text-align: center;
-    font-size: 1.5em;
     margin: 0 auto;
   }
 
@@ -665,7 +661,7 @@ header {
     margin-right: 2rem;
     margin-bottom: 0.5rem;
     padding: inherit;
-    width: 70%;
+    width: 100%;
     border: 0.5px solid #fcd4c1;
     border-radius: 20px;
     z-index: 9999;
@@ -683,7 +679,7 @@ header {
     height: inherit;
     background-color: transparent;
     border: none;
-    width: 40rem;
+    width: 30rem;
   }
 
   .search-container2 input[type="submit"] {

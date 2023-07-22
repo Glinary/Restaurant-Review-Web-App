@@ -7,6 +7,8 @@
     <title>Search Results</title>
     <link rel="stylesheet" href="restaurantStyles.css" />
     <link rel="stylesheet" href="SearchStyle.css" />
+    <link rel="stylesheet" href="styles.css" />
+
 
     <script
       src="https://kit.fontawesome.com/78bb10c051.js"
@@ -17,60 +19,72 @@
   </head>
   <body>
     <header>
-      <div class="RP-app-name">
-        <h1>WhenInTaft</h1>
-      </div>
-      <div class="toggle-bars" id="mobile-menu">
-        <div class="toggle"></div>
-        <div class="toggle"></div>
-        <div class="toggle"></div>
-      </div>
-      <div class="menu-bar">
-        <div class="menu-list">
-          <div class="part1">
-            <a href="indexLog.html">HOME</a>
-            <a href="restaurant.html">RESTAURANTS</a>
-          </div>
-          <div class="menu-line"></div>
-          <div class="menu-bar2">
-            <nav>
-              <ul>
-                <li>
-                  <div class="view-profile">
-                    <a href="viewprofileU1.html" id="prof-page">VIEW PROFILE</a>
-                    <img src="assets/anonymous_picture.png" id="prof-pic" />
-                  </div>
-                  <div class="dropdown-m">
-                    <ul>
-                      <li><a href="searchPageLogout.html">LOGOUT</a></li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-          </div>
+        <div class="RP-app-name">
+          <h1>WhenInTaft</h1>
         </div>
+        <div class="toggle-bars" id="mobile-menu">
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+        </div>
+        <div class="divide-this"></div>
+          
+        <div class="menu-bar">
+          <div class="menu-list">
+            <div class="part1">
+              <a href="indexLog.html" id="current">HOME</a>
+              <a href="restaurant.html">RESTAURANTS</a>
+            </div>
+            <div class="menu-line"></div>
+            <div class="search-container2">
+            <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+            <form action="SearchPage.html" id="searchform" method="get">
+                <input
+                  type="text"
+                  placeholder="Type to search"
+                  name="searchBar"
+                  id="searchBar"
+                />
+                <input 
+                  type="submit"
+                  value="submit"
+                  />
+            </form>
+            </div>
+            <div class="menu-bar2">
+              <nav>
+                <ul>
+                  <li>
+                    <div class="view-profile">
+                      <a href="viewprofileU1.html" id="prof-page">VIEW PROFILE</a>
+                      <img src="assets/anonymous_picture.png" id="prof-pic" />
+                    </div>
+                    <div class="dropdown-m">
+                      <ul>
+                        <li><a href="viewprofileU1.html">VIEW PROFILE</a></li>
+                        <li><a href="editProfile.html">EDIT PROFILE</a></li>
+                        <li><a href="index.html">LOGOUT</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>            
+              </nav>
+            </div>
+          </div>
+        </div>    
+      </header>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Type to search"
+          name="searchBar"
+          id="searchBar"
+        /><a href="SearchPage.html"></a>
       </div>
+      <div class="search-line"></div>
     </header>
-    <div class="search-container">
-      <input
-        type="text"
-        placeholder="search here"
-        name="searchBar"
-        id="searchBar"
-      /><a href="searchPageLogout.html"><img src="assets/searchbutton.png" alt="" /></a>
-    </div>
-    <div class="search-line"></div>
-
-    <div class="search-container2">
-      <input
-        type="text"
-        placeholder="search here"
-        name="searchBar"
-        id="searchBar"
-      /><a href="searchPageLogout.html"><img src="assets/searchbutton.png" alt="" /></a>
-    </div>
-    <!-- end of header menu -->
+  
+  <!-- END OF HEADER -->
 
     <div id="search-result-container">
       <div class="search-alert">
@@ -94,7 +108,7 @@
 
     <div class="restobox-cont">
       <div class="resto-container">
-        <a href="RestoView-ADB.html"><img src="assets/ADB.png" id="restaurant1" /></a>
+        <a href="RestoView-ADBB.html"><img src="assets/ADB.png" id="restaurant1" /></a>
         <div id="resto-desc">
           <p>
             Ignite your senses with one of the all-time Filipino favorite Adobo
