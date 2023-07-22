@@ -1249,6 +1249,7 @@ header {
   }
 
   .review-edit {
+    display: none;
     box-sizing: border-box;
     height: 13.5rem;
     border-radius: 20px;

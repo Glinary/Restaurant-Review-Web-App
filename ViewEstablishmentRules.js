@@ -7,30 +7,29 @@ const reaction = document.querySelectorAll("#reaction");
 const body = document.getElementsByTagName("BODY")[0];
 const edbar = document.querySelectorAll("#EditNav");
 
-let reviewList = [];
-
-let arrH = [];
-let arrU = [];
-let currLike = [];
-let currDLike = [];
-let truncate = [];
-let truncated = [];
-let flag = [];
-let toggle = [];
-let flag2 = true;
-
 const menu = document.querySelector("#mobile-menu");
 const menuLinks = document.querySelector(".menu-bar");
 const userPage = document.querySelector("#prof-page");
 const userPic = document.querySelector("#prof-pic");
 const searchBar = document.querySelector(".search-container");
 
+let arrH = [];
+let arrU = [];
+let currLike = [];
+let currDLike = [];
+let flag2 = true;
+
 // GIVEN: Create a User constructor
 const Review = function (reviewObj) {
   this.reviewObj = reviewObj;
   this.OrigText = JSON.parse(JSON.stringify(reviewObj.innerText));
   this.currentText = null;
+
+  this.flag = false;
+  this.toggle = false;
 };
+
+let reviewList = [];
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -44,62 +43,58 @@ userPage.addEventListener("mouseout", function () {
   userPic.classList.toggle("hovered");
 });
 
-for (let a = 0; a < reviews.length; a++) {
-  flag.push(false);
-  flag.push(false);
-  toggle.push(false);
-  toggle.push(false);
-}
-
 checkTextTrunc();
+
+function reviewObjHelper(index) {
+  reviewObject = reviewList[index].reviewObj;
+  return reviewObject;
+}
 
 // more/less event listener
 function checkTextTrunc() {
   for (let i = 0; i < times; i = i + 1) {
     revs = reviews[i];
     reviewList.push(new Review(revs));
-    reviewObject = reviewList[i].reviewObj;
+    revObj = reviewObjHelper(i);
 
     // assign value of text shown here (change 80)
-    reviewObject.innerText = truncateText(reviewList[i], 80, i);
-    console.log(reviewList[i].OrigText.length);
+    revObj.innerText = truncateText(reviewList[i], 80, i, revObj);
 
     if (reviewList[i].OrigText.length > 80) {
-      reviewObject.innerHTML += '<span id="more">&nbsp;See More</span>';
+      revObj.innerHTML += '<span id="more">&nbsp;See More</span>';
     }
   }
 }
 
+// Truncate excess texts
 // https://stackoverflow.com/a/63162630
-function truncateText(selector, maxLength, i) {
+function truncateText(selector, maxLength, i, obj) {
   let element = selector;
   let toTruncate = element.OrigText;
 
   if (toTruncate.length > maxLength) {
     element.currentText = toTruncate.substr(0, maxLength) + "...";
+    obj.innerText = element.currentText;
 
-    flag[i] = true;
-    console.log("trucated: ", element.currentText);
+    element.flag = true;
     console.log(element, "Successfully Truncated");
   }
-  return truncated[i];
+  return obj.innerText;
 }
 
-for (let a = 0; a < reviews.length; a++) {
-  truncate.push("");
-  truncated.push("");
-}
+// toggle between see more and see less
 //https://stackoverflow.com/a/62555388
 for (let b = 0; b < times; b++) {
   reviews[b].addEventListener("click", function () {
-    if (toggle[b] == false && flag[b] == true) {
-      reviews[b].innerHTML = truncate[b];
-      reviews[b].innerHTML += '<span id="more">&nbsp;See Less</span>';
-      toggle[b] = true;
-    } else if (toggle[b] == true && flag[b] == true) {
-      reviews[b].innerHTML = truncated[b];
-      reviews[b].innerHTML += '<span id="more">&nbsp;See More</span>';
-      toggle[b] = false;
+    revObj = reviewObjHelper(b);
+    if (reviewList[b].toggle == false && reviewList[b].flag == true) {
+      revObj.innerHTML = reviewList[b].OrigText;
+      revObj.innerHTML += '<span id="more">&nbsp;See Less</span>';
+      reviewList[b].toggle = true;
+    } else if (reviewList[b].toggle == true && reviewList[b].flag == true) {
+      revObj.innerHTML = reviewList[b].currentText;
+      revObj.innerHTML += '<span id="more">&nbsp;See More</span>';
+      reviewList[b].toggle = false;
     }
   });
 }
@@ -144,7 +139,12 @@ editBar.forEach((cell) =>
         reviewListArr = Array.from(reviews);
         selectedRevIndex = reviewListArr.indexOf(reviewCont);
 
-        console.dir(textOrigHelper(selectedRevIndex));
+        revObj = reviewObjHelper(selectedRevIndex);
+        revObj.innerHTML = "";
+        revObj.nextElementSibling.style.display = "block";
+        path = revObj.nextElementSibling.children[0];
+        path2 = path[0].value = reviewList[selectedRevIndex].OrigText;
+
         console.log("");
         console.dir(reviewCont);
       });
