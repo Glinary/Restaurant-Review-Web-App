@@ -4,69 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tinuhog ni Benny</title>
+    <script src="ViewEstablishmentRules.js" defer></script>
     <link rel="stylesheet" href="ViewEstablishmentStyles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <script
       src="https://kit.fontawesome.com/78bb10c051.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
-
-    <!--START OF HEADER--> 
-  <header>
-    <div class="RP-app-name">
-      <h1>WhenInTaft</h1>
-    </div>
-    <div class="toggle-bars" id="mobile-menu">
-      <div class="toggle"></div>
-      <div class="toggle"></div>
-      <div class="toggle"></div>
-    </div>
-    <div class="menu-bar">
-      <div class="menu-list">
-        <div class="part1">
-          <a href="index.html">HOME</a>
-          <a href="restaurantLogout.html">RESTAURANTS</a>
-        </div>
-        <div class="menu-line"></div>
-        <div class="menu-bar2">
-          <nav>
-            <ul>
-              <li>
-                <div class="register">
-                  <a href="registrationPage.html" id="prof-page">REGISTER</a>
-                </div>
-                <div class="dropdown-m">
-                  <ul>
-                    <li><a href="loginPage.html">LOGIN</a></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
       </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+        
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="index.html" id="current">HOME</a>
+            <a href="restaurantLogout.html">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+           <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+           <form action="searchPageLogout.html" id="searchform" method="get">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="searchBar"
+                id="searchBar"
+              />
+              <input 
+                type="submit"
+                value="submit"
+                />
+          </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="loginPage.html" id="prof-page">LOGIN</a>
+                  </div>
+                </li>
+              </ul>            
+            </nav>
+          </div>
+        </div>
+      </div>    
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="searchPageLogout.html"></a>
     </div>
-  </header>
-  <div class="search-container">
-    <input
-      type="text"
-      placeholder="search here"
-      name="searchBar"
-      id="searchBar"
-    /><a href="searchPageLogout.html"><img src="assets/searchbutton.png" alt="" /></a>
-  </div>
-  <div class="search-line"></div>
-  <!-- end of header menu -->
-
-  <div class="search-container2">
-    <input
-      type="text"
-      placeholder="search here"
-      name="searchBar"
-      id="searchBar"
-    /><a href="searchPageLogout.html"><img src="assets/searchbutton.png" alt="" /></a>
-  </div>
+    <div class="search-line"></div>
        <!-- END OF HEADER (including search)-->
 
     <!-- START OF PROFILE SECTION (including top revs)-->
