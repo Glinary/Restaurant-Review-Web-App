@@ -277,7 +277,7 @@ header {
 }
 
 .slide img {
-  width: 17rem;
+  min-width: 17rem;
   height: 94%;
   padding-top: 0;
   border-radius: 10px;
@@ -300,82 +300,6 @@ header {
   transition: 0.6s ease-in;
   filter: blur(0px);
   -webkit-filter: brightness(100%);
-}
-
-#resto-desc {
-  position: absolute;
-  background-color: var(--main-label-color);
-  height: 130px;
-  width: 80%;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: 40px auto;
-  border-radius: 20px;
-  inline-size: 80%;
-  overflow-wrap: break-word;
-  z-index: 9999;
-  opacity: 0;
-}
-
-#resto-desc.active {
-  background-color: var(--main-label-color);
-  position: absolute;
-  height: 120px;
-  width: 80%;
-  margin: 30px auto;
-  border-radius: 10px;
-  inline-size: 80%;
-  overflow-wrap: break-word;
-  z-index: 9999;
-  opacity: 1;
-}
-
-#resto-desc p {
-  position: relative;
-  padding: 20px;
-  font-size: 12px;
-  text-align: left;
-  color: var(--label-text-color);
-}
-
-#resto-innerLabel {
-  background-color: var(--main-label-color);
-  height: 50px;
-  width: 80%;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 50px;
-  margin-left: 8px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  opacity: 0;
-}
-
-#resto-innerLabel.active {
-  background-color: var(--main-label-color);
-  height: 50px;
-  width: 80%;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 50px;
-  margin-left: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  opacity: 1;
-}
-
-.cont,
-#resto-innerLabel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#r-label {
-  margin: 10px;
-  font-size: 13px;
-  color: var(--label-text-color);
 }
 
 #restaurant1 {
@@ -749,10 +673,6 @@ header {
     max-height: 1000%;
     max-width: 17rem;
     margin: 10px;
-  }
-
-  #resto-innerLabel {
-    margin-left: 10px;
   }
 
   #when {

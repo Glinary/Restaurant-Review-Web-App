@@ -233,11 +233,12 @@ header {
   border-radius: 10px;
   background-color: #64b6ac;
   width: 8rem;
-  height: 2rem;
+  height: 2.2rem;
   line-height: 1.5rem;
   float: right;
   margin-right: 15%;
   margin-top: 5%;
+  margin-bottom: 2rem;
 }
 
 .venue-section {
@@ -301,82 +302,6 @@ header {
   -webkit-filter: brightness(100%);
 }
 
-#resto-desc {
-  position: absolute;
-  background-color: var(--main-label-color);
-  height: 130px;
-  width: 80%;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: 40px auto;
-  border-radius: 20px;
-  inline-size: 80%;
-  overflow-wrap: break-word;
-  z-index: 9999;
-  opacity: 0;
-}
-
-#resto-desc.active {
-  background-color: var(--main-label-color);
-  position: absolute;
-  height: 120px;
-  width: 80%;
-  margin: 30px auto;
-  border-radius: 10px;
-  inline-size: 80%;
-  overflow-wrap: break-word;
-  z-index: 9999;
-  opacity: 1;
-}
-
-#resto-desc p {
-  position: relative;
-  padding: 20px;
-  font-size: 12px;
-  text-align: left;
-  color: var(--label-text-color);
-}
-
-#resto-innerLabel {
-  background-color: var(--main-label-color);
-  height: 50px;
-  width: 80%;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 50px;
-  margin-left: 8px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  opacity: 0;
-}
-
-#resto-innerLabel.active {
-  background-color: var(--main-label-color);
-  height: 50px;
-  width: 80%;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 50px;
-  margin-left: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  opacity: 1;
-}
-
-.cont,
-#resto-innerLabel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#r-label {
-  margin: 10px;
-  font-size: 13px;
-  color: var(--label-text-color);
-}
-
 #restaurant1 {
   visibility: visible;
 }
@@ -424,6 +349,16 @@ header {
     width: 30vw;
   }
 
+  .home-banner {
+    text-align: center;
+    margin-left: -5rem;
+  }
+
+  .home-banner-tagline {
+    text-align: center;
+    margin-left: 13rem;
+  }
+
   #home-banner-line {
     margin-left: 0rem;
     width: 9rem;
@@ -439,10 +374,8 @@ header {
     background-color: #64b6ac;
     width: 9rem;
     line-height: 2.5rem;
-    margin-left: 200rem;
-    background-color: #64b6ac;
-    width: 8rem;
-    line-height: 1.5rem;
+    margin-right: 35%;
+    margin-bottom: 2rem;
   }
 
   .slides {
@@ -453,6 +386,12 @@ header {
     flex: 2;
     margin: 0px;
     padding: 0px;
+  }
+
+  #registerButton {
+    background-color: #64b6ac;
+    width: 8rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -721,9 +660,13 @@ header {
   }
 
   #home-banner-line {
-    margin-left: 1rem;
+    margin-left: 0rem;
     width: 8.5rem;
     height: 0.2rem;
+  }
+
+  #registerButton {
+    margin: 2rem 2rem;
   }
 
   #oneLook {
@@ -736,10 +679,6 @@ header {
     margin: 10px;
   }
 
-  #resto-innerLabel {
-    margin-left: 10px;
-  }
-
   #when {
     font-size: 5vw;
     padding: 2rem 0rem 0rem 2rem;
@@ -750,7 +689,8 @@ header {
   }
 
   .home-banner-tagline {
-    padding-left: 10%;
+    margin: 0;
+    padding-left: 22%;
     padding-right: 10%;
   }
 

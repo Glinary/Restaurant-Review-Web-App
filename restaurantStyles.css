@@ -110,6 +110,7 @@
   position: absolute;
   bottom: 0;
   margin-bottom: 50px;
+  left: 0;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   opacity: 0;
