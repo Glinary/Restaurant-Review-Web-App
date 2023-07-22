@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <script src="IndexRules.js" defer></script>
     <link rel="stylesheet" href="styles.css">   
     <script
       src="https://kit.fontawesome.com/78bb10c051.js"
@@ -154,33 +155,4 @@
         </div>
     </div>
 </body>
-<script>
-    const menu = document.querySelector("#mobile-menu");
-    const menuLinks = document.querySelector(".menu-bar");
-    const userPage = document.querySelector("#prof-page");
-    const userPic = document.querySelector("#prof-pic");
-    const searchBar = document.querySelector(".search-container");
-    const hidden = document.querySelector(".hidden");
-    const swidth = screen.width;
-    const copies = document.querySelectorAll(".slide").length;
-    const restoBox = document.querySelector(".slides");
-    const restoDesc = document.querySelectorAll("#resto-desc");
-    const restoLabel = document.querySelector("#resto-innerLabel");
-    console.log(restoBox);
-
-    console.log(swidth);
-    console.log(copies);
-
-    menu.addEventListener("click", function () {
-      menu.classList.toggle("is-active");
-      menuLinks.classList.toggle("active");
-      searchBar.classList.toggle("active");
-    });
-    userPage.addEventListener("mouseover", function () {
-      userPic.classList.toggle("hovered");
-    });
-    userPage.addEventListener("mouseout", function () {
-      userPic.classList.toggle("hovered");
-    });
-  </script>
 </html>

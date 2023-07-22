@@ -135,8 +135,9 @@ header {
 }
 
 .view-profile img {
-  height: 20px;
-  width: 20px;
+  height: 22px;
+  width: 22px;
+  margin-left: -0.8rem;
   /* background-color: rgb(186, 203, 163); */
   border-radius: 90px;
 }
@@ -155,7 +156,7 @@ header {
 }
 
 .search-container.active {
-  margin: 290px auto auto auto;
+  margin: 300px auto auto auto;
   transition: all 0.2s ease;
 }
 
@@ -179,6 +180,10 @@ header {
   width: 50%;
   margin: 5px auto;
   background: radial-gradient(#768581, #018452);
+}
+
+.dropdown-m li:nth-child(1) {
+  display: none;
 }
 
 /*! Search Container - Mobile */
@@ -619,11 +624,17 @@ header {
     list-style-type: none;
     margin: 0px auto;
     padding: 1rem;
+    height: max-content;
+    width: inherit;
   }
 
   .dropdown-m ul li a {
     text-align: center;
     margin: 0 auto;
+  }
+
+  .dropdown-m li:nth-child(1) {
+    display: inherit;
   }
 
   /*! END OF MENU - Dropdown */
