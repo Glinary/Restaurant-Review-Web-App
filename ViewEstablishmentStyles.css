@@ -319,72 +319,6 @@ header {
 
 /*! ========== END OF STAR SYSTEM ========= **/
 
-/*! ================ EDIT MENU: Delete/ Edit =============== */
-#top-editBar {
-  margin: 0;
-  height: max-content;
-  width: max-content;
-  z-index: 99999;
-  cursor: pointer;
-}
-#top-editBars {
-  height: 0.2rem;
-  width: 0.2rem;
-  margin: 0.15rem;
-  border-radius: 100px;
-  background-color: rgb(152, 22, 22);
-}
-
-#top-EditMenu {
-  height: max-content;
-  width: max-content;
-  border-radius: 20px;
-}
-#top-EditMenu ul li {
-  list-style-type: none;
-  /* display: flex; */
-}
-
-#top-EditNav {
-  display: none;
-}
-
-#top-EditNav ul li a {
-  text-decoration: none;
-  color: black;
-}
-
-#top-EditNav ul {
-  background-color: #fad4c1;
-  filter: drop-shadow(1rem 0.5rem 8px #0f0f13);
-  position: absolute;
-  margin-top: -1.2rem;
-  margin-left: -5.3rem;
-  padding: 0.5rem;
-}
-
-#top-EditNav ul li {
-  display: block;
-  list-style-type: none;
-  height: max-content;
-  padding: 0.2rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-#top-EditNav ul li a:hover {
-  color: rgb(152, 142, 142);
-}
-
-#top-editedIndc {
-  color: gray;
-  font-size: 0.8rem;
-}
-
-/*! ================ EDIT MENU: Delete/ Edit =============== */
-
-/*end of top-reviews-section*/
-
 /*start of reviews-section*/
 .reviews-section {
   display: flex;
@@ -603,7 +537,7 @@ header {
   background-color: #fad4c1;
   position: absolute;
   margin-top: -1.2rem;
-  margin-left: -5.3rem;
+  margin-left: -5.1rem;
   padding: 0.5rem;
   filter: drop-shadow(0rem 0.5rem 8px #0f0f13);
 }
@@ -732,14 +666,17 @@ header {
   display: flex;
   flex-direction: column;
   padding: 0rem;
-  max-height: fit-content;
-  max-width: 100%;
+  max-width: 30vw;
+  min-width: 30vw;
+  min-height: 20vh;
+  max-height: 20vh;
 }
 
 .Rest-profile-pictures-section .Rest-profile-picture img {
-  max-width: 9.4em;
-  min-height: 10rem;
-  max-height: 15rem;
+  max-width: 30vw;
+  min-width: 30vw;
+  min-height: 20vh;
+  max-height: 20vh;
   object-fit: cover;
   border: 2px solid gray;
   border-radius: 10px;
@@ -830,18 +767,19 @@ header {
     display: flex;
     flex-direction: column;
     padding: 0rem;
-    max-height: fit-content;
-    max-width: 100%;
+    max-width: 20vw;
+    min-width: 20vw;
+    min-height: 20vh;
+    max-height: 20vh;
   }
 
   .Rest-profile-pictures-section .Rest-profile-picture img {
-    max-width: 9.4em;
-    min-height: 10rem;
-    max-height: 15rem;
-    min-width: 9.4em;
+    max-width: 20vw;
+    min-width: 20vw;
+    min-height: 20vh;
+    max-height: 20vh;
     object-fit: cover;
     border: 2px solid gray;
-    border-radius: 10px;
   }
 
   .Rest-profile-section .Rest-profile-description h1 {
@@ -1052,6 +990,26 @@ header {
     max-height: 22vh;
     min-height: 22vh;
     margin: 0rem;
+  }
+
+  .Rest-profile-pictures-section .Rest-profile-picture {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0rem;
+    max-width: 10vw;
+    min-width: 10vw;
+    min-height: 20vh;
+    max-height: 20vh;
+  }
+
+  .Rest-profile-pictures-section .Rest-profile-picture img {
+    max-width: 10vw;
+    min-width: 10vw;
+    min-height: 20vh;
+    max-height: 20vh;
+    object-fit: cover;
+    border: 2px solid gray;
   }
 
   /*! END OF FIXED PROFILE DESCRIPTION IMAGE */
@@ -1293,8 +1251,8 @@ header {
   #EditNav ul {
     background-color: #fad4c1;
     position: absolute;
-    margin-top: -1.25rem;
-    margin-left: 1rem;
+    margin-top: -1.3rem;
+    margin-left: 1.2rem;
     padding: 0.5rem;
     filter: drop-shadow(0rem 0.2rem 7px #0f0f13);
   }
