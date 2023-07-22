@@ -277,11 +277,12 @@ header {
 }
 
 .slide img {
-  width: 17rem;
+  min-width: 17rem;
+  width: 100%;
   height: 94%;
   padding-top: 0;
   border-radius: 10px;
-  margin: 0;
+  margin-top: 0.7rem;
   z-index: 1;
 }
 
@@ -301,11 +302,6 @@ header {
   filter: blur(0px);
   -webkit-filter: brightness(100%);
 }
-
-#resto-innerLabel {
-  margin-left: 0.5rem;
-}
-
 
 #restaurant1 {
   visibility: visible;
@@ -680,12 +676,7 @@ header {
 
   .slide img {
     max-height: 1000%;
-    max-width: 17rem;
-    margin: 10px;
-  }
-  
-  #resto-innerLabel {
-    margin-left: 0.63rem;
+    width: 100%;
   }
 
   #when {
