@@ -5,6 +5,10 @@ const reactionH = document.querySelectorAll("#helpful");
 const reactionU = document.querySelectorAll("#unhelpful");
 const reaction = document.querySelectorAll("#reaction");
 const body = document.getElementsByTagName("BODY")[0];
+const edbar = document.querySelectorAll("#EditNav");
+
+let reviewList = [];
+
 let arrH = [];
 let arrU = [];
 let currLike = [];
@@ -20,6 +24,13 @@ const menuLinks = document.querySelector(".menu-bar");
 const userPage = document.querySelector("#prof-page");
 const userPic = document.querySelector("#prof-pic");
 const searchBar = document.querySelector(".search-container");
+
+// GIVEN: Create a User constructor
+const Review = function (reviewObj) {
+  this.reviewObj = reviewObj;
+  this.OrigText = JSON.parse(JSON.stringify(reviewObj.innerText));
+  this.currentText = null;
+};
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -39,35 +50,36 @@ for (let a = 0; a < reviews.length; a++) {
   toggle.push(false);
   toggle.push(false);
 }
+
+checkTextTrunc();
+
 // more/less event listener
-for (let i = 0; i < times; i = i + 1) {
-  revs = reviews[i];
+function checkTextTrunc() {
+  for (let i = 0; i < times; i = i + 1) {
+    revs = reviews[i];
+    reviewList.push(new Review(revs));
+    reviewObject = reviewList[i].reviewObj;
 
-  org = revs.innerText.length;
-  console.log("org before: ", org);
-  orig = JSON.parse(JSON.stringify(org));
+    // assign value of text shown here (change 80)
+    reviewObject.innerText = truncateText(reviewList[i], 80, i);
+    console.log(reviewList[i].OrigText.length);
 
-  // assign value of text shown here (change 80)
-  revs.innerText = truncateText(revs, 80, i);
-  console.log("org after: ", orig);
-
-  if (org > 80) {
-    console.log("LENGTH: ", org);
-    revs.innerHTML += '<span id="more">&nbsp;See More</span>';
+    if (reviewList[i].OrigText.length > 80) {
+      reviewObject.innerHTML += '<span id="more">&nbsp;See More</span>';
+    }
   }
 }
 
 // https://stackoverflow.com/a/63162630
 function truncateText(selector, maxLength, i) {
-  var element = selector;
-  truncated[i] = element.innerText;
-  truncate[i] = truncated[i];
+  let element = selector;
+  let toTruncate = element.OrigText;
 
-  if (truncated[i].length > maxLength) {
-    truncated[i] = truncated[i].substr(0, maxLength) + "...";
+  if (toTruncate.length > maxLength) {
+    element.currentText = toTruncate.substr(0, maxLength) + "...";
 
     flag[i] = true;
-    console.log("trucated: ", truncated[i]);
+    console.log("trucated: ", element.currentText);
     console.log(element, "Successfully Truncated");
   }
   return truncated[i];
@@ -93,21 +105,49 @@ for (let b = 0; b < times; b++) {
 }
 // more/less event listener end...
 
+function textOrigHelper(i) {
+  revs = reviews[i];
+  org = revs.innerText;
+  console.log("org before: ", org);
+  orig = JSON.parse(JSON.stringify(org));
+
+  return orig;
+}
+
 // editBar div event listener (when clicked delete/edit shows)
 editBar.forEach((cell) =>
   cell.addEventListener("click", function () {
+    console.dir(cell);
     if (flag2 == true) {
-      console.log(cell);
+      console.log("3 Bars has been clicked...");
       cld = cell.lastElementChild;
-      console.log(cld);
       cld.style.display = "block";
       flag2 = false;
     } else if (flag2 == false) {
-      console.log(cell);
+      console.log("3 Bars has been unclicked...");
       cld = cell.lastElementChild;
-      console.log(cld);
       cld.style.display = "none";
       flag2 = true;
+    }
+
+    if (flag2 == false) {
+      console.log("UL now being read...");
+      replyButton = cld.firstElementChild;
+
+      replyButton.addEventListener("click", function () {
+        console.log("Reply clicked!");
+
+        cellParent = cell.parentElement;
+        reviewLeft = cellParent.firstElementChild;
+        reviewCont = reviewLeft.children[2];
+        textValue = reviewCont.innerText;
+        reviewListArr = Array.from(reviews);
+        selectedRevIndex = reviewListArr.indexOf(reviewCont);
+
+        console.dir(textOrigHelper(selectedRevIndex));
+        console.log("");
+        console.dir(reviewCont);
+      });
     }
   })
 );
