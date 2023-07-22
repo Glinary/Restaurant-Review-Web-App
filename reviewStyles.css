@@ -38,6 +38,18 @@
   display: block;
 }
 
+.block0 {
+  box-sizing: border-box;
+  background-color: var(--reviewbox-color);
+  padding: 5px;
+  max-height: 10rem;
+  margin: 0px 0px 50px 0px;
+}
+
+.block0 p {
+  margin: 0.8rem 0rem 0.8rem 1rem;
+}
+
 .block1 {
   box-sizing: border-box;
   background-color: var(--reviewbox-color);
@@ -70,6 +82,14 @@
   cursor: pointer;
 }
 
+.title-review-section {
+  box-sizing: border-box;
+  height: 3rem;
+  border-radius: 20px;
+  background-color: white;
+  margin: 0.4rem 0.5rem 0.5rem 0.5rem;
+}
+
 .review-section {
   box-sizing: border-box;
   height: 150px;
@@ -98,6 +118,15 @@
   border-radius: 20px;
   background-color: white;
   margin: 10px;
+}
+
+.title-user-review textarea {
+  border: none;
+  resize: none;
+  width: 90%;
+  overflow: hidden;
+  margin: 10px;
+  font-size: 1em;
 }
 
 .user-review textarea {
