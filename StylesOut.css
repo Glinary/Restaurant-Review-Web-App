@@ -233,7 +233,7 @@ header {
   border-radius: 10px;
   background-color: #64b6ac;
   width: 8rem;
-  height: 2rem;
+  height: 2.2rem;
   line-height: 1.5rem;
   float: right;
   margin-right: 15%;
@@ -729,17 +729,15 @@ header {
     justify-content: center;
     padding: 0;
     margin: 0;
-
   }
 
   #home-banner-line {
     margin-left: 0rem;
     width: 8.5rem;
     height: 0.2rem;
- 
   }
 
-  #registerButton{
+  #registerButton {
     margin: 2rem 2rem;
   }
 
