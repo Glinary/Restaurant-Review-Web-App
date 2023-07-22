@@ -302,6 +302,10 @@ header {
   -webkit-filter: brightness(100%);
 }
 
+#resto-innerLabel {
+  margin-left: 0.5rem;
+}
+
 #restaurant1 {
   visibility: visible;
 }
@@ -673,6 +677,10 @@ header {
     max-height: 1000%;
     max-width: 17rem;
     margin: 10px;
+  }
+
+  #resto-innerLabel {
+    margin-left: 0.63rem;
   }
 
   #when {
