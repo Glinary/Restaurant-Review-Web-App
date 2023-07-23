@@ -16,8 +16,8 @@
         <div class="menu-bar">
           <div class="menu-list">
             <div class="part1">
-              <a href="indexLog.html" id="current">HOME</a>
-              <a href="restaurant.html">RESTAURANTS</a>
+              <a href="/indexLog" id="current">HOME</a>
+              <a href="/restaurant">RESTAURANTS</a>
             </div>
             <div class="menu-line"></div>
             <div class="search-container2">
@@ -40,14 +40,14 @@
                 <ul>
                   <li>
                     <div class="view-profile">
-                      <a href="viewprofileU1.html" id="prof-page">VIEW PROFILE</a>
+                      <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
                       <img src="assets/anonymous_picture.png" id="prof-pic" />
                     </div>
                     <div class="dropdown-m">
                       <ul>
-                        <li><a href="viewprofileU1.html">VIEW PROFILE</a></li>
-                        <li><a href="editProfile.html">EDIT PROFILE</a></li>
-                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
+                        <li><a href="/editProfile">EDIT PROFILE</a></li>
+                        <li><a href="/index">LOGOUT</a></li>
                       </ul>
                     </div>
                   </li>
@@ -63,7 +63,7 @@
           placeholder="Type to search"
           name="searchBar"
           id="searchBar"
-        /><a href="SearchPage.html"></a>
+        /><a href="/SearchPage"></a>
       </div>
       <div class="search-line"></div>
 
@@ -91,6 +91,8 @@
         </div>
           <div class="review-section">
             <form id="reviewPage-form" action="/reviewPage" method="POST">
+              <!-- Add a hidden input field to store the restaurant name -->
+              <input type="hidden" id="restaurantNameInput" name="restaurantName">
               <div class="user-review">
                 <textarea
                   id="user-rev"
@@ -101,6 +103,17 @@
                   maxlength="350"
                 ></textarea>
               </div>
+              <!-- Your JavaScript code to retrieve the restaurant name from the URL parameter -->
+              <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                const restaurantName = urlParams.get('restaurantName');
+                const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+                // Set the value of the hidden input field to the retrieved restaurant name
+                if (restaurantNameInput) {
+                  restaurantNameInput.value = restaurantName;
+                }
+              </script>
           </div>
         </div>
 

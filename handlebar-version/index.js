@@ -109,23 +109,26 @@ app.get("/restaurant", (req, res) => {
     res.render("restaurant", {
         title: "Restaurants",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "restaurantStyles.css",
-        css2: "styles.css"
+        css1: "static/css/restaurantStyles.css",
+        css2: "static/css/styles.css"
     })
 });
 
-/*
-<link rel="stylesheet" href="editProfStyles.css" />
-    <script src="ViewEstablishmentRules.js" defer></script>
-    <link rel="stylesheet" href="ViewEstablishmentStyles.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="reviewStyles.css" />
-*/
+app.get("/restaurantLogout", (req, res) => {
+    res.render("restaurantLogout", {
+        title: "Restaurants",
+        script: "static/js/RestaurantGridRules.js",
+        css1: "restaurantStyles.css",
+        css2: "StylesOut.css"
+    })
+})
+
 app.get("/reviewPage", (req, res) => {
     res.render("reviewPage", {
         title: "User Review Page",
         script: "static/js/ViewEstablishmentRules",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
+        script3: "static/js/ReviewPage.js",
         css1: "static/css/editProfStyles",
         css2: "static/css/ViewEstablishmentStyles.css",
         css3: "static/css/styles.css",
@@ -133,28 +136,14 @@ app.get("/reviewPage", (req, res) => {
     })
 });
 
-/*
-run()
-async function run() {
-    const reviewSample = await Reviews.create({
-        restaurantName: "tnb",
-        userName: "harry",
-        reviewDesc: "lorem ipsum",
-        starRating: "5.0"
-    });
-    console.log(reviewSample);
-}
-*/
-
 app.post("/reviewPage", (req, res) => {
     //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
     //TODO: how to get star rating with the current GUI-like interface of the stars
-    const {reviewDesc} = req.body;
-    console.log(reviewDesc);
+    const {restaurantName, reviewDesc} = req.body;
 
     if (reviewDesc) {
         const review = new Reviews({
-            restaurantName: "Angry Dobo",
+            restaurantName: restaurantName,
             userName: "test",
             reviewDesc: reviewDesc,
             starRating: "5.0"
@@ -181,6 +170,16 @@ app.get("/RestoView-SB", (req, res) => {
     })
 });
 
+app.get("/RestoView-SB-out", (req, res) => {
+    res.render("RestoView-SB-out", {
+        title: "Starbucks",
+        script: "static/js/ViewEstablishmentRules.js",
+        script2: "https://kit.fontawesome.com/78bb10c051.js",
+        css1: "static/css/ViewEstablishmentStyles.css",
+        css2: "static/css/StylesOut.css"
+    })
+});
+
 app.get("/RestoView-DTH", (req, res) => {
     res.render("RestoView-DTH", {
         title: "David's Tea House",
@@ -188,9 +187,18 @@ app.get("/RestoView-DTH", (req, res) => {
         script2: "https://kit.fontawesome.com/78bb10c051.js",
         css1: "static/css/ViewEstablishmentStyles.css",
         css2: "static/css/styles.css"
-
     })
 });
+
+app.get("/RestoView-DTH-out", (req, res) => {
+    res.render("RestoView-DTH-out", {
+        title: "David's Tea House",
+        script: "static/js/viewProfileRules.js",
+        script2: "https://kit.fontawesome.com/78bb10c051.js",
+        css1: "static/css/ViewEstablishmentStyles.css",
+        css2: "static/css/StylesOut.css"
+    })
+})
 
 app.get("/RestoView-ADBB", async (req, res) => {
     try {
@@ -212,12 +220,14 @@ app.get("/RestoView-ADBB", async (req, res) => {
   });
   
 
-app.get("/RestoView-ADBB-out", (req, res) => {
-    res.render("RestoView-ADBB-out", {
+app.get("/RestoView-ADB-out", (req, res) => {
+    res.render("RestoView-ADB-out", {
         title: "Angry Dobo",
-        script: "static/css/ViewEstablishmentStyles.css",
+        script: "static/js/ViewEstablishmentRules.js",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "static/css/StylesOut.css"
+        css1: "static/css/ViewEstablishmentStyles.css",
+        css2: "static/css/StylesOut.css"
+
     })
 });
 
@@ -231,6 +241,16 @@ app.get("/RestoView-TNB", (req, res) => {
     })
 });
 
+app.get("/RestoView-TNB-out", (req, res) => {
+    res.render("RestoView-TNB-out", {
+        title: "Tinuhog ni Benny",
+        script: "static/js/ViewEstablishmentRules.js",
+        script2: "https://kit.fontawesome.com/78bb10c051.js",
+        css1: "static/css/ViewEstablishmentStyles.css",
+        css2: "static/css/StylesOut.css",
+    })
+})
+
 app.get("/registrationPage", (req, res) => {
     res.render("registrationPage", {
         title: "When In Taft",
@@ -243,9 +263,20 @@ app.get("/searchPage", (req, res) => {
     res.render("searchPage", {
         title: "Search Results",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
+        script3: "static/js/SearchPage.js",
         css1: "static/css/restaurantStyles.css",
-        css2: "statics/css/SearchStyle.css",
-        css3: "styles.css"
+        css2: "static/css/SearchStyle.css",
+        css3: "static/css/styles.css"
+    })
+})
+
+app.get("/searchPageLogout", (req, res) => {
+    res.render("searchPageLogout", {
+        title: "Search Results",
+        script2: "https://kit.fontawesome.com/78bb10c051.js",
+        css1: "static/css/restaurantStyles.css",
+        css2: "static/css/SearchStyle.css",
+        css3: "static/css/StylesOut.css"
     })
 })
 
@@ -255,8 +286,9 @@ app.get("/editProfile", (req, res) => {
         title: "User Review Page",
         script: "static/js/ViewEstablishmentRules.js",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "statics/css/ViewEstablishmentStyles.css",
-        css2: "styles.css"
+        script3: "static/js/EditProfile.js",
+        css1: "static/css/ViewEstablishmentStyles.css",
+        css2: "static/css/styles.css"
     })
 });
 
@@ -264,7 +296,8 @@ app.get("/TNBestablishmentOwnerView", (req, res) => {
     res.render("TNBestablishmentOwnerView", {
         title: "Tinuhog ni Benny",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "ViewEstablishmentStyles.css"
+        script3: "static/js/TNBestablishmentOwnerView.js",
+        css1: "static/css/ViewEstablishmentStyles.css"
     })
 });
 
@@ -274,7 +307,7 @@ app.get("/viewprofileU1", (req, res) => {
         script: "static/js/ViewProfileRules.js",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
         css1: "static/css/ViewEstablishmentStyles.css",
-        css2: "styles.css"
+        css2: "static/css/styles.css"
     })
 });
 
