@@ -78,7 +78,7 @@
           <p>Title</p>
         </div>
           <div class="title-review-section">
-            <form>
+            <form id="reviewPage-form" action="/reviewPage" method="POST">
               <div class="title-user-review">
                 <textarea
                   id="user-rev-title"
@@ -107,17 +107,29 @@
         </div>
         
           <div class="review-section">
-            <form>
+            <form id="reviewPage-form" action="/reviewPage" method="POST">
+              <!-- Add a hidden input field to store the restaurant name -->
+              <input type="hidden" id="restaurantNameInput" name="restaurantName">
               <div class="user-review">
                 <textarea
                   id="user-rev"
-                  name="user-rev"
+                  name="reviewDesc"
                   rows="8"
                   cols="120"
                   placeholder="write your review here"
                   maxlength="350"
                 ></textarea>
               </div>
+              <!-- Your JavaScript code to retrieve the restaurant name from the URL parameter -->
+              <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                const restaurantName = urlParams.get('restaurantName');
+                const restaurantNameInput = document.getElementById('restaurantNameInput');
+                // Set the value of the hidden input field to the retrieved restaurant name
+                if (restaurantNameInput) {
+                  restaurantNameInput.value = restaurantName;
+                }
+              </script>
           </div>
         </div>
 
@@ -145,8 +157,19 @@
         <div class="submission">
           <div class="buttons">
             <div class="cancel"><a href="#">cancel</a></div>
-            <input id="submit" type="submit" value="submit review"> 
+            <input id="submit" form="reviewPage-form" type="submit" value="submit review"> 
           </div>
+          <!-- Your JavaScript code to retrieve the restaurant name from the URL parameter -->
+          <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const restaurantName = urlParams.get('restaurantName');
+            const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+            // Set the value of the hidden input field to the retrieved restaurant name
+            if (restaurantNameInput) {
+              restaurantNameInput.value = restaurantName;
+            }
+          </script>
         </form>
         </div>
       </div>

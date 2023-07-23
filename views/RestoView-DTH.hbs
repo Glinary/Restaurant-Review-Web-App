@@ -101,7 +101,7 @@
 
             <div class="edit-profile-section">
             <h4>Add Review</h4>
-            <a href="/reviewPage"><img src="assets/book_icon.png" /></a>
+            <a href="/reviewPage?restaurantName=David's Tea House"><img src="assets/book_icon.png" /></a>
             </div>  
 
         <div class="top-reviews-section">
@@ -185,6 +185,8 @@
       <!-- User Review Box -->
       <div class="reviews-content-container">
         <div class="reviews-left-container">
+          <!-- Loop through each review -->
+          {{#each reviews}}
           <div class="left">
             <div class="reviews-user-details">
               <img
@@ -196,7 +198,7 @@
             <!-- User Review Information-->
             <div class="further-details">
               <div class="name">
-                <a class="firstname" href="viewprofileU3.html">Ronald Weasly</a>
+                <a class="firstname" href="viewprofileU3.html">{{this.userName}}</a>
               </div>
               <div class="others">
                 <p class="review-count">9 Reviews</p>
@@ -226,7 +228,7 @@
           <!-- User Review -->
           <div class="review">
             <p>
-              I’m a huge fan of Chinese cuisine and all the comforting tastes that I was looking for are found only at David’s Teahouse!
+              {{this.reviewDesc}}
             </p>
           </div>
           <div class="review-edit">
@@ -243,6 +245,7 @@
               </div>
             </form>
           </div>
+          {{/each}}
         </div>
 
         <!-- User Review Images (right) -->
