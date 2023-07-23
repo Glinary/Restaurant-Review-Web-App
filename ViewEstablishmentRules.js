@@ -50,6 +50,12 @@ function reviewObjHelper(index) {
   return reviewObject;
 }
 
+// function checkTopReview{
+//   if (revObj.value == 1){
+//     revObj.
+//   }
+// }
+
 // more/less event listener
 function checkTextTrunc() {
   for (let i = 0; i < times; i = i + 1) {
@@ -116,6 +122,7 @@ editBar.forEach((cell) =>
     if (flag2 == true) {
       console.log("3 Bars has been clicked...");
       cld = cell.lastElementChild;
+      console.dir(cld);
       cld.style.display = "block";
       flag2 = false;
     } else if (flag2 == false) {
@@ -133,6 +140,7 @@ editBar.forEach((cell) =>
         console.log("Reply clicked!");
 
         cellParent = cell.parentElement;
+        console.dir(cellParent);
         reviewLeft = cellParent.firstElementChild;
         reviewCont = reviewLeft.children[2];
         textValue = reviewCont.innerText;
