@@ -90,14 +90,14 @@
           </div>
         </div>
           <div class="review-section">
-            <form>
+            <form id="reviewPage-form" action="/reviewPage" method="POST">
               <div class="user-review">
                 <textarea
                   id="user-rev"
-                  name="user-rev"
                   rows="8"
                   cols="120"
                   placeholder="write your review here"
+                  name = "reviewDesc"
                   maxlength="350"
                 ></textarea>
               </div>
@@ -127,7 +127,7 @@
         <div class="submission">
           <div class="buttons">
             <div class="cancel"><a href="#">cancel</a></div>
-            <input id="submit" type="submit" value="submit review"> 
+            <input id="submit" form="reviewPage-form" type="submit" value="submit review"> 
           </div>
         </form>
         </div>
