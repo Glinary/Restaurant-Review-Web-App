@@ -288,6 +288,37 @@ header {
   min-height: 10vh;
 }
 
+.top-review-edit {
+  display: none;
+  box-sizing: border-box;
+  height: 18vh;
+  border-radius: 20px;
+  margin: 0;
+  width: inherit;
+}
+
+.top-review-edit-form textarea {
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  width: 100%;
+  padding: 1rem;
+  height: max-content;
+  border-radius: 20px;
+  font-size: 0.85em;
+  background-color: #f6f6f6;
+}
+
+.top-review-edit input[type="submit"] {
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  float: right;
+  border: none;
+  background-color: var(--main-button-color);
+}
+
 /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
 
 #top-reaction {
@@ -488,7 +519,7 @@ header {
   padding: 1rem;
   height: max-content;
   border-radius: 20px;
-  font-size: 0.8em;
+  font-size: 0.85em;
   background-color: #f6f6f6;
 }
 
@@ -991,6 +1022,37 @@ header {
     max-height: 20vh;
     min-height: 20vh;
   }
+
+  .top-review-edit {
+    display: none;
+    box-sizing: border-box;
+    height: 18vh;
+    border-radius: 20px;
+    margin: 0;
+    width: inherit;
+  }
+
+  .top-review-edit-form textarea {
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
+    border-radius: 20px;
+    font-size: 0.85em;
+    background-color: #f6f6f6;
+  }
+
+  .top-review-edit input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: var(--main-button-color);
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -1344,8 +1406,8 @@ header {
     border: none;
     background-color: var(--main-button-color);
   }
-  
-  .review-edit {
+
+  .top-review-edit {
     display: none;
     box-sizing: border-box;
     height: 18vh;
@@ -1354,7 +1416,7 @@ header {
     width: inherit;
   }
 
-  .review-edit-form textarea {
+  .top-review-edit-form textarea {
     box-sizing: border-box;
     border: none;
     resize: none;
@@ -1362,11 +1424,11 @@ header {
     padding: 1rem;
     height: max-content;
     border-radius: 20px;
-    font-size: 1em;
+    font-size: 0.85em;
     background-color: #f6f6f6;
   }
 
-  .review-edit input[type="submit"] {
+  .top-review-edit input[type="submit"] {
     font-weight: bold;
     margin: 0.5rem;
     padding: 0.3rem;
