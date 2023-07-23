@@ -87,8 +87,8 @@ header {
   display: grid;
   grid-template-columns: auto;
   margin: 0;
-  width: 100%;
-  position: absolute;
+  width: 100vw;
+  position: relative;
   display: none;
   transition: all 0.5s ease;
   height: 10vh;
@@ -430,10 +430,9 @@ header {
 
   .menu-bar {
     position: relative;
-    opacity: 1;
     display: flex;
     margin-top: 0rem;
-    margin-right: 2rem;
+    margin-right: 3.5%;
     width: 100%;
     height: 50%;
     padding: 0;
@@ -443,16 +442,21 @@ header {
   .menu-list {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    position: relative;
     font-weight: 700;
     font-size: 10px;
     padding: 0px;
-    margin: 0px;
+    margin: 0rem;
     width: 100%;
     background-color: transparent;
   }
 
-  .menu-list a {
+  .part1 {
+    display: flex;
+  }
+
+  .menu-list .part1 a {
     text-decoration: none;
     font-size: 16px;
     margin-right: 2.8rem;
@@ -467,10 +471,6 @@ header {
 
   .menu-list a:hover {
     color: rgb(152, 142, 142);
-  }
-
-  .part1 {
-    display: flex;
   }
 
   #prof-pic.hovered {
@@ -550,8 +550,9 @@ header {
     position: absolute;
     width: max-content;
     margin: 0 auto;
+    right: 0;
     margin-top: -0.02rem;
-    margin-left: -5rem;
+    margin-right: -1rem;
     border-top: 3px solid #e4b73a;
     border-top-right-radius: 10px;
     z-index: 99999;
@@ -597,16 +598,18 @@ header {
   }
 
   .search-container2 {
+    position: relative;
     display: flex;
     align-items: center;
-    margin-right: 2rem;
+    margin-right: 1rem;
+    margin-left: -1rem;
     margin-bottom: 0.5rem;
     padding: inherit;
-    width: 70%;
+    max-width: 60%;
+    min-width: 60%;
     border: 0.5px solid #fcd4c1;
     border-radius: 20px;
     z-index: 9999;
-    background-color: #e2deda;
   }
 
   .search-container.active {
@@ -615,12 +618,14 @@ header {
   }
 
   .search-container2 input[type="text"] {
+    box-sizing: border-box;
     margin-left: 0.2rem;
-    padding: 0.5rem;
-    height: inherit;
+    margin-right: 0;
+    padding: 0.5rem 0;
+
     background-color: transparent;
     border: none;
-    width: 40rem;
+    width: 22vw;
   }
 
   .search-container2 input[type="submit"] {

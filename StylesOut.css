@@ -87,8 +87,8 @@ header {
   display: grid;
   grid-template-columns: auto;
   margin: 0;
-  width: 100%;
-  position: absolute;
+  width: 100vw;
+  position: relative;
   display: none;
   transition: all 0.5s ease;
   height: 10vh;
