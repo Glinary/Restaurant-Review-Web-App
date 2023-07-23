@@ -172,19 +172,6 @@
     font-size: 2vh;
   }
 
-  .search-section {
-    padding-left: 45vw;
-    padding-bottom: 2rem;
-  }
-
-  .search-section img {
-    max-width: 33px;
-  }
-
-  .search-section input {
-    width: 30vw;
-  }
-
   #registerButton {
     font-family: "Montserrat", "sans-serif";
     font-weight: bold;

@@ -618,14 +618,15 @@ header {
   }
 
   .search-container2 input[type="text"] {
-    box-sizing: border-box;
-    margin-left: 0.2rem;
-    margin-right: 0;
-    padding: 0.5rem 0;
-
+    padding: 0.5rem;
+    height: inherit;
     background-color: transparent;
     border: none;
-    width: 22vw;
+    width: 95%;
+  }
+
+  #searchform {
+    width: 100%;
   }
 
   .search-container2 input[type="submit"] {
