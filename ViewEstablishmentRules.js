@@ -31,6 +31,8 @@ const Review = function (reviewObj) {
 
 let reviewList = [];
 
+checkTextTrunc();
+
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
   menuLinks.classList.toggle("active");
@@ -42,8 +44,6 @@ userPage.addEventListener("mouseover", function () {
 userPage.addEventListener("mouseout", function () {
   userPic.classList.toggle("hovered");
 });
-
-checkTextTrunc();
 
 function reviewObjHelper(index) {
   reviewObject = reviewList[index].reviewObj;
@@ -145,12 +145,16 @@ editBar.forEach((cell) =>
         path = revObj.nextElementSibling.children[0];
         path2 = path[0].value = reviewList[selectedRevIndex].OrigText;
 
-        console.log("");
         console.dir(reviewCont);
       });
     }
   })
 );
+
+// Function that adds "Edited" indicator when a user make changes to review
+function ReviewEditConfirmedIndicator(reviewLeft) {
+  reviewLeft.innerHTML += `<span id="editedIndc">Edited</span>`;
+}
 
 // click everywhere event listener
 //https://stackoverflow.com/a/33657471
@@ -235,4 +239,8 @@ for (let k = 0; k < reactionU.length; k++) {
       console.log(arrU);
     }
   });
+}
+
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
 }

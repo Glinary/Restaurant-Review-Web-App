@@ -471,6 +471,37 @@ header {
   min-height: 10vh;
 }
 
+.review-edit {
+  display: none;
+  box-sizing: border-box;
+  height: 18vh;
+  border-radius: 20px;
+  margin: 0;
+  width: inherit;
+}
+
+.review-edit-form textarea {
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  width: 100%;
+  padding: 1rem;
+  height: max-content;
+  border-radius: 20px;
+  font-size: 0.8em;
+  background-color: #f6f6f6;
+}
+
+.review-edit input[type="submit"] {
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  float: right;
+  border: none;
+  background-color: var(--main-button-color);
+}
+
 /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
 
 #reaction {
@@ -842,6 +873,8 @@ header {
     display: none;
   }
 
+  /* REVIEW SECTION */
+
   .reviews-content-container {
     height: max-content;
     margin: 1rem;
@@ -893,6 +926,39 @@ header {
     margin-bottom: 0%;
     padding: 0;
   }
+
+  .review-edit {
+    display: none;
+    box-sizing: border-box;
+    height: 18vh;
+    border-radius: 20px;
+    margin: 0;
+    width: inherit;
+  }
+
+  .review-edit-form textarea {
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
+    border-radius: 20px;
+    font-size: 0.8em;
+    background-color: #f6f6f6;
+  }
+
+  .review-edit input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: var(--main-button-color);
+  }
+
+  /* END OF REVIEW SECTION */
 
   .top-reviews-left-container .left {
     align-items: center;
@@ -1251,23 +1317,22 @@ header {
   .review-edit {
     display: none;
     box-sizing: border-box;
-    height: 13.5rem;
+    height: 18vh;
     border-radius: 20px;
-    background-color: rgb(67, 15, 15);
-    margin: 0rem;
-    padding: 1rem;
+    margin: 0;
+    width: inherit;
   }
 
   .review-edit-form textarea {
+    box-sizing: border-box;
     border: none;
     resize: none;
-    min-width: 45rem;
-    height: 7.5rem;
-    overflow: hidden;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
     border-radius: 20px;
     font-size: 1em;
-    padding: 1rem;
-    background-color: #0f7b59;
+    background-color: #f6f6f6;
   }
 
   .review-edit input[type="submit"] {
@@ -1277,7 +1342,38 @@ header {
     border-radius: 10px;
     float: right;
     border: none;
-    background-color: #0f7b59;
+    background-color: var(--main-button-color);
+  }
+  
+  .review-edit {
+    display: none;
+    box-sizing: border-box;
+    height: 18vh;
+    border-radius: 20px;
+    margin: 0;
+    width: inherit;
+  }
+
+  .review-edit-form textarea {
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #f6f6f6;
+  }
+
+  .review-edit input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: var(--main-button-color);
   }
 
   /* .review-edit .buttons input[type="submit"] {
