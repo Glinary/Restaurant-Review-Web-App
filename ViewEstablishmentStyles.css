@@ -633,20 +633,33 @@ header {
 
 /*========== START OF REPLY SECTION ==========*/
 
+.reply h4 {
+  margin: 0rem 1rem 1rem 1rem;
+}
+
 .reply-container {
   margin: 0rem 1rem 1rem 1rem;
   background-color: white;
   border-radius: 10px;
   border-left: 1rem #b09e9a solid;
-  padding: 1rem;
+  padding: 0.5rem 0.45rem;
 }
 
-.reply-container h3 {
-  font-size: 1rem;
-}
-
-.reply-container p {
+.reply-container #user-comm {
   font-size: 0.8rem;
+  display: inline;
+}
+
+.reply-container #user-commentName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline;
+}
+
+.reply-container #single-reply-container {
+  box-sizing: border-box;
+  padding: 0.2rem;
+  width: 100%;
 }
 
 /* ========== END OF REPLY SECTION ========== */
@@ -1405,6 +1418,44 @@ header {
     float: right;
     border: none;
     background-color: var(--main-button-color);
+  }
+
+  .review-reply {
+    /* display: none; */
+    box-sizing: border-box;
+    height: 15vh;
+    border-radius: 20px;
+    margin: 0rem 1rem 1rem 1rem;
+    width: inherit;
+  }
+
+  .review-reply-form textarea {
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #f6f6f6;
+  }
+
+  .review-reply input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: var(--main-button-color);
+  }
+
+  #expand-reviews {
+    text-align: center;
+    margin: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8rem;
   }
 
   .top-review-edit {
