@@ -491,7 +491,7 @@ header {
   .menu-line {
     position: absolute;
     height: 0.105rem;
-    width: 100%;
+    width: 105%;
     margin: 46px 0 0 -20px;
     background-color: #018452;
   }

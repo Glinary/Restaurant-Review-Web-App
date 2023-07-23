@@ -432,7 +432,7 @@ header {
     position: relative;
     display: flex;
     margin-top: 0rem;
-    margin-right: 3.5%;
+    margin-right: 2rem;
     width: 100%;
     height: 50%;
     padding: 0;
@@ -442,7 +442,7 @@ header {
   .menu-list {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     position: relative;
     font-weight: 700;
     font-size: 10px;
@@ -456,7 +456,7 @@ header {
     display: flex;
   }
 
-  .menu-list .part1 a {
+  .menu-list a {
     text-decoration: none;
     font-size: 16px;
     margin-right: 2.8rem;
@@ -491,7 +491,7 @@ header {
   .menu-line {
     position: absolute;
     height: 0.105rem;
-    width: 100%;
+    width: 105%;
     margin: 46px 0 0 -20px;
     background-color: #018452;
   }
@@ -598,18 +598,16 @@ header {
   }
 
   .search-container2 {
-    position: relative;
     display: flex;
     align-items: center;
     margin-right: 1rem;
-    margin-left: -1rem;
     margin-bottom: 0.5rem;
-    padding: inherit;
-    max-width: 60%;
-    min-width: 60%;
+    padding-right: 1rem;
+    width: 100%;
     border: 0.5px solid #fcd4c1;
     border-radius: 20px;
     z-index: 9999;
+    background-color: #e2deda;
   }
 
   .search-container.active {
