@@ -289,25 +289,31 @@ app.get("/registrationPage", (req, res) => {
     })
 });
 
-app.post("/registrationPage", (req, res) => {
-    //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
-    //TODO: how to get star rating with the current GUI-like interface of the stars
+app.post("/registrationPage", async (req, res) => {
     const {email, pw, confirm} = req.body;
 
     if (email) { 
-        if (pw === confirm) {
-            const newUser = new Users({
-                email: email,
-                userName: "New_User",
-                accountType: "viewer",
-                password: pw,
-                userDescription: "No Description Added Yet."
-            })
-            newUser.save().then(() => {
-                console.log("new user added")
-                res.redirect(`/editProfile?email=${email}`)
-            })
-
+        try {
+            const mainEmail = await Users.findOne({email: email});
+            if (pw === confirm && mainEmail == null) {
+                const newUser = new Users({
+                    email: email,
+                    userName: "New_User",
+                    accountType: "viewer",
+                    password: pw,
+                    userDescription: "No Description Added Yet."
+                })
+                newUser.save().then(() => {
+                    console.log("new user added")
+                    res.redirect(`/editProfile?email=${email}`)
+                })
+            } else {
+                res.status(400);
+                res.redirect("/registrationPage");
+                console.log("No user added")
+            }
+        } catch (err) {
+            console.error(err);
         }
     } else {
         res.status(400);
@@ -315,7 +321,7 @@ app.post("/registrationPage", (req, res) => {
         console.log("readme")
     }
     
-});
+})
 
 app.get("/searchPage", (req, res) => {
     res.render("searchPage", {
