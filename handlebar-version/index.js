@@ -35,8 +35,9 @@ mongoose.connect(connectionString)
         console.error('Error connecting to mongodb:', error);
     });
 
-//Connect to Reviews Schema
+//Connect to Schemas
 const Reviews = require(path.join(__dirname, "./schema/Reviews"));
+const Users = require(path.join(__dirname, "./schema/Users"));
 
 app.use(express.urlencoded({extended: true}));
 
@@ -258,6 +259,34 @@ app.get("/registrationPage", (req, res) => {
     })
 });
 
+app.post("/registrationPage", (req, res) => {
+    //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
+    //TODO: how to get star rating with the current GUI-like interface of the stars
+    const {email, pw, confirm} = req.body;
+
+    if (email) { 
+        if (pw === confirm) {
+            const newUser = new Users({
+                email: email,
+                userName: "New_User",
+                accountType: "viewer",
+                password: pw,
+                userDescription: "No Description Added Yet."
+            })
+            newUser.save().then(() => {
+                console.log("new user added")
+                res.redirect("editProfile")
+            })
+
+        }
+    } else {
+        res.status(400);
+        res.redirect("/error");
+        console.log("readme")
+    }
+    
+})
+
 //TODO: get the internal script
 app.get("/searchPage", (req, res) => {
     res.render("searchPage", {
@@ -288,7 +317,8 @@ app.get("/editProfile", (req, res) => {
         script2: "https://kit.fontawesome.com/78bb10c051.js",
         script3: "static/js/EditProfile.js",
         css1: "static/css/ViewEstablishmentStyles.css",
-        css2: "static/css/styles.css"
+        css2: "static/css/styles.css",
+        css3: "static/css/editProfStyles.css"
     })
 });
 
