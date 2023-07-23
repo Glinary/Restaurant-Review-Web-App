@@ -238,7 +238,6 @@ for (let i = 0; i < reactionH.length; i++) {
   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
 }
 
-
 for (let j = 0; j < reactionH.length; j++) {
   reactionH[j].addEventListener("click", function () {
     if (arrU[j] == 0 && arrH[j] == 0) {
