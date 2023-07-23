@@ -275,7 +275,7 @@ app.post("/registrationPage", (req, res) => {
             })
             newUser.save().then(() => {
                 console.log("new user added")
-                res.redirect("editProfile")
+                res.redirect(`/editProfile?email=${email}`)
             })
 
         }
@@ -311,6 +311,9 @@ app.get("/searchPageLogout", (req, res) => {
 
 //TODO: get the internal script
 app.get("/editProfile", (req, res) => {
+    const email = req.query.email;
+    console.log(email)
+
     res.render("editProfile", {
         title: "User Review Page",
         script: "static/js/ViewEstablishmentRules.js",
@@ -318,7 +321,8 @@ app.get("/editProfile", (req, res) => {
         script3: "static/js/EditProfile.js",
         css1: "static/css/ViewEstablishmentStyles.css",
         css2: "static/css/styles.css",
-        css3: "static/css/editProfStyles.css"
+        css3: "static/css/editProfStyles.css",
+        email: email
     })
 });
 
