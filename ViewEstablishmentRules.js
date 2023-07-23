@@ -13,6 +13,9 @@ const userPage = document.querySelector("#prof-page");
 const userPic = document.querySelector("#prof-pic");
 const searchBar = document.querySelector(".search-container");
 
+const divSec = document.querySelector(".dividerSec");
+const revRep = document.querySelector(".review-reply");
+
 let arrH = [];
 let arrU = [];
 let currLike = [];
@@ -32,6 +35,7 @@ const Review = function (reviewObj) {
 let reviewList = [];
 
 checkTextTrunc();
+checkReviewsCount();
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -49,12 +53,6 @@ function reviewObjHelper(index) {
   reviewObject = reviewList[index].reviewObj;
   return reviewObject;
 }
-
-// function checkTopReview{
-//   if (revObj.value == 1){
-//     revObj.
-//   }
-// }
 
 // more/less event listener
 function checkTextTrunc() {
@@ -104,8 +102,8 @@ for (let b = 0; b < times; b++) {
     }
   });
 }
-// more/less event listener end...
 
+// more/less event listener end...
 function textOrigHelper(i) {
   revs = reviews[i];
   org = revs.innerText;
@@ -134,30 +132,67 @@ editBar.forEach((cell) =>
 
     if (flag2 == false) {
       console.log("UL now being read...");
-      replyButton = cld.firstElementChild;
+      optionPath = cld.firstElementChild.children;
+      replyButton = optionPath[0];
+      editButton = optionPath[1];
+      deleteButton = optionPath[2];
+
+      editButton.addEventListener("click", function () {
+        console.log("Reply clicked!");
+
+        // Parent cell called
+        cellParent = cell.parentElement;
+        // Review left called.
+        reviewLeft = cellParent.firstElementChild;
+        //Review called
+        reviewCont = reviewLeft.children[2];
+        //Inner Text copied
+        textValue = reviewCont.innerText;
+
+        reviewListArr = Array.from(reviews);
+        selectedRevIndex = reviewListArr.indexOf(reviewCont);
+
+        // Replace Text with Edit Box
+        revObj = reviewObjHelper(selectedRevIndex);
+        revObj.innerHTML = "";
+
+        revObj.nextElementSibling.style.display = "block";
+        editBoxPath = revObj.nextElementSibling.children[0];
+        editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
+
+        console.dir(reviewCont);
+      });
 
       replyButton.addEventListener("click", function () {
         console.log("Reply clicked!");
 
         cellParent = cell.parentElement;
-        console.dir(cellParent);
-        reviewLeft = cellParent.firstElementChild;
-        reviewCont = reviewLeft.children[2];
-        textValue = reviewCont.innerText;
-        reviewListArr = Array.from(reviews);
-        selectedRevIndex = reviewListArr.indexOf(reviewCont);
+        replyBox = cellParent.nextElementSibling;
+        replyBox.style.display = "block";
+      });
 
-        revObj = reviewObjHelper(selectedRevIndex);
-        revObj.innerHTML = "";
-        revObj.nextElementSibling.style.display = "block";
-        path = revObj.nextElementSibling.children[0];
-        path2 = path[0].value = reviewList[selectedRevIndex].OrigText;
+      deleteButton.addEventListener("click", function () {
+        console.log("Delete clicked!");
 
-        console.dir(reviewCont);
+        cellParent = cell.parentElement;
+        replyBox = cellParent.nextElementSibling;
+        repliesBox = replyBox.nextElementSibling;
+        cellParent.remove();
+        repliesBox.remove();
+        revRep.remove();
+
+        console.log("Review Successfully Deleted");
+        checkReviewsCount();
       });
     }
   })
 );
+
+function checkReviewsCount() {
+  if (divSec.children[0].children.length == 1) {
+    divSec.innerHTML += '<h1 id="empty-alert">No Reviews Yet</h1>';
+  }
+}
 
 // Function that adds "Edited" indicator when a user make changes to review
 function ReviewEditConfirmedIndicator(reviewLeft) {
@@ -202,12 +237,7 @@ for (let i = 0; i < reactionH.length; i++) {
   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
 }
-/* CHECKER
-    console.log(arrH);
-    console.log(arrU);
-    console.log(currLike);
-    console.log(currDLike);
-*/
+
 
 for (let j = 0; j < reactionH.length; j++) {
   reactionH[j].addEventListener("click", function () {

@@ -533,6 +533,37 @@ header {
   background-color: var(--main-button-color);
 }
 
+.review-reply {
+  display: none;
+  box-sizing: border-box;
+  height: 15vh;
+  border-radius: 20px;
+  margin: 0rem 1rem 1rem 1rem;
+  width: inherit;
+}
+
+.review-reply-form textarea {
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  width: 100%;
+  padding: 1rem;
+  height: max-content;
+  border-radius: 20px;
+  font-size: 1em;
+  background-color: #f6f6f6;
+}
+
+.review-reply input[type="submit"] {
+  font-weight: bold;
+  margin: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  float: right;
+  border: none;
+  background-color: var(--main-button-color);
+}
+
 /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
 
 #reaction {
@@ -780,6 +811,29 @@ header {
 }
 /*end of profile-section*/
 
+.dividerSec {
+  box-sizing: border-box;
+  background-color: #cfbfb0;
+  padding: 1.5rem;
+  border-radius: 20px;
+  height: max-content;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#empty-alert {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+#expand-reviews {
+  text-align: center;
+  margin: 0.5rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
 @media only screen and (min-width: 768px) {
   .profile-navbar .anonpic {
     max-width: 5rem;
@@ -1002,6 +1056,37 @@ header {
     background-color: var(--main-button-color);
   }
 
+  .review-reply {
+    display: none;
+    box-sizing: border-box;
+    height: 15vh;
+    border-radius: 20px;
+    margin: 0rem 1rem 1rem 1rem;
+    width: inherit;
+  }
+
+  .review-reply-form textarea {
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    width: 100%;
+    padding: 1rem;
+    height: max-content;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #f6f6f6;
+  }
+
+  .review-reply input[type="submit"] {
+    font-weight: bold;
+    margin: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: var(--main-button-color);
+  }
+
   /* END OF REVIEW SECTION */
 
   .top-reviews-left-container .left {
@@ -1065,6 +1150,22 @@ header {
     float: right;
     border: none;
     background-color: var(--main-button-color);
+  }
+
+  .dividerSec {
+    box-sizing: border-box;
+    background-color: #cfbfb0;
+    padding: 1.5rem;
+    border-radius: 20px;
+    height: max-content;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #empty-alert {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
   }
 }
 
@@ -1421,7 +1522,7 @@ header {
   }
 
   .review-reply {
-    /* display: none; */
+    display: none;
     box-sizing: border-box;
     height: 15vh;
     border-radius: 20px;
@@ -1458,6 +1559,11 @@ header {
     font-size: 0.8rem;
   }
 
+  #empty-alert {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 400;
+  }
   .top-review-edit {
     display: none;
     box-sizing: border-box;

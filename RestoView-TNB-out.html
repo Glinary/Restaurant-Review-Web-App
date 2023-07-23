@@ -52,6 +52,7 @@
                 <li>
                   <div class="view-profile">
                     <a href="loginPage.html" id="prof-page">LOGIN</a>
+                    <a href="loginPage.html" id="prof-page">REGISTER</a>
                   </div>
                 </li>
               </ul>            
@@ -69,9 +70,10 @@
       /><a href="searchPageLogout.html"></a>
     </div>
     <div class="search-line"></div>
-       <!-- END OF HEADER (including search)-->
 
-    <!-- START OF PROFILE SECTION (including top revs)-->
+  <!-- END OF HEADER -->
+
+<!-- START OF PROFILE SECTION -->
 
     <div id="profilee">
       <div class="box">
@@ -96,7 +98,6 @@
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
               <p>5.0</p>
             </div>
-
             </div>
             </div>
             <div class="profile-description">
@@ -104,18 +105,19 @@
               <p>
                 Experience the mouthwatering mastery of flavor at Tinuhog ni Benny. From succulent skewers to savory delights, we bring you the taste sensation you've been craving. Step into a world of culinary delight and let Benny's expert grilling skills take your taste buds on an unforgettable journey. Tinuhog ni Benny - where flavors come alive.
               </p>
-            </div>
-
-            
+            </div>  
         </div>
         <div class="edit-profile-section">
           <h4>Add Review</h4>
           <a href="loginPage.html"><img src="assets/book_icon.png" /></a>
           </div>
+
         <div class="top-reviews-section">
             <div class="top-label-and-navigator" id="review">
                 <h3>Top Reviews</h3>
             </div>
+            
+            <!-- User Review Box -->
             <div class="top-reviews-content-container">
                 <div class="top-reviews-left-container">
                   <div class="top-left">
@@ -125,6 +127,8 @@
                         class="top-reviews-profile-pic"
                       />
                     </div>
+                    
+                  <!-- User Review Information-->
                     <div class="top-further-details">
                       <div class="top-name">
                         <a class="top-firstname" href="loginPage.html">Hermoine Granger</a>
@@ -133,23 +137,19 @@
                         <p class="top-review-count">9 Reviews</p>
                       </div>
                     </div>
-                    <div id="top-reaction">
-                      <div id="helpful">
-                        <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
-                      </div><span class="top-count" value="14">14</span>
-                      <div id="unhelpful">
-                        <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i></i>
-                      </div><span class="top-count" value="1">1</span>
-                    </div>
+  
                   </div>
+                                     
+                  <!-- User Review Rating/Stars -->
                   <div class="top-overall-stars">
                     <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
                     <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
                     <div id="Ostar"><i class="fa-regular fa-star"></i></div>
                     <div id="Ostar"><i class="fa-regular fa-star"></i></div>
                     <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-  
                   </div>
+
+                  <!-- User Review -->
                   <div class="review">
                     <p class="top-review-paragraph">
                         I wasn’t a fan of grilled food, but TNB made me crave grilled delicacies every day!
@@ -157,21 +157,10 @@
                   </div>
                 </div>
         
+                <!-- User Review Box -->
                 <div class="top-reviews-pictures">
                   <img src="assets/TNBF1.jpg" class="top-review-image" />
                   <img src="assets/TNBF2.jpg" class="top-review-image" />
-                </div>
-                <div id="EditMenu">
-                  <div id="editBar">
-                    <div id="editBars"></div>
-                    <div id="editBars"></div>
-                    <div id="editBars"></div>
-                  </div>
-                  <div id="EditNav">
-                    <ul>
-                        <li><a href="">Reply</a></li>
-                    </ul>
-                  </div>
                 </div>
             </div>
 
@@ -192,14 +181,7 @@
                         <p class="top-review-count">9 Reviews</p>
                       </div>
                     </div>
-                    <div id="top-reaction">
-                      <div id="helpful">
-                        <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
-                      </div><span class="top-count" value="14">14</span>
-                      <div id="unhelpful">
-                        <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i></i>
-                      </div><span class="top-count" value="1">1</span>
-                    </div>
+          
                   </div>
                   <div class="top-overall-stars">
                     <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
@@ -216,29 +198,18 @@
                   </div>
                 </div>
         
+                <!-- User Review Images (right) -->
                 <div class="top-reviews-pictures">
                   <img src="assets/TNBF3.jpg" class="top-review-image" />
                   <img src="assets/TNBF4.jpg" class="top-review-image" />
                 </div>
-                <div id="EditMenu">
-                  <div id="editBar">
-                    <div id="editBars"></div>
-                    <div id="editBars"></div>
-                    <div id="editBars"></div>
-                  </div>
-                  <div id="EditNav">
-                    <ul>
-                        <li><a href="">Reply</a></li>
-                    </ul>
-                  </div>
-                </div>
-            </div>
-            
+            </div>     
         </div>
       </div>
 
       <div class="box"></div>
     </div>
+
 
     <div class="gallery-section" id="gallery">
       <div class="gallery-container">
@@ -254,12 +225,15 @@
     </div>
 
     <!--END OF PROFILE SECTION (including top revs)-->
-    <div class="dividerSec"> 
+    <div class="dividerSec">
+
       <div class="reviews-section">
         <div class="label-and-navigator" id="review">
           <h3>User's Reviews</h3>
           <h4>View All</h4>
         </div>
+
+        <!-- User Review Box -->
         <div class="reviews-content-container">
           <div class="reviews-left-container">
             <div class="left">
@@ -269,6 +243,8 @@
                   class="reviews-profile-pic"
                 />
               </div>
+
+               <!-- User Review Information-->
               <div class="further-details">
                 <div class="name">
                   <a class="firstname" href="loginPage.html">Bilbo Baggins</a>
@@ -277,6 +253,8 @@
                   <p class="review-count">9 Reviews</p>
                 </div>
               </div>
+
+              <!-- User Review Helpfulness -->
               <div id="reaction">
                 <div id="helpful">
                   <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
@@ -286,6 +264,8 @@
                 </div><span class="count" value="1">1</span>
               </div>
             </div>
+            
+          <!-- User Review Rating/Stars -->
             <div class="overall-stars">
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
@@ -294,6 +274,8 @@
               <div id="Ostar"><i class="fa-regular fa-star"></i></div>
       
             </div>
+            
+          <!-- User Review -->
             <div class="review">
               <p>
                   BEST INIHAW PLACE EVERRRRRRRRRRRRR! NOW MY FAVORITE RESTAURANT + THE PRICE IS SO AFFORDABLE
@@ -301,30 +283,31 @@
             </div>
           </div>
 
+          <!-- User Review Images (right) -->
           <div class="reviews-pictures">
               <img src="assets/TNBF5.jpg" class="review-image" />
               <img src="assets/TNBF6.jpg" class="review-image" />
           </div>
-          <div id="EditMenu">
-            <div id="editBar">
-              <div id="editBars"></div>
-              <div id="editBars"></div>
-              <div id="editBars"></div>
-            </div>
-            <div id="EditNav">
-              <ul>
-                <li><a href="">Reply</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
 
         <div class="reply">
-          <div class="reply-container">
-              <h3>re: Tinuhog ni Benny</h3>
-              <p>Thank you very much!</p>
+          <div class="reply">
+            <h4>Review Comments</h4>
+            <div class="reply-container">
+              <div id="single-reply-container">
+                <p id="user-commentName">Angry Dobo</p>
+                <p id="user-comm">Thank you! We will make sure we will keep up our recipes' tastiness.</p>
+              </div>
+              <div id="single-reply-container">
+                <p id="user-commentName">Angry Dobo</p>
+                <p id="user-comm">Thank you! We will make sure we will keep up our recipes' tastiness.</p>
           </div>
+          <div id="expand-reviews">See More
+            <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
+          </div>
+         </div>
         </div>
+      </div>
     </div>
   </body>
 </html>

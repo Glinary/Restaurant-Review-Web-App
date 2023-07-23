@@ -5,21 +5,36 @@ const reactionH = document.querySelectorAll("#helpful");
 const reactionU = document.querySelectorAll("#unhelpful");
 const reaction = document.querySelectorAll("#reaction");
 const body = document.getElementsByTagName("BODY")[0];
-let arrH = [];
-let arrU = [];
-let currLike = [];
-let currDLike = [];
-let truncate = [];
-let truncated = [];
-let flag = [];
-let toggle = [];
-let flag2 = true;
+const edbar = document.querySelectorAll("#EditNav");
 
 const menu = document.querySelector("#mobile-menu");
 const menuLinks = document.querySelector(".menu-bar");
 const userPage = document.querySelector("#prof-page");
 const userPic = document.querySelector("#prof-pic");
 const searchBar = document.querySelector(".search-container");
+
+const revSec = document.querySelector(".reviews-section");
+
+let arrH = [];
+let arrU = [];
+let currLike = [];
+let currDLike = [];
+let flag2 = true;
+
+// GIVEN: Create a User constructor
+const Review = function (reviewObj) {
+  this.reviewObj = reviewObj;
+  this.OrigText = JSON.parse(JSON.stringify(reviewObj.innerText));
+  this.currentText = null;
+
+  this.flag = false;
+  this.toggle = false;
+};
+
+let reviewList = [];
+
+checkTextTrunc();
+checkReviewsCount();
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -33,81 +48,129 @@ userPage.addEventListener("mouseout", function () {
   userPic.classList.toggle("hovered");
 });
 
-for (let a = 0; a < reviews.length; a++) {
-  flag.push(false);
-  flag.push(false);
-  toggle.push(false);
-  toggle.push(false);
-}
 // more/less event listener
-for (let i = 0; i < times; i = i + 1) {
-  revs = reviews[i];
+function checkTextTrunc() {
+  for (let i = 0; i < times; i = i + 1) {
+    revs = reviews[i];
+    reviewList.push(new Review(revs));
+    revObj = reviewObjHelper(i);
 
-  org = revs.innerText.length;
-  console.log("org before: ", org);
-  orig = JSON.parse(JSON.stringify(org));
+    // assign value of text shown here (change 80)
+    revObj.innerText = truncateText(reviewList[i], 80, i, revObj);
 
-  // assign value of text shown here (change 80)
-  revs.innerText = truncateText(revs, 80, i);
-  console.log("org after: ", orig);
-
-  if (org > 80) {
-    console.log("LENGTH: ", org);
-    revs.innerHTML += '<span id="more">&nbsp;See More</span>';
+    if (reviewList[i].OrigText.length > 80) {
+      revObj.innerHTML += '<span id="more">&nbsp;See More</span>';
+    }
   }
 }
 
+// Truncate excess texts
 // https://stackoverflow.com/a/63162630
-function truncateText(selector, maxLength, i) {
-  var element = selector;
-  truncated[i] = element.innerText;
-  truncate[i] = truncated[i];
+function truncateText(selector, maxLength, i, obj) {
+  let element = selector;
+  let toTruncate = element.OrigText;
 
-  if (truncated[i].length > maxLength) {
-    truncated[i] = truncated[i].substr(0, maxLength) + "...";
+  if (toTruncate.length > maxLength) {
+    element.currentText = toTruncate.substr(0, maxLength) + "...";
+    obj.innerText = element.currentText;
 
-    flag[i] = true;
-    console.log("trucated: ", truncated[i]);
+    element.flag = true;
     console.log(element, "Successfully Truncated");
   }
-  return truncated[i];
+  return obj.innerText;
 }
 
-for (let a = 0; a < reviews.length; a++) {
-  truncate.push("");
-  truncated.push("");
-}
+// toggle between see more and see less
 //https://stackoverflow.com/a/62555388
 for (let b = 0; b < times; b++) {
   reviews[b].addEventListener("click", function () {
-    if (toggle[b] == false && flag[b] == true) {
-      reviews[b].innerHTML = truncate[b];
-      reviews[b].innerHTML += '<span id="more">&nbsp;See Less</span>';
-      toggle[b] = true;
-    } else if (toggle[b] == true && flag[b] == true) {
-      reviews[b].innerHTML = truncated[b];
-      reviews[b].innerHTML += '<span id="more">&nbsp;See More</span>';
-      toggle[b] = false;
+    revObj = reviewObjHelper(b);
+    if (reviewList[b].toggle == false && reviewList[b].flag == true) {
+      revObj.innerHTML = reviewList[b].OrigText;
+      revObj.innerHTML += '<span id="more">&nbsp;See Less</span>';
+      reviewList[b].toggle = true;
+    } else if (reviewList[b].toggle == true && reviewList[b].flag == true) {
+      revObj.innerHTML = reviewList[b].currentText;
+      revObj.innerHTML += '<span id="more">&nbsp;See More</span>';
+      reviewList[b].toggle = false;
     }
   });
 }
+
 // more/less event listener end...
+function textOrigHelper(i) {
+  revs = reviews[i];
+  org = revs.innerText;
+  console.log("org before: ", org);
+  orig = JSON.parse(JSON.stringify(org));
+
+  return orig;
+}
 
 // editBar div event listener (when clicked delete/edit shows)
 editBar.forEach((cell) =>
   cell.addEventListener("click", function () {
+    console.dir(cell);
     if (flag2 == true) {
-      console.log(cell);
+      console.log("3 Bars has been clicked...");
       cld = cell.lastElementChild;
-      console.log(cld);
+      console.dir(cld);
       cld.style.display = "block";
       flag2 = false;
     } else if (flag2 == false) {
-      console.log(cell);
+      console.log("3 Bars has been unclicked...");
       cld = cell.lastElementChild;
-      console.log(cld);
       cld.style.display = "none";
       flag2 = true;
+    }
+
+    if (flag2 == false) {
+      console.log("UL now being read...");
+      optionPath = cld.firstElementChild.children;
+      editButton = optionPath[0];
+      deleteButton = optionPath[1];
+
+      editButton.addEventListener("click", function () {
+        console.log("Reply clicked!");
+
+        // Parent cell called
+        cellParent = cell.parentElement;
+        // Review left called.
+        reviewLeft = cellParent.firstElementChild;
+        //Review called
+        reviewCont = reviewLeft.children[2];
+        //Inner Text copied
+        textValue = reviewCont.innerText;
+
+        reviewListArr = Array.from(reviews);
+        selectedRevIndex = reviewListArr.indexOf(reviewCont);
+
+        // Replace Text with Edit Box
+        revObj = reviewObjHelper(selectedRevIndex);
+        revObj.innerHTML = "";
+
+        revObj.nextElementSibling.style.display = "block";
+        editBoxPath = revObj.nextElementSibling.children[0];
+        editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
+
+        console.dir(reviewCont);
+      });
+
+      deleteButton.addEventListener("click", function () {
+        console.log("Delete clicked!");
+
+        cellParent = cell.parentElement;
+        cellGrandP = cellParent.parentElement;
+        cellParent.remove();
+
+        // if (cellGrandP.children.length == 1) {
+        //   cellGrandP.innerHTML += '<p id="empty-alert">No reviews.</p>';
+        // }
+
+        checkReviewsCount();
+
+        console.log("Review Successfully Deleted");
+      });
     }
   })
 );
@@ -141,8 +204,6 @@ reactionH.forEach(
   false
 );
 
-// console.log(reaction[1]);
-
 /*Initialize Reaction Button Data*/
 for (let i = 0; i < reactionH.length; i++) {
   arrH.push(0);
@@ -150,12 +211,6 @@ for (let i = 0; i < reactionH.length; i++) {
   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
 }
-/* CHECKER
-    console.log(arrH);
-    console.log(arrU);
-    console.log(currLike);
-    console.log(currDLike);
-*/
 
 for (let j = 0; j < reactionH.length; j++) {
   reactionH[j].addEventListener("click", function () {
@@ -195,4 +250,23 @@ for (let k = 0; k < reactionU.length; k++) {
       console.log(arrU);
     }
   });
+}
+
+/* Helper Function Section */
+
+// returns the review box
+function reviewObjHelper(index) {
+  reviewObject = reviewList[index].reviewObj;
+  return reviewObject;
+}
+
+function checkReviewsCount() {
+  if (revSec.children.length == 1) {
+    revSec.innerHTML += '<h1 id="empty-alert">No Reviews Yet</h1>';
+  }
+}
+
+// Function that adds "Edited" indicator when a user make changes to review
+function ReviewEditConfirmedIndicator(reviewLeft) {
+  reviewLeft.innerHTML += `<span id="editedIndc">Edited</span>`;
 }
