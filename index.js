@@ -7,6 +7,7 @@ const path = require("path");
 
 // ---------- Dependencies #2 ---------- //
 const mongoose = require("mongoose");
+const upload   = require(path.join(__dirname, "./middleware/upload")); //uploading js
 const connectionString = "mongodb://127.0.0.1:27017/reviews";
 
 //CAUTION: UNCOMMENT TO DROP SCHEMA DATA
@@ -410,6 +411,7 @@ app.post("/registrationPage", async (req, res) => {
           accountType: "viewer",
           password: pw,
           userDescription: "No Description Added Yet.",
+          avatar: "public\\assets\\anonymous_picture.png"
         });
 
         let account = new Account(email);
@@ -470,49 +472,58 @@ app.get("/editProfile", (req, res) => {
   });
 });
 
-app.post("/editProfile", (req, res) => {
-  email = currentAccount.email;
-  console.log(email);
-
-  const { userName, userDescription } = req.body;
-  console.log(userName);
-  console.log(userDescription);
-
-  if (userName && userDescription) {
-    //update query
-    Users.findOneAndUpdate(
-      { email: email }, //find based on matching email
-      { userName: userName, userDescription: userDescription },
-      { new: true } // return the updated document
-    )
-      .then((updatedUser) => {
-        if (!updatedUser) {
-          console.log("User not found!");
-          return res.status(404).json({ error: "User not found" });
-        }
-        console.log("User updated:", updatedUser);
-        // redirect to the user's profile page:
-        res.redirect("/viewprofileU1");
-      })
-      .catch((err) => {
-        console.error("Error updating user:", err);
-        res.status(500).json({ error: "Error updating user" });
-      });
-  } else {
-    res.status(400);
-    res.redirect("/error");
-    console.log("Invalid request");
-  }
-});
-
-app.get("/TNBestablishmentOwnerView", (req, res) => {
-  res.render("TNBestablishmentOwnerView", {
-    title: "Tinuhog ni Benny",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    script3: "static/js/TNBestablishmentOwnerView.js",
-    css1: "static/css/ViewEstablishmentStyles.css",
+app.post("/editProfile", upload.single('avatar'), (req, res) => {
+    email = currentAccount.email;
+    console.log(email);
+  
+    const { userName, userDescription} = req.body;
+    console.log(userName);
+    console.log(userDescription);
+  
+    if (userName && userDescription) {
+      //update query
+      if(req.file) {
+          Users.findOneAndUpdate(
+              { email: email }, //find based on matching email
+              { avatar: req.file.path },
+              { new: true } // return the updated document
+            )
+              .then((updatedUser) => {
+                  if (!updatedUser) {
+                  console.log("User not found!");
+                  return res.status(404).json({ error: "User not found" });
+                  }
+                  console.log("Avatar updated:", updatedUser);
+              })
+              .catch((err) => {
+                  console.error("Error updating user:", err);
+                  res.status(500).json({ error: "Error updating user" });
+              });
+      }
+      Users.findOneAndUpdate(
+        { email: email }, //find based on matching email
+        { userName: userName, userDescription: userDescription },
+        { new: true } // return the updated document
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            console.log("User not found!");
+            return res.status(404).json({ error: "User not found" });
+          }
+          console.log("User updated:", updatedUser);
+          // redirect to the user's profile page:
+          res.redirect("/viewprofileU1");
+        })
+        .catch((err) => {
+          console.error("Error updating user:", err);
+          res.status(500).json({ error: "Error updating user" });
+        });
+    } else {
+      res.status(400);
+      res.redirect("/error");
+      console.log("Invalid request");
+    }
   });
-});
 
 app.get("/viewprofileU1", async (req, res) => {
   //query here
