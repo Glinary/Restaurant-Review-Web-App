@@ -26,6 +26,14 @@ const reviewsSchema = new mongoose.Schema({
     reviewTitle: {
         type: String,
         required: true
+    },
+    reviewReplyInfo: {
+        reply: {
+            type: String
+        },
+        user: {
+            type: String
+        }
     }
 })
 
