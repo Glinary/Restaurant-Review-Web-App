@@ -72,6 +72,18 @@ app.engine('hbs', exphbs.engine({
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
+// ---- ACCOUNT SWITCH ---- //
+const User = function (email) {
+    this.email = email;
+}
+
+let currentUser = new User ("guest@email.com");
+
+function switchUser(newUser) {
+    currentUser = newUser;
+}
+// --- ACCOUNT SWITCH --- //
+
 // ---------- ROUTES SECTION ---------- //
 
 app.get("/", (req, res) => {
@@ -175,6 +187,7 @@ app.get("/RestoView-SB", async(req, res) => {
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "static/css/ViewEstablishmentStyles.css",
             css2: "static/css/styles.css",
+            reviews: reviews
         });
     } catch (error) {
         console.error("Error querying reviews:", error);
@@ -189,7 +202,8 @@ app.get("/RestoView-SB-out", (req, res) => {
         script: "static/js/ViewEstablishmentRules.js",
         script2: "https://kit.fontawesome.com/78bb10c051.js",
         css1: "static/css/ViewEstablishmentStyles.css",
-        css2: "static/css/StylesOut.css"
+        css2: "static/css/StylesOut.css",
+        reviews: reviews
     })
 });
 
@@ -204,7 +218,8 @@ app.get("/RestoView-DTH", async (req, res) => {
             script: "static/js/ViewEstablishmentRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css"
+            css2: "static/css/styles.css",
+            reviews: reviews
         });
       } catch (error) {
         console.error("Error querying reviews:", error);
@@ -262,7 +277,8 @@ app.get("/RestoView-TNB", async (req, res) => {
             script: "static/js/ViewEstablishmentRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css"
+            css2: "static/css/styles.css",
+            reviews: reviews
         });
       } catch (error) {
         console.error("Error querying reviews:", error);
@@ -347,7 +363,6 @@ app.get("/searchPageLogout", (req, res) => {
 
 app.get("/editProfile", (req, res) => {
     const email = req.query.email;
-    console.log(email)
 
     res.render("editProfile", {
         title: "User Review Page",
@@ -369,7 +384,30 @@ app.get("/TNBestablishmentOwnerView", (req, res) => {
     })
 });
 
-app.get("/viewprofileU1", (req, res) => {
+app.get("/viewprofileU1", async (req, res) => {
+
+    //query here
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        // TODO: set query to current user object
+        const user = await Users.find({ email: current.email });
+        const review = await Reviews.find({ email: current.email});
+    
+        res.render("RestoView-SB", {
+            title: "Starbucks",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/styles.css",
+            user: user,
+            review: review
+        });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+    //
+
     res.render("viewprofileU1", {
         title: "View Profile",
         script: "static/js/ViewProfileRules.js",
