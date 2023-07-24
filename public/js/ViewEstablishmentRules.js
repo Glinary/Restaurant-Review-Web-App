@@ -13,6 +13,19 @@ const userPage = document.querySelector("#prof-page");
 const userPic = document.querySelector("#prof-pic");
 const searchBar = document.querySelector(".search-container");
 
+const replyCont = document.querySelectorAll(".reply");
+const replyContList = Array.from(replyCont);
+console.log(replyContList);
+
+for (let i = 0; i < replyCont.length; i++) {
+  rChild = replyContList[i].children[1];
+  rChildChild = rChild.children[0];
+  console.log(rChildChild);
+  if (rChildChild.innerText == "") {
+    rChild.style.display = "none";
+  }
+}
+
 const divSec = document.querySelector(".dividerSec");
 const revRep = document.querySelector(".review-reply");
 
