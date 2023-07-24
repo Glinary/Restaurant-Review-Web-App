@@ -273,6 +273,8 @@ app.post("/reviewPage", async (req, res) => {
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
+    const restoLink = await Restaurant.findOne({ name: restaurantName }).lean();
+    console.log(restoLink);
     const review = new Reviews({
       email: currentAccount.email,
       restaurantName: restaurantName,
@@ -283,7 +285,7 @@ app.post("/reviewPage", async (req, res) => {
     });
     review.save().then(() => {
       console.log("review submitted");
-      res.redirect("/indexLog");
+      res.redirect(restoLink.link);
     });
   } else {
     res.status(400);
