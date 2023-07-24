@@ -203,7 +203,8 @@ app.get("/reviewPage", (req, res) => {
   });
 });
 
-app.post("/reviewPage", async (req, res) => {
+app.use(express.json());
+app.post("/reviewPagePost", async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
   const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
@@ -386,6 +387,10 @@ app.post("/registrationPage", async (req, res) => {
           password: pw,
           userDescription: "No Description Added Yet.",
         });
+
+        let account = new Account(email);
+          await switchAccount(account);
+          
         newUser.save().then(() => {
           console.log("new user added");
           res.redirect(`/editProfile?email=${email}`);
