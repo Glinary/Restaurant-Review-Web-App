@@ -235,7 +235,8 @@ app.get("/RestoView-DTH", async (req, res) => {
             script: "static/js/ViewEstablishmentRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css"
+            css2: "static/css/styles.css",
+            reviews: reviews
         });
       } catch (error) {
         console.error("Error querying reviews:", error);
