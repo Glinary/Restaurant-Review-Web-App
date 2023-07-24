@@ -43,9 +43,8 @@ if (restaurantNameInput) {
   restaurantNameInput.value = restaurantName;
 }
 
-const urlPath = window.location.pathname;
-var page = "/" + urlPath.split("/").pop();
-console.log(page);
+const urlPath = location.href.split("/").slice(-1);
+// console.log(urlPath);
 
 var starR = 5;
 
@@ -53,13 +52,13 @@ $(":radio").change(function () {
   console.log("New star rating: " + this.value);
   starR = this.value;
 
-  console.log(starR);
+  // console.log(starR);
 });
 
 const submitForm = document.querySelector("#submitForm");
 const formElement = document.forms[1];
-console.log(formElement);
-console.log(submitForm);
+// console.log(formElement);
+// console.log(submitForm);
 
 submitForm.addEventListener("click", (e) => {
   e.preventDefault();
@@ -68,14 +67,19 @@ submitForm.addEventListener("click", (e) => {
   const title = formData.get("title");
   const reviewMes = formData.get("review");
   const rate = starR;
-  console.log(rate);
-  console.log(title);
-  console.log(reviewMes);
+  // console.log(rate);
+  // console.log(title);
+  // console.log(reviewMes);
 
-  const jstring = JSON.stringify({ title, reviewMes, rate, page });
+  const jstring = JSON.stringify({
+    title,
+    reviewMes,
+    rate,
+    restaurantName,
+  });
   console.log(jstring);
 
-  fetch("/RestoView-SB", {
+  fetch("/reviewPageHere", {
     method: "POST",
     body: jstring,
     headers: {
