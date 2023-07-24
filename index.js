@@ -226,7 +226,6 @@ app.post("/reviewPage", async (req, res) => {
     });
     review.save().then(() => {
       console.log("review submitted");
-      res.redirect("RestoView-ADBB");
     });
   } else {
     res.status(400);
