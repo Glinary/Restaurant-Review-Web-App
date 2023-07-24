@@ -116,7 +116,7 @@
                     <!-- User Review Information-->
                     <div class="top-further-details">
                       <div class="top-name">
-                        <a class="top-firstname" href="/loginPage">Harry Potter</a>
+                        <a class="top-firstname" href="/loginPage">{{highestRated.userName}}</a>
                       </div>
                       <div class="top-others">
                         <p class="top-review-count">9 Reviews</p>
@@ -134,7 +134,7 @@
                   </div>
                   <div class="review">
                     <p class="top-review-paragraph">
-                      The coffee was tasty as usual. The café was very clean as well. Definitely going back again.
+                      {{highestRated.reviewDesc}}
                     </p>
                   </div>
                 </div>
@@ -145,49 +145,7 @@
                 </div>
             </div>
 
-            <div class="top-reviews-content-container">
-                <div class="top-reviews-left-container">
-                  <div class="top-left">
-                    <div class="top-reviews-user-details">
-                      <img
-                        src="assets/anonymous_picture.png"
-                        class="top-reviews-profile-pic"
-                      />
-                    </div>
-                    <div class="top-further-details">
-                      <div class="top-name">
-                        <a class="top-firstname" href="/loginPage">Albus Dumbledore</a>
-                      </div>
-                      <div class="top-others">
-                        <p class="top-review-count">12 Reviews</p>
-                      </div>
-                    </div>
-                  </div>
-
-                
-                   <!-- User Review Rating/Stars -->
-                   <div class="top-overall-stars">
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                  </div>
-
-                  <!-- User Review -->
-                  <div class="review">
-                    <p class="top-review-paragraph">
-                      Service is excellent. Coffee is very nice. The area was very clean. Overall, 5/5.
-                    </p>
-                  </div>
-                </div>
-        
-                <!-- User Review Images (right) -->
-                <div class="top-reviews-pictures">
-                  <img src="assets/SB3.jpg" class="top-review-image" />
-                  <img src="assets/SB4.jpg" class="top-review-image" />
-                </div>
-            </div>   
+            
         </div>
       </div>
 
