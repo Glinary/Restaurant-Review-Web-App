@@ -204,14 +204,25 @@ app.post("/loginPage", async (req, res) => {
   }
 });
 
-app.get("/indexLog", (req, res) => {
-  res.render("indexLog", {
-    title: "Home",
-    script: "static/js/IndexRules.js",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    css1: "static/css/styles.css",
-    css2: "static/css/restaurantStyles.css",
-  });
+app.get("/indexLog", async (req, res) => {
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+
+    res.render("indexLog", {
+      title: "Home",
+      script: "static/js/IndexRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/styles.css",
+      css2: "static/css/restaurantStyles.css",
+      user: user
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
 });
 
 app.get("/restaurant", (req, res) => {
