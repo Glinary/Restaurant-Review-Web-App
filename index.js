@@ -73,15 +73,32 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 // ---- ACCOUNT SWITCH ---- //
-const Account = function (email) {
-    this.email = email;
+class Account {
+    constructor(email) {
+        this.email = email;
+    }
+
+    async init() {
+        const user = await Users.findOne({ email: this.email });
+        if (user) {
+            this.userName = user.userName;
+        } else {
+            // Handle the case where the email doesn't match any user in the database.
+            // For example, you can set a default value for this.userName or throw an error.
+            this.userName = "New_User";
+            // Or throw an error like this:
+            // throw new Error("User not found");
+        }
+    }
 }
 
-let currentAccount = new Account ("guest@email.com");
-
-function switchAccount(newAccount) {
+async function switchAccount(newAccount) {
+    await newAccount.init();
     currentAccount = newAccount;
 }
+
+let currentAccount = new Account("guest@email.com");
+
 // --- ACCOUNT SWITCH --- //
 
 // ---------- ROUTES SECTION ---------- //
@@ -118,7 +135,7 @@ app.post("/loginPage", async (req, res) => {
                 const result = await mainUser.comparePW(pw);
                 if (result) {
                     let account = new Account(email);
-                    switchAccount(account);
+                    await switchAccount(account);
 
                     res.redirect(`/indexLog?email=${email}`);
                     console.log("Logged In");
@@ -184,7 +201,7 @@ app.get("/reviewPage", (req, res) => {
     })
 });
 
-app.post("/reviewPage", (req, res) => {
+app.post("/reviewPage", async (req, res) => {
     //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
     //TODO: how to get star rating with the current GUI-like interface of the stars
     const {restaurantName, reviewDesc} = req.body;
@@ -192,8 +209,9 @@ app.post("/reviewPage", (req, res) => {
 
     if (reviewDesc) {
         const review = new Reviews({
+            email: currentAccount.email,
             restaurantName: restaurantName,
-            userName: "test",
+            userName: currentAccount.userName,
             reviewDesc: reviewDesc,
             starRating: "5.0"
         })
@@ -230,15 +248,26 @@ app.get("/RestoView-SB", async(req, res) => {
     
 });
 
-app.get("/RestoView-SB-out", (req, res) => {
-    res.render("RestoView-SB-out", {
-        title: "Starbucks",
-        script: "static/js/ViewEstablishmentRules.js",
-        script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "static/css/ViewEstablishmentStyles.css",
-        css2: "static/css/StylesOut.css",
-        reviews: reviews
-    })
+app.get("/RestoView-SB-out", async (req, res) => {
+
+    try {
+        // Query everything that has a restaurant name of "Angry Dobo"
+        const reviews = await Reviews.find({ restaurantName: "David's Tea House" }).lean();
+    
+        res.render("RestoView-SB-out", {
+            title: "Starbucks",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/StylesOut.css",
+            reviews: reviews
+        });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+
+    
 });
 
 app.get("/RestoView-DTH", async (req, res) => {
@@ -409,6 +438,41 @@ app.get("/editProfile", (req, res) => {
     })
 });
 
+app.post("/editProfile", (req, res) => {
+    email = currentAccount.email
+    console.log(email);
+
+    const {userName, userDescription} = req.body;
+    console.log(userName);
+    console.log(userDescription)
+
+    if (userName && userDescription) {
+        //update query
+        Users.findOneAndUpdate(
+            {email : email}, //find based on matching email
+            {userName : userName, userDescription : userDescription },
+            {new : true} // return the updated document
+        )
+        .then((updatedUser) => {
+            if (!updatedUser) {
+                console.log("User not found!");
+                return res.status(404).json({ error: "User not found" });
+            }
+            console.log("User updated:", updatedUser);
+            // redirect to the user's profile page:
+            res.redirect("/viewprofileU1");
+        })
+        .catch((err) => {
+            console.error("Error updating user:", err);
+            res.status(500).json({ error: "Error updating user" });
+        });
+    } else {
+        res.status(400);
+        res.redirect("/error");
+        console.log("Invalid request");
+    }
+});
+
 app.get("/TNBestablishmentOwnerView", (req, res) => {
     res.render("TNBestablishmentOwnerView", {
         title: "Tinuhog ni Benny",
@@ -424,31 +488,28 @@ app.get("/viewprofileU1", async (req, res) => {
     try {
         // Query everything that has a restaurant name of "Starbucks"
         // TODO: set query to current user object
-        const user = await Users.find({ email: currentAccount.email });
-        const review = await Reviews.find({ email: currentAccount.email});
+        const user = await Users.findOne({ email: currentAccount.email }).lean();
+        console.log(user)
+        const reviews = await Reviews.find({ email: currentAccount.email}).lean();
+        console.log(reviews)
+        console.log("done")
     
-        res.render("RestoView-SB", {
-            title: "Starbucks",
-            script: "static/js/ViewEstablishmentRules.js",
+        res.render("viewprofileU1", {
+            title: "View Profile",
+            script: "static/js/ViewProfileRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "static/css/ViewEstablishmentStyles.css",
             css2: "static/css/styles.css",
             user: user,
-            review: review
-        });
+            reviews: reviews
+        })
     } catch (error) {
         console.error("Error querying reviews:", error);
         res.status(500).send("Error querying reviews");
     }
     //
 
-    res.render("viewprofileU1", {
-        title: "View Profile",
-        script: "static/js/ViewProfileRules.js",
-        script2: "https://kit.fontawesome.com/78bb10c051.js",
-        css1: "static/css/ViewEstablishmentStyles.css",
-        css2: "static/css/styles.css"
-    })
+    
 });
 
 // ---------- ROUTES SECTION ---------- //

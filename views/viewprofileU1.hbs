@@ -93,15 +93,20 @@
 <!-- END OF PROFILE SECTION -->
 
 <!-- START OF REVIEW SECTION -->
-    {{#each reviews}}
     <div class="reviews-section">
+      
       <div class="label-and-navigator" id="review">
         <h3>User's Reviews</h3>
         <h4>View All</h4>
       </div>
+      
+      {{#each reviews}}
       <div class="reviews-content-container">
+      
         <div class="reviews-left-container">
+          
           <div class="left">
+            
             <div class="reviews-user-details">
               <img
                 src="assets/anonymous_picture.png"
@@ -171,6 +176,8 @@
           </div>
         </div>
       </div>
+      {{/each}}
+      
 <!-- ->
 
         <div class="reviews-pictures">
