@@ -681,6 +681,10 @@ header {
 
 /*========== START OF REPLY SECTION ==========*/
 
+
+.reply {
+  margin-top:2rem;
+}
 .reply h4 {
   margin: 0rem 1rem 1rem 1rem;
 }

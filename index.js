@@ -240,7 +240,6 @@ app.get("/RestoView-SB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Starbucks"
     const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
-
     // Another query to get the highest-rated review for Starbucks
     const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
@@ -260,6 +259,38 @@ app.get("/RestoView-SB", async (req, res) => {
     console.error("Error querying reviews:", error);
     res.status(500).send("Error querying reviews");
   }
+});
+
+app.post("/RestoView-SB", async (req, res) => {
+
+  const { reviewReply, reviewDesc, currentUser} = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+    Reviews.findOneAndUpdate(
+      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+      { reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName
+      }},
+      { new: true } // return the updated document
+    )
+      .then((updatedReview) => {
+        if (!updatedReview) {
+          console.log("Review not found!");
+          return res.status(404).json({ error: "Review not found" });
+        }
+        console.log("Review updated:", updatedReview);
+        // redirect to the resto view:
+        res.redirect("RestoView-SB");
+    })
+    .catch((err) => {
+        console.error("Error updating review:", err);
+        res.status(500).json({ error: "Error updating review" });
+    });
+
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {
