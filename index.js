@@ -845,16 +845,18 @@ app.get("/viewprofileU1", async (req, res) => {
 });
 
 app.get("/visitProfile", async (req, res) => {
+  const { visitEmail } = req.query;
+  console.log(visitEmail);
   //query here
   try {
     // Query everything that has a restaurant name of "Starbucks"
     // TODO: set query to current user object
     const user = await Users.findOne({ email: currentAccount.email }).lean();
-    console.log(user);
-    const reviews = await Reviews.find({ email: viewUser.email }).lean();
-    console.log(reviews);
-    const visit = await Users.findOne({ email: viewUser.email }).lean();
-    console.log(reviews);
+    console.log("User: ", user);
+    const reviews = await Reviews.find({ email: visitEmail }).lean();
+    console.log("Reviews: ", reviews);
+    const visit = await Users.findOne({ email: visitEmail }).lean();
+    console.log("Visit Email: ", visit);
     console.log("done");
 
     res.render("visitProfile", {
