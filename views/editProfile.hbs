@@ -19,7 +19,7 @@
         <div class="menu-line"></div>
         <div class="search-container2">
         <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
-        <form action="SearchPage.html" id="searchform" method="get">
+        <form action="/SearchPage" id="searchform" method="get">
             <input
               type="text"
               placeholder="Type to search"
@@ -78,7 +78,6 @@
             <p>Upload your Profile Picture</p>
             <div class="image-section">
               <div class="image-section1">
-        <form action="viewprofileU1.html">
                 <div class="user-upload">
                   <!-- https://nikitahl.com/custom-styled-input-type-file -->
                     <input id="user-rev-pic1" name="user-rev-pic1" type="file" />
@@ -89,6 +88,7 @@
         
 
         <!-- center-block: review box -->
+        <form id="editProfile-form" action="/editProfile" method="post">
         <div class="block1 roundblock">
           <div id="heading">
           <p>Write Your Name</p>
@@ -97,18 +97,19 @@
               <div class="user-name">
                 <textarea
                   id="user-rev"
-                  name="user-rev"
+                  name="userName"
                   rows="8"
                   cols="120"
-                  placeholder="FIRST NAME"
+                  placeholder="name"
                   maxlength="350"
                 ></textarea>
               </div>
           </div>
+          <!--
           <div class="name-section">
               <div class="user-name">
                 <textarea
-                    id="user-rev"
+                    id="user-rev-1"
                     name="user-rev"
                     rows="8"
                     cols="120"
@@ -117,7 +118,9 @@
                 ></textarea>
               </div>
           </div>
+          -->
         </div>
+        
 
         <div class="block1 roundblock">
             <div id="heading">
@@ -126,8 +129,8 @@
             <div class="desc-section">
                 <div class="user-desc">
                   <textarea
-                    id="user-rev"
-                    name="user-rev"
+                    id="user-rev-2"
+                    name="userDescription"
                     rows="8"
                     cols="120"
                     placeholder="write your description about yourself here"
@@ -142,11 +145,11 @@
         <div class="submission">
           <div class="buttons">
             <div class="cancel"><a href="/viewprofileU1">cancel</a></div>
-            <input id="submit" type="submit" value="update profile"> 
+            <input id="submit" form="editProfile-form" type="submit" value="update profile"> 
           </div>
-        </form>
         </div>
       </div>
+      </form>
       <!-- end of center block -->
 
       <div class="right-block roundblock"></div>
