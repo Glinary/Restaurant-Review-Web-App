@@ -67,19 +67,18 @@ submitForm.addEventListener("click", (e) => {
   const title = formData.get("title");
   const reviewMes = formData.get("review");
   const rate = starR;
-  // console.log(rate);
-  // console.log(title);
-  // console.log(reviewMes);
+  console.log(rate);
+  console.log(title);
+  console.log(reviewMes);
 
   const jstring = JSON.stringify({
-    title,
     reviewMes,
     rate,
     restaurantName,
   });
   console.log(jstring);
 
-  fetch("/reviewPageHere", {
+  fetch("/reviewPagePost", {
     method: "POST",
     body: jstring,
     headers: {

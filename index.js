@@ -203,19 +203,18 @@ app.get("/reviewPage", (req, res) => {
   });
 });
 
-app.post("/reviewPage", async (req, res) => {
+app.use(express.json());
+app.post("/reviewPagePost", async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
-  const { title, reviewMes, rate, restaurantName } = req.body;
-  console.log(restaurantName);
+  const { reviewMes, rate, restaurantName } = req.body;
+  console.log(restaurantName, rate, reviewMes);
 
-  if (title) {
-    const placeholder = "sohyun@gmail.com";
-    const placeholder2 = "WIki";
+  if (restaurantName) {
     const review = new Reviews({
-      email: placeholder, //currentAccount.email,
+      email: "jiji@gmail.com", //currentAccount.email,
       restaurantName: restaurantName,
-      userName: placeholder2, //currentAccount.userName,
+      userName: "Nana", //currentAccount.userName,
       reviewDesc: reviewMes,
       starRating: rate,
     });
