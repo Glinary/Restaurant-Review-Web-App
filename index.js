@@ -142,6 +142,7 @@ async function switchAccount(newAccount) {
 }
 
 let currentAccount = new Account("guest@email.com");
+let viewUser = new Account("guest@email.com");
 
 // --- ACCOUNT SWITCH --- //
 
@@ -259,10 +260,12 @@ app.post("/reviewPage", async (req, res) => {
   console.log("----");
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
     const review = new Reviews({
       email: currentAccount.email,
       restaurantName: restaurantName,
-      userName: currentAccount.userName,
+      userName: user.userName,
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
@@ -831,6 +834,36 @@ app.get("/viewprofileU1", async (req, res) => {
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "static/css/ViewEstablishmentStyles.css",
       css2: "static/css/styles.css",
+      user: user,
+      reviews: reviews,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+  //
+});
+
+app.get("/visitProfile", async (req, res) => {
+  //query here
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+    const reviews = await Reviews.find({ email: viewUser.email }).lean();
+    console.log(reviews);
+    const visit = await Users.findOne({ email: viewUser.email }).lean();
+    console.log(reviews);
+    console.log("done");
+
+    res.render("visitProfile", {
+      title: "View Profile",
+      script: "static/js/ViewProfileRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/styles.css",
+      visit: visit,
       user: user,
       reviews: reviews,
     });
