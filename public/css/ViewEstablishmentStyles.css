@@ -122,13 +122,17 @@ header {
 /*start of edit-profile-section*/
 
 .edit-profile-section {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 1rem;
+  margin-bottom: 1rem;
   bottom: 0;
   flex-basis: 35rem;
   margin-top: 0rem;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .edit-profile-section img {
@@ -139,12 +143,16 @@ header {
 
 .edit-profile-section h4 {
   margin-top: 0.5rem;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 
 /*end of edit-profile-section*/
 
 /*start of top-reviews-section*/
+
+.yohoo {
+  min-width: 40%;
+}
 .top-reviews-section {
   display: flex;
   flex-direction: column;
@@ -1301,6 +1309,8 @@ header {
   .edit-profile-section {
     padding-right: 2rem;
     padding-top: 0.5rem;
+    box-sizing: border-box;
+    width: 50vw;
   }
 
   .edit-profile-section img {

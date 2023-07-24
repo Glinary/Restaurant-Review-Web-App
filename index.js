@@ -7,6 +7,7 @@ const path = require("path");
 
 // ---------- Dependencies #2 ---------- //
 const mongoose = require("mongoose");
+const upload = require(path.join(__dirname, "./middleware/upload")); //uploading js
 const connectionString = "mongodb://127.0.0.1:27017/reviews";
 
 //CAUTION: UNCOMMENT TO DROP SCHEMA DATA
@@ -208,12 +209,12 @@ app.post("/reviewPage", async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
   const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
-  console.log("----")
+  console.log("----");
   console.log(reviewTitle);
   console.log(reviewDesc);
   console.log(starRating);
   console.log(restaurantName);
-  console.log("----")
+  console.log("----");
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const review = new Reviews({
@@ -222,7 +223,7 @@ app.post("/reviewPage", async (req, res) => {
       userName: currentAccount.userName,
       reviewDesc: reviewDesc,
       starRating: starRating,
-      reviewTitle: reviewTitle
+      reviewTitle: reviewTitle,
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -262,30 +263,29 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {
-    
-    try {
-        // Query everything that has a restaurant name of "Starbucks"
-        const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
 
         // Another query to get the highest-rated review for Starbucks
         const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
         .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
         .limit(1) // Limit the result to one review
         .lean();
-    
-        res.render("RestoView-SB-out", {
-            title: "Starbucks",
-            script: "static/js/ViewEstablishmentRules.js",
-            script2: "https://kit.fontawesome.com/78bb10c051.js",
-            css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css",
-            reviews: reviews,
+
+    res.render("RestoView-SB-out", {
+      title: "Starbucks",
+      script: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/stylesOut.css",
+      reviews: reviews,
             highestRated: highestRated
-          });
-    } catch (error) {
-        console.error("Error querying reviews:", error);
-        res.status(500).send("Error querying reviews");
-    }
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
 });
 
 app.get("/RestoView-DTH", async (req, res) => {
@@ -471,11 +471,12 @@ app.post("/registrationPage", async (req, res) => {
           accountType: "viewer",
           password: pw,
           userDescription: "No Description Added Yet.",
+          avatar: "public\\assets\\anonymous_picture.png",
         });
 
         let account = new Account(email);
-          await switchAccount(account);
-          
+        await switchAccount(account);
+
         newUser.save().then(() => {
           console.log("new user added");
           res.redirect(`/editProfile?email=${email}`);
@@ -531,7 +532,7 @@ app.get("/editProfile", (req, res) => {
   });
 });
 
-app.post("/editProfile", (req, res) => {
+app.post("/editProfile", upload.single("avatar"), (req, res) => {
   email = currentAccount.email;
   console.log(email);
 
@@ -541,6 +542,24 @@ app.post("/editProfile", (req, res) => {
 
   if (userName && userDescription) {
     //update query
+    if (req.file) {
+      Users.findOneAndUpdate(
+        { email: email }, //find based on matching email
+        { avatar: req.file.path },
+        { new: true } // return the updated document
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            console.log("User not found!");
+            return res.status(404).json({ error: "User not found" });
+          }
+          console.log("Avatar updated:", updatedUser);
+        })
+        .catch((err) => {
+          console.error("Error updating user:", err);
+          res.status(500).json({ error: "Error updating user" });
+        });
+    }
     Users.findOneAndUpdate(
       { email: email }, //find based on matching email
       { userName: userName, userDescription: userDescription },
@@ -564,15 +583,6 @@ app.post("/editProfile", (req, res) => {
     res.redirect("/error");
     console.log("Invalid request");
   }
-});
-
-app.get("/TNBestablishmentOwnerView", (req, res) => {
-  res.render("TNBestablishmentOwnerView", {
-    title: "Tinuhog ni Benny",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    script3: "static/js/TNBestablishmentOwnerView.js",
-    css1: "static/css/ViewEstablishmentStyles.css",
-  });
 });
 
 app.get("/viewprofileU1", async (req, res) => {

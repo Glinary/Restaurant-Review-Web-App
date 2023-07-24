@@ -35,56 +35,51 @@
 //   });
 // }
 
-const urlParams = new URLSearchParams(window.location.search);
-const restaurantName = urlParams.get("restaurantName");
-const restaurantNameInput = document.getElementById("restaurantNameInput");
-// Set the value of the hidden input field to the retrieved restaurant name
-if (restaurantNameInput) {
-  restaurantNameInput.value = restaurantName;
-}
+// const urlParams = new URLSearchParams(window.location.search);
+// const restaurantName = urlParams.get("restaurantName");
+// const restaurantNameInput = document.getElementById("restaurantNameInput");
+// // Set the value of the hidden input field to the retrieved restaurant name
+// if (restaurantNameInput) {
+//   restaurantNameInput.value = restaurantName;
+// }
 
-const urlPath = location.href.split("/").slice(-1);
-// console.log(urlPath);
+// const urlPath = location.href.split("/").slice(-1);
+// // console.log(urlPath);
 
-var starR = 5;
+// var starR = 5;
 
-$(":radio").change(function () {
-  console.log("New star rating: " + this.value);
-  starR = this.value;
+// $(":radio").change(function () {
+//   console.log("New star rating: " + this.value);
+//   starR = this.value;
 
-  // console.log(starR);
-});
+//   // console.log(starR);
+// });
 
-const submitForm = document.querySelector("#submitForm");
-const formElement = document.forms[1];
-// console.log(formElement);
-// console.log(submitForm);
+// const submitForm = document.querySelector("#submitForm");
+// const formElement = document.forms[1];
 
-submitForm.addEventListener("click", (e) => {
-  e.preventDefault();
+// submitForm.addEventListener("click", (e) => {
+//   e.preventDefault();
 
-  const formData = new FormData(formElement);
-  const title = formData.get("title");
-  const reviewMes = formData.get("review");
-  const rate = starR;
-  console.log(rate);
-  console.log(title);
-  console.log(reviewMes);
+//   const formData = new FormData(formElement);
+//   const title = formData.get("title");
+//   const reviewMes = formData.get("review");
+//   const rate = starR;
 
-  const jstring = JSON.stringify({
-    reviewMes,
-    rate,
-    restaurantName,
-  });
-  console.log(jstring);
+//   const jstring = JSON.stringify({
+//     reviewMes,
+//     rate,
+//     restaurantName,
+//   });
+//   console.log(jstring);
 
-  fetch("/reviewPagePost", {
-    method: "POST",
-    body: jstring,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => {
-    console.log(response);
-  });
-});
+//   fetch("/reviewPagePost", {
+//     method: "POST",
+//     body: jstring,
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   }).then((response) => {
+//     console.log(response);
+//   });
+// });
