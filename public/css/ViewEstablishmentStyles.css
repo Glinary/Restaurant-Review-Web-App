@@ -56,6 +56,15 @@ header {
   cursor: pointer;
 }
 
+#titleBl {
+  display: inline;
+  margin: 1rem 0rem;
+  padding-bottom: 1rem;
+  color: #343232;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .contain-profile {
   height: fit-content;
   min-width: fit-content;

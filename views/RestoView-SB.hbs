@@ -78,6 +78,7 @@
       </div>
       <div class="yohoo">
         <div class="profile-section" id="profile">
+           <div class="contain-profile"> 
             <div class="profile-pictures-section">
             <div class="profile-picture">
                 <img src="assets/starbucks.jpg" />
@@ -90,7 +91,7 @@
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
               <p>4.8</p>
             </div>
-
+            </div>
             </div>
             <div class="profile-description">
             <h1>Starbucks</h1>
@@ -102,7 +103,8 @@
 
             <div class="edit-profile-section">
             <h4>Add Review</h4>
-            <a href="/reviewPage?restaurantName=Starbucks"><img src="assets/book_icon.png" /></a>
+            <a href="/reviewPage?restaurantName=Starbucks">
+            <img src="assets/book_icon.png" /></a>
             </div>
 
         <div class="top-reviews-section">
@@ -151,8 +153,7 @@
         
                 <!-- User Review Images (right) -->
                 <div class="top-reviews-pictures">
-                  <img src="assets/SB1.jpg" class="top-review-image" />
-                  <img src="assets/SB2.jpg" class="top-review-image" />
+                  <img src="assets/SB1.jpg" class="top-review-image" /><img src="assets/SB2.jpg" class="top-review-image" />
                 </div>
             </div>
 
@@ -309,7 +310,7 @@
               </div>
             </div>
           </div>
-          {{/each}}
+          
 
         <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
@@ -345,5 +346,6 @@
               </div>
             </div>
             </div>
+            {{/each}}
           </div>
       </div>

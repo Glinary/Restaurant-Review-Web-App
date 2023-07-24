@@ -356,7 +356,7 @@ app.get("/RestoView-ADB-out", async (req, res) => {
 app.get("/RestoView-TNB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Starbucks"
-    const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    const reviews = await Reviews.find({ restaurantName: "Tinuhog Ni Benny" }).lean();
 
     res.render("RestoView-TNB", {
       title: "Tinuhog ni Benny",
