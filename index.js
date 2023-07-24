@@ -73,14 +73,14 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 // ---- ACCOUNT SWITCH ---- //
-const User = function (email) {
+const Account = function (email) {
     this.email = email;
 }
 
-let currentUser = new User ("guest@email.com");
+let currentAccount = new Account ("guest@email.com");
 
-function switchUser(newUser) {
-    currentUser = newUser;
+function switchAccount(newAccount) {
+    currentAccount = newAccount;
 }
 // --- ACCOUNT SWITCH --- //
 
@@ -117,6 +117,9 @@ app.post("/loginPage", async (req, res) => {
             if (mainUser != null) {
                 const result = await mainUser.comparePW(pw);
                 if (result) {
+                    let account = new Account(email);
+                    switchAccount(account);
+
                     res.redirect(`/indexLog?email=${email}`);
                     console.log("Logged In");
                 } else {
@@ -421,8 +424,8 @@ app.get("/viewprofileU1", async (req, res) => {
     try {
         // Query everything that has a restaurant name of "Starbucks"
         // TODO: set query to current user object
-        const user = await Users.find({ email: current.email });
-        const review = await Reviews.find({ email: current.email});
+        const user = await Users.find({ email: currentAccount.email });
+        const review = await Reviews.find({ email: currentAccount.email});
     
         res.render("RestoView-SB", {
             title: "Starbucks",
