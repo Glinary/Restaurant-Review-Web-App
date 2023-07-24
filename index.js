@@ -294,7 +294,7 @@ app.get("/RestoView-DTH", async (req, res) => {
         const reviews = await Reviews.find({ restaurantName: "David's Tea House" }).lean();
 
         // Another query to get the highest-rated review for David's Tea House
-        const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
+        const highestRated = await Reviews.findOne({ restaurantName: "David's Tea House" })
         .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
         .limit(1) // Limit the result to one review
         .lean();
