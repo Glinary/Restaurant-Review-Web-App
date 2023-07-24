@@ -22,11 +22,11 @@
             class="fa-solid fa-magnifying-glass fa-2x"
             style="color: #ceb9a7; margin-left: 0.5rem"
           ></i>
-          <form action="/SearchPage" id="searchform" method="post">
+          <form action="SearchPage.html" id="searchform" method="get">
               <input
                 type="text"
                 placeholder="Type to search"
-                name="keyword"
+                name="searchBar"
                 id="searchBar"
               />
               <input type="submit" value="submit" />
@@ -126,7 +126,7 @@
                     <!-- User Review Information-->
                     <div class="top-further-details">
                       <div class="top-name">
-                        <a class="top-firstname" href="/viewprofileU1">{{highestRated.userName}}</a>
+                        <a class="top-firstname" href="/visitProfile?visitEmail={{highestRated.email}}">{{highestRated.userName}}</a>
                       </div>
                       <div class="top-others">
                         <p class="top-review-count">10 Reviews</p>
@@ -197,7 +197,7 @@
               <!-- User Review Information-->
                 <div class="further-details">
                   <div class="name">
-                    <a class="firstname" href="viewprofileU5.html">{{this.userName}}</a>
+                    <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{this.userName}}</a>
                   </div>
                   <div class="others">
                     <p class="review-count">9 Reviews</p>
