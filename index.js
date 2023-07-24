@@ -39,10 +39,13 @@ mongoose
 //Connect to Schemas
 const Reviews = require(path.join(__dirname, "./schema/Reviews"));
 const Users = require(path.join(__dirname, "./schema/Users"));
+const Restaurant = require(path.join(__dirname, "./schema/Restaurant"));
 
 app.use(express.urlencoded({ extended: true }));
 
-/* ---------- SAMPLE CODE OF HOW TO PUSH DATA TO SCHEMA ---------- 
+/* ---------- MANUALLY PUSH SAMPLE DATA TO SCHEMA ---------- */
+/*
+
 run()
 async function run() {
     const reviewSample = await Reviews.create({
@@ -53,7 +56,9 @@ async function run() {
     });
     console.log(reviewSample);
 }
----------- SAMPLE CODE OF HOW TO PUSH DATA TO SCHEMA ---------- */
+*/
+
+/* ---------- MANUALLY PUSH SAMPLE DATA TO SCHEMA ---------- */
 
 // ---------- Dependencies #2 ---------- //
 
@@ -74,6 +79,42 @@ app.engine(
 );
 app.set("view engine", "hbs");
 app.set("views", "./views");
+
+
+//INSERT RESTAURANTS TO SCHEMA
+
+run()
+async function run() {
+    const restaurant1 = await Restaurant.create({
+        link: "/RestoView-SB",
+        img: "assets/starbucks.jpg",
+        desc: "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
+        name: "Starbucks",
+        starRating: "4.8"
+    });
+    const restaurant2 = await Restaurant.create({
+      link: "/RestoView-DTH",
+      img: "assets/DTH.jpg",
+      desc: "Let the authentic taste of Chinese cuisine from delicate dim sum to tantalizing stir-fries be at your reach anytime.",
+      name: "David's Tea House",
+      starRating: "4.6"
+    });
+    const restaurant3 = await Restaurant.create({
+      link: "/RestoView-TNB",
+      img: "assets/TNB.jpeg",
+      desc: "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
+      name: "Tinuhog ni Benny",
+      starRating: "5.0"
+    });
+    const restaurant4 = await Restaurant.create({
+      link: "/RestoView-ADBB",
+      img: "assets/ADB.png",
+      desc: "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
+      name: "Angry Dobo",
+      starRating: "4.7"
+    });
+    console.log(restaurant1);
+}
 
 // ---- ACCOUNT SWITCH ---- //
 class Account {
@@ -107,6 +148,7 @@ let currentAccount = new Account("guest@email.com");
 // ---------- ROUTES SECTION ---------- //
 
 app.get("/", (req, res) => {
+
   res.render("index", {
     title: "Home",
     script: "static/js/IndexRules.js",
@@ -618,26 +660,79 @@ app.post("/registrationPage", async (req, res) => {
   }
 });
 
-app.get("/searchPage", (req, res) => {
-  res.render("searchPage", {
-    title: "Search Results",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    script3: "static/js/SearchPage.js",
-    css1: "static/css/restaurantStyles.css",
-    css2: "static/css/SearchStyle.css",
-    css3: "static/css/styles.css",
-  });
+app.get("/searchPage", async(req, res) => {
+  try {
+    const keyword = req.query.keyword;
+    // Query all restos that contain the given keyword in the restoname field
+    const restaurants = await Restaurant.find({ name: { $regex: keyword, $options: 'i' } }).lean();
+
+    res.render("searchPage", {
+      title: "Search Results",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      script3: "static/js/SearchPage.js",
+      css1: "static/css/restaurantStyles.css",
+      css2: "static/css/SearchStyle.css",
+      css3: "static/css/styles.css",
+      restaurants: restaurants,
+      keyword: keyword
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
 });
 
-app.get("/searchPageLogout", (req, res) => {
-  res.render("searchPageLogout", {
-    title: "Search Results",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    script3: "static/js.SearchPageLogout.js",
-    css1: "static/css/restaurantStyles.css",
-    css2: "static/css/SearchStyle.css",
-    css3: "static/css/StylesOut.css",
-  });
+app.post("/searchPage", (req, res) => {
+  const {keyword} = req.body;
+
+  console.log(keyword);
+  if (keyword) {
+      console.log("search submitted");
+      res.redirect(`/searchPage?keyword=${keyword}`);
+  } else {
+    res.status(400);
+    res.redirect("/error");
+    console.log("readme");
+  }
+
+});
+
+app.get("/searchPageLogout", async (req, res) => {
+
+  try {
+    const keyword = req.query.keyword;
+    // Query all restos that contain the given keyword in the restoname field
+    const restaurants = await Restaurant.find({ name: { $regex: keyword, $options: 'i' } }).lean();
+
+    res.render("searchPageLogout", {
+      title: "Search Results",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      script3: "static/js.SearchPageLogout.js",
+      css1: "static/css/restaurantStyles.css",
+      css2: "static/css/SearchStyle.css",
+      css3: "static/css/StylesOut.css",
+      restaurants: restaurants,
+      keyword: keyword
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+});
+
+app.post("/searchPageLogout", (req, res) => {
+  const {keyword} = req.body;
+
+  console.log(keyword);
+  if (keyword) {
+      console.log("search submitted");
+      res.redirect(`/searchPageLogout?keyword=${keyword}`);
+  } else {
+    res.status(400);
+    res.redirect("/error");
+    console.log("readme");
+  }
+
 });
 
 app.get("/editProfile", async (req, res) => {

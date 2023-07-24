@@ -61,7 +61,7 @@
       <div class="search-alert">
         <p>
           search result for: "
-          <span id="result" data-result="#">angrydobo</span>"
+          <span id="result" data-result="#">{{keyword}}</span>"
         </p>
       </div>
       <div id="filter-result-box">
@@ -77,23 +77,24 @@
       </div>
     </div>
 
+    {{#each restaurants}}
     <div class="restobox-cont">
       <div class="resto-container">
-        <a href="/RestoView-ADB-out"
-          ><img src="assets/ADB.png" id="restaurant1"
+        <a href="{{this.link}}"
+          ><img src="{{this.img}}" id="restaurant1"
         /></a>
         <div id="resto-desc">
           <p>
-            Ignite your senses with one of the all-time Filipino favorite Adobo
-            where every bite is burst of culinary passion.
+            {{this.desc}}
           </p>
         </div>
         <div id="resto-innerLabel">
-          <p id="r-label">Angry Dobo</p>
+          <p id="r-label">{{this.name}}</p>
           <div class="cont">
             <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-            <p id="r-label">4.7</p>
+            <p id="r-label">{{this.starRating}}</p>
           </div>
         </div>
       </div>
     </div>
+    {{/each}}
