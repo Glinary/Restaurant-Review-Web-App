@@ -311,7 +311,7 @@ app.get("/RestoView-SB-out", async (req, res) => {
       css1: "static/css/ViewEstablishmentStyles.css",
       css2: "static/css/stylesOut.css",
       reviews: reviews,
-            highestRated: highestRated
+      highestRated: highestRated
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
