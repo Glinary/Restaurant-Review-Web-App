@@ -199,7 +199,7 @@ app.post("/loginPage", async (req, res) => {
     }
   } else {
     res.status(400);
-    res.redirect("/error");
+    res.redirect("/loginPage");
     console.log("readme");
   }
 });
@@ -289,7 +289,7 @@ app.post("/reviewPage", async (req, res) => {
     });
   } else {
     res.status(400);
-    res.redirect("/error");
+    res.redirect("/reviewPage");
     console.log("readme");
   }
 });
@@ -674,7 +674,7 @@ app.post("/registrationPage", async (req, res) => {
     }
   } else {
     res.status(400);
-    res.redirect("/error");
+    res.redirect("/registrationPage");
     console.log("readme");
   }
 });
@@ -828,7 +828,7 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
       });
   } else {
     res.status(400);
-    res.redirect("/error");
+    res.redirect("/editProfile");
     console.log("Invalid request");
   }
 });
