@@ -74,13 +74,14 @@
       <div class="center-block roundblock">
 
         <!-- center-block: image box -->
+        <form id="editProfile-form" action="/editProfile" method="post" enctype="multipart/form-data">
         <div class="block2 roundblock">
             <p>Upload your Profile Picture</p>
             <div class="image-section">
               <div class="image-section1">
                 <div class="user-upload">
                   <!-- https://nikitahl.com/custom-styled-input-type-file -->
-                    <input id="user-rev-pic1" name="user-rev-pic1" type="file" />
+                    <input id="avatar" name="avatar" type="file" />
                 </div>
               </div>
             </div>
@@ -88,7 +89,6 @@
         
 
         <!-- center-block: review box -->
-        <form id="editProfile-form" action="/editProfile" method="post">
         <div class="block1 roundblock">
           <div id="heading">
           <p>Write Your Name</p>
@@ -150,6 +150,7 @@
         </div>
       </div>
       </form>
+  
       <!-- end of center block -->
 
       <div class="right-block roundblock"></div>

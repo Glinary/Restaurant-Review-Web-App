@@ -23,6 +23,10 @@ const usersSchema = new mongoose.Schema({
     userDescription: {
         type: String,
         required: false
+    },
+    avatar: {
+        type: String,
+        required: true
     }
 })
 

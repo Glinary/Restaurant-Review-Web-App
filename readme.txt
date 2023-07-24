@@ -14,3 +14,4 @@ DEPENDENCIES
 "npm i express mongoose"
 "npm i --save-dev dotenv nodemon"
 "npm i express-handlebars"
+"npm i --save multer"
