@@ -117,7 +117,8 @@
                     <!-- User Review Information-->
                     <div class="top-further-details">
                       <div class="top-name">
-                        <a class="top-firstname" href="/loginPage">Harry Potter</a>                      </div>
+                        <a class="top-firstname" href="/loginPage">{{highestRated.userName}}</a>                      
+                      </div>
                       <div class="top-others">
                         <p class="top-review-count">19 Reviews</p>
                       </div>
@@ -136,7 +137,7 @@
                   <!-- User Review -->
                   <div class="review">
                     <p class="top-review-paragraph">
-                      The taste is not that consistent. Sometimes the broccoli was cooked very well and sometimes it gets too salty. Sometimes the serving is too little for its price. Overall, most of their food is still delicious but it’s not consistent and not so affordable.
+                      {{highestRated.reviewDesc}}
                     </p>
                   </div>
                 </div>
