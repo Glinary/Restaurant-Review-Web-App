@@ -74,12 +74,13 @@
         <div class="center-block roundblock">
 
           <div class="block0 roundblock">
-                <form id="createReview" name="createReview">
+                <form id="createReview" name="createReview" action="/reviewPage" method="POST">
                   
                   <span id="labels"><label for="title">Title</label></span>
+                      
                       <textarea
                         id="title"
-                        name="title"
+                        name="reviewTitle"
                         rows="1"
                         cols="10"
                         placeholder="write title for your review here"
@@ -93,29 +94,29 @@
                     <div class="cont">Rating:
                     <div class="rating">
                       <label>
-                        <input type="radio" name="stars" value="1" />
+                        <input type="radio" name="starRating" value="1" />
                         <span class="icon">★</span>
                       </label>
                       <label>
-                        <input type="radio" name="stars" value="2" />
-                        <span class="icon">★</span>
-                        <span class="icon">★</span>
-                      </label>
-                      <label>
-                        <input type="radio" name="stars" value="3" />
-                        <span class="icon">★</span>
+                        <input type="radio" name="starRating" value="2" />
                         <span class="icon">★</span>
                         <span class="icon">★</span>
                       </label>
                       <label>
-                        <input type="radio" name="stars" value="4" />
-                        <span class="icon">★</span>
+                        <input type="radio" name="starRating" value="3" />
                         <span class="icon">★</span>
                         <span class="icon">★</span>
                         <span class="icon">★</span>
                       </label>
                       <label>
-                        <input type="radio" name="stars" value="5" />
+                        <input type="radio" name="starRating" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="starRating" value="5" />
                         <span class="icon">★</span>
                         <span class="icon">★</span>
                         <span class="icon">★</span>
@@ -128,7 +129,7 @@
                 </span>
                       <textarea
                     id="review"
-                    name="review"
+                    name="reviewDesc"
                     rows="1"
                     cols="10"
                     placeholder="write your review here"
@@ -156,6 +157,7 @@
                     </div>
                   </div>
                 </div>
+                
 
                 <div class="buttons">
                     <div class="cancel"><a href="#">cancel</a></div>
@@ -164,6 +166,16 @@
                 <!-- Add a hidden input field to store the restaurant name -->
                 <input type="hidden" id="restaurantNameInput" name="restaurantName">
               </form>
+                    <script>
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const restaurantName = urlParams.get('restaurantName');
+                      const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+                       // Set the value of the hidden input field to the retrieved restaurant name
+                      if (restaurantNameInput) {
+                        restaurantNameInput.value = restaurantName;
+                      }
+                    </script>
             </div>
           <div class="right-block roundblock"></div>
         </div>

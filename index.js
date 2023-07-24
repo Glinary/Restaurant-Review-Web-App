@@ -206,18 +206,22 @@ app.get("/reviewPage", (req, res) => {
 app.post("/reviewPage", async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
-  const { title, reviewMes, rate, restaurantName } = req.body;
+  const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
+  console.log("----")
+  console.log(reviewTitle);
+  console.log(reviewDesc);
+  console.log(starRating);
   console.log(restaurantName);
+  console.log("----")
 
-  if (title) {
-    const placeholder = "sohyun@gmail.com";
-    const placeholder2 = "WIki";
+  if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const review = new Reviews({
-      email: placeholder, //currentAccount.email,
+      email: currentAccount.email,
       restaurantName: restaurantName,
-      userName: placeholder2, //currentAccount.userName,
-      reviewDesc: reviewMes,
-      starRating: rate,
+      userName: currentAccount.userName,
+      reviewDesc: reviewDesc,
+      starRating: starRating,
+      reviewTitle: reviewTitle
     });
     review.save().then(() => {
       console.log("review submitted");

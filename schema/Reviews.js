@@ -22,6 +22,10 @@ const reviewsSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
+    },
+    reviewTitle: {
+        type: String,
+        required: true
     }
 })
 
