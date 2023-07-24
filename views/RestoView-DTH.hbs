@@ -133,15 +133,11 @@
                   </div>
 
                   <!-- User Review Rating/Stars -->
-                  <div class="top-overall-stars">
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                  </div>
+                    <div class="overall-stars">
+                        {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                    </div>
 
-                  <!-- User Review -->
+                    <span id="titleBl">{{this.reviewTitle}} </span>
                   <div class="review">
                     <p class="top-review-paragraph">
                       {{this.reviewDesc}}
@@ -212,11 +208,7 @@
 
           <!-- User Review Rating/Stars -->
           <div class="overall-stars">
-            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-            <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-            <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-            <div id="Ostar"><i class="fa-regular fa-star"></i></div>
+              {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
           </div>
 
           <!-- User Review -->

@@ -365,7 +365,11 @@ header {
 }
 
 #top-Ostar {
-  margin: 0.05rem;
+  margin-right: -1rem;
+}
+
+p .stars {
+  color: red;
 }
 
 .top-overall-stars p {
@@ -596,7 +600,7 @@ header {
 
 .overall-stars {
   display: flex;
-  margin: 1rem 0;
+  margin: 0.02rem 0.8rem 1rem 0.8rem;
 }
 
 #Ostar {
