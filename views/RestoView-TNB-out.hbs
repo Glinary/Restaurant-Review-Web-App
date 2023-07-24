@@ -219,6 +219,7 @@
         </div>
 
         <!-- User Review Box -->
+        {{#each reviews}}
         <div class="reviews-content-container">
           <div class="reviews-left-container">
             <div class="left">
@@ -232,7 +233,7 @@
                <!-- User Review Information-->
               <div class="further-details">
                 <div class="name">
-                  <a class="firstname" href="/loginPage">Bilbo Baggins</a>
+                  <a class="firstname" href="/loginPage">{{this.userName}}</a>
                 </div>
                 <div class="others">
                   <p class="review-count">9 Reviews</p>
@@ -263,7 +264,7 @@
           <!-- User Review -->
             <div class="review">
               <p>
-                  BEST INIHAW PLACE EVERRRRRRRRRRRRR! NOW MY FAVORITE RESTAURANT + THE PRICE IS SO AFFORDABLE
+                  {{this.reviewDesc}}
               </p>
             </div>
           </div>
@@ -274,6 +275,7 @@
               <img src="assets/TNBF6.jpg" class="review-image" />
           </div>
         </div>
+        {{/each}}
 
         <div class="reply">
           <div class="reply">

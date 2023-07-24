@@ -178,6 +178,7 @@
       </div>
 
       <!-- User Review Box -->
+      {{#each reviews}}
       <div class="reviews-content-container">
         <div class="reviews-left-container">
           <div class="left">
@@ -191,7 +192,7 @@
             <!-- User Review Information-->
             <div class="further-details">
               <div class="name">
-                <a class="firstname" href="viewprofileU4.html">Albus Dumbledore</a>
+                <a class="firstname" href="viewprofileU4.html">{{this.userName}}</a>
               </div>
               <div class="others">
                 <p class="review-count">13 Reviews</p>
@@ -221,7 +222,7 @@
           <!-- User Review -->
           <div class="review">
             <p>
-              Their sizzling delicacies never fail to amaze me!ever fail to amaze me!ever fail to amaze me!ever fail to amaze me!ever fail to amaze me!ever fail to amaze me!ever fail to amaze me!ever fail to amaze me!
+              {{this.reviewDesc}}
             </p>
           </div>
         </div>
@@ -232,6 +233,7 @@
             <img src="assets/AD4.jpg" class="review-image" />
         </div>
       </div>
+      {{/each}}
 
       <div class="reply">
         <h4>Review Comments</h4>

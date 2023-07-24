@@ -255,115 +255,144 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({
-      restaurantName: "David's Tea House",
-    }).lean();
-
-    res.render("RestoView-SB-out", {
-      title: "Starbucks",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/StylesOut.css",
-      reviews: reviews,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
+    
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
+    
+        res.render("RestoView-SB-out", {
+            title: "Starbucks",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/styles.css",
+            reviews: reviews,
+          });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
 });
 
 app.get("/RestoView-DTH", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({
-      restaurantName: "David's Tea House",
-    }).lean();
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "David's Tea House" }).lean();
+    
+        res.render("RestoView-DTH", {
+            title: "David's Tea House",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/styles.css",
+            reviews: reviews,
+        });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
 
-    res.render("RestoView-DTH", {
-      title: "David's Tea House",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
 });
 
-app.get("/RestoView-DTH-out", (req, res) => {
-  res.render("RestoView-DTH-out", {
-    title: "David's Tea House",
-    script: "static/js/ViewEstablishmentRules.js",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    css1: "static/css/ViewEstablishmentStyles.css",
-    css2: "static/css/StylesOut.css",
-  });
+app.get("/RestoView-DTH-out", async (req, res) => {
+
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "David's Tea House" }).lean();
+    
+        res.render("RestoView-DTH-out", {
+            title: "David's Tea House",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/StylesOut.css",
+            reviews: reviews
+          });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+  
 });
 
 app.get("/RestoView-ADBB", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
 
-    res.render("RestoView-ADBB", {
-      title: "Angry Dobo",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews, // Pass the reviews object to the template
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    
+        res.render("RestoView-ADBB", {
+            title: "Angry Dobo",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/styles.css",
+            reviews: reviews, // Pass the reviews object to the template
+        });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+
 });
 
-app.get("/RestoView-ADB-out", (req, res) => {
-  res.render("RestoView-ADB-out", {
-    title: "Angry Dobo",
-    script: "static/js/ViewEstablishmentRules.js",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    css1: "static/css/ViewEstablishmentStyles.css",
-    css2: "static/css/StylesOut.css",
-  });
+app.get("/RestoView-ADB-out", async (req, res) => {
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    
+        res.render("RestoView-ADB-out", {
+            title: "Angry Dobo",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/StylesOut.css",
+            reviews: reviews
+          });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+
 });
 
 app.get("/RestoView-TNB", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({
-      restaurantName: "Tinuhog ni Benny",
-    }).lean();
-
-    res.render("RestoView-TNB", {
-      title: "Tinuhog ni Benny",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    
+        res.render("RestoView-TNB", {
+            title: "Tinuhog ni Benny",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/styles.css",
+            reviews: reviews,
+        });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
+  
 });
 
-app.get("/RestoView-TNB-out", (req, res) => {
-  res.render("RestoView-TNB-out", {
-    title: "Tinuhog ni Benny",
-    script: "static/js/ViewEstablishmentRules.js",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    css1: "static/css/ViewEstablishmentStyles.css",
-    css2: "static/css/StylesOut.css",
-  });
+app.get("/RestoView-TNB-out", async(req, res) => {
+    try {
+        // Query everything that has a restaurant name of "Starbucks"
+        const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    
+        res.render("RestoView-TNB-out", {
+            title: "Tinuhog ni Benny",
+            script: "static/js/ViewEstablishmentRules.js",
+            script2: "https://kit.fontawesome.com/78bb10c051.js",
+            css1: "static/css/ViewEstablishmentStyles.css",
+            css2: "static/css/StylesOut.css",
+            reviews: reviews
+          });
+    } catch (error) {
+        console.error("Error querying reviews:", error);
+        res.status(500).send("Error querying reviews");
+    }
 });
 
 app.get("/registrationPage", (req, res) => {

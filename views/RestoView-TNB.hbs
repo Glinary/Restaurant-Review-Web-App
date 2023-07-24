@@ -223,9 +223,9 @@
         </div>
 
         <!-- User Review Box -->
+        {{#each reviews}}
         <div class="reviews-content-container">
           <div class="reviews-left-container">
-            {{#each reviews}}
             <div class="left">
               <div class="reviews-user-details">
                 <img
@@ -285,7 +285,6 @@
                 </div>
               </form>
             </div>
-            {{/each}}
           </div>
 
           <!-- User Review Images (right) -->
@@ -310,6 +309,7 @@
             </div>
           </div>
         </div>
+        {{/each}}
 
         <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
