@@ -34,6 +34,14 @@ const reviewsSchema = new mongoose.Schema({
         user: {
             type: String
         }
+    },
+    image1: {
+        type: String,
+        required: false
+    },
+    image2: {
+        type: String,
+        required: false
     }
 })
 
