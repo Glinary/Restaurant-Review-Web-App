@@ -390,6 +390,8 @@ app.get("/RestoView-DTH", async (req, res) => {
         .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
         .limit(1) // Limit the result to one review
         .lean();
+        const user = await Users.findOne({ email: currentAccount.email }).lean();
+        console.log(user);
     
         res.render("RestoView-DTH", {
             title: "David's Tea House",
@@ -398,7 +400,8 @@ app.get("/RestoView-DTH", async (req, res) => {
             css1: "static/css/ViewEstablishmentStyles.css",
             css2: "static/css/styles.css",
             reviews: reviews,
-            highestRated: highestRated
+            highestRated: highestRated,
+            user: user,
         });
     } catch (error) {
         console.error("Error querying reviews:", error);
@@ -477,6 +480,8 @@ app.get("/RestoView-ADBB", async (req, res) => {
         .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
         .limit(1) // Limit the result to one review
         .lean();
+        const user = await Users.findOne({ email: currentAccount.email }).lean();
+        console.log(user);
     
         res.render("RestoView-ADBB", {
             title: "Angry Dobo",
@@ -485,7 +490,8 @@ app.get("/RestoView-ADBB", async (req, res) => {
             css1: "static/css/ViewEstablishmentStyles.css",
             css2: "static/css/styles.css",
             reviews: reviews, // Pass the reviews object to the template
-            highestRated: highestRated
+            highestRated: highestRated,
+            user: user
         });
     } catch (error) {
         console.error("Error querying reviews:", error);
@@ -561,6 +567,8 @@ app.get("/RestoView-TNB", async (req, res) => {
         .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
         .limit(1) // Limit the result to one review
         .lean();
+        const user = await Users.findOne({ email: currentAccount.email }).lean();
+        console.log(user);
     
         res.render("RestoView-TNB", {
             title: "Tinuhog ni Benny",
@@ -569,7 +577,8 @@ app.get("/RestoView-TNB", async (req, res) => {
             css1: "static/css/ViewEstablishmentStyles.css",
             css2: "static/css/styles.css",
             reviews: reviews,
-            highestRated: highestRated
+            highestRated: highestRated,
+            user: user
         });
     } catch (error) {
         console.error("Error querying reviews:", error);
