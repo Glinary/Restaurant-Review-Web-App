@@ -125,13 +125,11 @@
                   </div>
                                      
                 <!-- User Review Rating/Stars -->
-                  <div class="top-overall-stars">
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                    <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-                  </div>
+                    <div class="overall-stars">
+                        {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                    </div>
+
+                    <span id="titleBl">{{highestRated.reviewTitle}} </span>
                   <div class="review">
                     <p class="top-review-paragraph">
                       {{highestRated.reviewDesc}}
@@ -139,6 +137,7 @@
                   </div>
                 </div>
         
+
                 <div class="top-reviews-pictures">
                   <img src="assets/SB1.jpg" class="top-review-image" />
                   <img src="assets/SB2.jpg" class="top-review-image" />
@@ -179,6 +178,7 @@
         {{#each reviews}}
         <div class="reviews-content-container">
           <div class="reviews-left-container">
+
             <div class="left">
               <div class="reviews-user-details">
                 <img
@@ -199,15 +199,12 @@
 
             </div>
 
-            <!-- User Review Rating/Stars -->
-            <div class="overall-stars">
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-            </div>
+          <!-- User Review Rating/Stars -->
+          <div class="overall-stars">
+              {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+          </div>
 
+            <span id="titleBl">{{this.reviewTitle}} </span>
             <!-- User Review -->
             <div class="review">
               <p>
@@ -222,7 +219,7 @@
               <img src="assets/SB6.jpg" class="review-image" />
           </div>
         </div>
-        {{/each}}
+       
 
         <div class="reply">
             <h4>Review Comments</h4>
@@ -240,5 +237,6 @@
               </div>
             </div>
           </div>
+           {{/each}}
         </div>
     </div>  
