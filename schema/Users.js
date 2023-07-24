@@ -26,4 +26,8 @@ const usersSchema = new mongoose.Schema({
     }
 })
 
+usersSchema.method('comparePW', function (attemptPW) {
+    return (attemptPW === this.password);
+});
+
 module.exports = mongoose.model("Users", usersSchema)

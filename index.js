@@ -108,6 +108,37 @@ app.get("/loginPage", (req, res) => {
     })
 });
 
+app.post("/loginPage", async (req, res) => {
+    const {email, pw} = req.body;
+
+    if (email) { 
+        try {
+            const mainUser = await Users.findOne({email: email});
+            if (mainUser != null) {
+                const result = await mainUser.comparePW(pw);
+                if (result) {
+                    res.redirect(`/indexLog?email=${email}`);
+                    console.log("Logged In");
+                } else {
+                    res.redirect(`/loginPage`);
+                    console.log("Incorrect PW");
+                }
+            } else {
+                res.status(400);
+                res.redirect(`/loginPage`);
+                console.log("Email not existing");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        res.status(400);
+        res.redirect("/error");
+        console.log("readme");
+    }
+    
+})
+
 app.get("/indexLog", (req, res) => {
     res.render("indexLog", {
         title: "Home",
