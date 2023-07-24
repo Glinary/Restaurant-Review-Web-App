@@ -22,7 +22,7 @@
             class="fa-solid fa-magnifying-glass fa-2x"
             style="color: #ceb9a7; margin-left: 0.5rem"
           ></i>
-          <form action="SearchPage.html" id="searchform" method="get">
+          <form action="/SearchPage" id="searchform" method="get">
               <input
                 type="text"
                 placeholder="Type to search"
@@ -78,6 +78,7 @@
       </div>
       <div class="yohoo">
         <div class="profile-section" id="profile">
+          <div class="contain-profile">  
             <div class="profile-pictures-section">
             <div class="profile-picture">
                 <img src="assets/TNB.jpeg" />
@@ -90,7 +91,7 @@
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
               <p>5.0</p>
             </div>
-
+            </div>
             </div>
             <div class="profile-description">
               <h1>Tinuhog ni Benny</h1>
@@ -102,7 +103,8 @@
 
         <div class="edit-profile-section">
           <h4>Add Review</h4>
-          <a href="/reviewPage?restaurantName=Tinuhog ni Benny"><img src="assets/book_icon.png" /></a>
+          <a href="/reviewPage?restaurantName=Tinuhog ni Benny">
+          <img src="assets/book_icon.png" /></a>
           </div>
 
         <div class="top-reviews-section">
@@ -187,6 +189,7 @@
         {{#each reviews}}
         <div class="reviews-content-container">
           <div class="reviews-left-container">
+
             <div class="left">
               <div class="reviews-user-details">
                 <img
@@ -198,7 +201,7 @@
               <!-- User Review Information-->
               <div class="further-details">
                 <div class="name">
-                  <a class="firstname" href="viewprofileU5.html">{{this.userName}}</a>
+                  <a class="firstname" href="viewprofileU5.html">{{this.reviewDesc}}</a>
                 </div>
                 <div class="others">
                   <p class="review-count">9 Reviews</p>
@@ -213,8 +216,7 @@
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
               <div id="Ostar"><i class="fa-regular fa-star"></i></div>
               <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-              <div id="Ostar"><i class="fa-regular fa-star"></i></div>
-    
+              <div id="Ostar"><i class="fa-regular fa-star"></i></div>  
             </div>
 
             <!-- User Review -->
@@ -261,7 +263,7 @@
             </div>
           </div>
         </div>
-        {{/each}}
+
 
         <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
@@ -297,5 +299,6 @@
             </div>
           </div>
         </div>
+        {{/each}}
       </div>
     </div>

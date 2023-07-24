@@ -471,7 +471,7 @@ app.post("/registrationPage", async (req, res) => {
           accountType: "viewer",
           password: pw,
           userDescription: "No Description Added Yet.",
-          avatar: "public\\assets\\anonymous_picture.png",
+          avatar: "assets\\anonymous_picture.png",
         });
 
         let account = new Account(email);
@@ -518,18 +518,26 @@ app.get("/searchPageLogout", (req, res) => {
   });
 });
 
-app.get("/editProfile", (req, res) => {
-  const email = req.query.email;
+app.get("/editProfile", async (req, res) => {
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
 
-  res.render("editProfile", {
-    title: "User Review Page",
-    script1: "static/js/ViewEstablishmentRules.js",
-    script2: "https://kit.fontawesome.com/78bb10c051.js",
-    css1: "/static/css/editProfStyles.css",
-    css2: "static/css/ViewEstablishmentStyles.css",
-    css3: "static/css/styles.css",
-    email: email,
-  });
+    res.render("editProfile", {
+      title: "User Review Page",
+      script1: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "/static/css/editProfStyles.css",
+      css2: "static/css/ViewEstablishmentStyles.css",
+      css3: "static/css/styles.css",
+      user: user,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
 });
 
 app.post("/editProfile", upload.single("avatar"), (req, res) => {
@@ -543,9 +551,13 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
   if (userName && userDescription) {
     //update query
     if (req.file) {
+      let fileName = req.file.path;
+      let img = fileName.replace(/public\\/g,'');
+      console.log(img);
+
       Users.findOneAndUpdate(
         { email: email }, //find based on matching email
-        { avatar: req.file.path },
+        { avatar: img },
         { new: true } // return the updated document
       )
         .then((updatedUser) => {
