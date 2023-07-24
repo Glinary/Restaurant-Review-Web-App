@@ -1,4 +1,3 @@
-
 // ---------- Dependencies #1 ---------- //
 const express = require('express');
 const exphbs = require('express-handlebars');
