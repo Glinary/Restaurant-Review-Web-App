@@ -64,117 +64,110 @@
       </div>
       <div class="search-line"></div>
 
-<!-- END OF HEADER ->
+<!-- END OF HEADER -->
 
 <!-- content body -->
     <div class="section">
       <div class="left-block roundblock"></div>
 
-      <!-- center-block -->
-      <div class="center-block roundblock">
+        <!-- center-block -->
+        <div class="center-block roundblock">
 
-        <div class="block0 roundblock">
-          <div id="heading">
-          <p>Title</p>
-        </div>
-          <div class="title-review-section">
-            <form id="reviewPage-form" action="/reviewPage" method="POST">
-              <div class="title-user-review">
-                <textarea
-                  id="user-rev-title"
-                  name="user-rev-title"
-                  rows="1"
-                  cols="120"
-                  placeholder="write your review here"
-                  maxlength="100"
-                ></textarea>
-              </div>
-          </div>
-        </div>
+          <div class="block0 roundblock">
+                <form id="createReview" name="createReview">
+                  
+                  <span id="labels"><label for="title">Title</label></span>
+                      <textarea
+                        id="title"
+                        name="title"
+                        rows="1"
+                        cols="10"
+                        placeholder="write title for your review here"
+                        maxlength="40"  
+                      ></textarea>
 
-        <!-- center-block: review box -->
-        <div class="block1 roundblock">
-          <div id="heading">
-          <p>Write your honest thoughts.</p>
-          <div id="star-ratings">
-            <p title="Click to rate!">Rate here: </p>
-            <div title="click to rate!" id="star"><i class="fa-regular fa-star"></i></div>
-            <div title="click to rate!" id="star"><i class="fa-regular fa-star"></i></div>
-            <div title="click to rate!" id="star"><i class="fa-regular fa-star"></i></div>
-            <div title="click to rate!" id="star"><i class="fa-regular fa-star"></i></div>
-            <div title="click to rate!" id="star"><i class="fa-regular fa-star"></i></div>
-          </div>
-        </div>
-        
-          <div class="review-section">
-            <form id="reviewPage-form" action="/reviewPage" method="POST">
-              <!-- Add a hidden input field to store the restaurant name -->
-              <input type="hidden" id="restaurantNameInput" name="restaurantName">
-              <div class="user-review">
-                <textarea
-                  id="user-rev"
-                  name="reviewDesc"
-                  rows="8"
-                  cols="120"
-                  placeholder="write your review here"
-                  maxlength="350"
-                ></textarea>
-              </div>
-              <!-- Your JavaScript code to retrieve the restaurant name from the URL parameter -->
-              <script>
-                const urlParams = new URLSearchParams(window.location.search);
-                const restaurantName = urlParams.get('restaurantName');
-                const restaurantNameInput = document.getElementById('restaurantNameInput');
-                // Set the value of the hidden input field to the retrieved restaurant name
-                if (restaurantNameInput) {
-                  restaurantNameInput.value = restaurantName;
-                }
-              </script>
-          </div>
-        </div>
+                    <span id="labelsFlex"
+                    ><label for="review">Review</label>
 
-        <!-- center-block: image box -->
-        
-        <div class="block2 roundblock">
-          <p>Upload 2 images</p>
-          <div class="image-section">
-            <div class="image-section1">
-              <div class="user-upload">
-                <!-- https://nikitahl.com/custom-styled-input-type-file -->
-                  <input id="user-rev-pic1" name="user-rev-pic1" type="file" />
-              </div>
+                    
+                    <div class="cont">Rating:
+                    <div class="rating">
+                      <label>
+                        <input type="radio" name="stars" value="1" />
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="stars" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      
+                    </div>
+                    </div>
+                </span>
+                      <textarea
+                    id="review"
+                    name="review"
+                    rows="1"
+                    cols="10"
+                    placeholder="write your review here"
+                    maxlength="210"
+                  ></textarea>
+              
+                  <span id="labels"
+                    ><label for="image-section">Upload 2 images</label></span
+                  >
+                  <div class="image-section">
+                    <div class="image-section1">
+                      <div class="user-upload">
+                        <!-- https://nikitahl.com/custom-styled-input-type-file -->
+                        <input
+                          id="user-rev-pic1"
+                          name="user-rev-pic1"
+                          type="file"
+                          accept=".jpg, .jpeg, .png, .mp4"
+                        />
+                      </div>
+                    </div>
+                  <div class="image-section2">
+                    <div class="user-upload">
+                    <input id="user-rev-pic1" name="user-rev-pic1" type="file" />           
+                    </div>
+                  </div>
+                </div>
+
+                <div class="buttons">
+                    <div class="cancel"><a href="#">cancel</a></div>
+                    <input id="submitForm" name="submitForm" type="submit" value="submit review" />
+                  </div>
+                <!-- Add a hidden input field to store the restaurant name -->
+                <input type="hidden" id="restaurantNameInput" name="restaurantName">
+              </form>
             </div>
-            <div class="image-section2">
-              <div class="user-upload">
-              <input id="user-rev-pic1" name="user-rev-pic1" type="file" />
-                
-              </div>
-            </div>
-          </div>
+          <div class="right-block roundblock"></div>
         </div>
-
-        <!-- center-block: buttons box -->
-        <div class="submission">
-          <div class="buttons">
-            <div class="cancel"><a href="#">cancel</a></div>
-            <input id="submit" form="reviewPage-form" type="submit" value="submit review"> 
-          </div>
-          <!-- Your JavaScript code to retrieve the restaurant name from the URL parameter -->
-          <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            const restaurantName = urlParams.get('restaurantName');
-            const restaurantNameInput = document.getElementById('restaurantNameInput');
-
-            // Set the value of the hidden input field to the retrieved restaurant name
-            if (restaurantNameInput) {
-              restaurantNameInput.value = restaurantName;
-            }
-          </script>
-        </form>
-        </div>
-      </div>
-      <!-- end of center block -->
-
       <div class="right-block roundblock"></div>
     </div>
-<!-- end of content body -->
+  </body>
+</html>

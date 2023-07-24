@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Restaurant Review Website by:",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
@@ -16,5 +16,8 @@
   "devDependencies": {
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1"
+  },
+  "bin": {
+    "execute": "index.js"
   }
 }
