@@ -16,11 +16,16 @@ const searchBar = document.querySelector(".search-container");
 const divSec = document.querySelector(".dividerSec");
 const revRep = document.querySelector(".review-reply");
 
+const reviewL = document.querySelectorAll("#replyButton");
+
 let arrH = [];
 let arrU = [];
 let currLike = [];
 let currDLike = [];
 let flag2 = true;
+let reviewList = [];
+let RActive = [];
+let TArea = document.querySelectorAll("#reply-rev-box");
 
 // GIVEN: Create a User constructor
 const Review = function (reviewObj) {
@@ -32,10 +37,42 @@ const Review = function (reviewObj) {
   this.toggle = false;
 };
 
-let reviewList = [];
-
 checkTextTrunc();
 checkReviewsCount();
+
+for (let m = 0; m < RActive.length; m++) {
+  RActive[m].push(0);
+}
+
+for (let j = 0; j < reviewL.length; j++) {
+  reviewL[j].addEventListener("click", (e) => {
+    e.preventDefault();
+    console.dir(reviewL[j]);
+    fetchForm = reviewL[j].parentElement;
+    console.log("HERE", fetchForm);
+
+    const formData = new FormData(fetchForm);
+    const reviewReply = formData.get("reviewReply");
+    const reviewDesc = formData.get("reviewDesc");
+
+    parentRep = fetchForm.parentElement;
+    ppar = parentRep.parentElement;
+    console.log("THISSS");
+    console.dir(parentRep);
+    // ppar.styles.display = "block";
+    const jstring = JSON.stringify({ reviewReply, reviewDesc });
+    console.log(jstring);
+    fetch("/RestoView-SB-B", {
+      method: "post",
+      body: jstring,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+  });
+}
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -142,6 +179,7 @@ editBar.forEach((cell) =>
 
         // Parent cell called
         cellParent = cell.parentElement;
+        console.dir(cellParent);
         // Review left called.
         reviewLeft = cellParent.firstElementChild;
         //Review called
@@ -183,10 +221,16 @@ editBar.forEach((cell) =>
 
         console.log("Review Successfully Deleted");
         checkReviewsCount();
+        checkreplycount(repliesBox);
       });
     }
   })
 );
+
+function checkreplycount(comment) {
+  console.log("hehehe", arr);
+  if (comment > 0) arr.lastElementChild.style.display = "block";
+}
 
 function checkReviewsCount() {
   if (divSec.children[0].children.length == 1) {

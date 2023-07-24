@@ -672,11 +672,18 @@ header {
 
 /*========== START OF REPLY SECTION ==========*/
 
+<<<<<<< Updated upstream
+=======
+.reply {
+  margin-top: 2rem;
+}
+>>>>>>> Stashed changes
 .reply h4 {
   margin: 0rem 1rem 1rem 1rem;
 }
 
 .reply-container {
+  display: none;
   margin: 0rem 1rem 1rem 1rem;
   background-color: white;
   border-radius: 10px;
@@ -1065,7 +1072,7 @@ header {
   }
 
   .review-reply {
-    display: none;
+    display: block;
     box-sizing: border-box;
     height: 15vh;
     border-radius: 20px;
