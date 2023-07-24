@@ -346,6 +346,37 @@ app.get("/RestoView-DTH", async (req, res) => {
 
 });
 
+app.post("/RestoView-DTH", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser} = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+    Reviews.findOneAndUpdate(
+      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+      { reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName
+      }},
+      { new: true } // return the updated document
+    )
+      .then((updatedReview) => {
+        if (!updatedReview) {
+          console.log("Review not found!");
+          return res.status(404).json({ error: "Review not found" });
+        }
+        console.log("Review updated:", updatedReview);
+        // redirect to the resto view:
+        res.redirect("RestoView-DTH");
+    })
+    .catch((err) => {
+        console.error("Error updating review:", err);
+        res.status(500).json({ error: "Error updating review" });
+    });
+  
+})
+
 app.get("/RestoView-DTH-out", async (req, res) => {
 
     try {
@@ -402,6 +433,36 @@ app.get("/RestoView-ADBB", async (req, res) => {
 
 });
 
+app.post("/RestoView-ADBB", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser} = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+    Reviews.findOneAndUpdate(
+      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+      { reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName
+      }},
+      { new: true } // return the updated document
+    )
+      .then((updatedReview) => {
+        if (!updatedReview) {
+          console.log("Review not found!");
+          return res.status(404).json({ error: "Review not found" });
+        }
+        console.log("Review updated:", updatedReview);
+        // redirect to the resto view:
+        res.redirect("RestoView-ADBB");
+    })
+    .catch((err) => {
+        console.error("Error updating review:", err);
+        res.status(500).json({ error: "Error updating review" });
+    });
+})
+
 app.get("/RestoView-ADB-out", async (req, res) => {
     try {
         // Query everything that has a restaurant name of "Angry Dobo"
@@ -455,6 +516,36 @@ app.get("/RestoView-TNB", async (req, res) => {
     }
   
 });
+
+app.post("/RestoView-TNB", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser} = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+    Reviews.findOneAndUpdate(
+      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+      { reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName
+      }},
+      { new: true } // return the updated document
+    )
+      .then((updatedReview) => {
+        if (!updatedReview) {
+          console.log("Review not found!");
+          return res.status(404).json({ error: "Review not found" });
+        }
+        console.log("Review updated:", updatedReview);
+        // redirect to the resto view:
+        res.redirect("RestoView-TNB");
+    })
+    .catch((err) => {
+        console.error("Error updating review:", err);
+        res.status(500).json({ error: "Error updating review" });
+    });
+})
 
 app.get("/RestoView-TNB-out", async(req, res) => {
     try {

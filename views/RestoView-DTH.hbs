@@ -259,15 +259,17 @@
 
         <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
-          <form action="#" method="post">
             <div class="review-reply-form">
+              <form action="/RestoView-DTH" method="POST">
               <textarea
-                name="reply-rev-box"
+                name="reviewReply"
                 id="reply-rev-box"
                 rows="4"
                 maxlength="180"
                 placeholder="Write comment here"></textarea>
-              
+                <!-- Add a hidden input field to store the reviewDesc -->
+                <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+
                 <input type="submit" value="Comment" />
               <input type="submit" value="Cancel" />
             </div>
@@ -279,15 +281,8 @@
           <h4>Review Comments</h4>
           <div class="reply-container">
             <div id="single-reply-container">
-              <p id="user-commentName">Angry Dobo</p>
-              <p id="user-comm">Thank you! We will make sure we will keep up our recipes' tastiness.</p>
-            </div>
-            <div id="single-reply-container">
-              <p id="user-commentName">Angry Dobo</p>
-              <p id="user-comm">Thank you! We will make sure we will keep up our recipes' tastiness.</p>
-            </div>
-            <div id="expand-reviews">See More
-              <i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
+              <p id="user-commentName">{{this.reviewReplyInfo.user}}</p>
+              <p id="user-comm">{{this.reviewReplyInfo.reply}}</p>
             </div>
           </div>
         </div>
