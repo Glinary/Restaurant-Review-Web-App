@@ -381,9 +381,11 @@ app.post("/registrationPage", async (req, res) => {
                     password: pw,
                     userDescription: "No Description Added Yet."
                 })
+                let account = new Account(email);
+                    await switchAccount(account);
                 newUser.save().then(() => {
-                    console.log("new user added")
-                    res.redirect(`/editProfile?email=${email}`)
+                    console.log("new user added");
+                    res.redirect(`/editProfile?email=${email}`);
                 })
             } else {
                 res.status(400);
@@ -485,7 +487,6 @@ app.get("/viewprofileU1", async (req, res) => {
 
     //query here
     try {
-        // Query everything that has a restaurant name of "Starbucks"
         // TODO: set query to current user object
         const user = await Users.findOne({ email: currentAccount.email }).lean();
         console.log(user)
