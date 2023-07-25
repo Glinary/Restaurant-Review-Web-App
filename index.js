@@ -267,6 +267,7 @@ app.post("/reviewPage", async (req, res) => {
   console.log(starRating);
   console.log(restaurantName);
   console.log("----");
+  const placeholder = 0;
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
@@ -280,6 +281,7 @@ app.post("/reviewPage", async (req, res) => {
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
+      // HERE TAKE NOTE REACTION ADDING
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -321,7 +323,8 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc, currentUser, likeToggler, likeCounter } =
+    req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
@@ -336,20 +339,32 @@ app.post("/RestoView-SB", async (req, res) => {
       },
     },
     { new: true } // return the updated document
-  )
-    .then((updatedReview) => {
-      if (!updatedReview) {
-        console.log("Review not found!");
-        return res.status(404).json({ error: "Review not found" });
-      }
-      console.log("Review updated:", updatedReview);
-      // redirect to the resto view:
-      res.redirect("RestoView-SB");
-    })
-    .catch((err) => {
-      console.error("Error updating review:", err);
-      res.status(500).json({ error: "Error updating review" });
-    });
+  );
+
+  if (likeToggler && likeCounter) {
+    Reviews.findOneAndUpdate(
+      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+      {
+        reactionInfo: {
+          likeToggle: likeToggler,
+          likeCount: likeCounter,
+        },
+      },
+      { new: true } // return the updated document
+    );
+  }
+  then((updatedReview) => {
+    if (!updatedReview) {
+      console.log("Review not found!");
+      return res.status(404).json({ error: "Review not found" });
+    }
+    console.log("Review updated:", updatedReview);
+    // redirect to the resto view:
+    res.redirect("RestoView-SB");
+  }).catch((err) => {
+    console.error("Error updating review:", err);
+    res.status(500).json({ error: "Error updating review" });
+  });
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {

@@ -1,48 +1,60 @@
 // THIS IS A SCHEMA
 
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const reviewsSchema = new mongoose.Schema({
-    restaurantName: {
-        type: String,
-        required: true
+  restaurantName: {
+    type: String,
+    required: true,
+  },
+  userName: {
+    type: String,
+    required: true,
+  },
+  reviewDesc: {
+    type: String,
+    required: true,
+  },
+  starRating: {
+    type: Number,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  reviewTitle: {
+    type: String,
+    required: true,
+  },
+  reviewReplyInfo: {
+    reply: {
+      type: String,
     },
-    userName: {
-        type: String,
-        required: true
+    user: {
+      type: String,
     },
-    reviewDesc: {
-        type: String,
-        required: true
+  },
+  reactionInfo: {
+    likeToggle: {
+      type: Number,
+      required: true,
+      default: 0,
     },
-    starRating: {
-        type: Number,
-        required: true
+    likeCount: {
+      type: Number,
+      required: true,
+      default: 0,
     },
-    email: {
-        type: String,
-        required: true
-    },
-    reviewTitle: {
-        type: String,
-        required: true
-    },
-    reviewReplyInfo: {
-        reply: {
-            type: String
-        },
-        user: {
-            type: String
-        }
-    },
-    image1: {
-        type: String,
-        required: false
-    },
-    image2: {
-        type: String,
-        required: false
-    }
-})
+  },
+  image1: {
+    type: String,
+    required: false,
+  },
+  image2: {
+    type: String,
+    required: false,
+  },
+});
 
-module.exports = mongoose.model("Reviews", reviewsSchema)
+module.exports = mongoose.model("Reviews", reviewsSchema);

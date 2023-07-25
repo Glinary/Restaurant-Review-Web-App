@@ -244,52 +244,56 @@ reactionH.forEach(
 // console.log(reaction[1]);
 
 /*Initialize Reaction Button Data*/
-for (let i = 0; i < reactionH.length; i++) {
-  arrH.push(0);
-  arrU.push(0);
-  currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
-  currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
-}
+// for (let i = 0; i < reactionH.length; i++) {
+//   arrH.push(0);
+//   arrU.push(0);
+//   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
+//   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
+// }
 
-for (let j = 0; j < reactionH.length; j++) {
-  reactionH[j].addEventListener("click", function () {
-    if (arrU[j] == 0 && arrH[j] == 0) {
-      reactionH[j].innerHTML =
-        '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
-      currLike[j] += 1;
-      reactionH[j].nextSibling.innerText = currLike[j];
-      arrH[j] = 1;
-      console.log(arrH);
-    } else if (arrU[j] == 0 && arrH[j] == 1) {
-      reactionH[j].innerHTML =
-        '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
-      currLike[j] -= 1;
-      reactionH[j].nextSibling.innerText = currLike[j];
-      arrH[j] = 0;
-      console.log(arrH);
-    }
-  });
-}
+// for (let j = 0; j < reactionH.length; j++) {
+//   reactionH[j].addEventListener("click", function () {
+//     if (arrU[j] == 0 && arrH[j] == 0) {
+//       reactionH[j].innerHTML =
+//         '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
+//       currLike[j] += 1;
+//       reactionH[j].nextSibling.innerText = currLike[j];
+//       arrH[j] = 1;
+//       console.log(arrH);
+//     } else if (arrU[j] == 0 && arrH[j] == 1) {
+//       reactionH[j].innerHTML =
+//         '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
+//       currLike[j] -= 1;
+//       reactionH[j].nextSibling.innerText = currLike[j];
+//       arrH[j] = 0;
+//       console.log(arrH);
+//     }
+//   });
+// }
 
-for (let k = 0; k < reactionU.length; k++) {
-  reactionU[k].addEventListener("click", function () {
-    if (arrH[k] == 0 && arrU[k] == 0) {
-      reactionU[k].innerHTML =
-        '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
-      currDLike[k] += 1;
-      reactionU[k].nextSibling.innerText = currDLike[k];
-      arrU[k] = 1;
-      console.log(arrH);
-    } else if (arrH[k] == 0 && arrU[k] == 1) {
-      reactionU[k].innerHTML =
-        '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
-      currDLike[k] -= 1;
-      reactionU[k].nextSibling.innerText = currDLike[k];
-      arrU[k] = 0;
-      console.log(arrU);
-    }
-  });
-}
+// for (let k = 0; k < reactionU.length; k++) {
+//   reactionU[k].addEventListener("click", function () {
+//     if (arrH[k] == 0 && arrU[k] == 0) {
+//       reactionU[k].innerHTML =
+//         '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
+//       currDLike[k] += 1;
+//       reactionU[k].nextSibling.innerText = currDLike[k];
+//       arrU[k] = 1;
+//       console.log(arrH);
+//     } else if (arrH[k] == 0 && arrU[k] == 1) {
+//       reactionU[k].innerHTML =
+//         '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
+//       currDLike[k] -= 1;
+//       reactionU[k].nextSibling.innerText = currDLike[k];
+//       arrU[k] = 0;
+//       console.log(arrU);
+//     }
+//   });
+// }
+
+  for (let j = 0; j < reactionH.length; j++){
+    
+  }
 
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
