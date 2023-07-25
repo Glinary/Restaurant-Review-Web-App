@@ -34,10 +34,10 @@ const reviewsSchema = new mongoose.Schema({
     },
     reviewReplyInfo: {
         reply: {
-            type: String
+            type: [String]
         },
         user: {
-            type: String
+            type: [String]
         },
         reactionInfo: {
             likeToggle: {
