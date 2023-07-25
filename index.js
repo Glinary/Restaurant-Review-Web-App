@@ -259,7 +259,7 @@ app.get("/reviewPage", (req, res) => {
 });
 
 app.use(express.json());
-app.post("/reviewPage", async (req, res) => {
+app.post("/reviewPage", upload.single("image1"), async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
   const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
@@ -269,12 +269,18 @@ app.post("/reviewPage", async (req, res) => {
   console.log(starRating);
   console.log(restaurantName);
   console.log("----");
+  let img = null;
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
     const restoLink = await Restaurant.findOne({ name: restaurantName }).lean();
     console.log(restoLink);
+    if (req.file) {
+      let fileName = req.file.path;
+      img = fileName.replace(/public\\/g,'');
+      console.log(img);
+    }
     const review = new Reviews({
       email: currentAccount.email,
       restaurantName: restaurantName,
@@ -282,9 +288,11 @@ app.post("/reviewPage", async (req, res) => {
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
+      image1: img
     });
     review.save().then(() => {
       console.log("review submitted");
+      console.log(review);
       res.redirect(restoLink.link);
     });
   } else {

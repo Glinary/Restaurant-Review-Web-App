@@ -74,7 +74,7 @@
         <div class="center-block roundblock">
 
           <div class="block0 roundblock">
-                <form id="createReview" name="createReview" action="/reviewPage" method="POST">
+              <form id="createReview" name="createReview" action="/reviewPage" method="POST" enctype="multipart/form-data"> 
                   
                   <span id="labels"><label for="title">Title</label></span>
                       
@@ -137,23 +137,22 @@
                   ></textarea>
               
                   <span id="labels"
-                    ><label for="image-section">Upload 2 images</label></span
+                    ><label for="image-section">Upload up to 2 Images</label></span
                   >
                   <div class="image-section">
                     <div class="image-section1">
                       <div class="user-upload">
                         <!-- https://nikitahl.com/custom-styled-input-type-file -->
                         <input
-                          id="user-rev-pic1"
-                          name="user-rev-pic1"
+                          id="image1"
+                          name="image1"
                           type="file"
-                          accept=".jpg, .jpeg, .png, .mp4"
                         />
                       </div>
                     </div>
                   <div class="image-section2">
                     <div class="user-upload">
-                    <input id="user-rev-pic1" name="user-rev-pic1" type="file" />           
+                    <input id="image2" name="image2" type="file" />           
                     </div>
                   </div>
                 </div>
