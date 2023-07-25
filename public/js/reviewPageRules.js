@@ -83,3 +83,15 @@
 //     console.log(response);
 //   });
 // });
+
+
+//ensure at least one star is selected by the user at page load
+document.addEventListener("DOMContentLoaded", function () {
+    // This event listener is triggered when the page finishes loading
+
+    // Get all the radio buttons for star rating
+    const starRatingRadios = document.querySelectorAll('input[name="starRating"]');
+
+    // Set the default value to 1 star (the first radio button)
+    starRatingRadios[0].checked = true;
+});

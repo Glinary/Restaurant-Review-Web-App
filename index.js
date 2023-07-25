@@ -284,7 +284,9 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
         imgs.push(newP);
       })
     }
+    const newReviewId = new mongoose.Types.ObjectId();
     const review = new Reviews({
+      _id: newReviewId,
       email: currentAccount.email,
       restaurantName: restaurantName,
       avatar: user.avatar,
@@ -333,6 +335,31 @@ app.get("/RestoView-SB", async (req, res) => {
     res.status(500).send("Error querying reviews");
   }
 });
+
+// Deletes review when pressed from SB (current)
+app.post("/deleteReview", async (req, res) => {
+  const { reviewDesc } = req.body;
+
+  // Call the function to delete the review from the database
+  try {
+    await deleteReviewFromDatabase(reviewDesc);
+    console.log("Review Successfully Deleted");
+    res.sendStatus(200); // Send a success response to the client
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    res.status(500).json({ error: "Error deleting review" });
+  }
+});
+
+async function deleteReviewFromDatabase(reviewDesc) {
+  try {
+    // Find the review by reviewDesc and remove it from the database
+    await Reviews.findOneAndDelete({ reviewDesc });
+  } catch (error) {
+    // Handle any errors that occur during deletion
+    throw error;
+  }
+}
 
 app.post("/RestoView-SB", async (req, res) => {
   const { reviewReply, reviewDesc } = req.body;

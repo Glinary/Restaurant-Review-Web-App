@@ -188,20 +188,40 @@ editBar.forEach((cell) =>
 
       deleteButton.addEventListener("click", function () {
         console.log("Delete clicked!");
-
-        cellParent = cell.parentElement;
-        replyBox = cellParent.nextElementSibling;
-        repliesBox = replyBox.nextElementSibling;
-        cellParent.remove();
-        repliesBox.remove();
-        revRep.remove();
-
-        console.log("Review Successfully Deleted");
-        checkReviewsCount();
+      
+        // Get the reviewDesc value from the hidden input field
+        const reviewDesc = document.getElementById("reviewDesc").value;
+      
+        // Make the AJAX request to delete the review
+        fetch("/deleteReview", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ reviewDesc }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            console.log("Review successfully deleted");
+            cellParent = cell.parentElement;
+            replyBox = cellParent.nextElementSibling;
+            repliesBox = replyBox.nextElementSibling;
+            cellParent.remove();
+            repliesBox.remove();
+            revRep.remove();
+            checkReviewsCount();
+          })
+          .catch((error) => {
+            console.error("Error deleting review:", error);
+            // Handle any errors that occur during the deletion process
+          });
       });
     }
   })
 );
+
 
 function checkReviewsCount() {
   if (divSec.children[0].children.length == 1) {
