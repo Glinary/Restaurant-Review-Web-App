@@ -58,79 +58,29 @@
     <!-- END OF HEADER (including search)-->
 
     <div class="restobox-cont">
-      <div class="resto-container">
-        <a href="/RestoView-SB-out"
-          ><img src="assets/starbucks.jpg" id="restaurant1"
-        /></a>
-        <div id="resto-desc">
-          <p>
-            Indulge in the ultimate coffee experience along with its exceptional
-            brews, comfortable ambiance, and everlasting uniqueness.
-          </p>
-        </div>
-        <div id="resto-innerLabel">
-          <p id="r-label">Starbucks</p>
-          <div class="cont">
-            <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-            <p id="r-label">4.8</p>
-          </div>
-        </div>
-      </div>
+      
 
-      <div class="resto-container">
-        <a href="/RestoView-DTH-out"
-          ><img src="assets/DTH.jpg" id="restaurant1"
-        /></a>
-        <div id="resto-desc">
-          <p>
-            Let the authentic taste of Chinese cuisine from delicate dim sum to
-            tantalizing stir-fries be at your reach anytime.
-          </p>
-        </div>
-        <div id="resto-innerLabel">
-          <p id="r-label">David's Tea House</p>
-          <div class="cont">
-            <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-            <p id="r-label">4.6</p>
-          </div>
-        </div>
-      </div>
+      
 
+      {{#each restaurants}}
       <div class="resto-container">
-        <a href="/RestoView-TNB-out"
-          ><img src="assets/TNB.jpeg" id="restaurant1"
+        <a href="{{this.link}}"
+          ><img src="{{this.img}}" id="restaurant1"
         /></a>
         <div id="resto-desc">
           <p>
-            Experience the mouthwatering savory taste of grilled delicacies that
-            everyone crave for.
+            {{this.desc}}
           </p>
         </div>
         <div id="resto-innerLabel">
-          <p id="r-label">Tinuhog ni Benny</p>
+          <p id="r-label">{{this.name}}</p>
           <div class="cont">
             <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-            <p id="r-label">5.0</p>
+            <p id="r-label">{{this.starRating}}</p>
           </div>
         </div>
       </div>
+      {{/each}}
 
-      <div class="resto-container">
-        <a href="/RestoView-ADB-out"
-          ><img src="assets/ADB.png" id="restaurant1"
-        /></a>
-        <div id="resto-desc">
-          <p>
-            Ignite your senses with one of the all-time Filipino favorite Adobo
-            where every bite is burst of culinary passion.
-          </p>
-        </div>
-        <div id="resto-innerLabel">
-          <p id="r-label">Angry Dobo</p>
-          <div class="cont">
-            <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-            <p id="r-label">4.7</p>
-          </div>
-        </div>
-      </div>
+      
     </div>

@@ -248,13 +248,19 @@ app.get("/restaurant", async(req, res) => {
   });
 });
 
-app.get("/restaurantLogout", (req, res) => {
+app.get("/restaurantLogout", async (req, res) => {
+
+  const restaurants = await Restaurant.find().lean();
+  console.log(restaurants);
+
   res.render("restaurantLogout", {
     title: "Restaurants",
     script: "static/js/RestaurantGridRules.js",
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/StylesOut.css",
+    restaurants: restaurants
   });
+
 });
 
 app.get("/reviewPage", (req, res) => {
