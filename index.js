@@ -81,7 +81,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA 
-//run(); // run only once
+//run(); // run only once NOTE: uncomment to run 
 async function run() {
   const restaurant1 = await Restaurant.create({
     link: "/RestoView-SB",
