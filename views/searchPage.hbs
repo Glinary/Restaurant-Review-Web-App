@@ -74,11 +74,13 @@
         </p>
       </div>
       <div id="filter-result-box">
-        <form action="#">
+        <form action="/searchPageFilter" method="POST">
+          <!-- Add the hidden input field for the keyword -->
+          <input type="hidden" name="keyword" value="{{keyword}}">
           <label for="result filter">Filter Result:</label>
-          <select name="filter-options" id="filter-options">
-            <option value="overall-rating">Rating</option>
-            <option value="Lowest Price">Lowest Price</option>
+          <select name="filterOptions" id="filter-options">
+            <option value="HighestToLowestRating">Highest to Lowest Rating</option>
+            <option value="LowestToHighestRating">Lowest to Highest Rating</option>
           </select>
           <br /><br />
           <input type="submit" value="search" />
@@ -86,8 +88,9 @@
       </div>
     </div>
 
-    {{#each restaurants}}
+    
     <div class="restobox-cont">
+      {{#each restaurants}}
       <div class="resto-container">
         <a href="{{this.link}}"><img src="{{this.img}}" id="restaurant1" /></a>
         <div id="resto-desc">
@@ -103,6 +106,6 @@
           </div>
         </div>
       </div>
+      {{/each}}
       <!--ADD NEW RESULT HERE-->
     </div>
-    {{/each}}
