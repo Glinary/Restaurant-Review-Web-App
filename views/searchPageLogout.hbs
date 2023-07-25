@@ -21,11 +21,11 @@
               class="fa-solid fa-magnifying-glass fa-2x"
               style="color: #ceb9a7; margin-left: 0.5rem"
             ></i>
-            <form action="/searchPageLogout" id="searchform" method="get">
+            <form action="/searchPageLogout" id="searchform" method="POST">
               <input
                 type="text"
                 placeholder="Type to search"
-                name="searchBar"
+                name="keyword"
                 id="searchBar"
               />
               <input type="submit" value="submit" />
@@ -65,11 +65,13 @@
         </p>
       </div>
       <div id="filter-result-box">
-        <form action="#">
+        <form action="/searchPageLogoutFilter" method="POST">
+          <!-- Add the hidden input field for the keyword -->
+          <input type="hidden" name="keyword" value="{{keyword}}">
           <label for="result filter">Filter Result:</label>
-          <select name="filter-options" id="filter-options">
-            <option value="overall-rating">Rating</option>
-            <option value="Lowest Price">Lowest Price</option>
+          <select name="filterOptions" id="filter-options">
+            <option value="HighestToLowestRating">Highest to Lowest Rating</option>
+            <option value="LowestToHighestRating">Lowest to Highest Rating</option>
           </select>
           <br /><br />
           <input type="submit" value="search" />
@@ -77,8 +79,8 @@
       </div>
     </div>
 
-    {{#each restaurants}}
     <div class="restobox-cont">
+      {{#each restaurants}}
       <div class="resto-container">
         <a href="{{this.link}}"
           ><img src="{{this.img}}" id="restaurant1"
@@ -96,5 +98,6 @@
           </div>
         </div>
       </div>
+      {{/each}}
     </div>
-    {{/each}}
+    

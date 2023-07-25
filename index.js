@@ -88,28 +88,24 @@ async function run() {
     img: "assets/starbucks.jpg",
     desc: "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
     name: "Starbucks",
-    starRating: "4.8",
   });
   const restaurant2 = await Restaurant.create({
     link: "/RestoView-DTH",
     img: "assets/DTH.jpg",
     desc: "Let the authentic taste of Chinese cuisine from delicate dim sum to tantalizing stir-fries be at your reach anytime.",
     name: "David's Tea House",
-    starRating: "4.6",
   });
   const restaurant3 = await Restaurant.create({
     link: "/RestoView-TNB",
     img: "assets/TNB.jpeg",
     desc: "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
     name: "Tinuhog ni Benny",
-    starRating: "5.0",
   });
   const restaurant4 = await Restaurant.create({
     link: "/RestoView-ADBB",
     img: "assets/ADB.png",
     desc: "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
     name: "Angry Dobo",
-    starRating: "4.7",
   });
   console.log(restaurant1);
 }
@@ -137,6 +133,36 @@ class Account {
 async function switchAccount(newAccount) {
   await newAccount.init();
   currentAccount = newAccount;
+}
+
+async function deleteReviewFromDatabase(reviewDesc) {
+  try {
+    // Find the review by reviewDesc and remove it from the database
+    await Reviews.findOneAndDelete({ reviewDesc });
+  } catch (error) {
+    // Handle any errors that occur during deletion
+    throw error;
+  }
+}
+
+async function updateAverageStarRating(restaurantName) {
+  try {
+    const reviews = await Reviews.find({ restaurantName });
+    if (reviews.length === 0) {
+      // No reviews found for the restaurant, set starRating to null or any default value you prefer.
+      await Restaurant.updateOne({ name: restaurantName }, { $set: { starRating: null } });
+    } else {
+      // Calculate the average starRating
+      const totalStarRating = reviews.reduce((total, review) => total + review.starRating, 0);
+      const averageStarRating = totalStarRating / reviews.length;
+      const roundedAverageRating = averageStarRating.toFixed(1); // Round to one decimal place
+      
+      // Update the starRating in the Restaurant schema
+      await Restaurant.updateOne({ name: restaurantName }, { $set: { starRating: roundedAverageRating } });
+    }
+  } catch (error) {
+    console.error("Error updating average starRating:", error);
+  }
 }
 
 let currentAccount = new Account("guest@email.com");
@@ -264,6 +290,7 @@ app.get("/restaurantLogout", async (req, res) => {
 });
 
 app.get("/reviewPage", (req, res) => {
+
   res.render("reviewPage", {
     title: "User Review Page",
     script: "static/js/ViewEstablishmentRules.js",
@@ -310,6 +337,8 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
         }
         imgs.push(newP);
       })
+
+      updateAverageStarRating(restaurantName);
     }
     const newReviewId = new mongoose.Types.ObjectId();
     const review = new Reviews({
@@ -377,16 +406,6 @@ app.post("/deleteReview", async (req, res) => {
     res.status(500).json({ error: "Error deleting review" });
   }
 });
-
-async function deleteReviewFromDatabase(reviewDesc) {
-  try {
-    // Find the review by reviewDesc and remove it from the database
-    await Reviews.findOneAndDelete({ reviewDesc });
-  } catch (error) {
-    // Handle any errors that occur during deletion
-    throw error;
-  }
-}
 
 app.post("/RestoView-SB", async (req, res) => {
   const { reviewReply, reviewDesc, currentUser } = req.body;
@@ -770,11 +789,40 @@ app.post("/registrationPage", async (req, res) => {
 
 app.get("/searchPage", async (req, res) => {
   try {
-    const keyword = req.query.keyword;
-    // Query all restos that contain the given keyword in the restoname field
-    const restaurants = await Restaurant.find({
-      name: { $regex: keyword, $options: "i" },
-    }).lean();
+    const { keyword, filterOptions } = req.query;
+    console.log(filterOptions);
+    console.log(keyword);
+
+    // Initialize the filter object
+    const filter = {};
+
+    // Add the keyword filter if it is defined
+    if (keyword) {
+      filter.name = { $regex: keyword, $options: "i" };
+    }
+
+    // If keyword is not defined in the query parameters, check if it is present in the link
+    if (!keyword && req.url.includes("?keyword=")) {
+      const startIndex = req.url.indexOf("?keyword=") + 9; // Length of "?keyword="
+      const endIndex = req.url.indexOf("&", startIndex);
+      if (endIndex === -1) {
+        // If there's no '&' after the keyword, extract the keyword until the end of the URL
+        filter.name = { $regex: req.url.slice(startIndex), $options: "i" };
+      } else {
+        // Extract the keyword between the '?' and '&' symbols
+        filter.name = { $regex: req.url.slice(startIndex, endIndex), $options: "i" };
+      }
+    }
+
+    // Query all restos that match the filter criteria
+    let restaurants = await Restaurant.find(filter).lean();
+
+    // Apply sorting based on the filter value (if provided)
+    if (filterOptions === "HighestToLowestRating") {
+      restaurants.sort((a, b) => b.starRating - a.starRating);
+    } else if (filterOptions === "LowestToHighestRating") {
+      restaurants.sort((a, b) => a.starRating - b.starRating);
+    }
 
     res.render("searchPage", {
       title: "Search Results",
@@ -792,6 +840,7 @@ app.get("/searchPage", async (req, res) => {
   }
 });
 
+
 app.post("/searchPage", (req, res) => {
   const { keyword } = req.body;
 
@@ -806,21 +855,87 @@ app.post("/searchPage", (req, res) => {
   }
 });
 
+app.post("/searchPageFilter", (req, res) => {
+  const { keyword, filterOptions } = req.body;
+
+  console.log(filterOptions);
+  console.log(keyword);
+
+  if (filterOptions === "HighestToLowestRating") {
+    res.redirect(`/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`);
+  } else if (filterOptions === "LowestToHighestRating") {
+    res.redirect(`/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`);
+  } else {
+    // Handle any other case (optional)
+    console.log("Invalid selection or no selection");
+    // Redirect back to the search page without filtering
+    res.redirect(`/searchPageLogout?keyword=${keyword}`);
+  }
+});
+
+
+app.post("/searchPageLogoutFilter", (req, res) => {
+  const { keyword, filterOptions } = req.body;
+
+  console.log(filterOptions);
+  console.log(keyword);
+
+  if (filterOptions === "HighestToLowestRating") {
+    res.redirect(`/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`);
+  } else if (filterOptions === "LowestToHighestRating") {
+    res.redirect(`/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`);
+  } else {
+    // Handle any other case (optional)
+    console.log("Invalid selection or no selection");
+    // Redirect back to the search page without filtering
+    res.redirect(`/searchPageLogout?keyword=${keyword}`);
+  }
+});
+
 app.get("/searchPageLogout", async (req, res) => {
   try {
-    const keyword = req.query.keyword;
-    // Query all restos that contain the given keyword in the restoname field
-    const restaurants = await Restaurant.find({
-      name: { $regex: keyword, $options: "i" },
-    }).lean();
+    const { keyword, filterOptions } = req.query;
+    console.log(filterOptions);
+    console.log(keyword);
+
+    // Initialize the filter object
+    const filter = {};
+
+    // Add the keyword filter if it is defined
+    if (keyword) {
+      filter.name = { $regex: keyword, $options: "i" };
+    }
+
+    // If keyword is not defined in the query parameters, check if it is present in the link
+    if (!keyword && req.url.includes("?keyword=")) {
+      const startIndex = req.url.indexOf("?keyword=") + 9; // Length of "?keyword="
+      const endIndex = req.url.indexOf("&", startIndex);
+      if (endIndex === -1) {
+        // If there's no '&' after the keyword, extract the keyword until the end of the URL
+        filter.name = { $regex: req.url.slice(startIndex), $options: "i" };
+      } else {
+        // Extract the keyword between the '?' and '&' symbols
+        filter.name = { $regex: req.url.slice(startIndex, endIndex), $options: "i" };
+      }
+    }
+
+    // Query all restos that match the filter criteria
+    let restaurants = await Restaurant.find(filter).lean();
+
+    // Apply sorting based on the filter value (if provided)
+    if (filterOptions === "HighestToLowestRating") {
+      restaurants.sort((a, b) => b.starRating - a.starRating);
+    } else if (filterOptions === "LowestToHighestRating") {
+      restaurants.sort((a, b) => a.starRating - b.starRating);
+    }
 
     res.render("searchPageLogout", {
       title: "Search Results",
       script2: "https://kit.fontawesome.com/78bb10c051.js",
-      script3: "static/js.SearchPageLogout.js",
+      script3: "static/js/SearchPage.js",
       css1: "static/css/restaurantStyles.css",
       css2: "static/css/SearchStyle.css",
-      css3: "static/css/StylesOut.css",
+      css3: "static/css/styles.css",
       restaurants: restaurants,
       keyword: keyword,
     });
@@ -829,6 +944,9 @@ app.get("/searchPageLogout", async (req, res) => {
     res.status(500).send("Error querying reviews");
   }
 });
+
+
+
 
 app.post("/searchPageLogout", (req, res) => {
   const { keyword } = req.body;
