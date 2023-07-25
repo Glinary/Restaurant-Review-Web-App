@@ -38,7 +38,7 @@
                 <li>
                   <div class="view-profile">
                     <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
-                    <img src="assets/anonymous_picture.png" id="prof-pic" />
+                    <img src="{{user.avatar}}" id="prof-pic" />
                   </div>
                   <div class="dropdown-m">
                     <ul>
@@ -73,7 +73,7 @@
           <div class="Rest-profile-section" id="Rest-profile">
               <div class="Rest-profile-pictures-section">
                   <div class="Rest-profile-picture">
-                    <img src="assets/avatar.webp" />
+                    <img src="{{user.avatar}}" />
                   </div>
               </div>
               <div class="Rest-profile-description">
@@ -109,7 +109,7 @@
             
             <div class="reviews-user-details">
               <img
-                src="assets/anonymous_picture.png"
+                src="{{this.avatar}}"
                 class="reviews-profile-pic"
               />
             </div>
