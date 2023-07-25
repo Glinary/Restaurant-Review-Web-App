@@ -272,6 +272,7 @@
                 placeholder="Write comment here"></textarea>
                 <!-- Add a hidden input field to store the reviewDesc -->
                 <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+                <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
 
                 <input type="submit" value="Comment" />
               <input type="submit" value="Cancel" />
@@ -280,7 +281,6 @@
         </div>
 
         <!-- User Review Replies/ Comments List Box -->
-        {{#if this.reviewReplyInfo}}
         <div class="reply">
           <h4>Review Comments</h4>
           <div class="reply-container">
@@ -292,7 +292,6 @@
             {{/each}}
           </div>
         </div>
-        {{/if}}
       {{/each}}
       </div>
   </div>  

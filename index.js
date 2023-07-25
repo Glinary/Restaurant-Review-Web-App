@@ -131,7 +131,6 @@ async function run() {
     desc: "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
     name: "Angry Dobo",
   });
-  console.log(restaurant1);
 }
 
 // ---- ACCOUNT SWITCH ---- //
@@ -447,15 +446,15 @@ app.post("/deleteReview", async (req, res) => {
 });
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc} = req.body;
+  const { reviewReply, reviewDesc, reviewId} = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
+  console.log(reviewId);
   console.log("----");
 
-  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { _id : reviewId }, // find the matching reviewDesc
     {
       $push : {
         "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
@@ -548,15 +547,14 @@ app.get("/RestoView-DTH", async (req, res) => {
 });
 
 app.post("/RestoView-DTH", async (req, res) => {
-  const { reviewReply, reviewDesc } = req.body;
+  const { reviewReply, reviewDesc, reviewId } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
-  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { _id : reviewId }, // find the matching reviewDesc
     {
       $push : {
         "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
@@ -649,15 +647,14 @@ app.get("/RestoView-ADB", async (req, res) => {
 });
 
 app.post("/RestoView-ADB", async (req, res) => {
-  const { reviewReply, reviewDesc } = req.body;
+  const { reviewReply, reviewDesc, reviewId } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
-  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { _id : reviewId }, // find the matching reviewDesc
     {
       $push : {
         "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
@@ -751,7 +748,7 @@ app.get("/RestoView-TNB", async (req, res) => {
 });
 
 app.post("/RestoView-TNB", async (req, res) => {
-  const { reviewReply, reviewDesc } = req.body;
+  const { reviewReply, reviewDesc, reviewId } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
@@ -759,7 +756,7 @@ app.post("/RestoView-TNB", async (req, res) => {
 
   //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { _id : reviewId }, // find the matching reviewDesc
     {
       $push : {
         "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
