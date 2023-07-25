@@ -236,8 +236,9 @@
             
             <!-- User Review Images (right) -->
             <div class="reviews-pictures">
-                <img src="{{this.image1}}" class="review-image" />
-                <img src="assets/SB6.jpg" class="review-image" />
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
             </div>
 
             <!-- User Review Option Bar -->
