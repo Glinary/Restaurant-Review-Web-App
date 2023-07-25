@@ -40,6 +40,7 @@ mongoose
 const Reviews = require(path.join(__dirname, "./schema/Reviews"));
 const Users = require(path.join(__dirname, "./schema/Users"));
 const Restaurant = require(path.join(__dirname, "./schema/Restaurant"));
+const Gallery = require(path.join(__dirname, "./schema/Gallery"));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -80,8 +81,8 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
-//INSERT RESTAURANTS TO SCHEMA
-//run();
+//INSERT RESTAURANTS TO SCHEMA 
+//run(); // run only once
 async function run() {
   const restaurant1 = await Restaurant.create({
     link: "/RestoView-SB",
@@ -259,7 +260,8 @@ app.get("/indexLog", async (req, res) => {
 });
 
 app.get("/restaurant", async(req, res) => {
-
+  const user = await Users.findOne({ email: currentAccount.email }).lean();
+  console.log(user);
   const restaurants = await Restaurant.find().lean();
   console.log(restaurants);
 
@@ -269,8 +271,8 @@ app.get("/restaurant", async(req, res) => {
     script2: "https://kit.fontawesome.com/78bb10c051.js",
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/styles.css",
-    restaurants: restaurants
-
+    restaurants: restaurants,
+    user: user
   });
 });
 
@@ -289,8 +291,9 @@ app.get("/restaurantLogout", async (req, res) => {
 
 });
 
-app.get("/reviewPage", (req, res) => {
-
+app.get("/reviewPage", async (req, res) => {
+  const user = await Users.findOne({ email: currentAccount.email }).lean();
+  console.log(user);
   res.render("reviewPage", {
     title: "User Review Page",
     script: "static/js/ViewEstablishmentRules.js",
@@ -301,6 +304,7 @@ app.get("/reviewPage", (req, res) => {
     css2: "static/css/ViewEstablishmentStyles.css",
     css3: "static/css/styles.css",
     css4: "static/css/reviewStyles.css",
+    user: user
   });
 });
 
@@ -336,6 +340,13 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
           newP = origP.replace(/public\\/g, "");;
         }
         imgs.push(newP);
+        const pic = new Gallery({
+          link: newP,
+          restaurantName: restaurantName
+        });
+        pic.save().then(() => {
+          console.log("Pic added");
+        });
       })
 
       updateAverageStarRating(restaurantName);
