@@ -81,8 +81,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA
-
-run();
+//run();
 async function run() {
   const restaurant1 = await Restaurant.create({
     link: "/RestoView-SB",
@@ -147,7 +146,11 @@ let viewUser = new Account("guest@email.com");
 
 // ---------- ROUTES SECTION ---------- //
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+
+  const restaurants = await Restaurant.find().lean();
+  console.log(restaurants);
+
   res.render("index", {
     title: "Home",
     script: "static/js/IndexRules.js",
@@ -159,6 +162,7 @@ app.get("/", (req, res) => {
     pic2: "static/assets/DTH.jpg",
     pic3: "static/assets/TNB.jpeg",
     pic4: "static/assets/ADB.png",
+    restaurants: restaurants
   });
 });
 
@@ -203,6 +207,10 @@ app.post("/loginPage", async (req, res) => {
 });
 
 app.get("/indexLog", async (req, res) => {
+
+  const restaurants = await Restaurant.find().lean();
+  console.log(restaurants);
+
   try {
     // Query everything that has a restaurant name of "Starbucks"
     // TODO: set query to current user object
@@ -216,6 +224,7 @@ app.get("/indexLog", async (req, res) => {
       css1: "static/css/styles.css",
       css2: "static/css/restaurantStyles.css",
       user: user,
+      restaurants : restaurants
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -223,13 +232,19 @@ app.get("/indexLog", async (req, res) => {
   }
 });
 
-app.get("/restaurant", (req, res) => {
+app.get("/restaurant", async(req, res) => {
+
+  const restaurants = await Restaurant.find().lean();
+  console.log(restaurants);
+
   res.render("restaurant", {
     title: "Restaurants",
     script1: "static/js/RestaurantGridRules.js",
     script2: "https://kit.fontawesome.com/78bb10c051.js",
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/styles.css",
+    restaurants: restaurants
+
   });
 });
 

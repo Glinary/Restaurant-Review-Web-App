@@ -21,7 +21,7 @@ const restoSchema = new mongoose.Schema({
     },
     starRating: {
         type: Number,
-        required: true
+        default: null
     }
 })
 
