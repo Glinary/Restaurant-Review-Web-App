@@ -56,15 +56,6 @@ header {
   cursor: pointer;
 }
 
-#titleBl {
-  display: inline;
-  margin: 1rem 0rem;
-  padding-bottom: 1rem;
-  color: #343232;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
 .contain-profile {
   height: fit-content;
   min-width: fit-content;
@@ -365,11 +356,7 @@ header {
 }
 
 #top-Ostar {
-  margin-right: -1rem;
-}
-
-p .stars {
-  color: red;
+  margin: 0.05rem;
 }
 
 .top-overall-stars p {
@@ -600,7 +587,7 @@ p .stars {
 
 .overall-stars {
   display: flex;
-  margin: 0.02rem 0.8rem 1rem 0.8rem;
+  margin: 1rem 0;
 }
 
 #Ostar {
@@ -685,10 +672,10 @@ p .stars {
 
 /*========== START OF REPLY SECTION ==========*/
 
-
 .reply {
-  margin-top:2rem;
+  margin-top: 2rem;
 }
+
 .reply h4 {
   margin: 0rem 1rem 1rem 1rem;
 }
@@ -1082,7 +1069,7 @@ p .stars {
   }
 
   .review-reply {
-    display: none;
+    display: block;
     box-sizing: border-box;
     height: 15vh;
     border-radius: 20px;
@@ -1501,6 +1488,22 @@ p .stars {
   #unhelpful,
   .count {
     margin: 0.5rem 0.01rem;
+  }
+
+  #helpful,
+  #unhelpful {
+    max-height: 3vh;
+    max-height: 3vh;
+    max-width: 3vw;
+    max-width: 3vw;
+  }
+
+  #helpful img,
+  #unhelpful img {
+    max-height: 3vh;
+    max-height: 3vh;
+    max-width: 3vw;
+    max-width: 3vw;
   }
 
   .reviews-section {
