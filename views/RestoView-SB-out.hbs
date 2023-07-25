@@ -37,7 +37,7 @@
                 <li>
                   <div class="view-profile">
                     <a href="/loginPage" id="prof-page">LOGIN</a>
-                    <a href="/registrationPage.html" id="prof-page">REGISTER</a>
+                    <a href="/registrationPage" id="prof-page">REGISTER</a>
                   </div>
                 </li>
               </ul>            
@@ -77,18 +77,14 @@
             </div>
             <div class="top-overall-stars">
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <p>4.8</p>
+              <p>{{restaurant.starRating}}</p>
             </div>
             </div>
             </div>
             <div class="profile-description">
-            <h1>Starbucks</h1>
+            <h1>{{restaurant.name}}</h1>
             <p>
-              The world's largest coffeehouse chain. Indulge in the ultimate coffee experience at Starbucks. Exceptional brews, inviting ambiance, and a commitment to sustainability. Join us and discover the art of great coffee. Starbucks - where every cup tells a story.
+              {{restaurant.desc}}
             </p>
             </div>
             </div>
@@ -224,7 +220,6 @@
           </div>
         </div>
        
-        {{#if this.reviewReplyInfo}}
         <div class="reply">
             <h4>Review Comments</h4>
             <div class="reply-container">
@@ -236,7 +231,6 @@
               {{/each}}
             </div>
           </div>
-        {{/if}}
            {{/each}}
         </div>
     </div>  

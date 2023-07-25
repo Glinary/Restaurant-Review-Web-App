@@ -85,18 +85,14 @@
             </div>
             <div class="top-overall-stars">
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <p>4.7</p>
+              <p>{{restaurant.starRating}}</p>
             </div>
             </div>
           </div>
             <div class="profile-description">
-            <h1>Angry Dobo</h1>
+            <h1>{{restaurant.name}}</h1>
             <p>
-              Prepare your taste buds for a fiery feast at Angry Dobo. Our bold and flavorful dishes will ignite your senses and leave you craving more. From the sizzling spices to the mouthwatering marinades, every bite is a burst of culinary passion. Get ready to unleash your appetite and embrace the heat at Angry Dobo - where flavor gets fierce.
+              {{restaurant.desc}}
             </p>
             </div>
             </div>
@@ -179,7 +175,7 @@
       <div class="reviews-section">
         <div class="label-and-navigator" id="review">
           <h3>User's Reviews</h3>
-          <h4>View All</h4>
+          <h4></h4>
         </div>
 
         <!-- User Review Box -->
@@ -280,6 +276,7 @@
                 placeholder="Write comment here"></textarea>
                 <!-- Add a hidden input field to store the reviewDesc -->
                 <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+                <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
               
                 <input type="submit" value="Comment" />
               <input type="submit" value="Cancel" />
@@ -288,7 +285,6 @@
         </div>
 
         <!-- User Review Replies/ Comments List Box -->
-        {{#if this.reviewReplyInfo}}
         <div class="reply">
           <h4>Review Comments</h4>
           <div class="reply-container">
@@ -300,7 +296,6 @@
             {{/each}}
           </div>
         </div>
-        {{/if}}
       {{/each}}
       </div>
     </div>  

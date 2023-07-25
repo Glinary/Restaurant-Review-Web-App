@@ -77,18 +77,14 @@
             </div>
             <div class="top-overall-stars">
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <p>5.0</p>
+              <p>{{restaurant.starRating}}</p>
             </div>
             </div>
             </div>
             <div class="profile-description">
-              <h1>Tinuhog ni Benny</h1>
+              <h1>{{restaurant.name}}</h1>
               <p>
-                Experience the mouthwatering mastery of flavor at Tinuhog ni Benny. From succulent skewers to savory delights, we bring you the taste sensation you've been craving. Step into a world of culinary delight and let Benny's expert grilling skills take your taste buds on an unforgettable journey. Tinuhog ni Benny - where flavors come alive.
+                {{restaurant.desc}}
               </p>
             </div>  
         </div>
@@ -223,7 +219,6 @@
           </div>
         </div>
         
-        {{#if this.reviewReplyInfo}}
           <div class="reply">
             <h4>Review Comments</h4>
             <div class="reply-container">
@@ -235,7 +230,6 @@
               {{/each}}
          </div>
         </div>
-        {{/if}}
       {{/each}}
       </div>
     </div>

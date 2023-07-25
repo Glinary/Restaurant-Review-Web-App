@@ -85,18 +85,14 @@
             </div>
             <div class="top-overall-stars">
               <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-              <p>4.8</p>
+              <p>{{restaurant.starRating}}</p>
             </div>
             </div>
             </div>
             <div class="profile-description">
-            <h1>Starbucks</h1>
+            <h1>{{restaurant.name}}</h1>
             <p>
-              The world's largest coffeehouse chain. Indulge in the ultimate coffee experience at Starbucks. Exceptional brews, inviting ambiance, and a commitment to sustainability. Join us and discover the art of great coffee. Starbucks - where every cup tells a story.
+              {{restaurant.desc}}
             </p>
             </div>
             </div>
@@ -188,7 +184,7 @@
         <div class="reviews-section">
           <div class="label-and-navigator" id="review">
             <h3>User's Reviews</h3>
-            <h4>View All</h4>
+            <h4></h4>
           </div>
 
 
@@ -283,6 +279,7 @@
                 placeholder="Write comment here"></textarea>
                 <!-- Add a hidden input field to store the reviewDesc -->
                 <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+                <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
               
                 <input type="submit" value="Comment" />
               <input type="submit" value="Cancel" />
@@ -291,7 +288,6 @@
         </div>
         
         <!-- User Review Replies/ Comments List Box -->
-          {{#if this.reviewReplyInfo}}
           <div class="reply">
             <h4>Review Comments</h4>
             <div class="reply-container">
@@ -303,7 +299,6 @@
               {{/each}}
             </div>
             </div>
-          {{/if}}
             {{/each}}
           </div>
       </div>
