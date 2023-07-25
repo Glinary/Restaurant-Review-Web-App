@@ -106,7 +106,7 @@
             <a href="/reviewPage?restaurantName=Starbucks">
             <img src="assets/book_icon.png" /></a>
             </div>
-
+        {{#if highestRated}}
         <div class="top-reviews-section">
             <div class="top-label-and-navigator" id="review">
                 <h3>Top Reviews</h3>
@@ -137,6 +137,7 @@
                     <!-- User Review Rating/Stars -->
                     <div class="overall-stars">
                         {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+           
                     </div>
 
                     <span id="titleBl">{{highestRated.reviewTitle}} </span>
@@ -156,6 +157,7 @@
             </div>
 
         </div>
+        {{/if}}
       </div>
             
 
