@@ -287,6 +287,7 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
     const review = new Reviews({
       email: currentAccount.email,
       restaurantName: restaurantName,
+      avatar: user.avatar,
       userName: user.userName,
       reviewDesc: reviewDesc,
       starRating: starRating,

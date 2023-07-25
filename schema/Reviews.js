@@ -7,6 +7,10 @@ const reviewsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    avatar: {
+        type: String,
+        required: true
+    },
     userName: {
         type: String,
         required: true
