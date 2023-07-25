@@ -463,6 +463,8 @@ app.get("/RestoView-SB-out", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+    // Gallery
+    const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
 
     res.render("RestoView-SB-out", {
       title: "Starbucks",
@@ -472,6 +474,7 @@ app.get("/RestoView-SB-out", async (req, res) => {
       css2: "static/css/stylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -494,6 +497,8 @@ app.get("/RestoView-DTH", async (req, res) => {
       .limit(1) // Limit the result to one review
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "David's Tea House" }).lean();
     console.log(user);
 
     res.render("RestoView-DTH", {
@@ -505,6 +510,7 @@ app.get("/RestoView-DTH", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -558,6 +564,8 @@ app.get("/RestoView-DTH-out", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "David's Tea House" }).lean();
 
     res.render("RestoView-DTH-out", {
       title: "David's Tea House",
@@ -567,6 +575,7 @@ app.get("/RestoView-DTH-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -585,6 +594,8 @@ app.get("/RestoView-ADB", async (req, res) => {
       .limit(1) // Limit the result to one review
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "Angry Dobo" }).lean();
     console.log(user);
 
     res.render("RestoView-ADB", {
@@ -596,6 +607,7 @@ app.get("/RestoView-ADB", async (req, res) => {
       reviews: reviews, // Pass the reviews object to the template
       highestRated: highestRated,
       user: user,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -645,6 +657,8 @@ app.get("/RestoView-ADB-out", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "Angry Dobo" }).lean();
 
     res.render("RestoView-ADB-out", {
       title: "Angry Dobo",
@@ -654,6 +668,7 @@ app.get("/RestoView-ADB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -679,6 +694,8 @@ app.get("/RestoView-TNB", async (req, res) => {
       .lean();
 
     const user = await Users.findOne({ email: currentAccount.email }).lean();
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();
     console.log(user);
 
     res.render("RestoView-TNB", {
@@ -690,6 +707,7 @@ app.get("/RestoView-TNB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -744,6 +762,9 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       .limit(1) // Limit the result to one review
       .lean();
 
+    //Gallery
+    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();
+
     res.render("RestoView-TNB-out", {
       title: "Tinuhog ni Benny",
       script: "static/js/ViewEstablishmentRules.js",
@@ -752,6 +773,7 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
