@@ -233,7 +233,8 @@ app.get("/indexLog", async (req, res) => {
 });
 
 app.get("/restaurant", async(req, res) => {
-
+  const user = await Users.findOne({ email: currentAccount.email }).lean();
+  console.log(user);
   const restaurants = await Restaurant.find().lean();
   console.log(restaurants);
 
@@ -243,8 +244,8 @@ app.get("/restaurant", async(req, res) => {
     script2: "https://kit.fontawesome.com/78bb10c051.js",
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/styles.css",
-    restaurants: restaurants
-
+    restaurants: restaurants,
+    user: user
   });
 });
 
@@ -263,7 +264,9 @@ app.get("/restaurantLogout", async (req, res) => {
 
 });
 
-app.get("/reviewPage", (req, res) => {
+app.get("/reviewPage", async (req, res) => {
+  const user = await Users.findOne({ email: currentAccount.email }).lean();
+  console.log(user);
   res.render("reviewPage", {
     title: "User Review Page",
     script: "static/js/ViewEstablishmentRules.js",
@@ -274,6 +277,7 @@ app.get("/reviewPage", (req, res) => {
     css2: "static/css/ViewEstablishmentStyles.css",
     css3: "static/css/styles.css",
     css4: "static/css/reviewStyles.css",
+    user: user
   });
 });
 
