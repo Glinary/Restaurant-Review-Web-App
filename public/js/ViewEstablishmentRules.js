@@ -17,6 +17,7 @@ const replyCont = document.querySelectorAll(".reply");
 const replyContList = Array.from(replyCont);
 console.log(replyContList);
 
+/*
 for (let i = 0; i < replyCont.length; i++) {
   rChild = replyContList[i].children[1];
   rChildChild = rChild.children[0];
@@ -25,6 +26,7 @@ for (let i = 0; i < replyCont.length; i++) {
     rChild.style.display = "none";
   }
 }
+*/
 
 const divSec = document.querySelector(".dividerSec");
 const revRep = document.querySelector(".review-reply");

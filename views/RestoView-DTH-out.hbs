@@ -222,10 +222,12 @@
       <div class="reply">
         <h4>Review Comments</h4>
         <div class="reply-container">
+          {{#each this.reviewReplyInfo}}
           <div id="single-reply-container">
-            <p id="user-commentName">{{this.reviewReplyInfo.user}}</p>
-            <p id="user-comm">{{this.reviewReplyInfo.reply}}</p>
+            <p id="user-commentName">{{this.user}}</p>
+            <p id="user-comm">{{this.reply}}</p>
           </div>
+          {{/each}}
         </div>
         </div>
          {{/each}}

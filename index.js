@@ -257,7 +257,7 @@ app.get("/reviewPage", (req, res) => {
 });
 
 app.use(express.json());
-app.post("/reviewPage", async (req, res) => {
+app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
   //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
   //TODO: how to get star rating with the current GUI-like interface of the stars
   const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
@@ -268,20 +268,32 @@ app.post("/reviewPage", async (req, res) => {
   console.log(restaurantName);
   console.log("----");
   const placeholder = 0;
+  let imgs = new Array();
+
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
     const restoLink = await Restaurant.findOne({ name: restaurantName }).lean();
     console.log(restoLink);
+    if (req.files) {
+    
+      let origP = '';
+      let newP = '';
+      req.files.forEach(function(files, index, arr){
+        origP = files.path;
+        newP = origP.replace(/public\\/g,'');
+        imgs.push(newP);
+      })
+    }
     const review = new Reviews({
       email: currentAccount.email,
       restaurantName: restaurantName,
+      avatar: user.avatar,
       userName: user.userName,
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
-      // HERE TAKE NOTE REACTION ADDING
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -305,6 +317,7 @@ app.get("/RestoView-SB", async (req, res) => {
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
+    console.log(reviews);
 
     res.render("RestoView-SB", {
       title: "Starbucks",
@@ -323,48 +336,35 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser, likeToggler, likeCounter } =
-    req.body;
+  const { reviewReply, reviewDesc, currentUser } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
     { new: true } // return the updated document
-  );
-
-  if (likeToggler && likeCounter) {
-    Reviews.findOneAndUpdate(
-      { reviewDesc: reviewDesc }, //find based on matching reviewDesc
-      {
-        reactionInfo: {
-          likeToggle: likeToggler,
-          likeCount: likeCounter,
-        },
-      },
-      { new: true } // return the updated document
-    );
-  }
-  then((updatedReview) => {
-    if (!updatedReview) {
-      console.log("Review not found!");
-      return res.status(404).json({ error: "Review not found" });
-    }
-    console.log("Review updated:", updatedReview);
-    // redirect to the resto view:
-    res.redirect("RestoView-SB");
-  }).catch((err) => {
-    console.error("Error updating review:", err);
-    res.status(500).json({ error: "Error updating review" });
-  });
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect("RestoView-SB");
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {
@@ -427,22 +427,22 @@ app.get("/RestoView-DTH", async (req, res) => {
 });
 
 app.post("/RestoView-DTH", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -518,22 +518,22 @@ app.get("/RestoView-ADBB", async (req, res) => {
 });
 
 app.post("/RestoView-ADBB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -609,22 +609,22 @@ app.get("/RestoView-TNB", async (req, res) => {
 });
 
 app.post("/RestoView-TNB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -820,13 +820,17 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
   const { userName, userDescription } = req.body;
   console.log(userName);
   console.log(userDescription);
+  let img = null;
 
   if (userName && userDescription) {
     //update query
     if (req.file) {
       let fileName = req.file.path;
-      let img = fileName.replace(/public\\/g, "");
-      console.log(img);
+      if (fileName.includes("public/")) {
+        img = fileName.replace(/public\//g, "");
+      } else {
+        img = fileName.replace(/public\\/g, "");;
+      }
 
       Users.findOneAndUpdate(
         { email: email }, //find based on matching email

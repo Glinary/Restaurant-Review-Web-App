@@ -189,7 +189,7 @@
               <div class="left">
                 <div class="reviews-user-details">
                   <img
-                    src="assets/anonymous_picture.png"
+                    src="{{this.avatar}}"
                     class="reviews-profile-pic"
                   />
                 </div>
@@ -236,8 +236,9 @@
             
             <!-- User Review Images (right) -->
             <div class="reviews-pictures">
-                <img src="assets/SB5.jpg" class="review-image" />
-                <img src="assets/SB6.jpg" class="review-image" />
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
             </div>
 
             <!-- User Review Option Bar -->
@@ -281,10 +282,12 @@
           <div class="reply">
             <h4>Review Comments</h4>
             <div class="reply-container">
+              {{#each this.reviewReplyInfo}}
               <div id="single-reply-container">
-                <p id="user-commentName">{{this.reviewReplyInfo.user}}</p>
-                <p id="user-comm">{{this.reviewReplyInfo.reply}}</p>
+                <p id="user-commentName">{{this.user}}</p>
+                <p id="user-comm">{{this.reply}}</p>
               </div>
+              {{/each}}
             </div>
             </div>
             {{/each}}
