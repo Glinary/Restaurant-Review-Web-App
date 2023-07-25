@@ -2,6 +2,8 @@ const reviews = document.querySelectorAll(".review"); // List of all review text
 const times = document.querySelectorAll(".review").length; // Total number of review text containers
 const editBar = document.querySelectorAll("#EditMenu");
 const reactionH = document.querySelectorAll("#helpful");
+const likeH = document.querySelectorAll('input[type="checkbox"]');
+console.log(reactionH);
 const reactionU = document.querySelectorAll("#unhelpful");
 const reaction = document.querySelectorAll("#reaction");
 const body = document.getElementsByTagName("BODY")[0];
@@ -204,53 +206,88 @@ reactionH.forEach(
   false
 );
 
-/*Initialize Reaction Button Data*/
-for (let i = 0; i < reactionH.length; i++) {
-  arrH.push(0);
-  arrU.push(0);
-  currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
-  currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
-}
+// /*Initialize Reaction Button Data*/
+// for (let i = 0; i < reactionH.length; i++) {
+//   arrH.push(0);
+//   arrU.push(0);
+//   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
+//   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
+// }
 
-for (let j = 0; j < reactionH.length; j++) {
-  reactionH[j].addEventListener("click", function () {
-    if (arrU[j] == 0 && arrH[j] == 0) {
-      reactionH[j].innerHTML =
-        '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
-      currLike[j] += 1;
-      reactionH[j].nextSibling.innerText = currLike[j];
-      arrH[j] = 1;
-      console.log(arrH);
-    } else if (arrU[j] == 0 && arrH[j] == 1) {
-      reactionH[j].innerHTML =
-        '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
-      currLike[j] -= 1;
-      reactionH[j].nextSibling.innerText = currLike[j];
-      arrH[j] = 0;
-      console.log(arrH);
+// for (let j = 0; j < reactionH.length; j++) {
+//   reactionH[j].addEventListener("click", function () {
+//     if (arrU[j] == 0 && arrH[j] == 0) {
+//       reactionH[j].innerHTML =
+//         '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
+//       currLike[j] += 1;
+//       reactionH[j].nextSibling.innerText = currLike[j];
+//       arrH[j] = 1;
+//       console.log(arrH);
+//     } else if (arrU[j] == 0 && arrH[j] == 1) {
+//       reactionH[j].innerHTML =
+//         '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
+//       currLike[j] -= 1;
+//       reactionH[j].nextSibling.innerText = currLike[j];
+//       arrH[j] = 0;
+//       console.log(arrH);
+//     }
+//   });
+// }
+
+// for (let k = 0; k < reactionU.length; k++) {
+//   reactionU[k].addEventListener("click", function () {
+//     if (arrH[k] == 0 && arrU[k] == 0) {
+//       reactionU[k].innerHTML =
+//         '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
+//       currDLike[k] += 1;
+//       reactionU[k].nextSibling.innerText = currDLike[k];
+//       arrU[k] = 1;
+//       console.log(arrH);
+//     } else if (arrH[k] == 0 && arrU[k] == 1) {
+//       reactionU[k].innerHTML =
+//         '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
+//       currDLike[k] -= 1;
+//       reactionU[k].nextSibling.innerText = currDLike[k];
+//       arrU[k] = 0;
+//       console.log(arrU);
+//     }
+//   });
+// }
+
+const countSpans = document.querySelectorAll(".count");
+
+for (let j = 0; j < likeH.length; j++) {
+  likeH[j].addEventListener("click", (event) => {
+    // Find the closest form element from the clicked radio button
+
+    const likeToggle = likeH[j].value;
+    const likeToggler = likeH[j].getAttribute("value");
+    const likeCount = countSpans[j].getAttribute("value");
+    console.log(likeCount);
+    console.log(likeToggler);
+
+    if (likeToggle == true) {
+      console.log("ENTERED");
+      likeCount = likeCount + 1;
+      console.log(likeCount);
     }
+
+    console.log(likeH[j].checked);
+    const form = event.target.closest("form");
+    console.log(form)
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      console.log("SUBMIT");
+      form.submit();
+    });
   });
 }
 
-for (let k = 0; k < reactionU.length; k++) {
-  reactionU[k].addEventListener("click", function () {
-    if (arrH[k] == 0 && arrU[k] == 0) {
-      reactionU[k].innerHTML =
-        '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
-      currDLike[k] += 1;
-      reactionU[k].nextSibling.innerText = currDLike[k];
-      arrU[k] = 1;
-      console.log(arrH);
-    } else if (arrH[k] == 0 && arrU[k] == 1) {
-      reactionU[k].innerHTML =
-        '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
-      currDLike[k] -= 1;
-      reactionU[k].nextSibling.innerText = currDLike[k];
-      arrU[k] = 0;
-      console.log(arrU);
-    }
-  });
-}
+// const form = event.target.closest("form");
+// if (form) {
+//   console.log(form.id); // Output the ID of the form
+//   // You can now work with the form or its elements as needed
+// }
 
 /* Helper Function Section */
 

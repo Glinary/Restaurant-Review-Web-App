@@ -267,7 +267,9 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
   console.log(starRating);
   console.log(restaurantName);
   console.log("----");
+  const placeholder = 0;
   let imgs = new Array();
+
 
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
@@ -280,7 +282,11 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       let newP = '';
       req.files.forEach(function(files, index, arr){
         origP = files.path;
-        newP = origP.replace(/public\\/g,'');
+        if (origP.includes("public/")) {
+          newP = origP.replace(/public\//g, "");
+        } else {
+          newP = origP.replace(/public\\/g, "");;
+        }
         imgs.push(newP);
       })
     }
@@ -362,7 +368,7 @@ async function deleteReviewFromDatabase(reviewDesc) {
 }
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc } = req.body;
+  const { reviewReply, reviewDesc, currentUser } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
@@ -376,8 +382,8 @@ app.post("/RestoView-SB", async (req, res) => {
         "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new : true } //return the updated document
-    )
+    { new: true } // return the updated document
+  )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -846,13 +852,17 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
   const { userName, userDescription } = req.body;
   console.log(userName);
   console.log(userDescription);
+  let img = null;
 
   if (userName && userDescription) {
     //update query
     if (req.file) {
       let fileName = req.file.path;
-      let img = fileName.replace(/public\\/g, "");
-      console.log(img);
+      if (fileName.includes("public/")) {
+        img = fileName.replace(/public\//g, "");
+      } else {
+        img = fileName.replace(/public\\/g, "");;
+      }
 
       Users.findOneAndUpdate(
         { email: email }, //find based on matching email
