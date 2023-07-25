@@ -818,13 +818,17 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
   const { userName, userDescription } = req.body;
   console.log(userName);
   console.log(userDescription);
+  let img = null;
 
   if (userName && userDescription) {
     //update query
     if (req.file) {
       let fileName = req.file.path;
-      let img = fileName.replace(/public\\/g, "");
-      console.log(img);
+      if (fileName.includes("public/")) {
+        img = fileName.replace(/public\//g, "");
+      } else {
+        img = fileName.replace(/public\\/g, "");;
+      }
 
       Users.findOneAndUpdate(
         { email: email }, //find based on matching email
