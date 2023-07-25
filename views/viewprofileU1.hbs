@@ -19,11 +19,11 @@
           <div class="menu-line"></div>
           <div class="search-container2">
           <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
-          <form action="/SearchPage" id="searchform" method="post">
+          <form action="SearchPage.html" id="searchform" method="get">
               <input
                 type="text"
                 placeholder="Type to search"
-                name="keyword"
+                name="searchBar"
                 id="searchBar"
               />
               <input 
@@ -38,7 +38,7 @@
                 <li>
                   <div class="view-profile">
                     <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
-                    <img src="{{user.avatar}}" id="prof-pic" />
+                    <img src="assets/anonymous_picture.png" id="prof-pic" />
                   </div>
                   <div class="dropdown-m">
                     <ul>
@@ -73,7 +73,7 @@
           <div class="Rest-profile-section" id="Rest-profile">
               <div class="Rest-profile-pictures-section">
                   <div class="Rest-profile-picture">
-                    <img src="{{user.avatar}}" />
+                    <img src="assets/avatar.webp" />
                   </div>
               </div>
               <div class="Rest-profile-description">
@@ -123,10 +123,10 @@
             </div>
             <div id="reaction">
               <div id="helpful">
-                <i class="fa-solid fa-thumbs-up" style="color: #000000"></i>
+                <img src="assets/tbUP0.png">
               </div><span class="count" value="14">14</span>
               <div id="unhelpful">
-                <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i></i>
+                <img src="assets/tbDN0.png"></i></i>
               </div><span class="count" value="1">1</span>
             </div>
           </div>
@@ -137,10 +137,9 @@
             <div id="Ostar"><i class="fa fa-star"></i></div>
             <div id="Ostar"><i class="fa fa-star"></i></div>
           </div>
-          <span id="titleBl">{{this.reviewTitle}} </span>
           <div class="review">
             <p>
-               {{this.reviewDesc}}
+              {{this.reviewDesc}}
             </p>
           </div>
           <div class="review-edit">
