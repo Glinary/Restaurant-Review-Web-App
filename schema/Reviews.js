@@ -31,14 +31,14 @@ const reviewsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviewReplyInfo: {
+    reviewReplyInfo: [{
         reply: {
             type: String
         },
         user: {
             type: String
         }
-    },
+    }],
     images: [{
         type: String,
         required: false

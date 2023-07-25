@@ -316,6 +316,7 @@ app.get("/RestoView-SB", async (req, res) => {
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
+    console.log(reviews);
 
     res.render("RestoView-SB", {
       title: "Starbucks",
@@ -334,22 +335,22 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -425,22 +426,22 @@ app.get("/RestoView-DTH", async (req, res) => {
 });
 
 app.post("/RestoView-DTH", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -516,22 +517,22 @@ app.get("/RestoView-ADBB", async (req, res) => {
 });
 
 app.post("/RestoView-ADBB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -607,22 +608,22 @@ app.get("/RestoView-TNB", async (req, res) => {
 });
 
 app.post("/RestoView-TNB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log("----");
 
+  //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    { reviewDesc : reviewDesc }, // find the matching reviewDesc
     {
-      reviewReplyInfo: {
-        reply: reviewReply,
-        user: currentAccount.userName,
+      $push : {
+        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
       },
     },
-    { new: true } // return the updated document
-  )
+    { new : true } //return the updated document
+    )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
