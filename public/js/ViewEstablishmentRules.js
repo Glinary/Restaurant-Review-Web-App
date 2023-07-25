@@ -188,10 +188,10 @@ editBar.forEach((cell) =>
 
       deleteButton.addEventListener("click", function () {
         console.log("Delete clicked!");
-      
+
         // Get the reviewDesc value from the hidden input field
         const reviewDesc = document.getElementById("reviewDesc").value;
-      
+
         // Make the AJAX request to delete the review
         fetch("/deleteReview", {
           method: "POST",
@@ -221,7 +221,6 @@ editBar.forEach((cell) =>
     }
   })
 );
-
 
 function checkReviewsCount() {
   if (divSec.children[0].children.length == 1) {
@@ -313,9 +312,86 @@ reactionH.forEach(
 //   });
 // }
 
-  for (let j = 0; j < reactionH.length; j++){
-    
+function sendFunc(event) {
+  console.log(event);
+  let checkbox = event.target;
+  const dataId = checkbox.getAttribute("data-id");
+  let image = checkbox.parentElement.querySelector(".icon img");
+  const countSpan = checkbox.parentElement.querySelector(".count"); // Find the correct count span
+  const countValue = parseInt(countSpan.getAttribute("value"));
+  countL = countValue;
+
+  let toggle = checkbox.checked;
+  let toggled = 0;
+
+  console.log("Data-id value:", dataId);
+  console.log("Data toggle:", toggle);
+  console.log("Data count:", countL);
+
+  if (toggle) {
+    toggled = 1;
+    console.log("box is toggled");
+    image.src = "assets/tbUP1.png";
+    countL = countL + 1;
+    countSpan.textContent = countL;
+    jstring = JSON.stringify({ dataId, toggled, countL }); // Include the countValue in the JSON data
+    console.log(jstring);
+  } else {
+    toggled = 0;
+    image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+    console.log("box is not toggled");
+    countSpan.textContent = countValue;
+    jstring = JSON.stringify({ dataId, toggled, countValue }); // Include the countValue in the JSON data
+    console.log(jstring);
   }
+
+  // Use the fetch API to send the data to the server
+  fetch("/reactionPost", {
+    method: "POST",
+    body: jstring,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    console.log(response);
+  });
+}
+
+let reviewIds = [];
+
+for (let j = 0; j < likeH.length; j++) {
+  reviewIds.push(likeH[j].getAttribute("data-id"));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Retrieve the stored values from local storage and update the UI
+
+  countingSpan.forEach((checkbox) => {
+    console.log(checkbox);
+    const dataId = checkbox.getAttribute("data-id");
+    const dataToggle = parseInt(checkbox.getAttribute("data-toggle"));
+    const dataCount = parseInt(checkbox.getAttribute("value"));
+    const countSpan = checkbox.parentElement.querySelector(".count");
+    let image = checkbox.parentElement.querySelector(".icon img");
+
+    let toggle = checkbox.checked;
+    let toggled = 0;
+
+    console.log("Data-id value:", dataId);
+    console.log("Data toggle:", dataToggle);
+    console.log("Data count:", dataCount);
+
+    if (dataToggle == 1) {
+      image.src = "assets/tbUP1.png";
+      console.log("box is toggled");
+      countSpan.textContent = dataCount + 1;
+    } else {
+      image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+      console.log("box is not toggled");
+      countSpan.textContent = dataCount;
+    }
+  });
+});
 
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);

@@ -122,14 +122,11 @@
               </div>
             </div>
             <form id="reaction">
-              <label>
-              <input type="checkbox" id="reacBut" value={{{this.reactionInfo.likeToggle}}} >
-                <span class="icon" id="helpful"><img src="assets/tbUP0.png"></span> 
-                <span class="count" value={{{this.reactionInfo.likeToggle}}}>18</span>
+              <label class="reacBut">
+              <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
+                <span class="icon" id="helpful"><img src="assets/tbUP0.png" ></span>  
+                <span class="count" value={{this.reactionInfo.likeCount}} data-toggle={{this.reactionInfo.likeToggle}}>1</span>
               </label>
-              <div id="unhelpful">
-                <img src="assets/tbDN0.png"></i></i>
-              </div><span class="count" value="1">1</span>
             </form>
           </div>
           <div class="overall-stars">
@@ -139,6 +136,7 @@
             <div id="Ostar"><i class="fa fa-star"></i></div>
             <div id="Ostar"><i class="fa fa-star"></i></div>
           </div>
+          <div id="titleBl">{{this.reviewTitle}}</div>
           <div class="review">
             <p>
               {{this.reviewDesc}}
