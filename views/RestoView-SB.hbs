@@ -167,10 +167,9 @@
         <h3>Gallery</h3>
         
         <div class="gallery-pictures">
-            <img src="assets/SB5.jpg" class="gallery-image"/>
-            <img src="assets/SB3.jpg" class="gallery-image"/>
-            <img src="assets/SB1.jpg" class="gallery-image"/>
-            <img src="assets/SB2.jpg" class="gallery-image"/>
+          {{#each gallery}}
+            <img src="{{this.link}}" class="gallery-image"/>
+          {{/each}}
         </div>
       </div>
     </div>

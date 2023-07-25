@@ -384,6 +384,8 @@ app.get("/RestoView-SB", async (req, res) => {
       .limit(1) // Limit the result to one review
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
+    // Gallery
+    const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
     console.log(user);
     console.log(reviews);
 
@@ -396,6 +398,7 @@ app.get("/RestoView-SB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
