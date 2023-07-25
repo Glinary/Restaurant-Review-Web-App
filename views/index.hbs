@@ -1,0 +1,104 @@
+<header>
+    <div class="RP-app-name">
+      <h1>WhenInTaft</h1>
+    </div>
+    <div class="toggle-bars" id="mobile-menu">
+      <div class="toggle"></div>
+      <div class="toggle"></div>
+      <div class="toggle"></div>
+    </div>
+    <div class="divide-this"></div>
+      
+    <div class="menu-bar">
+      <div class="menu-list">
+        <div class="part1">
+          <a href="/" id="current">HOME</a>
+          <a href="/restaurantLogout">RESTAURANTS</a>
+        </div>
+        <div class="menu-line"></div>
+        <div class="search-container2">
+         <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+         <form action="/SearchPageLogout" id="searchform" method="post">
+            <input
+              type="text"
+              placeholder="Type to search"
+              name="keyword"
+              id="searchBar"
+              autocomplete="off"
+            />
+            <input 
+              type="submit"
+              value="submit"
+              />
+        </form>
+        </div>
+        <div class="menu-bar2">
+          <nav>
+            <ul>
+              <li>
+                <div class="view-profile">
+                  <a href="/loginPage" id="prof-page">LOGIN</a>
+                  <a href="/registrationPage" id="prof-page">REGISTER</a>
+                </div>
+              </li>
+            </ul>            
+          </nav>
+        </div>
+      </div>
+    </div>    
+  </header>
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Type to search"
+      name="searchBar"
+      id="searchBar"
+      autocomplete="off"
+    /><a href="/searchPageLogout"></a>
+  </div>
+  <div class="search-line"></div>
+  <!-- END OF HEADER-->
+
+    <div class="wrapper">
+    
+        <div class="home-banner">
+            <h1 id="oneLook">ONE LOOK AROUND, TO<br>
+                SATISFY CRAVINGS!</h1>
+            <div class="home-banner-tagline">
+                <p id="home-banner-line"></p>
+                <p id="choose">choose the venue</p>
+            </div>
+            <div>
+                <a href="/registrationPage"><input type="button" value="Register Now" id="registerButton"></a><br>
+            </div>
+        </div>
+
+        <div class="venue-section">
+    
+            <div class="slides">
+
+                {{#each restaurants}}
+                <div class="slide">
+                    <a href="{{this.link}}-out"><img src="{{this.img}}" id="restaurant1" ></a>
+                    <div id="resto-desc">
+                      <p>
+                        {{this.desc}}
+                      </p>
+                    </div>
+                    <div id="resto-innerLabel">
+                      <p id="r-label">{{this.name}}</p>
+                      <div class="cont">
+                        <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+                        {{#if this.starRating}}
+                          <p id="r-label">{{this.starRating}}</p>
+                        {{else}}
+                          <p id="r-label">N/A</p>
+                        {{/if}}
+                      </div>
+                    </div>
+                </div>
+                {{/each}}
+
+          </div>
+        </div>
+    </div>

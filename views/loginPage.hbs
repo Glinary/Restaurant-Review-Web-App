@@ -1,0 +1,48 @@
+<!-- ========================= LOGIN PAGE =====================  -->
+    <!-- ============= START OF HALF RIGHT =============  -->
+    <div class="half-right-container">
+      <!-- APP TITLE -->
+      <div class="app-name">
+        <h1>WhenInTaft</h1>
+        <!-- SUBTITLE -->
+        <div class="line"></div>
+        <div class="subtitle">explore the food</div>
+        <div class="explore">
+          <a href="/restaurantLogout"><input type="button" value="Explore" /></a>
+        </div>
+      </div>
+    </div>
+    <!-- ============= END OF HALF RIGHT =============  -->
+
+    <!-- =============== START OF HALF LEFT ===============  -->
+    <div class="half-left-container">
+      <div class="login-items">
+        <h1 class="login">Login to your Account</h1>
+        <p class="welcome">Welcome back!</p>
+
+        <form id="loginPage-form" action="/loginPage" method="POST">
+          <div class="user-login">
+            <div class="input-box">
+              <input type="text" id="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-box">
+              <input type="text" id="pw" name="pw" placeholder="Password" />
+            </div>
+          </div>
+          <div class="login-button">
+            <input type="submit" value="LOGIN" />
+          </div>
+          <div id="remember">
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+            <label for="vehicle1"> Remember Me</label><br />
+          </div>
+        </form>
+        <div class="user-login-container">
+          <p class="already">Don't have an account?</p>
+          <a href="/registrationPage">Create account</a>
+        </div>
+      </div>
+    </div>
+    <!-- ============= END OF HALF RIGHT ===============  -->
+
+    <!-- ========================= END OF LOGIN PAGE =====================  -->

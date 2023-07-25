@@ -1,0 +1,425 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  background-color: var(--main-background);
+  --main-font: "Montserrat", sans-serif;
+  --main-background: #f8f3ea;
+
+  /* login items */
+  --main-fieldborder-color: #c0d8fd;
+  --main-field-color: #b9d2d2;
+  --main-button-color: #64b6ac;
+
+  /* main content */
+  --main-label-color: #b09e9a;
+  --main-description-hover: #716b6b;
+  --page-menu-color: #e3e6d9;
+  --gallery-box-color: #b9d2d2;
+  --reviewbox-color: #fad4c1;
+  --user-info-outercolor: #b9d2d2;
+  --user-info-innercolor: white;
+}
+
+.section {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.roundblock {
+  border-radius: 30px;
+}
+
+.center-block {
+  /* background-color: #768581; */
+  height: auto;
+  width: 90%;
+  display: block;
+}
+
+.block0 {
+  box-sizing: border-box;
+  background-color: var(--reviewbox-color);
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  max-height: max-content;
+  margin: 0px 0px 50px 0px;
+}
+
+.block0 p {
+  margin: 0.8rem 0rem 0.8rem 1rem;
+}
+
+#heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 100px;
+}
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+#createReview #labels {
+  box-sizing: border-box;
+  padding: 3rem 1rem;
+  margin: 2rem 0rem;
+  height: fit-content;
+  font-weight: 500;
+}
+
+#createReview #labelsFlex {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+  font-weight: 500;
+}
+
+#createReview textarea:nth-child(2) {
+  box-sizing: border-box;
+  margin: 0.5rem 1rem 2rem 1rem;
+  padding: 0.65rem;
+  width: 95%;
+  height: 5vh;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  resize: none;
+}
+
+#createReview textarea:nth-child(4) {
+  box-sizing: border-box;
+  margin: 0.5rem 1rem 2rem 1rem;
+  padding: 0.65rem;
+  width: 95%;
+  height: 12vh;
+  border-radius: 10px;
+  font-size: 0.85em;
+  font-weight: 500;
+  border: none;
+  resize: none;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: rgb(183, 153, 34);
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #09f;
+}
+
+.image-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 3rem;
+}
+
+.image-section1 {
+  box-sizing: border-box;
+  height: 200px;
+  width: 50%;
+  border-radius: 20px;
+  background-color: white;
+  margin: 10px;
+}
+
+.image-section2 {
+  box-sizing: border-box;
+  height: 200px;
+  width: 50%;
+  border-radius: 20px;
+  background-color: white;
+  margin: 10px;
+}
+
+.title-user-review textarea {
+  border: none;
+  resize: none;
+  width: 90%;
+  overflow: hidden;
+  margin: 10px;
+  font-size: 1em;
+}
+
+.user-review textarea {
+  border: none;
+  resize: none;
+  width: 90%;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.user-upload {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  padding: 20px;
+  color: #444;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.user-upload input[type="file"] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+
+.user-upload input[type="file"]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: var(--main-button-color);
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.user-upload input[type="file"]::file-selector-button:hover {
+  background: #0f7b59;
+}
+
+.submission {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
+
+.buttons {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  float: right;
+  margin: 1rem;
+}
+
+.cancel {
+  height: 35;
+  width: 120px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background-color: var(--main-button-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.cancel a {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+}
+
+.buttons input[type="submit"] {
+  font-size: 15px;
+  color: white;
+  height: 35px;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background-color: var(--main-button-color);
+}
+
+.buttons input[type="submit"]:hover,
+.cancel:hover {
+  cursor: pointer;
+  background: #0f7b59;
+}
+
+@media only screen and (min-width: 1000px) {
+  /*! REVIEW SECTION */
+
+  .left-block {
+    background-color: var(--page-menu-color);
+    width: 15%;
+  }
+
+  .right-block {
+    background-color: var(--page-menu-color);
+    width: 15%;
+  }
+
+  .center-block {
+    width: 50%;
+  }
+
+  /*! END OF REVIEW SECTION */
+
+  #createReview #labels {
+    box-sizing: border-box;
+    padding: 3rem 1rem;
+    margin: 2rem 0rem;
+    height: fit-content;
+    font-weight: 500;
+  }
+
+  #createReview #labelsFlex {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+    font-weight: 500;
+  }
+
+  #createReview textarea:nth-child(2) {
+    box-sizing: border-box;
+    margin: 0.5rem 1rem 2rem 1rem;
+    padding: 0.65rem;
+    width: 95%;
+    height: 5vh;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+  }
+
+  #createReview textarea:nth-child(4) {
+    box-sizing: border-box;
+    margin: 0.5rem 1rem 2rem 1rem;
+    padding: 0.65rem;
+    width: 95%;
+    height: 12vh;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border: none;
+    resize: none;
+  }
+
+  .rating {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+  }
+
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .rating label:last-child {
+    position: static;
+  }
+
+  .rating label:nth-child(1) {
+    z-index: 5;
+  }
+
+  .rating label:nth-child(2) {
+    z-index: 4;
+  }
+
+  .rating label:nth-child(3) {
+    z-index: 3;
+  }
+
+  .rating label:nth-child(4) {
+    z-index: 2;
+  }
+
+  .rating label:nth-child(5) {
+    z-index: 1;
+  }
+
+  .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .rating label .icon {
+    float: left;
+    color: transparent;
+  }
+
+  .rating label:last-child .icon {
+    color: #000;
+  }
+
+  .rating:not(:hover) label input:checked ~ .icon,
+  .rating:hover label:hover input ~ .icon {
+    color: rgb(183, 153, 34);
+  }
+
+  .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #09f;
+  }
+}
+
+/* 4a 7a */

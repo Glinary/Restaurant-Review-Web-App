@@ -1,0 +1,174 @@
+<!--START OF HEADER--> 
+      <header>
+        <div class="RP-app-name">
+          <h1>WhenInTaft</h1>
+        </div>
+        <div class="toggle-bars" id="mobile-menu">
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+          <div class="toggle"></div>
+        </div>
+        <div class="divide-this"></div>
+          
+        <div class="menu-bar">
+          <div class="menu-list">
+            <div class="part1">
+              <a href="/indexLog" id="current">HOME</a>
+              <a href="/restaurant">RESTAURANTS</a>
+            </div>
+            <div class="menu-line"></div>
+            <div class="search-container2">
+            <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+            <form action="/SearchPage" id="searchform" method="post">
+                <input
+                  type="text"
+                  placeholder="Type to search"
+                  name="keyword"
+                  id="searchBar"
+                />
+                <input 
+                  type="submit"
+                  value="submit"
+                  />
+            </form>
+            </div>
+            <div class="menu-bar2">
+              <nav>
+                <ul>
+                  <li>
+                    <div class="view-profile">
+                      <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
+                      <img src="{{user.avatar}}" id="prof-pic" />
+                    </div>
+                    <div class="dropdown-m">
+                      <ul>
+                        <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
+                        <li><a href="/editProfile">EDIT PROFILE</a></li>
+                        <li><a href="/">LOGOUT</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>            
+              </nav>
+            </div>
+          </div>
+        </div>    
+      </header>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Type to search"
+          name="searchBar"
+          id="searchBar"
+        /><a href="/SearchPage"></a>
+      </div>
+      <div class="search-line"></div>
+
+<!-- END OF HEADER -->
+
+<!-- content body -->
+    <div class="section">
+      <div class="left-block roundblock"></div>
+
+        <!-- center-block -->
+        <div class="center-block roundblock">
+
+          <div class="block0 roundblock">
+              <form id="createReview" name="createReview" action="/reviewPage" method="POST" enctype="multipart/form-data"> 
+                  
+                  <span id="labels"><label for="title">Title</label></span>
+                      
+                      <textarea
+                        id="title"
+                        name="reviewTitle"
+                        rows="1"
+                        cols="10"
+                        placeholder="write title for your review here"
+                        maxlength="40"  
+                      ></textarea>
+
+                    <span id="labelsFlex"
+                    ><label for="review">Review</label>        
+                    <div class="cont">Rating:
+                    <div class="rating">
+                      <label>
+                        <input type="radio" name="starRating" value="1" />
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="starRating" value="2" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="starRating" value="3" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="starRating" value="4" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      <label>
+                        <input type="radio" name="starRating" value="5" />
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                      </label>
+                      
+                    </div>
+                    </div>
+                </span>
+                      <textarea
+                    id="review"
+                    name="reviewDesc"
+                    rows="1"
+                    cols="10"
+                    placeholder="write your review here"
+                    maxlength="210"
+                  ></textarea>
+              
+                  <span id="labels"
+                    ><label for="image-section">Upload up to 2 Images</label></span
+                  >
+                  <div class="image-section">
+                    <div class="image-section1">
+                      <div class="user-upload">
+                        <!-- https://nikitahl.com/custom-styled-input-type-file -->
+                        <input
+                          id="images" name="images" type="file" multiple/>
+                      </div>
+                    </div>
+                </div>
+                
+
+                <div class="buttons">
+                    <div class="cancel"><a href="#">cancel</a></div>
+                    <input id="submitForm" name="submitForm" type="submit" value="submit review" />
+                  </div>
+                <!-- Add a hidden input field to store the restaurant name -->
+                <input type="hidden" id="restaurantNameInput" name="restaurantName">
+              </form>
+                    <script>
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const restaurantName = urlParams.get('restaurantName');
+                      const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+                       // Set the value of the hidden input field to the retrieved restaurant name
+                      if (restaurantNameInput) {
+                        restaurantNameInput.value = restaurantName;
+                      }
+                    </script>
+            </div>
+          <div class="right-block roundblock"></div>
+        </div>
+      <div class="right-block roundblock"></div>
+    </div>
+  </body>
+</html>

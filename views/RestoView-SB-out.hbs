@@ -1,0 +1,236 @@
+<header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+        
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="/" id="current">HOME</a>
+            <a href="/restaurantLogout">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+           <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+           <form action="/SearchPageLogout" id="searchform" method="post">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="keyword"
+                id="searchBar"
+              />
+              <input 
+                type="submit"
+                value="submit"
+                />
+          </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="/loginPage" id="prof-page">LOGIN</a>
+                    <a href="/registrationPage" id="prof-page">REGISTER</a>
+                  </div>
+                </li>
+              </ul>            
+            </nav>
+          </div>
+        </div>
+      </div>    
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="/searchPageLogout"></a>
+    </div>
+    <div class="search-line"></div>
+  
+  <!-- END OF HEADER -->
+
+    <!-- START OF PROFILE SECTION (including top revs)-->
+
+    <div id="profilee">
+      <div class="box">
+        <div class="box-a">
+          <a href="#profile" class="aboutme">About Me</a>
+          <a href="#review" class="aboutme">Reviews</a>
+          <a href="#gallery" class="aboutme">Gallery</a>
+        </div>
+      </div>
+      <div class="yohoo">
+        <div class="profile-section" id="profile">
+          <div class="contain-profile">
+            <div class="profile-pictures-section">
+            <div class="profile-picture">
+                <img src="assets/starbucks.jpg" />
+            </div>
+            <div class="top-overall-stars">
+              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+              <p>{{restaurant.starRating}}</p>
+            </div>
+            </div>
+            </div>
+            <div class="profile-description">
+            <h1>{{restaurant.name}}</h1>
+            <p>
+              {{restaurant.desc}}
+            </p>
+            </div>
+            </div>
+            <div class="edit-profile-section">
+            <h4>Add Review</h4>
+            <a href="/loginPage"><img src="assets/book_icon.png" /></a>
+            </div>
+        {{#if highestRated.starRating}}
+        <div class="top-reviews-section">
+            <div class="top-label-and-navigator" id="review">
+                <h3>Top Reviews</h3>
+            </div>
+            
+            <!-- User Review Box -->
+            <div class="top-reviews-content-container">
+                <div class="top-reviews-left-container">
+                  <div class="top-left">
+                    <div class="top-reviews-user-details">
+                      <img
+                        src="{{highestRated.avatar}}"
+                        class="top-reviews-profile-pic"
+                      />
+                    </div>
+
+                    <!-- User Review Information-->
+                    <div class="top-further-details">
+                      <div class="top-name">
+                        <a class="top-firstname" href="/loginPage">{{highestRated.userName}}</a>
+                      </div>
+                      <div class="top-others">
+                        <p class="top-review-count">9 Reviews</p>
+                      </div>
+                    </div>
+                  </div>
+                                     
+                <!-- User Review Rating/Stars -->
+                    <div class="overall-stars">
+                       
+                        {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                 
+                    </div>
+
+                    <span id="titleBl">{{highestRated.reviewTitle}} </span>
+                  <div class="review">
+                    <p class="top-review-paragraph">
+                      {{highestRated.reviewDesc}}
+                    </p>
+                  </div>
+                </div>
+        
+
+                <div class="top-reviews-pictures">
+                  {{#each highestRated.images}}
+                    <img src="{{this}}" class="top-review-image" />
+                  {{/each}}
+                </div>
+            </div>
+
+            
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="box"></div>
+    </div>
+
+
+    <div class="gallery-section" id="gallery">
+      <div class="gallery-container">
+        <h3>Gallery</h3>
+        
+        <div class="gallery-pictures">
+            {{#each gallery}}
+            <img src="{{this.link}}" class="gallery-image"/>
+            {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <!--END OF PROFILE SECTION (including top revs)-->
+    <div class="dividerSec"> 
+
+      <div class="reviews-section">
+        <div class="label-and-navigator" id="review">
+          <h3>User's Reviews</h3>
+          <h4></h4>
+        </div>
+        
+      <!-- User Review Box -->
+        {{#each reviews}}
+        <div class="reviews-content-container">
+          <div class="reviews-left-container">
+
+            <div class="left">
+              <div class="reviews-user-details">
+                <img
+                  src="{{this.avatar}}"
+                  class="reviews-profile-pic"
+                />
+              </div>
+              
+            <!-- User Review Information-->
+              <div class="further-details">
+                <div class="name">
+                  <a class="firstname" href="/loginPage">{{this.userName}}</a>
+                </div>
+                <div class="others">
+                  <p class="review-count"></p>
+                </div>
+              </div>
+
+            </div>
+
+          <!-- User Review Rating/Stars -->
+          <div class="overall-stars">
+              {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+          </div>
+
+            <span id="titleBl">{{this.reviewTitle}} </span>
+            <!-- User Review -->
+            <div class="review">
+              <p>
+                {{this.reviewDesc}}
+              </p>
+            </div>
+          </div>
+
+          <!-- User Review Images (right) -->
+          <div class="reviews-pictures">
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
+          </div>
+        </div>
+       
+        <div class="reply">
+            <h4>Review Comments</h4>
+            <div class="reply-container">
+              {{#each this.reviewReplyInfo}}
+              <div id="single-reply-container">
+                <p id="user-commentName">{{this.user}}</p>
+                <p id="user-comm">{{this.reply}}</p>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+           {{/each}}
+        </div>
+    </div>  

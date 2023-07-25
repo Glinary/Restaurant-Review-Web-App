@@ -1,0 +1,103 @@
+<header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="/" id="current">HOME</a>
+            <a href="/restaurantLogout">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+            <i
+              class="fa-solid fa-magnifying-glass fa-2x"
+              style="color: #ceb9a7; margin-left: 0.5rem"
+            ></i>
+            <form action="/searchPageLogout" id="searchform" method="POST">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="keyword"
+                id="searchBar"
+              />
+              <input type="submit" value="submit" />
+            </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="/loginPage" id="prof-page">LOGIN</a>
+                    <a href="/registrationPage" id="prof-page">REGISTER</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="/searchPageLogout"></a>
+    </div>
+    <div class="search-line"></div>
+    <!-- END OF HEADER (including search)-->
+
+    <div id="search-result-container">
+      <div class="search-alert">
+        <p>
+          search result for: "
+          <span id="result" data-result="#">{{keyword}}</span>"
+        </p>
+      </div>
+      <div id="filter-result-box">
+        <form action="/searchPageLogoutFilter" method="POST">
+          <!-- Add the hidden input field for the keyword -->
+          <input type="hidden" name="keyword" value="{{keyword}}">
+          <label for="result filter">Filter Result:</label>
+          <select name="filterOptions" id="filter-options">
+            <option value="HighestToLowestRating">Highest to Lowest Rating</option>
+            <option value="LowestToHighestRating">Lowest to Highest Rating</option>
+          </select>
+          <br /><br />
+          <input type="submit" value="search" />
+        </form>
+      </div>
+    </div>
+
+    <div class="restobox-cont">
+      {{#each restaurants}}
+      <div class="resto-container">
+        <a href="{{this.link}}-out"
+          ><img src="{{this.img}}" id="restaurant1"
+        /></a>
+        <div id="resto-desc">
+          <p>
+            {{this.desc}}
+          </p>
+        </div>
+        <div id="resto-innerLabel">
+          <p id="r-label">{{this.name}}</p>
+          <div class="cont">
+            <i class="fa-solid fa-star" style="color: #ffd53d"></i>
+            <p id="r-label">{{this.starRating}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    
