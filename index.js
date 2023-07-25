@@ -447,7 +447,7 @@ app.post("/deleteReview", async (req, res) => {
 });
 
 app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc, currentUser } = req.body;
+  const { reviewReply, reviewDesc} = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
