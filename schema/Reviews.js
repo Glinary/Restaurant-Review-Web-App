@@ -32,12 +32,12 @@ const reviewsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviewReplyInfo: {
+    reviewReplyInfo: [{
         reply: {
-            type: [String]
+            type: String
         },
         user: {
-            type: [String]
+            type: String
         },
         reactionInfo: {
             likeToggle: {
@@ -51,7 +51,7 @@ const reviewsSchema = new mongoose.Schema({
               default: 0,
             },
         }
-    },
+    }],
     images: [{
         type: String,
         required: false
