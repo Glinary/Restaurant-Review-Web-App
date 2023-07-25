@@ -253,8 +253,10 @@
             <div id="EditNav">
               <ul>
                 <li>Reply</li>
+                {{#ifCond ../user.email '==' this.email}}
                 <li>Edit</li>
                 <li>Delete</li>
+                {{/ifCond}}
               </ul>
             </div>
           </div>

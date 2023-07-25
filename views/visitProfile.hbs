@@ -178,7 +178,9 @@
           <div id="EditNav">
             <ul>
               <li><a href="#">Edit</a></li>
+              {{#ifCond ../user.email '==' this.email}}
               <li><a href="#">Delete</a></li>
+              {{/ifCond}}
             </ul>
           </div>
         </div>

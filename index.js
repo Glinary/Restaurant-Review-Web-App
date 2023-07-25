@@ -66,6 +66,27 @@ async function run() {
 // Set views folder to 'public' for accessibility
 app.use("/static", express.static("public"));
 
+const ifCondHelper = function (v1, operator, v2, options) {
+  switch (operator) {
+    case '==':
+      return v1 === v2 ? options.fn(this) : options.inverse(this);
+    case '!=':
+      return v1 !== v2 ? options.fn(this) : options.inverse(this);
+    case '===':
+      return v1 === v2 ? options.fn(this) : options.inverse(this);
+    case '<':
+      return v1 < v2 ? options.fn(this) : options.inverse(this);
+    case '<=':
+      return v1 <= v2 ? options.fn(this) : options.inverse(this);
+    case '>':
+      return v1 > v2 ? options.fn(this) : options.inverse(this);
+    case '>=':
+      return v1 >= v2 ? options.fn(this) : options.inverse(this);
+    default:
+      return options.inverse(this);
+  }
+};
+
 // State hbs as view engine and views folder for views
 app.engine(
   "hbs",
@@ -75,11 +96,13 @@ app.engine(
       capitalize: function (string) {
         return string.toUpperCase();
       },
+      ifCond: ifCondHelper, // Register the ifCond helper
     },
   })
 );
 app.set("view engine", "hbs");
 app.set("views", "./views");
+
 
 //INSERT RESTAURANTS TO SCHEMA 
 //run(); // run only once
