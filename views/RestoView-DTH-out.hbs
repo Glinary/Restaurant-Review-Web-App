@@ -109,7 +109,7 @@
                   <div class="top-left">
                     <div class="top-reviews-user-details">
                       <img
-                        src="assets/anonymous_picture.png"
+                        src="{{highestRated.avatar}}"
                         class="top-reviews-profile-pic"
                       />
                     </div>
@@ -140,8 +140,9 @@
         
                 <!-- User Review Images (right) -->
                 <div class="top-reviews-pictures">
-                  <img src="assets/DT1.jpg" class="top-review-image" />
-                  <img src="assets/DT2.jpg" class="top-review-image" />
+                  {{#each highestRated.images}}
+                    <img src="{{this}}" class="top-review-image" />
+                  {{/each}}
                 </div>
             </div>         
         </div>
@@ -156,10 +157,9 @@
         <h3>Gallery</h3>
         
         <div class="gallery-pictures">
-            <img src="assets/DT2.jpg" class="gallery-image"/>
-            <img src="assets/DT4.jpg" class="gallery-image"/>
-            <img src="assets/DT1.jpg" class="gallery-image"/>
-            <img src="assets/DT3.jpg" class="gallery-image"/>
+            {{#each gallery}}
+            <img src="{{this.link}}" class="gallery-image"/>
+            {{/each}}
         </div>
       </div>
     </div>
@@ -180,7 +180,7 @@
           <div class="left">
             <div class="reviews-user-details">
               <img
-                src="assets/anonymous_picture.png"
+                src="{{this.avatar}}"
                 class="reviews-profile-pic"
               />
             </div>
@@ -213,8 +213,9 @@
 
        <!-- User Review Images (right) -->
         <div class="reviews-pictures">
-            <img src="assets/DT3.jpg" class="review-image" />
-            <img src="assets/DT4.jpg" class="review-image" />
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
         </div>
       </div>
      
