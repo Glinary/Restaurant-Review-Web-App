@@ -282,7 +282,11 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       let newP = '';
       req.files.forEach(function(files, index, arr){
         origP = files.path;
-        newP = origP.replace(/public\\/g,'');
+        if (origP.includes("public/")) {
+          newP = origP.replace(/public\//g, "");
+        } else {
+          newP = origP.replace(/public\\/g, "");;
+        }
         imgs.push(newP);
       })
     }
@@ -294,6 +298,7 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
+      images: imgs
     });
     review.save().then(() => {
       console.log("review submitted");

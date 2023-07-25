@@ -49,15 +49,12 @@ const reviewsSchema = new mongoose.Schema({
               required: true,
               default: 0,
             },
+        }
     },
-    image1: {
+    images: [{
         type: String,
         required: false
-    },
-    image2: {
-        type: String,
-        required: false
-    }
+    }],
 })
 
 module.exports = mongoose.model("Reviews", reviewsSchema);
