@@ -118,7 +118,7 @@
                   <div class="top-left">
                     <div class="top-reviews-user-details">
                       <img
-                        src="assets/anonymous_picture.png"
+                        src="{{highestRated.avatar}}"
                         class="top-reviews-profile-pic"
                       />
                     </div>
@@ -149,7 +149,9 @@
         
                 <!-- User Review Images (right) -->
                 <div class="top-reviews-pictures">
-                  <img src="assets/SB1.jpg" class="top-review-image" /><img src="assets/SB2.jpg" class="top-review-image" />
+                  {{#each highestRated.images}}
+                    <img src="{{this}}" class="top-review-image" />
+                  {{/each}}
                 </div>
             </div>
 
@@ -251,8 +253,8 @@
               <div id="EditNav">
                 <ul>
                   <li>Reply</li>
-                <li>Edit</li>
-                <li>Delete</li>
+                  <li>Edit</li>
+                  <li>Delete</li>
                 </ul>
               </div>
             </div>

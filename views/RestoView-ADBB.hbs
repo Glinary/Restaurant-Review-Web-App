@@ -118,7 +118,7 @@
                 <div class="top-left">
                   <div class="top-reviews-user-details">
                     <img
-                      src="assets/anonymous_picture.png"
+                      src="{{highestRated.avatar}}"
                       class="top-reviews-profile-pic"
                     />
                   </div>
@@ -149,8 +149,9 @@
               
               <!-- User Review Images (right) -->
               <div class="top-reviews-pictures">
-                <img src="assets/AD1.jpg" class="top-review-image" />
-                <img src="assets/AD2.jpg" class="top-review-image" />
+                  {{#each highestRated.images}}
+                    <img src="{{this}}" class="top-review-image" />
+                  {{/each}}
               </div>       
             </div>
         </div>
@@ -188,7 +189,7 @@
             <div class="left">
               <div class="reviews-user-details">
                 <img
-                  src="assets/anonymous_picture.png"
+                  src="{{this.avatar}}"
                   class="reviews-profile-pic"
                 />
               </div>
@@ -196,7 +197,7 @@
               <!-- User Review Information-->
               <div class="further-details">
                 <div class="name">
-                  <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{highestRated.reviewDesc}}</a>
+                  <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{this.userName}}</a>
                 </div>
                 <div class="others">
                   <p class="review-count">13 Reviews</p>
@@ -234,8 +235,9 @@
 
           <!-- User Review Images (right) -->
           <div class="reviews-pictures">
-              <img src="assets/AD3.jpg" class="review-image" />
-              <img src="assets/AD4.jpg" class="review-image" />
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
           </div>
 
           <!-- User Review Option Bar -->
