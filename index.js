@@ -463,6 +463,8 @@ app.get("/RestoView-SB-out", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+    // Gallery
+    const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
 
     res.render("RestoView-SB-out", {
       title: "Starbucks",
@@ -472,6 +474,7 @@ app.get("/RestoView-SB-out", async (req, res) => {
       css2: "static/css/stylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
+      gallery: gallery
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
