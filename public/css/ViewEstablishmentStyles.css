@@ -48,12 +48,22 @@ header {
   font-size: 30px;
 }
 
+.reacBut input[type="checkbox"] {
+  opacity: 0;
+}
+
 #more {
   display: inline-block;
   color: rgb(143, 164, 24);
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+}
+
+#titleBl {
+  margin: 0.5;
+  font-weight: bold;
+  color: #3a3a3d;
 }
 
 .contain-profile {
@@ -720,8 +730,6 @@ header {
   padding: 10px;
   border-radius: 10px;
   background-color: #b9d2d2;
-
-  
 }
 
 .gallery-pictures {
@@ -736,7 +744,6 @@ header {
 
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  
 }
 
 .gallery-image {
