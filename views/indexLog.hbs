@@ -95,7 +95,11 @@
                       <p id="r-label">{{this.name}}</p>
                       <div class="cont">
                         <i class="fa-solid fa-star" style="color: #ffd53d"></i>
-                        <p id="r-label">{{this.starRating}}</p>
+                        {{#if this.starRating}}
+                          <p id="r-label">{{this.starRating}}</p>
+                        {{else}}
+                          <p id="r-label">N/A</p>
+                        {{/if}}
                       </div>
                     </div>
                 </div>

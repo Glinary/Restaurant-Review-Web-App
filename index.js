@@ -880,7 +880,7 @@ app.post("/searchPageFilter", (req, res) => {
     // Handle any other case (optional)
     console.log("Invalid selection or no selection");
     // Redirect back to the search page without filtering
-    res.redirect(`/searchPageLogout?keyword=${keyword}`);
+    res.redirect(`/searchPage?keyword=${keyword}`);
   }
 });
 
@@ -955,9 +955,6 @@ app.get("/searchPageLogout", async (req, res) => {
     res.status(500).send("Error querying reviews");
   }
 });
-
-
-
 
 app.post("/searchPageLogout", (req, res) => {
   const { keyword } = req.body;
