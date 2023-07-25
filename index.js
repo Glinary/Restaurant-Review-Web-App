@@ -401,6 +401,9 @@ app.get("/RestoView-SB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Starbucks"
     const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
+    let restaurant = await Restaurant.findOne({name : "Starbucks"}).lean();
+    console.log(restaurant);
+
     // Another query to get the highest-rated review for Starbucks
     const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
@@ -409,8 +412,6 @@ app.get("/RestoView-SB", async (req, res) => {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     // Gallery
     const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
-    console.log(user);
-    console.log(reviews);
 
     res.render("RestoView-SB", {
       title: "Starbucks",
@@ -421,7 +422,8 @@ app.get("/RestoView-SB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
+      restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -480,6 +482,7 @@ app.get("/RestoView-SB-out", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Starbucks"
     const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
+    const restaurant = await Restaurant.findOne({name : "Starbucks"}).lean();
 
     // Another query to get the highest-rated review for Starbucks
     const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
@@ -497,7 +500,8 @@ app.get("/RestoView-SB-out", async (req, res) => {
       css2: "static/css/stylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -511,6 +515,7 @@ app.get("/RestoView-DTH", async (req, res) => {
     const reviews = await Reviews.find({
       restaurantName: "David's Tea House",
     }).lean();
+    const restaurant = await Restaurant.findOne({name : "David's Tea House"}).lean();
 
     // Another query to get the highest-rated review for David's Tea House
     const highestRated = await Reviews.findOne({
@@ -533,7 +538,8 @@ app.get("/RestoView-DTH", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -579,6 +585,7 @@ app.get("/RestoView-DTH-out", async (req, res) => {
     const reviews = await Reviews.find({
       restaurantName: "David's Tea House",
     }).lean();
+    const restaurant = await Restaurant.findOne({name : "David's Tea House"}).lean();
 
     // Another query to get the highest-rated review for "David's Tea House"
     const highestRated = await Reviews.findOne({
@@ -598,7 +605,8 @@ app.get("/RestoView-DTH-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -610,6 +618,7 @@ app.get("/RestoView-ADB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Angry Dobo"
     const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    const restaurant = await Restaurant.findOne({name : "Angry Dobo"}).lean();
 
     // Another query to get the highest-rated review for "Angry Dobo"
     const highestRated = await Reviews.findOne({ restaurantName: "Angry Dobo" })
@@ -630,7 +639,8 @@ app.get("/RestoView-ADB", async (req, res) => {
       reviews: reviews, // Pass the reviews object to the template
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -674,6 +684,7 @@ app.get("/RestoView-ADB-out", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Angry Dobo"
     const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
+    const restaurant = await Restaurant.findOne({name : "Angry Dobo"}).lean();
 
     // Another query to get the highest-rated review for Starbucks
     const highestRated = await Reviews.findOne({ restaurantName: "Angry Dobo" })
@@ -691,7 +702,8 @@ app.get("/RestoView-ADB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -705,9 +717,8 @@ app.get("/RestoView-TNB", async (req, res) => {
     const reviews = await Reviews.find({
       restaurantName: "Tinuhog ni Benny",
     }).lean();
-
+    const restaurant = await Restaurant.findOne({name : "Tinuhog ni Benny"}).lean();
     
-
     // Another query to get the highest-rated review for "Tinuhog ni Benny"
     const highestRated = await Reviews.findOne({
       restaurantName: "Tinuhog ni Benny",
@@ -718,7 +729,7 @@ app.get("/RestoView-TNB", async (req, res) => {
 
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     //Gallery
-    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();
+    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny"}).lean();
     console.log(user);
 
     res.render("RestoView-TNB", {
@@ -730,7 +741,8 @@ app.get("/RestoView-TNB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -776,6 +788,7 @@ app.get("/RestoView-TNB-out", async (req, res) => {
     const reviews = await Reviews.find({
       restaurantName: "Tinuhog ni Benny",
     }).lean();
+    const restaurant = await Restaurant.findOne({name : "Tinuhog ni Benny"}).lean();
 
     // Another query to get the highest-rated review for "Tinuhog ni Benny"
     const highestRated = await Reviews.findOne({
@@ -796,7 +809,8 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
+      restaurant: restaurant
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -934,7 +948,6 @@ app.post("/searchPageFilter", (req, res) => {
     res.redirect(`/searchPage?keyword=${keyword}`);
   }
 });
-
 
 app.post("/searchPageLogoutFilter", (req, res) => {
   const { keyword, filterOptions } = req.body;
