@@ -165,8 +165,9 @@
         </div>
 
         <div class="reviews-pictures">
-          <img src="assets/SB1.jpg" class="review-image" />
-          <img src="assets/SB2.jpg" class="review-image" />
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
         </div>
         <div id="EditMenu">
           <div id="editBar">
