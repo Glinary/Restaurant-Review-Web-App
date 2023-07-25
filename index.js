@@ -103,7 +103,7 @@ async function run() {
     name: "Tinuhog ni Benny",
   });
   const restaurant4 = await Restaurant.create({
-    link: "/RestoView-ADBB",
+    link: "/RestoView-ADB",
     img: "assets/ADB.png",
     desc: "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
     name: "Angry Dobo",
@@ -583,7 +583,7 @@ app.get("/RestoView-DTH-out", async (req, res) => {
   }
 });
 
-app.get("/RestoView-ADBB", async (req, res) => {
+app.get("/RestoView-ADB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Angry Dobo"
     const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
@@ -598,7 +598,7 @@ app.get("/RestoView-ADBB", async (req, res) => {
     const gallery = await Gallery.find({ restaurantName: "Angry Dobo" }).lean();
     console.log(user);
 
-    res.render("RestoView-ADBB", {
+    res.render("RestoView-ADB", {
       title: "Angry Dobo",
       script: "static/js/ViewEstablishmentRules.js",
       script2: "https://kit.fontawesome.com/78bb10c051.js",
@@ -615,7 +615,7 @@ app.get("/RestoView-ADBB", async (req, res) => {
   }
 });
 
-app.post("/RestoView-ADBB", async (req, res) => {
+app.post("/RestoView-ADB", async (req, res) => {
   const { reviewReply, reviewDesc } = req.body;
   console.log("----");
   console.log(reviewReply);
@@ -639,7 +639,7 @@ app.post("/RestoView-ADBB", async (req, res) => {
       }
       console.log("Review updated:", updatedReview);
       // redirect to the resto view:
-      res.redirect("RestoView-ADBB");
+      res.redirect("RestoView-ADB");
     })
     .catch((err) => {
       console.error("Error updating review:", err);
@@ -683,6 +683,8 @@ app.get("/RestoView-TNB", async (req, res) => {
       restaurantName: "Tinuhog ni Benny",
     }).lean();
 
+    
+
     // Another query to get the highest-rated review for "Tinuhog ni Benny"
     const highestRated = await Reviews.findOne({
       restaurantName: "Tinuhog ni Benny",
@@ -690,6 +692,7 @@ app.get("/RestoView-TNB", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     //Gallery
     const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();

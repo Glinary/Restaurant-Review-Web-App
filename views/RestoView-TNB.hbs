@@ -106,7 +106,7 @@
           <a href="/reviewPage?restaurantName=Tinuhog ni Benny">
           <img src="assets/book_icon.png" /></a>
           </div>
-
+        {{#if highestRated}}
         <div class="top-reviews-section">
             <div class="top-label-and-navigator" id="review">
                 <h3>Top Reviews</h3>
@@ -156,6 +156,7 @@
             </div>
     
         </div>
+        {{/if}}
       </div>
 
       <div class="box"></div>
@@ -279,6 +280,7 @@
         </div>
 
         <!-- User Review Replies/ Comments List Box -->
+        {{#if this.reviewReplyInfo}}
         <div class="reply">
           <h4>Review Comments</h4>
           <div class="reply-container">
@@ -290,6 +292,7 @@
             {{/each}}
           </div>
         </div>
+        {{/if}}
         {{/each}}
       </div>
     </div>
