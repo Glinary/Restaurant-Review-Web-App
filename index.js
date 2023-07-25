@@ -12,19 +12,20 @@ const connectionString = "mongodb://127.0.0.1:27017/reviews";
 
 //CAUTION: UNCOMMENT TO DROP SCHEMA DATA
 /*
-mongoose.connect(connectionString)
+mongoose
+  .connect(connectionString)
   .then(() => {
-    console.log('Connected to mongodb');
+    console.log("Connected to mongodb");
     // Drop the Reviews collection
     return Reviews.collection.drop();
   })
   .then(() => {
-    console.log('The Reviews collection has been dropped.');
+    console.log("The Reviews collection has been dropped.");
     // Optionally, you can close the connection after the operation is done.
     mongoose.connection.close();
   })
   .catch((error) => {
-    console.error('Error connecting to mongodb:', error);
+    console.error("Error connecting to mongodb:", error);
   });
 */
 mongoose
@@ -68,19 +69,19 @@ app.use("/static", express.static("public"));
 
 const ifCondHelper = function (v1, operator, v2, options) {
   switch (operator) {
-    case '==':
+    case "==":
       return v1 === v2 ? options.fn(this) : options.inverse(this);
-    case '!=':
+    case "!=":
       return v1 !== v2 ? options.fn(this) : options.inverse(this);
-    case '===':
+    case "===":
       return v1 === v2 ? options.fn(this) : options.inverse(this);
-    case '<':
+    case "<":
       return v1 < v2 ? options.fn(this) : options.inverse(this);
-    case '<=':
+    case "<=":
       return v1 <= v2 ? options.fn(this) : options.inverse(this);
-    case '>':
+    case ">":
       return v1 > v2 ? options.fn(this) : options.inverse(this);
-    case '>=':
+    case ">=":
       return v1 >= v2 ? options.fn(this) : options.inverse(this);
     default:
       return options.inverse(this);
@@ -103,8 +104,7 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
-
-//INSERT RESTAURANTS TO SCHEMA 
+//INSERT RESTAURANTS TO SCHEMA
 //run(); // run only once
 async function run() {
   const restaurant1 = await Restaurant.create({
@@ -174,15 +174,24 @@ async function updateAverageStarRating(restaurantName) {
     const reviews = await Reviews.find({ restaurantName });
     if (reviews.length === 0) {
       // No reviews found for the restaurant, set starRating to null or any default value you prefer.
-      await Restaurant.updateOne({ name: restaurantName }, { $set: { starRating: null } });
+      await Restaurant.updateOne(
+        { name: restaurantName },
+        { $set: { starRating: null } }
+      );
     } else {
       // Calculate the average starRating
-      const totalStarRating = reviews.reduce((total, review) => total + review.starRating, 0);
+      const totalStarRating = reviews.reduce(
+        (total, review) => total + review.starRating,
+        0
+      );
       const averageStarRating = totalStarRating / reviews.length;
       const roundedAverageRating = averageStarRating.toFixed(1); // Round to one decimal place
-      
+
       // Update the starRating in the Restaurant schema
-      await Restaurant.updateOne({ name: restaurantName }, { $set: { starRating: roundedAverageRating } });
+      await Restaurant.updateOne(
+        { name: restaurantName },
+        { $set: { starRating: roundedAverageRating } }
+      );
     }
   } catch (error) {
     console.error("Error updating average starRating:", error);
@@ -197,7 +206,6 @@ let viewUser = new Account("guest@email.com");
 // ---------- ROUTES SECTION ---------- //
 
 app.get("/", async (req, res) => {
-
   const restaurants = await Restaurant.find().lean();
   console.log(restaurants);
 
@@ -212,7 +220,7 @@ app.get("/", async (req, res) => {
     pic2: "static/assets/DTH.jpg",
     pic3: "static/assets/TNB.jpeg",
     pic4: "static/assets/ADB.png",
-    restaurants: restaurants
+    restaurants: restaurants,
   });
 });
 
@@ -257,7 +265,6 @@ app.post("/loginPage", async (req, res) => {
 });
 
 app.get("/indexLog", async (req, res) => {
-
   const restaurants = await Restaurant.find().lean();
   console.log(restaurants);
 
@@ -274,7 +281,7 @@ app.get("/indexLog", async (req, res) => {
       css1: "static/css/styles.css",
       css2: "static/css/restaurantStyles.css",
       user: user,
-      restaurants : restaurants
+      restaurants: restaurants,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -282,7 +289,7 @@ app.get("/indexLog", async (req, res) => {
   }
 });
 
-app.get("/restaurant", async(req, res) => {
+app.get("/restaurant", async (req, res) => {
   const user = await Users.findOne({ email: currentAccount.email }).lean();
   console.log(user);
   const restaurants = await Restaurant.find().lean();
@@ -295,12 +302,11 @@ app.get("/restaurant", async(req, res) => {
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/styles.css",
     restaurants: restaurants,
-    user: user
+    user: user,
   });
 });
 
 app.get("/restaurantLogout", async (req, res) => {
-
   const restaurants = await Restaurant.find().lean();
   console.log(restaurants);
 
@@ -309,9 +315,8 @@ app.get("/restaurantLogout", async (req, res) => {
     script: "static/js/RestaurantGridRules.js",
     css1: "static/css/restaurantStyles.css",
     css2: "static/css/StylesOut.css",
-    restaurants: restaurants
+    restaurants: restaurants,
   });
-
 });
 
 app.get("/reviewPage", async (req, res) => {
@@ -327,7 +332,7 @@ app.get("/reviewPage", async (req, res) => {
     css2: "static/css/ViewEstablishmentStyles.css",
     css3: "static/css/styles.css",
     css4: "static/css/reviewStyles.css",
-    user: user
+    user: user,
   });
 });
 
@@ -345,32 +350,30 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
   const placeholder = 0;
   let imgs = new Array();
 
-
   if (reviewTitle && reviewDesc && starRating && restaurantName) {
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
     const restoLink = await Restaurant.findOne({ name: restaurantName }).lean();
     console.log(restoLink);
     if (req.files) {
-    
-      let origP = '';
-      let newP = '';
-      req.files.forEach(function(files, index, arr){
+      let origP = "";
+      let newP = "";
+      req.files.forEach(function (files, index, arr) {
         origP = files.path;
         if (origP.includes("public/")) {
           newP = origP.replace(/public\//g, "");
         } else {
-          newP = origP.replace(/public\\/g, "");;
+          newP = origP.replace(/public\\/g, "");
         }
         imgs.push(newP);
         const pic = new Gallery({
           link: newP,
-          restaurantName: restaurantName
+          restaurantName: restaurantName,
         });
         pic.save().then(() => {
           console.log("Pic added");
         });
-      })
+      });
 
       updateAverageStarRating(restaurantName);
     }
@@ -384,7 +387,10 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       reviewDesc: reviewDesc,
       starRating: starRating,
       reviewTitle: reviewTitle,
-      images: imgs
+      images: imgs,
+      reactionInfo: {
+        likeCount: 1,
+      },
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -421,7 +427,7 @@ app.get("/RestoView-SB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -453,10 +459,10 @@ app.post("/RestoView-SB", async (req, res) => {
 
   //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { reviewDesc: reviewDesc }, // find the matching reviewDesc
     {
-      $push : {
-        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
       },
     },
     { new: true } // return the updated document
@@ -497,7 +503,7 @@ app.get("/RestoView-SB-out", async (req, res) => {
       css2: "static/css/stylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -521,7 +527,9 @@ app.get("/RestoView-DTH", async (req, res) => {
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     //Gallery
-    const gallery = await Gallery.find({ restaurantName: "David's Tea House" }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: "David's Tea House",
+    }).lean();
     console.log(user);
 
     res.render("RestoView-DTH", {
@@ -533,7 +541,7 @@ app.get("/RestoView-DTH", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -550,14 +558,14 @@ app.post("/RestoView-DTH", async (req, res) => {
 
   //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { reviewDesc: reviewDesc }, // find the matching reviewDesc
     {
-      $push : {
-        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
       },
     },
-    { new : true } //return the updated document
-    )
+    { new: true } //return the updated document
+  )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -588,7 +596,9 @@ app.get("/RestoView-DTH-out", async (req, res) => {
       .limit(1) // Limit the result to one review
       .lean();
     //Gallery
-    const gallery = await Gallery.find({ restaurantName: "David's Tea House" }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: "David's Tea House",
+    }).lean();
 
     res.render("RestoView-DTH-out", {
       title: "David's Tea House",
@@ -598,7 +608,7 @@ app.get("/RestoView-DTH-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -630,7 +640,7 @@ app.get("/RestoView-ADB", async (req, res) => {
       reviews: reviews, // Pass the reviews object to the template
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -647,14 +657,14 @@ app.post("/RestoView-ADB", async (req, res) => {
 
   //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { reviewDesc: reviewDesc }, // find the matching reviewDesc
     {
-      $push : {
-        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
       },
     },
-    { new : true } //return the updated document
-    )
+    { new: true } //return the updated document
+  )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -691,7 +701,7 @@ app.get("/RestoView-ADB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -706,8 +716,6 @@ app.get("/RestoView-TNB", async (req, res) => {
       restaurantName: "Tinuhog ni Benny",
     }).lean();
 
-    
-
     // Another query to get the highest-rated review for "Tinuhog ni Benny"
     const highestRated = await Reviews.findOne({
       restaurantName: "Tinuhog ni Benny",
@@ -718,7 +726,9 @@ app.get("/RestoView-TNB", async (req, res) => {
 
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     //Gallery
-    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: "Tinuhog ni Benny",
+    }).lean();
     console.log(user);
 
     res.render("RestoView-TNB", {
@@ -730,7 +740,7 @@ app.get("/RestoView-TNB", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
       user: user,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -747,14 +757,14 @@ app.post("/RestoView-TNB", async (req, res) => {
 
   //TODO: this should use an id, not a matching description
   Reviews.findOneAndUpdate(
-    { reviewDesc : reviewDesc }, // find the matching reviewDesc
+    { reviewDesc: reviewDesc }, // find the matching reviewDesc
     {
-      $push : {
-        "reviewReplyInfo": { reply: reviewReply, user : currentAccount.userName},
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
       },
     },
-    { new : true } //return the updated document
-    )
+    { new: true } //return the updated document
+  )
     .then((updatedReview) => {
       if (!updatedReview) {
         console.log("Review not found!");
@@ -786,7 +796,9 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       .lean();
 
     //Gallery
-    const gallery = await Gallery.find({ restaurantName: "Tinuhog ni Benny" }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: "Tinuhog ni Benny",
+    }).lean();
 
     res.render("RestoView-TNB-out", {
       title: "Tinuhog ni Benny",
@@ -796,7 +808,7 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
-      gallery: gallery
+      gallery: gallery,
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -872,7 +884,10 @@ app.get("/searchPage", async (req, res) => {
         filter.name = { $regex: req.url.slice(startIndex), $options: "i" };
       } else {
         // Extract the keyword between the '?' and '&' symbols
-        filter.name = { $regex: req.url.slice(startIndex, endIndex), $options: "i" };
+        filter.name = {
+          $regex: req.url.slice(startIndex, endIndex),
+          $options: "i",
+        };
       }
     }
 
@@ -902,7 +917,6 @@ app.get("/searchPage", async (req, res) => {
   }
 });
 
-
 app.post("/searchPage", (req, res) => {
   const { keyword } = req.body;
 
@@ -924,9 +938,13 @@ app.post("/searchPageFilter", (req, res) => {
   console.log(keyword);
 
   if (filterOptions === "HighestToLowestRating") {
-    res.redirect(`/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`);
+    res.redirect(
+      `/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`
+    );
   } else if (filterOptions === "LowestToHighestRating") {
-    res.redirect(`/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`);
+    res.redirect(
+      `/searchPage?filterOptions=${filterOptions}&keyword=${keyword}`
+    );
   } else {
     // Handle any other case (optional)
     console.log("Invalid selection or no selection");
@@ -935,7 +953,6 @@ app.post("/searchPageFilter", (req, res) => {
   }
 });
 
-
 app.post("/searchPageLogoutFilter", (req, res) => {
   const { keyword, filterOptions } = req.body;
 
@@ -943,9 +960,13 @@ app.post("/searchPageLogoutFilter", (req, res) => {
   console.log(keyword);
 
   if (filterOptions === "HighestToLowestRating") {
-    res.redirect(`/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`);
+    res.redirect(
+      `/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`
+    );
   } else if (filterOptions === "LowestToHighestRating") {
-    res.redirect(`/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`);
+    res.redirect(
+      `/searchPageLogout?filterOptions=${filterOptions}&keyword=${keyword}`
+    );
   } else {
     // Handle any other case (optional)
     console.log("Invalid selection or no selection");
@@ -977,7 +998,10 @@ app.get("/searchPageLogout", async (req, res) => {
         filter.name = { $regex: req.url.slice(startIndex), $options: "i" };
       } else {
         // Extract the keyword between the '?' and '&' symbols
-        filter.name = { $regex: req.url.slice(startIndex, endIndex), $options: "i" };
+        filter.name = {
+          $regex: req.url.slice(startIndex, endIndex),
+          $options: "i",
+        };
       }
     }
 
@@ -1059,7 +1083,7 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
       if (fileName.includes("public/")) {
         img = fileName.replace(/public\//g, "");
       } else {
-        img = fileName.replace(/public\\/g, "");;
+        img = fileName.replace(/public\\/g, "");
       }
 
       Users.findOneAndUpdate(
@@ -1161,6 +1185,42 @@ app.get("/visitProfile", async (req, res) => {
     res.status(500).send("Error querying reviews");
   }
   //
+});
+
+app.use(express.json());
+app.post("/reactionPost", async (req, res) => {
+  const { dataId, toggled, count } = req.body;
+  console.log("HERE I AM");
+  console.log(toggled);
+  console.log(count);
+  console.log(dataId);
+
+  if (toggled !== undefined) {
+    // Check if toggled is defined (to handle both checked and unchecked cases)
+    Reviews.findByIdAndUpdate(
+      dataId,
+      {
+        $set: {
+          "reactionInfo.likeToggle": toggled,
+          "reactionInfo.likeCount": count,
+        }, // Use $set to update the specific field
+      },
+      { new: true } // Return the updated document
+    )
+      .then((updatedReview) => {
+        if (!updatedReview) {
+          console.log("Review not found!");
+          return res.status(404).json({ error: "Review not found" });
+        }
+        console.log("Review updated:", updatedReview);
+        // Redirect to the resto view:
+        res.redirect("RestoView-DTH");
+      })
+      .catch((err) => {
+        console.error("Error updating review:", err);
+        res.status(500).json({ error: "Error updating review" });
+      });
+  }
 });
 
 // ---------- ROUTES SECTION ---------- //
