@@ -75,6 +75,44 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", "./views");
 
+<<<<<<< Updated upstream
+=======
+//INSERT RESTAURANTS TO SCHEMA
+
+run();
+async function run() {
+  const restaurant1 = await Restaurant.create({
+    link: "/RestoView-SB",
+    img: "assets/starbucks.jpg",
+    desc: "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
+    name: "Starbucks",
+    starRating: "4.8",
+  });
+  const restaurant2 = await Restaurant.create({
+    link: "/RestoView-DTH",
+    img: "assets/DTH.jpg",
+    desc: "Let the authentic taste of Chinese cuisine from delicate dim sum to tantalizing stir-fries be at your reach anytime.",
+    name: "David's Tea House",
+    starRating: "4.6",
+  });
+  const restaurant3 = await Restaurant.create({
+    link: "/RestoView-TNB",
+    img: "assets/TNB.jpeg",
+    desc: "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
+    name: "Tinuhog ni Benny",
+    starRating: "5.0",
+  });
+  const restaurant4 = await Restaurant.create({
+    link: "/RestoView-ADBB",
+    img: "assets/ADB.png",
+    desc: "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
+    name: "Angry Dobo",
+    starRating: "4.7",
+  });
+  console.log(restaurant1);
+}
+
+>>>>>>> Stashed changes
 // ---- ACCOUNT SWITCH ---- //
 class Account {
   constructor(email) {
@@ -161,6 +199,7 @@ app.post("/loginPage", async (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
 app.get("/indexLog", (req, res) => {
   res.render("indexLog", {
     title: "Home",
@@ -169,6 +208,27 @@ app.get("/indexLog", (req, res) => {
     css1: "static/css/styles.css",
     css2: "static/css/restaurantStyles.css",
   });
+=======
+app.get("/indexLog", async (req, res) => {
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+
+    res.render("indexLog", {
+      title: "Home",
+      script: "static/js/IndexRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/styles.css",
+      css2: "static/css/restaurantStyles.css",
+      user: user,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+>>>>>>> Stashed changes
 });
 
 app.get("/restaurant", (req, res) => {
@@ -255,6 +315,10 @@ app.get("/RestoView-SB", async (req, res) => {
       css2: "static/css/styles.css",
       reviews: reviews,
       highestRated: highestRated,
+<<<<<<< Updated upstream
+=======
+      user: user,
+>>>>>>> Stashed changes
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -263,9 +327,13 @@ app.get("/RestoView-SB", async (req, res) => {
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 app.use(express.json());
 app.post("/RestoView-SB-B", async (req, res) => {
+=======
+app.post("/RestoView-SB", async (req, res) => {
+>>>>>>> Stashed changes
   const { reviewReply, reviewDesc, currentUser } = req.body;
   console.log("----");
   console.log(reviewReply);
@@ -338,6 +406,11 @@ app.get("/RestoView-DTH", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+<<<<<<< Updated upstream
+=======
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+>>>>>>> Stashed changes
 
     res.render("RestoView-DTH", {
       title: "David's Tea House",
@@ -347,6 +420,10 @@ app.get("/RestoView-DTH", async (req, res) => {
       css2: "static/css/styles.css",
       reviews: reviews,
       highestRated: highestRated,
+<<<<<<< Updated upstream
+=======
+      user: user,
+>>>>>>> Stashed changes
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -354,6 +431,41 @@ app.get("/RestoView-DTH", async (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
+=======
+app.post("/RestoView-DTH", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    {
+      reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName,
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect("RestoView-DTH");
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
+>>>>>>> Stashed changes
 app.get("/RestoView-DTH-out", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "David's Tea House"
@@ -394,6 +506,11 @@ app.get("/RestoView-ADBB", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+<<<<<<< Updated upstream
+=======
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+>>>>>>> Stashed changes
 
     res.render("RestoView-ADBB", {
       title: "Angry Dobo",
@@ -403,6 +520,10 @@ app.get("/RestoView-ADBB", async (req, res) => {
       css2: "static/css/styles.css",
       reviews: reviews, // Pass the reviews object to the template
       highestRated: highestRated,
+<<<<<<< Updated upstream
+=======
+      user: user,
+>>>>>>> Stashed changes
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
@@ -410,6 +531,41 @@ app.get("/RestoView-ADBB", async (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
+=======
+app.post("/RestoView-ADBB", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    {
+      reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName,
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect("RestoView-ADBB");
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
+>>>>>>> Stashed changes
 app.get("/RestoView-ADB-out", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Angry Dobo"
@@ -450,6 +606,11 @@ app.get("/RestoView-TNB", async (req, res) => {
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
+<<<<<<< Updated upstream
+=======
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+>>>>>>> Stashed changes
 
     res.render("RestoView-TNB", {
       title: "Tinuhog ni Benny",
@@ -459,11 +620,73 @@ app.get("/RestoView-TNB", async (req, res) => {
       css2: "static/css/styles.css",
       reviews: reviews,
       highestRated: highestRated,
+<<<<<<< Updated upstream
+=======
+      user: user,
+>>>>>>> Stashed changes
     });
   } catch (error) {
     console.error("Error querying reviews:", error);
     res.status(500).send("Error querying reviews");
   }
+});
+
+<<<<<<< Updated upstream
+app.get("/RestoView-TNB-out", async (req, res) => {
+  try {
+    // Query everything that has a restaurant name of "Tinuhog ni Benny"
+    const reviews = await Reviews.find({
+      restaurantName: "Tinuhog ni Benny",
+    }).lean();
+
+    // Another query to get the highest-rated review for "Tinuhog ni Benny"
+    const highestRated = await Reviews.findOne({
+      restaurantName: "Tinuhog ni Benny",
+    })
+      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
+      .limit(1) // Limit the result to one review
+      .lean();
+
+    res.render("RestoView-TNB-out", {
+      title: "Tinuhog ni Benny",
+      script: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/StylesOut.css",
+      reviews: reviews,
+      highestRated: highestRated,
+    });
+=======
+app.post("/RestoView-TNB", async (req, res) => {
+  const { reviewReply, reviewDesc, currentUser } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { reviewDesc: reviewDesc }, //find based on matching reviewDesc
+    {
+      reviewReplyInfo: {
+        reply: reviewReply,
+        user: currentAccount.userName,
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect("RestoView-TNB");
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
 });
 
 app.get("/RestoView-TNB-out", async (req, res) => {
@@ -490,6 +713,7 @@ app.get("/RestoView-TNB-out", async (req, res) => {
       reviews: reviews,
       highestRated: highestRated,
     });
+>>>>>>> Stashed changes
   } catch (error) {
     console.error("Error querying reviews:", error);
     res.status(500).send("Error querying reviews");
@@ -536,11 +760,53 @@ app.post("/registrationPage", async (req, res) => {
     }
   } else {
     res.status(400);
+<<<<<<< Updated upstream
+=======
+    res.redirect("/registrationPage");
+    console.log("readme");
+  }
+});
+
+app.get("/searchPage", async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+    // Query all restos that contain the given keyword in the restoname field
+    const restaurants = await Restaurant.find({
+      name: { $regex: keyword, $options: "i" },
+    }).lean();
+
+    res.render("searchPage", {
+      title: "Search Results",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      script3: "static/js/SearchPage.js",
+      css1: "static/css/restaurantStyles.css",
+      css2: "static/css/SearchStyle.css",
+      css3: "static/css/styles.css",
+      restaurants: restaurants,
+      keyword: keyword,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+});
+
+app.post("/searchPage", (req, res) => {
+  const { keyword } = req.body;
+
+  console.log(keyword);
+  if (keyword) {
+    console.log("search submitted");
+    res.redirect(`/searchPage?keyword=${keyword}`);
+  } else {
+    res.status(400);
+>>>>>>> Stashed changes
     res.redirect("/error");
     console.log("readme");
   }
 });
 
+<<<<<<< Updated upstream
 app.get("/searchPage", (req, res) => {
   res.render("searchPage", {
     title: "Search Results",
@@ -561,6 +827,44 @@ app.get("/searchPageLogout", (req, res) => {
     css2: "static/css/SearchStyle.css",
     css3: "static/css/StylesOut.css",
   });
+=======
+app.get("/searchPageLogout", async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+    // Query all restos that contain the given keyword in the restoname field
+    const restaurants = await Restaurant.find({
+      name: { $regex: keyword, $options: "i" },
+    }).lean();
+
+    res.render("searchPageLogout", {
+      title: "Search Results",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      script3: "static/js.SearchPageLogout.js",
+      css1: "static/css/restaurantStyles.css",
+      css2: "static/css/SearchStyle.css",
+      css3: "static/css/StylesOut.css",
+      restaurants: restaurants,
+      keyword: keyword,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+});
+
+app.post("/searchPageLogout", (req, res) => {
+  const { keyword } = req.body;
+
+  console.log(keyword);
+  if (keyword) {
+    console.log("search submitted");
+    res.redirect(`/searchPageLogout?keyword=${keyword}`);
+  } else {
+    res.status(400);
+    res.redirect("/error");
+    console.log("readme");
+  }
+>>>>>>> Stashed changes
 });
 
 app.get("/editProfile", (req, res) => {
@@ -654,6 +958,7 @@ app.get("/viewprofileU1", async (req, res) => {
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "static/css/ViewEstablishmentStyles.css",
       css2: "static/css/styles.css",
+      // css3: "static/css/viewprofile.css",
       user: user,
       reviews: reviews,
     });

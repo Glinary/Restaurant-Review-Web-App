@@ -67,7 +67,6 @@
 
 /*end of edit-profile-section*/
 
-
 @media only screen and (max-width: 768px) {
   .box {
     display: none;
@@ -605,5 +604,23 @@
   }
   .review {
     margin-bottom: 0%;
+  }
+
+  #helpful {
+    max-height: 5vh;
+    max-height: 5vh;
+    max-width: 5vw;
+    max-width: 5vw;
+    background-color: #131313;
+  }
+
+  #helpful img {
+    max-height: 5vh;
+    max-height: 5vh;
+    max-width: 5vw;
+    max-width: 5vw;
+    height: 10px;
+    width: 10px;
+
   }
 }

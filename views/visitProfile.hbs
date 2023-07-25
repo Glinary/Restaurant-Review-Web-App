@@ -38,7 +38,7 @@
                 <li>
                   <div class="view-profile">
                     <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
-                    <img src="assets/anonymous_picture.png" id="prof-pic" />
+                    <img src="{{user.avatar}}" id="prof-pic" />
                   </div>
                   <div class="dropdown-m">
                     <ul>
@@ -65,28 +65,33 @@
     <div class="search-line"></div>
         
 <!-- END OF HEADER SECTION -->
+    <!-- Get Viewed Profile Email -->
 
 <!-- START OF PROFILE SECTION -->
     <div id="profilee">
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const visitEmail = urlParams.get('visitEmail');
+        </script>
         <div class="box"></div>
         <div class="yohoo">
           <div class="Rest-profile-section" id="Rest-profile">
               <div class="Rest-profile-pictures-section">
                   <div class="Rest-profile-picture">
-                    <img src="assets/avatar.webp" />
+                    <img src="{{visit.avatar}}" />
                   </div>
               </div>
               <div class="Rest-profile-description">
-                <h1>{{user.userName}}</h1>
+                <h1>{{visit.userName}}</h1>
                 <p>
-                  {{user.userDescription}}
+                  {{visit.userDescription}}
                 </p>
               </div>
           </div>
-          <div class="edit-profile-section">
+          {{!-- <div class="edit-profile-section">
               <h4>Edit Profile</h4>
               <a href="/editProfile"><img src="assets/book_icon.png" /></a>
-          </div>
+          </div> --}}
         </div>
         <div class="box"></div>
     </div>
@@ -123,10 +128,10 @@
             </div>
             <div id="reaction">
               <div id="helpful">
-                <img src="assets/tbUP0.png">
+                <img src="/public/assets/tbUP0.png">
               </div><span class="count" value="14">14</span>
               <div id="unhelpful">
-                <img src="assets/tbDN0.png"></i></i>
+                <img src="/public/assets/tbDN1.png"></i></i>
               </div><span class="count" value="1">1</span>
             </div>
           </div>
@@ -137,9 +142,10 @@
             <div id="Ostar"><i class="fa fa-star"></i></div>
             <div id="Ostar"><i class="fa fa-star"></i></div>
           </div>
+          <span id="titleBl">{{this.reviewTitle}} </span>
           <div class="review">
             <p>
-              {{this.reviewDesc}}
+               {{this.reviewDesc}}
             </p>
           </div>
           <div class="review-edit">

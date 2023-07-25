@@ -673,7 +673,10 @@ header {
 /*========== START OF REPLY SECTION ==========*/
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 .reply {
   margin-top: 2rem;
 }
@@ -1491,6 +1494,22 @@ header {
   #unhelpful,
   .count {
     margin: 0.5rem 0.01rem;
+  }
+
+  #helpful,
+  #unhelpful {
+    max-height: 3vh;
+    max-height: 3vh;
+    max-width: 3vw;
+    max-width: 3vw;
+  }
+
+  #helpful img,
+  #unhelpful img {
+    max-height: 3vh;
+    max-height: 3vh;
+    max-width: 3vw;
+    max-width: 3vw;
   }
 
   .reviews-section {
