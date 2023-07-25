@@ -40,6 +40,7 @@ mongoose
 const Reviews = require(path.join(__dirname, "./schema/Reviews"));
 const Users = require(path.join(__dirname, "./schema/Users"));
 const Restaurant = require(path.join(__dirname, "./schema/Restaurant"));
+const Gallery = require(path.join(__dirname, "./schema/Gallery"));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -313,6 +314,13 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
           newP = origP.replace(/public\\/g, "");;
         }
         imgs.push(newP);
+        const pic = new Gallery({
+          link: newP,
+          restaurantName: restaurantName
+        });
+        pic.save().then(() => {
+          console.log("Pic added");
+        });
       })
     }
     const newReviewId = new mongoose.Types.ObjectId();
