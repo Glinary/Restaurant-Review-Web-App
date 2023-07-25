@@ -7,7 +7,6 @@ UY, Gleezell Vina
 HOW TO RUN VIA TERMINAL
 "npm run start"
 
-
 DEPENDENCIES
 
 "npm init"
@@ -15,3 +14,8 @@ DEPENDENCIES
 "npm i --save-dev dotenv nodemon"
 "npm i express-handlebars"
 "npm i --save multer"
+
+
+INSTRUCTIONS ON HOW TO RUN:
+1. Uncomment line 108 to install the database using run() function
+2. type "npm run start" in the console
