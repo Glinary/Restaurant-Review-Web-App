@@ -17,7 +17,7 @@ mongoose
   .then(() => {
     console.log("Connected to mongodb");
     // Drop the Reviews collection
-    return Reviews.collection.drop();
+    return Users.collection.drop();
   })
   .then(() => {
     console.log("The Reviews collection has been dropped.");
@@ -105,7 +105,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA
-//run(); // run only once
+run(); // run only once
 async function run() {
   //RESTAURANTS
   const restaurant1 = await Restaurant.create({
@@ -375,6 +375,11 @@ async function run() {
     reviewTitle: "Meh Service",
     images: ["assets\\SB5.jpg", "assets\\SB6.jpg"]
   });
+
+  updateAverageStarRating("Starbucks");
+  updateAverageStarRating("Tinuhog ni Benny");
+  updateAverageStarRating("David's Tea House");
+  updateAverageStarRating("Angry Dobo");
 }
 
 // ---- ACCOUNT SWITCH ---- //
