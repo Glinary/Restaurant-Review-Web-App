@@ -17,7 +17,7 @@ mongoose
   .then(() => {
     console.log("Connected to mongodb");
     // Drop the Reviews collection
-    return Users.collection.drop();
+    return Reviews.collection.drop();
   })
   .then(() => {
     console.log("The Reviews collection has been dropped.");
@@ -105,7 +105,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA
-run(); // run only once
+//run(); // run only once
 async function run() {
   //RESTAURANTS
   const restaurant1 = await Restaurant.create({
@@ -135,6 +135,7 @@ async function run() {
 
   //USERS
   const user1 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
     email: "harry@yahoo.com",
     userName: "Harry Potter",
     accountType: "viewer",
@@ -144,6 +145,7 @@ async function run() {
     avatar: "assets\\harry.jpg",
   });
   const user2 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
     email: "granger@yahoo.com",
     userName: "Hermoine Granger",
     accountType: "viewer",
@@ -152,6 +154,7 @@ async function run() {
     avatar: "assets\\granger.jpg",
   });
   const user3 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
     email: "ronald@gmail.com",
     userName: "Ronald Weasly",
     accountType: "viewer",
@@ -160,6 +163,7 @@ async function run() {
     avatar: "assets\\ronald.jpg",
   });
   const user4 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
     email: "dumbo@gmail.com",
     userName: "Albus Dumbledore",
     accountType: "viewer",
@@ -169,6 +173,7 @@ async function run() {
     avatar: "assets\\dumbo.jpg",
   });
   const user5 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
     email: "bilbo@gmail.com",
     userName: "Bilbo Baggins",
     accountType: "viewer",
@@ -382,11 +387,6 @@ async function run() {
     reviewTitle: "Meh Service",
     images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
   });
-
-  updateAverageStarRating("Starbucks");
-  updateAverageStarRating("Tinuhog ni Benny");
-  updateAverageStarRating("David's Tea House");
-  updateAverageStarRating("Angry Dobo");
 }
 
 // ---- ACCOUNT SWITCH ---- //
