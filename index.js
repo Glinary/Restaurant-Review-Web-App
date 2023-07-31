@@ -659,6 +659,40 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
   }
 });
 
+app.get("/restoview", async (req, res) => {
+  try {
+    const { restaurantName } = req.query;
+    const reviews = await Reviews.find({ restaurantName: restaurantName }).lean();
+    let restaurant = await Restaurant.findOne({ name: restaurantName }).lean();
+    console.log(restaurant);
+
+    // Another query to get the highest-rated review for Starbucks
+    const highestRated = await Reviews.findOne({ restaurantName: restaurantName })
+      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
+      .limit(1) // Limit the result to one review
+      .lean();
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    // Gallery
+    const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
+
+    res.render("restoview", {
+      title: restaurantName,
+      script: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/styles.css",
+      reviews: reviews,
+      highestRated: highestRated,
+      user: user,
+      gallery: gallery,
+      restaurant,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+});
+
 app.get("/RestoView-SB", async (req, res) => {
   try {
     // Query everything that has a restaurant name of "Starbucks"
@@ -708,6 +742,38 @@ app.post("/deleteReview", async (req, res) => {
   }
 });
 
+app.post("/restoview", async (req, res) => {
+  const { reviewReply, reviewDesc, reviewId, restaurantName } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log(reviewId);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { _id: reviewId }, // find the matching reviewDesc
+    {
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect(`/restoview?restaurantName=${restaurantName}`);
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
 app.post("/RestoView-SB", async (req, res) => {
   const { reviewReply, reviewDesc, reviewId } = req.body;
   console.log("----");
@@ -738,6 +804,39 @@ app.post("/RestoView-SB", async (req, res) => {
       console.error("Error updating review:", err);
       res.status(500).json({ error: "Error updating review" });
     });
+});
+
+app.get("/resto-out", async (req, res) => {
+  try {
+    const { restaurantName } = req.query;
+    // Query everything that has a restaurant name of "Starbucks"
+    const reviews = await Reviews.find({ restaurantName: restaurantName }).lean();
+    const restaurant = await Restaurant.findOne({ name: restaurantName }).lean();
+    console.log("resto-out:", restaurantName)
+
+    // Another query to get the highest-rated review for Starbucks
+    const highestRated = await Reviews.findOne({ restaurantName: restaurantName })
+      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
+      .limit(1) // Limit the result to one review
+      .lean();
+    // Gallery
+    const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
+
+    res.render("resto-out", {
+      title: restaurantName,
+      script: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/stylesOut.css",
+      reviews: reviews,
+      highestRated: highestRated,
+      gallery: gallery,
+      restaurant: restaurant,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
 });
 
 app.get("/RestoView-SB-out", async (req, res) => {
@@ -1436,7 +1535,7 @@ app.get("/viewprofileU1", async (req, res) => {
 
 app.get("/visitProfile", async (req, res) => {
   const { visitEmail } = req.query;
-  console.log(visitEmail);
+  console.log("visitPROFILE: ", visitEmail);
   //query here
   try {
     // Query everything that has a restaurant name of "Starbucks"

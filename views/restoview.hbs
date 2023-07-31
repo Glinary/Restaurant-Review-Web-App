@@ -1,0 +1,306 @@
+<!--START OF HEADER--> 
+    <header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+        
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="/indexLog" id="current">HOME</a>
+            <a href="/restaurant">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+            <i
+            class="fa-solid fa-magnifying-glass fa-2x"
+            style="color: #ceb9a7; margin-left: 0.5rem"
+          ></i>
+          <form action="SearchPage.html" id="searchform" method="get">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="searchBar"
+                id="searchBar"
+              />
+              <input type="submit" value="submit" />
+          </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
+                    <img src="{{user.avatar}}" id="prof-pic" />
+                  </div>
+                  <div class="dropdown-m">
+                    <ul>
+                      <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
+                      <li><a href="/editProfile">EDIT PROFILE</a></li>
+                      <li><a href="/">LOGOUT</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>            
+            </nav>
+          </div>
+        </div>
+      </div>    
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="/SearchPage"></a>
+    </div>
+    <div class="search-line"></div>
+
+    <!-- END OF HEADER -->
+
+    <!-- START OF PROFILE SECTION (including top revs)-->
+
+    <div id="profilee">
+     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const restaurantName = urlParams.get('restaurantName');
+        console.log(restaurantName);
+    </script>
+      <div class="box">
+        <div class="box-a">
+          <a href="#profile" class="aboutme">About Me</a>
+          <a href="#review" class="aboutme">Reviews</a>
+          <a href="#gallery" class="aboutme">Gallery</a>
+        </div>
+      </div>
+      <div class="yohoo">
+        <div class="profile-section" id="profile">
+           <div class="contain-profile"> 
+            <div class="profile-pictures-section">
+            <div class="profile-picture">
+                <img src="{{restaurant.img}}" />
+            </div>
+            <div class="top-overall-stars">
+              <div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+              <p>{{restaurant.starRating}}</p>
+            </div>
+            </div>
+            </div>
+            <div class="profile-description">
+            <h1>{{restaurant.name}}</h1>
+            <p>
+              {{restaurant.desc}}
+            </p>
+            </div>
+            </div>
+
+            <div class="edit-profile-section">
+            <h4>Add Review</h4>
+            <a href="/reviewPage?restaurantName={{restaurant.name}}">
+            <img src="assets/book_icon.png" /></a>
+            </div>
+        {{#if highestRated}}
+        <div class="top-reviews-section">
+            <div class="top-label-and-navigator" id="review">
+                <h3>Top Reviews</h3>
+            </div>
+                      
+            <!-- User Review Box -->
+            <div class="top-reviews-content-container">
+                <div class="top-reviews-left-container">
+                  <div class="top-left">
+                    <div class="top-reviews-user-details">
+                      <img
+                        src="{{highestRated.avatar}}"
+                        class="top-reviews-profile-pic"
+                      />
+                    </div>
+
+                    <!-- User Review Information-->
+                    <div class="top-further-details">
+                      <div class="top-name">
+                        <a class="top-firstname" href="/visitProfile?visitEmail={{highestRated.email}}">{{highestRated.userName}}</a>
+                      </div>
+                      <div class="top-others">
+                        <p class="top-review-count"></p>
+                        <!-- User Review Rating/Stars -->
+                      <div class="overall-stars">
+                          {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+
+                    <span id="titleBl">{{highestRated.reviewTitle}} </span>
+                  <div class="review">
+                    <p class="top-review-paragraph">
+                      {{highestRated.reviewDesc}}
+                    </p>
+                  </div>
+                </div>
+        
+                <!-- User Review Images (right) -->
+                <div class="top-reviews-pictures">
+                  {{#each highestRated.images}}
+                    <img src="{{this}}" class="top-review-image" />
+                  {{/each}}
+                </div>
+            </div>
+
+        </div>
+        {{/if}}
+      </div>
+            
+
+      <div class="box"></div>
+    </div>
+
+    <div class="gallery-section" id="gallery">
+      <div class="gallery-container">
+        <h3>Gallery</h3>
+        
+        <div class="gallery-pictures">
+          {{#each gallery}}
+            <img src="{{this.link}}" class="gallery-image"/>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="dividerSec"> 
+
+        <div class="reviews-section">
+          <div class="label-and-navigator" id="review">
+            <h3>User's Reviews</h3>
+            <h4></h4>
+          </div>
+
+
+        <!-- User Review Box -->
+        {{#each reviews}}
+          <div class="reviews-content-container">
+            <div class="reviews-left-container">
+              <div class="left">
+                <div class="reviews-user-details">
+                  <img
+                    src="{{this.avatar}}"
+                    class="reviews-profile-pic"
+                  />
+                </div>
+
+              <!-- User Review Information-->
+                <div class="further-details">
+                  <div class="name">
+                    <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{this.userName}}</a>
+                  </div>
+                  <div class="others">
+                    <p class="review-count"></p>
+                    <!-- User Review Rating/Stars -->
+                    <div class="overall-stars">
+                        {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                    </div>
+                  </div>
+                </div>
+                <form id="reaction">
+                    <label class="reacBut">
+                    <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
+                      <span class="icon" id="helpful"><img src="assets/tbUP0.png" ></span>  
+                      <span class="count" value={{this.reactionInfo.likeCount}} data-toggle={{this.reactionInfo.likeToggle}}><p>{{this.reactionInfo.likeCount}}</p></span>
+                    </label>
+                </form> 
+              </div>
+
+              <span id="titleBl">{{this.reviewTitle}} </span>
+              <!-- User Review -->
+              <div class="review">
+                <p>
+                  {{this.reviewDesc}}
+                </p>
+              </div>
+              
+              <div class="review-edit">
+                <form action="#" method="post">
+                  <div class="review-edit-form">
+                    <textarea
+                      name="edit-rev-box"
+                      id="edit-rev-box"
+                      rows="4"
+                      maxlength="350"></textarea>
+                    
+                      <input type="submit" value="Submit" />
+                    <input type="submit" value="Cancel" />
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- User Review Images (right) -->
+            <div class="reviews-pictures">
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
+            </div>
+
+            <!-- User Review Option Bar -->
+            <div id="EditMenu">
+              <div id="editBar">
+                <div id="editBars"></div>
+                <div id="editBars"></div>
+                <div id="editBars"></div>
+              </div>
+              <div id="EditNav">
+                <ul>
+                  <li>Reply</li>
+                  {{#ifCond ../user.email '==' this.email}}
+                <li>Edit</li>
+                <li>Delete</li>
+                {{/ifCond}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+
+        <!-- User Review Replying/ Commenting Box-->
+        <div class="review-reply">
+            <div class="review-reply-form">
+              <form action="/RestoView-SB" method="POST">
+              <textarea
+                name="reviewReply"
+                id="reply-rev-box"
+                rows="4"
+                maxlength="180"
+                placeholder="Write comment here"></textarea>
+                <!-- Add a hidden input field to store the reviewDesc -->
+                <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+                <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
+              
+                <input type="submit" value="Comment" />
+              <input type="submit" value="Cancel" />
+            </div>
+          </form>
+        </div>
+        
+        <!-- User Review Replies/ Comments List Box -->
+          <div class="reply">
+            <h4>Review Comments</h4>
+            <div class="reply-container">
+              {{#each this.reviewReplyInfo}}
+              <div id="single-reply-container">
+                <p id="user-commentName">{{this.user}}</p>
+                <p id="user-comm">{{this.reply}}</p>
+              </div>
+              {{/each}}
+            </div>
+            </div>
+            {{/each}}
+          </div>
+      </div>

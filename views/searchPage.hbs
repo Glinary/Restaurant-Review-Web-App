@@ -92,7 +92,7 @@
     <div class="restobox-cont">
       {{#each restaurants}}
       <div class="resto-container">
-        <a href="{{this.link}}"><img src="{{this.img}}" id="restaurant1" /></a>
+        <a href="/restoview?restaurantName={{this.name}}"><img src="{{this.img}}" id="restaurant1" /></a>
         <div id="resto-desc">
           <p>
             {{this.desc}}
