@@ -43,11 +43,6 @@ const reviewsSchema = new mongoose.Schema({
     },
   ],
   reactionInfo: {
-    likeToggle: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
     likeCount: {
       type: Number,
       required: true,

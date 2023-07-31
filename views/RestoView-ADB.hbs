@@ -125,17 +125,15 @@
                       <a class="top-firstname" href="/visitProfile?visitEmail={{highestRated.email}}">{{highestRated.userName}}</a>
                     </div>
                     <div class="top-others">
-                      <p class="top-review-count">10 Reviews</p>
+                      <p class="top-review-count"></p>
+                      <!-- User Review Rating/Stars -->
+                      <div class="overall-stars">
+                          {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                      </div>
                     </div>
                   </div>
                 </div>
           
-                <!-- User Review Rating/Stars -->
-                    <div class="overall-stars">
-                        {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-           
-                    </div>
-
                     <span id="titleBl">{{highestRated.reviewTitle}} </span>
                 <div class="review">
                   <p class="top-review-paragraph">
@@ -198,24 +196,25 @@
                 </div>
                 <div class="others">
                   <p class="review-count"></p>
+                  <!-- User Review Rating/Stars -->
+                  <div class="overall-stars">
+                      {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                  </div>
                 </div>
               </div>
+              <form id="reaction">
+                  <label class="reacBut">
+                  <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
+                    <span class="icon" id="helpful"><img src="assets/tbUP0.png" ></span>  
+                    <span class="count" value={{this.reactionInfo.likeCount}} data-toggle={{this.reactionInfo.likeToggle}}><p>{{this.reactionInfo.likeCount}}</p></span>
+                  </label>
+              </form> 
           </div>
 
-            <form id="reaction">
-              <label class="reacBut">
-              <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
-                <span class="icon" id="helpful"><img src="assets/tbUP0.png" ></span>  
-                <span class="count" value={{this.reactionInfo.likeCount}} data-toggle={{this.reactionInfo.likeToggle}}>1</span>
-              </label>
-            </form>
-          <!-- User Review Rating/Stars -->
-          <div class="overall-stars">
-              {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-          </div>
 
-            <span id="titleBl">{{this.reviewTitle}} </span>
             <!-- User Review -->
+
+            <div id="titleBl">{{this.reviewTitle}}</div>
             <div class="review">
               <p>
                 {{this.reviewDesc}}
@@ -237,6 +236,7 @@
             </div>
           </div>
 
+    
           <!-- User Review Images (right) -->
           <div class="reviews-pictures">
               {{#each this.images}}

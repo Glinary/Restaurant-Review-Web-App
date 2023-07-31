@@ -60,12 +60,6 @@ header {
   cursor: pointer;
 }
 
-#titleBl {
-  margin: 0.5;
-  font-weight: bold;
-  color: #3a3a3d;
-}
-
 .contain-profile {
   height: fit-content;
   min-width: fit-content;
@@ -263,7 +257,7 @@ header {
 }
 
 .review {
-  margin: 0;
+  margin: 1rem 0rem;
   padding: 0;
 }
 
@@ -354,6 +348,15 @@ header {
 #unhelpful,
 .count {
   margin: 0.5rem 0.15rem;
+  font-size: 0.8em;
+}
+
+#helpful img,
+#unhelpful img {
+  max-height: 1.5vh;
+  max-height: 1.5vh;
+  max-width: 1.5vw;
+  max-width: 1.5vw;
 }
 
 /*! ========== END OF REACTION SYSTEM ========= **/
@@ -466,9 +469,9 @@ header {
 
 .reviews-user-details .reviews-profile-pic {
   max-width: 5vw;
-  max-height: 4vh;
+  max-height: 3vh;
   min-width: 5vw;
-  min-height: 4vh;
+  min-height: 3vh;
   border-radius: 100px;
   margin-top: 0.5rem;
   margin-left: 0.2rem;
@@ -597,11 +600,12 @@ header {
 
 .overall-stars {
   display: flex;
-  margin: 1rem 0;
+  margin: 0rem 0;
+  margin-bottom: 1rem;
 }
 
 #Ostar {
-  margin: 0.05rem;
+  margin: 0rem 0.1rem;
 }
 
 .overall-stars p {
@@ -979,10 +983,9 @@ header {
 
   /*! PROFILE DESCRIPTION / IMAGE */
 
-  .further-details .name a {
+  .further-details a {
     display: flex;
-    font-size: 1.4rem;
-    margin-bottom: 0.4rem;
+    font-size: 1rem;
   }
 
   .further-details .others p {
@@ -1503,22 +1506,23 @@ header {
   #unhelpful,
   .count {
     margin: 0.5rem 0.01rem;
+    font-size: 0.8em;
   }
 
   #helpful,
   #unhelpful {
-    max-height: 3vh;
-    max-height: 3vh;
-    max-width: 3vw;
-    max-width: 3vw;
+    max-height: 1.5vh;
+    max-height: 1.5vh;
+    max-width: 1.5vw;
+    max-width: 1.5vw;
   }
 
   #helpful img,
   #unhelpful img {
-    max-height: 3vh;
-    max-height: 3vh;
-    max-width: 3vw;
-    max-width: 3vw;
+    max-height: 1.5vh;
+    max-height: 1.5vh;
+    max-width: 1.5vw;
+    max-width: 1.5vw;
   }
 
   .reviews-section {
@@ -1695,4 +1699,11 @@ header {
     width: 100%;
     margin: 0 auto;
   }
+}
+
+#titleBl {
+  position: relative;
+  margin: 0.2rem 0rem;
+  font-weight: bold;
+  color: #3a3a3d;
 }

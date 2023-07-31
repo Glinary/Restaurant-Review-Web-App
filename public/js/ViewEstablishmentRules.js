@@ -2,8 +2,7 @@ const reviews = document.querySelectorAll(".review"); // List of all review text
 const times = document.querySelectorAll(".review").length; // Total number of review text containers
 const editBar = document.querySelectorAll("#EditMenu");
 const reactionH = document.querySelectorAll("#helpful");
-const reactionU = document.querySelectorAll("#unhelpful");
-const reaction = document.querySelectorAll("#reaction");
+const countingSpan = document.querySelectorAll(".count");
 const body = document.getElementsByTagName("BODY")[0];
 const edbar = document.querySelectorAll("#EditNav");
 
@@ -15,26 +14,10 @@ const searchBar = document.querySelector(".search-container");
 
 const replyCont = document.querySelectorAll(".reply");
 const replyContList = Array.from(replyCont);
-console.log(replyContList);
-
-/*
-for (let i = 0; i < replyCont.length; i++) {
-  rChild = replyContList[i].children[1];
-  rChildChild = rChild.children[0];
-  console.log(rChildChild);
-  if (rChildChild.innerText == "") {
-    rChild.style.display = "none";
-  }
-}
-*/
 
 const divSec = document.querySelector(".dividerSec");
 const revRep = document.querySelector(".review-reply");
 
-let arrH = [];
-let arrU = [];
-let currLike = [];
-let currDLike = [];
 let flag2 = true;
 
 // GIVEN: Create a User constructor
@@ -48,9 +31,20 @@ const Review = function (reviewObj) {
 };
 
 let reviewList = [];
+console.log(window.innerWidth);
 
 checkTextTrunc();
 checkReviewsCount();
+
+for (let i = 0; i < replyCont.length; i++) {
+  console.dir(replyCont);
+  rChild = replyContList[i].children[1];
+  rChildChild = rChild.children.length;
+  console.log(rChildChild);
+  if (rChildChild == 0) {
+    rChild.style.display = "none";
+  }
+}
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -148,35 +142,13 @@ editBar.forEach((cell) =>
     if (flag2 == false) {
       console.log("UL now being read...");
       optionPath = cld.firstElementChild.children;
-      replyButton = optionPath[0];
-      editButton = optionPath[1];
-      deleteButton = optionPath[2];
-
-      editButton.addEventListener("click", function () {
-        console.log("Reply clicked!");
-
-        // Parent cell called
-        cellParent = cell.parentElement;
-        // Review left called.
-        reviewLeft = cellParent.firstElementChild;
-        //Review called
-        reviewCont = reviewLeft.children[2];
-        //Inner Text copied
-        textValue = reviewCont.innerText;
-
-        reviewListArr = Array.from(reviews);
-        selectedRevIndex = reviewListArr.indexOf(reviewCont);
-
-        // Replace Text with Edit Box
-        revObj = reviewObjHelper(selectedRevIndex);
-        revObj.innerHTML = "";
-
-        revObj.nextElementSibling.style.display = "block";
-        editBoxPath = revObj.nextElementSibling.children[0];
-        editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
-
-        console.dir(reviewCont);
-      });
+      if (optionPath.length == 1) {
+        replyButton = optionPath[0];
+      } else if (optionPath.length == 3) {
+        replyButton = optionPath[0];
+        editButton = optionPath[1];
+        deleteButton = optionPath[2];
+      }
 
       replyButton.addEventListener("click", function () {
         console.log("Reply clicked!");
@@ -186,38 +158,72 @@ editBar.forEach((cell) =>
         replyBox.style.display = "block";
       });
 
-      deleteButton.addEventListener("click", function () {
-        console.log("Delete clicked!");
+      if (optionPath.length == 3) {
+        editButton.addEventListener("click", function () {
+          console.log("Reply clicked!");
 
-        // Get the reviewDesc value from the hidden input field
-        const reviewDesc = document.getElementById("reviewDesc").value;
+          // Parent cell called
+          cellParent = cell.parentElement;
+          // Review left called.
+          reviewLeft = cellParent.firstElementChild;
+          //Review called
+          reviewCont = reviewLeft.children[2];
+          //Inner Text copied
+          textValue = reviewCont.innerText;
 
-        // Make the AJAX request to delete the review
-        fetch("/deleteReview", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ reviewDesc }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            console.log("Review successfully deleted");
-            cellParent = cell.parentElement;
-            replyBox = cellParent.nextElementSibling;
-            repliesBox = replyBox.nextElementSibling;
-            cellParent.remove();
-            repliesBox.remove();
-            revRep.remove();
-            checkReviewsCount();
+          reviewListArr = Array.from(reviews);
+          selectedRevIndex = reviewListArr.indexOf(reviewCont);
+
+          // Replace Text with Edit Box
+          revObj = reviewObjHelper(selectedRevIndex);
+          revObj.innerHTML = "";
+
+          revObj.nextElementSibling.style.display = "block";
+          editBoxPath = revObj.nextElementSibling.children[0];
+          editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
+
+          console.dir(reviewCont);
+        });
+
+        deleteButton.addEventListener("click", function () {
+          console.log("Delete clicked!");
+
+          cellParent = cell.parentElement;
+          replyBox = cellParent.nextElementSibling;
+          repliesBox = replyBox.nextElementSibling;
+
+          path = replyBox.childNodes[1].lastChild[0];
+          path = path.nextElementSibling.value;
+
+          // Get the reviewDesc value from the hidden input field
+          const reviewID = path;
+          console.log("Review ID to be deleted:", reviewID);
+
+          // Make the AJAX request to delete the review
+          fetch("/deleteReview", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ reviewID }),
           })
-          .catch((error) => {
-            console.error("Error deleting review:", error);
-            // Handle any errors that occur during the deletion process
-          });
-      });
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              console.log("Review successfully deleted");
+
+              cellParent.remove();
+              repliesBox.remove();
+              revRep.remove();
+              checkReviewsCount();
+            })
+            .catch((error) => {
+              console.error("Error deleting review:", error);
+              // Handle any errors that occur during the deletion process
+            });
+        });
+      }
     }
   })
 );
@@ -262,133 +268,123 @@ reactionH.forEach(
   false
 );
 
-// console.log(reaction[1]);
-
-/*Initialize Reaction Button Data*/
-// for (let i = 0; i < reactionH.length; i++) {
-//   arrH.push(0);
-//   arrU.push(0);
-//   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
-//   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
-// }
-
-// for (let j = 0; j < reactionH.length; j++) {
-//   reactionH[j].addEventListener("click", function () {
-//     if (arrU[j] == 0 && arrH[j] == 0) {
-//       reactionH[j].innerHTML =
-//         '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
-//       currLike[j] += 1;
-//       reactionH[j].nextSibling.innerText = currLike[j];
-//       arrH[j] = 1;
-//       console.log(arrH);
-//     } else if (arrU[j] == 0 && arrH[j] == 1) {
-//       reactionH[j].innerHTML =
-//         '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
-//       currLike[j] -= 1;
-//       reactionH[j].nextSibling.innerText = currLike[j];
-//       arrH[j] = 0;
-//       console.log(arrH);
-//     }
-//   });
-// }
-
-// for (let k = 0; k < reactionU.length; k++) {
-//   reactionU[k].addEventListener("click", function () {
-//     if (arrH[k] == 0 && arrU[k] == 0) {
-//       reactionU[k].innerHTML =
-//         '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
-//       currDLike[k] += 1;
-//       reactionU[k].nextSibling.innerText = currDLike[k];
-//       arrU[k] = 1;
-//       console.log(arrH);
-//     } else if (arrH[k] == 0 && arrU[k] == 1) {
-//       reactionU[k].innerHTML =
-//         '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
-//       currDLike[k] -= 1;
-//       reactionU[k].nextSibling.innerText = currDLike[k];
-//       arrU[k] = 0;
-//       console.log(arrU);
-//     }
-//   });
-// }
-
-function sendFunc(event) {
+async function sendFunc(event) {
   console.log(event);
   let checkbox = event.target;
   const dataId = checkbox.getAttribute("data-id");
   let image = checkbox.parentElement.querySelector(".icon img");
   const countSpan = checkbox.parentElement.querySelector(".count"); // Find the correct count span
-  const countValue = parseInt(countSpan.getAttribute("value"));
-  countL = countValue;
+
+  try {
+    const response = await fetch("/loadReactionPostMin?ID=" + dataId, {
+      method: "GET",
+    });
+
+    const data = await response.json();
+
+    countValue = data.likeCount;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 
   let toggle = checkbox.checked;
   let toggled = 0;
 
+  console.log("FUNCTION HERE");
   console.log("Data-id value:", dataId);
   console.log("Data toggle:", toggle);
-  console.log("Data count:", countL);
+  console.log("Data count:", countValue);
 
   if (toggle) {
     toggled = 1;
     console.log("box is toggled");
     image.src = "assets/tbUP1.png";
-    countL = countL + 1;
+    countL = countValue + 1;
     countSpan.textContent = countL;
-    jstring = JSON.stringify({ dataId, toggled, countL }); // Include the countValue in the JSON data
-    console.log(jstring);
+
+    // Use the fetch API to send the data to the server
+    const data = { dataId, countL, toggled };
+    fetch("/reactionPost", {
+      method: "POST",
+      body: JSON.stringify(data), // Send the data object as JSON
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log(response);
+    });
   } else {
     toggled = 0;
-    image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
-    console.log("box is not toggled");
-    countSpan.textContent = countValue;
-    jstring = JSON.stringify({ dataId, toggled, countValue }); // Include the countValue in the JSON data
-    console.log(jstring);
+
+    const data = { dataId, countValue, toggled }; // Create a new object with the necessary data
+
+    (async () => {
+      try {
+        const response = await fetch("/reactionPost", {
+          method: "POST",
+          body: JSON.stringify(data), // Send the data object as JSON
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log(response);
+
+        const response2 = await fetch("/loadReactionPostMin?ID=" + dataId, {
+          method: "GET",
+        });
+
+        const data1 = await response2.json();
+
+        countValue = data1.likeCount;
+        console.log("UNTOGGLED: ", countValue);
+
+        image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+        console.log("box is not toggled");
+        countSpan.textContent = countValue;
+        //silentReload();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    })();
   }
-
-  // Use the fetch API to send the data to the server
-  fetch("/reactionPost", {
-    method: "POST",
-    body: jstring,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => {
-    console.log(response);
-  });
-}
-
-let reviewIds = [];
-
-for (let j = 0; j < likeH.length; j++) {
-  reviewIds.push(likeH[j].getAttribute("data-id"));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM HERE");
   // Retrieve the stored values from local storage and update the UI
 
-  countingSpan.forEach((checkbox) => {
-    console.log(checkbox);
-    const dataId = checkbox.getAttribute("data-id");
-    const dataToggle = parseInt(checkbox.getAttribute("data-toggle"));
-    const dataCount = parseInt(checkbox.getAttribute("value"));
-    const countSpan = checkbox.parentElement.querySelector(".count");
-    let image = checkbox.parentElement.querySelector(".icon img");
-
-    let toggle = checkbox.checked;
-    let toggled = 0;
+  countingSpan.forEach(async (checkboxx) => {
+    console.log(checkboxx);
+    const dataId =
+      checkboxx.parentElement.firstElementChild.getAttribute("data-id");
+    const dataCount = parseInt(checkboxx.getAttribute("value"));
+    const countSpan = checkboxx.parentElement.querySelector(".count");
+    let image = checkboxx.parentElement.querySelector(".icon img");
 
     console.log("Data-id value:", dataId);
-    console.log("Data toggle:", dataToggle);
     console.log("Data count:", dataCount);
 
-    if (dataToggle == 1) {
-      image.src = "assets/tbUP1.png";
-      console.log("box is toggled");
-      countSpan.textContent = dataCount + 1;
-    } else {
-      image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
-      console.log("box is not toggled");
-      countSpan.textContent = dataCount;
+    try {
+      const response = await fetch("/loadReactionPost?ID=" + dataId, {
+        method: "GET",
+      });
+
+      const data = await response.json();
+
+      if (data.liked) {
+        // do something
+        image.src = "assets/tbUP1.png";
+        console.log("box is toggled");
+        countSpan.textContent = dataCount;
+        checkboxx.parentElement.firstElementChild.checked = true;
+      } else if (data.liked == false) {
+        image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+        console.log("box is not toggled");
+        countSpan.textContent = dataCount;
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   });
 });

@@ -118,14 +118,13 @@
                       </div>
                       <div class="top-others">
                         <p class="top-review-count"></p>
+                        <!-- User Review Rating/Stars -->
+                        <div class="overall-stars">
+                            {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                <!-- User Review Rating/Stars -->
-                    <div class="overall-stars">
-                        {{highestRated.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-                    </div>
 
                     <span id="titleBl">{{highestRated.reviewTitle}} </span>
                   <div class="review">
@@ -189,16 +188,16 @@
                 <a class="firstname" href="/loginPage">{{this.userName}}</a>
               </div>
               <div class="others">
-                <p class="review-count">9 Reviews</p>
+                <p class="review-count"></p>
+                <!-- User Review Rating/Stars -->
+                <div class="overall-stars">
+                    {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                </div>
               </div>
-            </div>
-            
+            </div>   
           </div>
           
-          <!-- User Review Rating/Stars -->
-          <div class="overall-stars">
-              {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
-          </div>
+        
 
             <span id="titleBl">{{this.reviewTitle}} </span>
           <!-- User Review -->
