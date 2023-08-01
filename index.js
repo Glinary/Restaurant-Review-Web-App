@@ -324,7 +324,7 @@ async function run() {
     userName: "Ronald Weasly",
     reviewDesc: "B E S T  S I S I G  E V E R !!!!!!!!!!!!!!!",
     starRating: 5,
-    email: "ronald@yahoo.com",
+    email: "ronald@gmail.com",
     reviewTitle: "Sisig Forevs",
     images: ["assets\\TNBF3.jpg", "assets\\TNBF4.jpg"],
   });
@@ -336,9 +336,9 @@ async function run() {
     reviewDesc:
       "I'm a huge fan of Chinese cuisine and all the comforting tastes that I was looking for are found only at David's Teahouse!",
     starRating: 5,
-    email: "ronald@yahoo.com",
+    email: "ronald@gmail.com",
     reviewTitle: "Yummy Chinese",
-    images: ["assets\\DT1.jpg", "assets\\DT2.jpg"],
+    images: ["assets\\DT3.jpg", "assets\\DT4.jpg"],
   });
 
   const rev7 = await Reviews.create({
@@ -349,7 +349,7 @@ async function run() {
     reviewDesc:
       "Service is excellent. Coffee is very nice. The area was very clean. Overall, 5/5.",
     starRating: 5,
-    email: "dumbo@yahoo.com",
+    email: "dumbo@gmail.com",
     reviewTitle: "Best Cafe to Stay At!",
     images: ["assets\\SB3.jpg", "assets\\SB4.jpg"],
   });
@@ -360,7 +360,7 @@ async function run() {
     userName: "Albus Dumbledore",
     reviewDesc: "Their sizzling delicacies never fails to amaze me!",
     starRating: 5,
-    email: "granger@yahoo.com",
+    email: "dumbo@gmail.com",
     reviewTitle: "Sizzling all the way!",
     images: ["assets\\AD3.jpg", "assets\\AD4.jpg"],
   });
@@ -383,7 +383,7 @@ async function run() {
     userName: "Bilbo Baggins",
     reviewDesc: "Bad service sometimes but I love their coffee so 3/5.",
     starRating: 3,
-    email: "bilbo@yahoo.com",
+    email: "bilbo@gmail.com",
     reviewTitle: "Meh Service",
     images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
   });
@@ -693,40 +693,6 @@ app.get("/restoview", async (req, res) => {
   }
 });
 
-app.get("/RestoView-SB", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Starbucks"
-    const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
-    let restaurant = await Restaurant.findOne({ name: "Starbucks" }).lean();
-    console.log(restaurant);
-
-    // Another query to get the highest-rated review for Starbucks
-    const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    const user = await Users.findOne({ email: currentAccount.email }).lean();
-    // Gallery
-    const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
-
-    res.render("RestoView-SB", {
-      title: "Starbucks",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      user: user,
-      gallery: gallery,
-      restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
 // Deletes review when pressed from SB (current)
 app.post("/deleteReview", async (req, res) => {
   const { reviewID } = req.body;
@@ -774,38 +740,6 @@ app.post("/restoview", async (req, res) => {
     });
 });
 
-app.post("/RestoView-SB", async (req, res) => {
-  const { reviewReply, reviewDesc, reviewId } = req.body;
-  console.log("----");
-  console.log(reviewReply);
-  console.log(reviewDesc);
-  console.log(reviewId);
-  console.log("----");
-
-  Reviews.findOneAndUpdate(
-    { _id: reviewId }, // find the matching reviewDesc
-    {
-      $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
-      },
-    },
-    { new: true } // return the updated document
-  )
-    .then((updatedReview) => {
-      if (!updatedReview) {
-        console.log("Review not found!");
-        return res.status(404).json({ error: "Review not found" });
-      }
-      console.log("Review updated:", updatedReview);
-      // redirect to the resto view:
-      res.redirect("RestoView-SB");
-    })
-    .catch((err) => {
-      console.error("Error updating review:", err);
-      res.status(500).json({ error: "Error updating review" });
-    });
-});
-
 app.get("/resto-out", async (req, res) => {
   try {
     const { restaurantName } = req.query;
@@ -828,360 +762,6 @@ app.get("/resto-out", async (req, res) => {
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "static/css/ViewEstablishmentStyles.css",
       css2: "static/css/stylesOut.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.get("/RestoView-SB-out", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Starbucks"
-    const reviews = await Reviews.find({ restaurantName: "Starbucks" }).lean();
-    const restaurant = await Restaurant.findOne({ name: "Starbucks" }).lean();
-
-    // Another query to get the highest-rated review for Starbucks
-    const highestRated = await Reviews.findOne({ restaurantName: "Starbucks" })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    // Gallery
-    const gallery = await Gallery.find({ restaurantName: "Starbucks" }).lean();
-
-    res.render("RestoView-SB-out", {
-      title: "Starbucks",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/stylesOut.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.get("/RestoView-DTH", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "David's Tea House"
-    const reviews = await Reviews.find({
-      restaurantName: "David's Tea House",
-    }).lean();
-    const restaurant = await Restaurant.findOne({
-      name: "David's Tea House",
-    }).lean();
-
-    // Another query to get the highest-rated review for David's Tea House
-    const highestRated = await Reviews.findOne({
-      restaurantName: "David's Tea House",
-    })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    const user = await Users.findOne({ email: currentAccount.email }).lean();
-    //Gallery
-    const gallery = await Gallery.find({
-      restaurantName: "David's Tea House",
-    }).lean();
-    console.log(user);
-
-    res.render("RestoView-DTH", {
-      title: "David's Tea House",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      user: user,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.post("/RestoView-DTH", async (req, res) => {
-  const { reviewReply, reviewDesc, reviewId } = req.body;
-  console.log("----");
-  console.log(reviewReply);
-  console.log(reviewDesc);
-  console.log("----");
-
-  Reviews.findOneAndUpdate(
-    { _id: reviewId }, // find the matching reviewDesc
-    {
-      $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
-      },
-    },
-    { new: true } //return the updated document
-  )
-    .then((updatedReview) => {
-      if (!updatedReview) {
-        console.log("Review not found!");
-        return res.status(404).json({ error: "Review not found" });
-      }
-      console.log("Review updated:", updatedReview);
-      // redirect to the resto view:
-      res.redirect("RestoView-DTH");
-    })
-    .catch((err) => {
-      console.error("Error updating review:", err);
-      res.status(500).json({ error: "Error updating review" });
-    });
-});
-
-app.get("/RestoView-DTH-out", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "David's Tea House"
-    const reviews = await Reviews.find({
-      restaurantName: "David's Tea House",
-    }).lean();
-    const restaurant = await Restaurant.findOne({
-      name: "David's Tea House",
-    }).lean();
-
-    // Another query to get the highest-rated review for "David's Tea House"
-    const highestRated = await Reviews.findOne({
-      restaurantName: "David's Tea House",
-    })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    //Gallery
-    const gallery = await Gallery.find({
-      restaurantName: "David's Tea House",
-    }).lean();
-
-    res.render("RestoView-DTH-out", {
-      title: "David's Tea House",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/StylesOut.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.get("/RestoView-ADB", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
-    const restaurant = await Restaurant.findOne({ name: "Angry Dobo" }).lean();
-
-    // Another query to get the highest-rated review for "Angry Dobo"
-    const highestRated = await Reviews.findOne({ restaurantName: "Angry Dobo" })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    const user = await Users.findOne({ email: currentAccount.email }).lean();
-    //Gallery
-    const gallery = await Gallery.find({ restaurantName: "Angry Dobo" }).lean();
-    console.log(user);
-
-    res.render("RestoView-ADB", {
-      title: "Angry Dobo",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews, // Pass the reviews object to the template
-      highestRated: highestRated,
-      user: user,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.post("/RestoView-ADB", async (req, res) => {
-  const { reviewReply, reviewDesc, reviewId } = req.body;
-  console.log("----");
-  console.log(reviewReply);
-  console.log(reviewDesc);
-  console.log("----");
-
-  Reviews.findOneAndUpdate(
-    { _id: reviewId }, // find the matching reviewDesc
-    {
-      $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
-      },
-    },
-    { new: true } //return the updated document
-  )
-    .then((updatedReview) => {
-      if (!updatedReview) {
-        console.log("Review not found!");
-        return res.status(404).json({ error: "Review not found" });
-      }
-      console.log("Review updated:", updatedReview);
-      // redirect to the resto view:
-      res.redirect("RestoView-ADB");
-    })
-    .catch((err) => {
-      console.error("Error updating review:", err);
-      res.status(500).json({ error: "Error updating review" });
-    });
-});
-
-app.get("/RestoView-ADB-out", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Angry Dobo"
-    const reviews = await Reviews.find({ restaurantName: "Angry Dobo" }).lean();
-    const restaurant = await Restaurant.findOne({ name: "Angry Dobo" }).lean();
-
-    // Another query to get the highest-rated review for Starbucks
-    const highestRated = await Reviews.findOne({ restaurantName: "Angry Dobo" })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-    //Gallery
-    const gallery = await Gallery.find({ restaurantName: "Angry Dobo" }).lean();
-
-    res.render("RestoView-ADB-out", {
-      title: "Angry Dobo",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/StylesOut.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.get("/RestoView-TNB", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Tinuhog ni Benny"
-    const reviews = await Reviews.find({
-      restaurantName: "Tinuhog ni Benny",
-    }).lean();
-    const restaurant = await Restaurant.findOne({
-      name: "Tinuhog ni Benny",
-    }).lean();
-
-    // Another query to get the highest-rated review for "Tinuhog ni Benny"
-    const highestRated = await Reviews.findOne({
-      restaurantName: "Tinuhog ni Benny",
-    })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-
-    const user = await Users.findOne({ email: currentAccount.email }).lean();
-    //Gallery
-    const gallery = await Gallery.find({
-      restaurantName: "Tinuhog ni Benny",
-    }).lean();
-    console.log(user);
-
-    res.render("RestoView-TNB", {
-      title: "Tinuhog ni Benny",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/styles.css",
-      reviews: reviews,
-      highestRated: highestRated,
-      user: user,
-      gallery: gallery,
-      restaurant: restaurant,
-    });
-  } catch (error) {
-    console.error("Error querying reviews:", error);
-    res.status(500).send("Error querying reviews");
-  }
-});
-
-app.post("/RestoView-TNB", async (req, res) => {
-  const { reviewReply, reviewDesc, reviewId } = req.body;
-  console.log("----");
-  console.log(reviewReply);
-  console.log(reviewDesc);
-  console.log("----");
-
-  //TODO: this should use an id, not a matching description
-  Reviews.findOneAndUpdate(
-    { _id: reviewId }, // find the matching reviewDesc
-    {
-      $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
-      },
-    },
-    { new: true } //return the updated document
-  )
-    .then((updatedReview) => {
-      if (!updatedReview) {
-        console.log("Review not found!");
-        return res.status(404).json({ error: "Review not found" });
-      }
-      console.log("Review updated:", updatedReview);
-      // redirect to the resto view:
-      res.redirect("RestoView-TNB");
-    })
-    .catch((err) => {
-      console.error("Error updating review:", err);
-      res.status(500).json({ error: "Error updating review" });
-    });
-});
-
-app.get("/RestoView-TNB-out", async (req, res) => {
-  try {
-    // Query everything that has a restaurant name of "Tinuhog ni Benny"
-    const reviews = await Reviews.find({
-      restaurantName: "Tinuhog ni Benny",
-    }).lean();
-    const restaurant = await Restaurant.findOne({
-      name: "Tinuhog ni Benny",
-    }).lean();
-
-    // Another query to get the highest-rated review for "Tinuhog ni Benny"
-    const highestRated = await Reviews.findOne({
-      restaurantName: "Tinuhog ni Benny",
-    })
-      .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
-      .limit(1) // Limit the result to one review
-      .lean();
-
-    //Gallery
-    const gallery = await Gallery.find({
-      restaurantName: "Tinuhog ni Benny",
-    }).lean();
-
-    res.render("RestoView-TNB-out", {
-      title: "Tinuhog ni Benny",
-      script: "static/js/ViewEstablishmentRules.js",
-      script2: "https://kit.fontawesome.com/78bb10c051.js",
-      css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
       gallery: gallery,
@@ -1492,6 +1072,39 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
           return res.status(404).json({ error: "User not found" });
         }
         console.log("User updated:", updatedUser);
+        //update reviews if there is:
+        const reviews = Reviews.find({ email: email }).lean();
+        if (reviews) { 
+            if(req.file) {
+              Reviews.updateMany({ email: email }, 
+                                { userName: userName, avatar: img})
+                                .then((updatedReviews) => {
+                                  if (!updatedReviews) {
+                                    console.log("Review not found!");
+                                    return res.status(404).json({ error: "Reviews not Found" });
+                                  }
+                                  console.log("Review updated:", updatedReviews);
+                                })
+                                .catch((err) => {
+                                  console.error("Error updating reviews:", err);
+                                  res.status(500).json({ error: "Error updating reviews" });
+                                });
+            } else {
+              Reviews.updateMany({ email: email }, 
+                { userName: userName })
+                .then((updatedReviews) => {
+                  if (!updatedReviews) {
+                    console.log("Review not found!");
+                    return res.status(404).json({ error: "Reviews not Found" });
+                  }
+                  console.log("Review updated:", updatedReviews);
+                })
+                .catch((err) => {
+                  console.error("Error updating reviews:", err);
+                  res.status(500).json({ error: "Error updating reviews" });
+                });
+            }
+        }
         // redirect to the user's profile page:
         res.redirect("/viewprofileU1");
       })
@@ -1534,10 +1147,10 @@ app.get("/viewprofileU1", async (req, res) => {
 });
 
 app.get("/visitProfile", async (req, res) => {
-  const { visitEmail } = req.query;
-  console.log("visitPROFILE: ", visitEmail);
   //query here
   try {
+    const { visitEmail } = req.query;
+    console.log("visitPROFILE: ", visitEmail);
     // Query everything that has a restaurant name of "Starbucks"
     // TODO: set query to current user object
     const user = await Users.findOne({ email: currentAccount.email }).lean();
