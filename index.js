@@ -650,7 +650,7 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
     });
     review.save().then(() => {
       console.log("review submitted");
-      res.redirect(restoLink.link);
+      res.redirect(`/restoview?restaurantName=${restaurantName}`);
     });
   } else {
     res.status(400);
@@ -708,12 +708,14 @@ app.post("/deleteReview", async (req, res) => {
   }
 });
 
+app.use(express.json());
 app.post("/restoview", async (req, res) => {
   const { reviewReply, reviewDesc, reviewId, restaurantName } = req.body;
   console.log("----");
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log(reviewId);
+  console.log(restaurantName)
   console.log("----");
 
   Reviews.findOneAndUpdate(

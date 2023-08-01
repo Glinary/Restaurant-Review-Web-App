@@ -14,6 +14,7 @@ DEPENDENCIES
 "npm i --save-dev dotenv nodemon"
 "npm i express-handlebars"
 "npm i --save multer"
+"npm i bcrypt"
 
 
 INSTRUCTIONS ON HOW TO RUN:
