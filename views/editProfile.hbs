@@ -95,6 +95,7 @@
           </div>
           <div class="name-section">
               <div class="user-name">
+                {{#ifCond user.userName '==' "New_User"}}
                 <textarea
                   id="user-rev"
                   name="userName"
@@ -103,6 +104,16 @@
                   placeholder="name"
                   maxlength="350"
                 ></textarea>
+                {{else}}
+                <textarea
+                  id="user-rev"
+                  name="userName"
+                  rows="8"
+                  cols="120"
+                  placeholder="name"
+                  maxlength="350"
+                >{{user.userName}}</textarea>
+                {{/ifCond}}
               </div>
           </div>
           <!--
@@ -128,6 +139,7 @@
             </div>
             <div class="desc-section">
                 <div class="user-desc">
+                  {{#ifCond user.userDescription '==' "No Description Added Yet."}}
                   <textarea
                     id="user-rev-2"
                     name="userDescription"
@@ -136,6 +148,16 @@
                     placeholder="write your description about yourself here"
                     maxlength="350"
                   ></textarea>
+                  {{else}}
+                  <textarea
+                    id="user-rev-2"
+                    name="userDescription"
+                    rows="8"
+                    cols="120"
+                    placeholder="write your description about yourself here"
+                    maxlength="350"
+                  >{{user.userDescription}}</textarea>
+                  {{/ifCond}}
                 </div>
             </div>
           </div>

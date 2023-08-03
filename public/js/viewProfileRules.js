@@ -2,8 +2,6 @@ const reviews = document.querySelectorAll(".review"); // List of all review text
 const times = document.querySelectorAll(".review").length; // Total number of review text containers
 const editBar = document.querySelectorAll("#EditMenu");
 const reactionH = document.querySelectorAll("#helpful");
-const likeH = document.querySelectorAll('input[type="checkbox"]');
-console.log(reactionH);
 const countingSpan = document.querySelectorAll(".count");
 const body = document.getElementsByTagName("BODY")[0];
 const edbar = document.querySelectorAll("#EditNav");
@@ -16,10 +14,6 @@ const searchBar = document.querySelector(".search-container");
 
 const revSec = document.querySelector(".reviews-section");
 
-let arrH = [];
-let arrU = [];
-let currLike = [];
-let currDLike = [];
 let flag2 = true;
 
 // GIVEN: Create a User constructor
@@ -205,59 +199,127 @@ reactionH.forEach(
   false
 );
 
-// /*Initialize Reaction Button Data*/
-// for (let i = 0; i < reactionH.length; i++) {
-//   arrH.push(0);
-//   arrU.push(0);
-//   currLike.push(parseInt(reactionH[i].nextSibling.attributes[1].value));
-//   currDLike.push(parseInt(reactionU[i].nextSibling.attributes[1].value));
-// }
+// Function that adds "Edited" indicator when a user make changes to review
+async function sendFunc(event) {
+  console.log(event);
+  let checkbox = event.target;
+  const dataId = checkbox.getAttribute("data-id");
+  let image = checkbox.parentElement.querySelector(".icon img");
+  const countSpan = checkbox.parentElement.querySelector(".count"); // Find the correct count span
 
-// for (let j = 0; j < reactionH.length; j++) {
-//   reactionH[j].addEventListener("click", function () {
-//     if (arrU[j] == 0 && arrH[j] == 0) {
-//       reactionH[j].innerHTML =
-//         '<i class="fa-solid fa-thumbs-up" style="color: #087d6f;"></i>';
-//       currLike[j] += 1;
-//       reactionH[j].nextSibling.innerText = currLike[j];
-//       arrH[j] = 1;
-//       console.log(arrH);
-//     } else if (arrU[j] == 0 && arrH[j] == 1) {
-//       reactionH[j].innerHTML =
-//         '<i class="fa-solid fa-thumbs-up" style="color: #000000"></i>';
-//       currLike[j] -= 1;
-//       reactionH[j].nextSibling.innerText = currLike[j];
-//       arrH[j] = 0;
-//       console.log(arrH);
-//     }
-//   });
-// }
+  try {
+    const response = await fetch("/loadReactionPostMin?ID=" + dataId, {
+      method: "GET",
+    });
 
-// for (let k = 0; k < reactionU.length; k++) {
-//   reactionU[k].addEventListener("click", function () {
-//     if (arrH[k] == 0 && arrU[k] == 0) {
-//       reactionU[k].innerHTML =
-//         '<i class="fa-solid fa-thumbs-down" style="color: #087d6f;"></i>';
-//       currDLike[k] += 1;
-//       reactionU[k].nextSibling.innerText = currDLike[k];
-//       arrU[k] = 1;
-//       console.log(arrH);
-//     } else if (arrH[k] == 0 && arrU[k] == 1) {
-//       reactionU[k].innerHTML =
-//         '<i class="fa-solid fa-thumbs-down" style="color: #000000"></i>';
-//       currDLike[k] -= 1;
-//       reactionU[k].nextSibling.innerText = currDLike[k];
-//       arrU[k] = 0;
-//       console.log(arrU);
-//     }
-//   });
-// }
+    const data = await response.json();
 
-// const form = event.target.closest("form");
-// if (form) {
-//   console.log(form.id); // Output the ID of the form
-//   // You can now work with the form or its elements as needed
-// }
+    countValue = data.likeCount;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+
+  let toggle = checkbox.checked;
+  let toggled = 0;
+
+  console.log("FUNCTION HERE");
+  console.log("Data-id value:", dataId);
+  console.log("Data toggle:", toggle);
+  console.log("Data count:", countValue);
+
+  if (toggle) {
+    toggled = 1;
+    console.log("box is toggled");
+    image.src = "assets/tbUP1.png";
+    countL = countValue + 1;
+    countSpan.textContent = countL;
+
+    // Use the fetch API to send the data to the server
+    const data = { dataId, countL, toggled };
+    fetch("/reactionPost", {
+      method: "POST",
+      body: JSON.stringify(data), // Send the data object as JSON
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+  } else {
+    toggled = 0;
+
+    const data = { dataId, countValue, toggled }; // Create a new object with the necessary data
+
+    (async () => {
+      try {
+        const response = await fetch("/reactionPost", {
+          method: "POST",
+          body: JSON.stringify(data), // Send the data object as JSON
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log(response);
+
+        const response2 = await fetch("/loadReactionPostMin?ID=" + dataId, {
+          method: "GET",
+        });
+
+        const data1 = await response2.json();
+
+        countValue = data1.likeCount;
+        console.log("UNTOGGLED: ", countValue);
+
+        image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+        console.log("box is not toggled");
+        countSpan.textContent = countValue;
+        //silentReload();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    })();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM HERE");
+  // Retrieve the stored values from local storage and update the UI
+
+  countingSpan.forEach(async (checkboxx) => {
+    console.log(checkboxx);
+    const dataId =
+      checkboxx.parentElement.firstElementChild.getAttribute("data-id");
+    const dataCount = parseInt(checkboxx.getAttribute("value"));
+    const countSpan = checkboxx.parentElement.querySelector(".count");
+    let image = checkboxx.parentElement.querySelector(".icon img");
+
+    console.log("Data-id value:", dataId);
+    console.log("Data count:", dataCount);
+
+    try {
+      const response = await fetch("/loadReactionPost?ID=" + dataId, {
+        method: "GET",
+      });
+
+      const data = await response.json();
+
+      if (data.liked) {
+        // do something
+        image.src = "assets/tbUP1.png";
+        console.log("box is toggled");
+        countSpan.textContent = dataCount;
+        checkboxx.parentElement.firstElementChild.checked = true;
+      } else if (data.liked == false) {
+        image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
+        console.log("box is not toggled");
+        countSpan.textContent = dataCount;
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  });
+});
 
 /* Helper Function Section */
 
@@ -272,88 +334,3 @@ function checkReviewsCount() {
     revSec.innerHTML += '<h1 id="empty-alert">No Reviews Yet</h1>';
   }
 }
-
-// Function that adds "Edited" indicator when a user make changes to review
-function ReviewEditConfirmedIndicator(reviewLeft) {
-  reviewLeft.innerHTML += `<span id="editedIndc">Edited</span>`;
-}
-function sendFunc(event) {
-  console.log(event);
-  let checkbox = event.target;
-  const dataId = checkbox.getAttribute("data-id");
-  let image = checkbox.parentElement.querySelector(".icon img");
-  const countSpan = checkbox.parentElement.querySelector(".count"); // Find the correct count span
-  const countValue = parseInt(countSpan.getAttribute("value"));
-  countL = countValue;
-
-  let toggle = checkbox.checked;
-  let toggled = 0;
-
-  console.log("Data-id value:", dataId);
-  console.log("Data toggle:", toggle);
-  console.log("Data count:", countL);
-
-  if (toggle) {
-    toggled = 1;
-    console.log("box is toggled");
-    image.src = "assets/tbUP1.png";
-    countL = countL + 1;
-    countSpan.textContent = countL;
-    jstring = JSON.stringify({ dataId, toggled, countL }); // Include the countValue in the JSON data
-    console.log(jstring);
-  } else {
-    toggled = 0;
-    image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
-    console.log("box is not toggled");
-    countSpan.textContent = countValue;
-    jstring = JSON.stringify({ dataId, toggled, countValue }); // Include the countValue in the JSON data
-    console.log(jstring);
-  }
-
-  // Use the fetch API to send the data to the server
-  fetch("/reactionPost", {
-    method: "POST",
-    body: jstring,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((response) => {
-    console.log(response);
-  });
-}
-
-let reviewIds = [];
-
-for (let j = 0; j < likeH.length; j++) {
-  reviewIds.push(likeH[j].getAttribute("data-id"));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Retrieve the stored values from local storage and update the UI
-
-  countingSpan.forEach((checkbox) => {
-    console.log(checkbox);
-    const dataId = checkbox.getAttribute("data-id");
-    const dataToggle = parseInt(checkbox.getAttribute("data-toggle"));
-    const dataCount = parseInt(checkbox.getAttribute("value"));
-    const countSpan = checkbox.parentElement.querySelector(".count");
-    let image = checkbox.parentElement.querySelector(".icon img");
-
-    let toggle = checkbox.checked;
-    let toggled = 0;
-
-    console.log("Data-id value:", dataId);
-    console.log("Data toggle:", dataToggle);
-    console.log("Data count:", dataCount);
-
-    if (dataToggle == 1) {
-      image.src = "assets/tbUP1.png";
-      console.log("box is toggled");
-      countSpan.textContent = dataCount + 1;
-    } else {
-      image.src = "assets/tbUP0.png"; // Replace with the original image source for unchecked state
-      console.log("box is not toggled");
-      countSpan.textContent = dataCount;
-    }
-  });
-});
