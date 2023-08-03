@@ -228,6 +228,7 @@ editBar.forEach((cell) =>
   })
 );
 
+
 function checkReviewsCount() {
   if (divSec.children[0].children.length == 1) {
     divSec.innerHTML += '<h1 id="empty-alert">No Reviews Yet</h1>';

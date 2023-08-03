@@ -21,5 +21,6 @@
   },
   "bin": {
     "execute": "index.js"
-  }
+  },
+  "type": "module"
 }

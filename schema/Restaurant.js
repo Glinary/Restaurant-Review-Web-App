@@ -1,6 +1,6 @@
 // THIS IS A SCHEMA
 
-const mongoose = require('mongoose')
+import mongoose from "mongoose";
 
 const restoSchema = new mongoose.Schema({
     link: {
@@ -26,4 +26,6 @@ const restoSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Restaurant", restoSchema)
+
+const Restaurant = mongoose.model('Restaurant', restoSchema);
+export default Restaurant;

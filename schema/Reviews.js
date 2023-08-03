@@ -1,6 +1,6 @@
 // THIS IS A SCHEMA
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const reviewsSchema = new mongoose.Schema({
   _id: mongoose.Types.ObjectId,
@@ -57,4 +57,5 @@ const reviewsSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model("Reviews", reviewsSchema);
+const Reviews = mongoose.model('Reviews', reviewsSchema);
+export default Reviews;

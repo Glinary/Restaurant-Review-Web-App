@@ -1,7 +1,7 @@
 // THIS IS A SCHEMA
 
-const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const SALT_WORK_FACTOR = 7;
 
@@ -66,4 +66,6 @@ usersSchema.method("comparePW", function (attemptPW) {
   return bcrypt.compare(attemptPW, this.password);
 });
 
-module.exports = mongoose.model("Users", usersSchema);
+const Users = mongoose.model('Users', usersSchema);
+export default Users;
+
