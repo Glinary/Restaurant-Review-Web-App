@@ -279,6 +279,7 @@ async function run() {
     email: "harry@yahoo.com",
     reviewTitle: "Best Coffee In Town!",
     images: ["assets\\SB1.jpg", "assets\\SB2.jpg"],
+    restoLink: "/restoview?restaurantName=Starbucks",
   });
   const rev2 = await Reviews.create({
     _id: new mongoose.Types.ObjectId(),
@@ -291,6 +292,7 @@ async function run() {
     email: "harry@yahoo.com",
     reviewTitle: "Need Taste Improvement",
     images: ["assets\\DT1.jpg", "assets\\DT2.jpg"],
+    restoLink: "/restoview?restaurantName=David' Tea House",
   });
 
   const rev3 = await Reviews.create({
@@ -304,6 +306,7 @@ async function run() {
     email: "granger@yahoo.com",
     reviewTitle: "Yummy Grilled Foods",
     images: ["assets\\TNBF1.jpg", "assets\\TNBF2.jpg"],
+    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
   });
   const rev4 = await Reviews.create({
     _id: new mongoose.Types.ObjectId(),
@@ -315,6 +318,7 @@ async function run() {
     email: "granger@yahoo.com",
     reviewTitle: "BEST ADOBO PA REN",
     images: ["assets\\AD1.jpg", "assets\\AD2.jpg"],
+    restoLink: "/restoview?restaurantName=Angry Dobo",
   });
 
   const rev5 = await Reviews.create({
@@ -327,7 +331,9 @@ async function run() {
     email: "ronald@gmail.com",
     reviewTitle: "Sisig Forevs",
     images: ["assets\\TNBF3.jpg", "assets\\TNBF4.jpg"],
+    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
   });
+
   const rev6 = await Reviews.create({
     _id: new mongoose.Types.ObjectId(),
     restaurantName: "David's Tea House",
@@ -339,6 +345,7 @@ async function run() {
     email: "ronald@gmail.com",
     reviewTitle: "Yummy Chinese",
     images: ["assets\\DT3.jpg", "assets\\DT4.jpg"],
+    restoLink: "/restoview?restaurantName=David's Tea House",
   });
 
   const rev7 = await Reviews.create({
@@ -352,7 +359,9 @@ async function run() {
     email: "dumbo@gmail.com",
     reviewTitle: "Best Cafe to Stay At!",
     images: ["assets\\SB3.jpg", "assets\\SB4.jpg"],
+    restoLink: "/restoview?restaurantName=Starbucks",
   });
+
   const rev8 = await Reviews.create({
     _id: new mongoose.Types.ObjectId(),
     restaurantName: "Angry Dobo",
@@ -363,6 +372,7 @@ async function run() {
     email: "dumbo@gmail.com",
     reviewTitle: "Sizzling all the way!",
     images: ["assets\\AD3.jpg", "assets\\AD4.jpg"],
+    restoLink: "/restoview?restaurantName=Angry Dobo",
   });
 
   const rev9 = await Reviews.create({
@@ -375,7 +385,9 @@ async function run() {
     email: "bilbo@gmail.com",
     reviewTitle: "WALA NANG ISASARAP PA!",
     images: ["assets\\TNBF5.jpg", "assets\\TNBF6.jpg"],
+    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
   });
+
   const rev10 = await Reviews.create({
     _id: new mongoose.Types.ObjectId(),
     restaurantName: "Starbucks",
@@ -386,6 +398,7 @@ async function run() {
     email: "bilbo@gmail.com",
     reviewTitle: "Meh Service",
     images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
+    restoLink: "/restoview?restaurantName=Starbucks",
   });
 }
 
@@ -634,6 +647,7 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       updateAverageStarRating(restaurantName);
     }
     const newReviewId = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent(restaurantName);
     const review = new Reviews({
       _id: newReviewId,
       email: currentAccount.email,
@@ -647,6 +661,7 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       reactionInfo: {
         likeCount: 1,
       },
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}`,
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -662,18 +677,24 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
 app.get("/restoview", async (req, res) => {
   try {
     const { restaurantName } = req.query;
-    const reviews = await Reviews.find({ restaurantName: restaurantName }).lean();
+    const reviews = await Reviews.find({
+      restaurantName: restaurantName,
+    }).lean();
     let restaurant = await Restaurant.findOne({ name: restaurantName }).lean();
     console.log(restaurant);
 
     // Another query to get the highest-rated review for Starbucks
-    const highestRated = await Reviews.findOne({ restaurantName: restaurantName })
+    const highestRated = await Reviews.findOne({
+      restaurantName: restaurantName,
+    })
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     // Gallery
-    const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: restaurantName,
+    }).lean();
 
     res.render("restoview", {
       title: restaurantName,
@@ -715,7 +736,7 @@ app.post("/restoview", async (req, res) => {
   console.log(reviewReply);
   console.log(reviewDesc);
   console.log(reviewId);
-  console.log(restaurantName)
+  console.log(restaurantName);
   console.log("----");
 
   Reviews.findOneAndUpdate(
@@ -746,17 +767,25 @@ app.get("/resto-out", async (req, res) => {
   try {
     const { restaurantName } = req.query;
     // Query everything that has a restaurant name of "Starbucks"
-    const reviews = await Reviews.find({ restaurantName: restaurantName }).lean();
-    const restaurant = await Restaurant.findOne({ name: restaurantName }).lean();
-    console.log("resto-out:", restaurantName)
+    const reviews = await Reviews.find({
+      restaurantName: restaurantName,
+    }).lean();
+    const restaurant = await Restaurant.findOne({
+      name: restaurantName,
+    }).lean();
+    console.log("resto-out:", restaurantName);
 
     // Another query to get the highest-rated review for Starbucks
-    const highestRated = await Reviews.findOne({ restaurantName: restaurantName })
+    const highestRated = await Reviews.findOne({
+      restaurantName: restaurantName,
+    })
       .sort({ starRating: -1 }) // Sort by starRating in descending order (-1)
       .limit(1) // Limit the result to one review
       .lean();
     // Gallery
-    const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
+    const gallery = await Gallery.find({
+      restaurantName: restaurantName,
+    }).lean();
 
     res.render("resto-out", {
       title: restaurantName,
@@ -1076,36 +1105,37 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
         console.log("User updated:", updatedUser);
         //update reviews if there is:
         const reviews = Reviews.find({ email: email }).lean();
-        if (reviews) { 
-            if(req.file) {
-              Reviews.updateMany({ email: email }, 
-                                { userName: userName, avatar: img})
-                                .then((updatedReviews) => {
-                                  if (!updatedReviews) {
-                                    console.log("Review not found!");
-                                    return res.status(404).json({ error: "Reviews not Found" });
-                                  }
-                                  console.log("Review updated:", updatedReviews);
-                                })
-                                .catch((err) => {
-                                  console.error("Error updating reviews:", err);
-                                  res.status(500).json({ error: "Error updating reviews" });
-                                });
-            } else {
-              Reviews.updateMany({ email: email }, 
-                { userName: userName })
-                .then((updatedReviews) => {
-                  if (!updatedReviews) {
-                    console.log("Review not found!");
-                    return res.status(404).json({ error: "Reviews not Found" });
-                  }
-                  console.log("Review updated:", updatedReviews);
-                })
-                .catch((err) => {
-                  console.error("Error updating reviews:", err);
-                  res.status(500).json({ error: "Error updating reviews" });
-                });
-            }
+        if (reviews) {
+          if (req.file) {
+            Reviews.updateMany(
+              { email: email },
+              { userName: userName, avatar: img }
+            )
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          } else {
+            Reviews.updateMany({ email: email }, { userName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          }
         }
         // redirect to the user's profile page:
         res.redirect("/viewprofileU1");

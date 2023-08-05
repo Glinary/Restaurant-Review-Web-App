@@ -418,7 +418,7 @@ header {
 .reviews-content-container {
   background-color: #fad4c1;
   margin: 0.5rem;
-  padding: 10px;
+  padding: 1rem;
   border-radius: 10px;
   display: flex;
 }
@@ -426,6 +426,10 @@ header {
 .reviews-left-container .left {
   flex: 2;
   display: flex;
+}
+
+.reviews-left-container .review {
+  margin-bottom: 1rem;
 }
 
 .further-details {
@@ -500,7 +504,7 @@ header {
   flex-grow: 1;
   padding: 0.5rem;
   display: block;
-  max-height: fit-content;
+  max-height: max-content;
   max-width: 100%;
 }
 
@@ -1434,7 +1438,7 @@ header {
   }
 
   .further-details .name a {
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin-bottom: 0.4rem;
   }
 
@@ -1530,16 +1534,16 @@ header {
   }
 
   .reviews-user-details {
-    height: 6vh;
-    width: 3vw;
+    height: 5vh;
+    width: 2.8vw;
     margin-top: 0.5rem;
     border-radius: 70px;
   }
   .reviews-user-details .reviews-profile-pic {
-    max-width: 3vw;
-    max-height: 6vh;
-    min-height: 6vh;
-    min-width: 3vw;
+    max-width: 2.8vw;
+    max-height: 5vh;
+    min-height: 5vh;
+    min-width: 2.8vw;
     border-radius: 100px;
     margin-top: 0rem;
     margin-left: 0rem;
@@ -1712,4 +1716,12 @@ header {
   margin: 0.2rem 0rem;
   font-weight: bold;
   color: #3a3a3d;
+}
+
+.revLink {
+  cursor: pointer;
+  font-size: 10px;
+  color: gray;
+  text-decoration: none;
+  margin: 0rem 0rem;
 }

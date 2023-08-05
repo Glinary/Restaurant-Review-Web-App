@@ -31,21 +31,15 @@ const Review = function (reviewObj) {
 };
 
 let reviewList = [];
-console.log(window.innerWidth);
+
+/* -----------------------  END OF VARIABLES  --------------------------- */
+
 
 checkTextTrunc();
 checkReviewsCount();
 
-for (let i = 0; i < replyCont.length; i++) {
-  console.dir(replyCont);
-  rChild = replyContList[i].children[1];
-  rChildChild = rChild.children.length;
-  console.log(rChildChild);
-  if (rChildChild == 0) {
-    rChild.style.display = "none";
-  }
-}
 
+// menu bar Mobile View hovering 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
   menuLinks.classList.toggle("active");
@@ -58,10 +52,19 @@ userPage.addEventListener("mouseout", function () {
   userPic.classList.toggle("hovered");
 });
 
-function reviewObjHelper(index) {
-  reviewObject = reviewList[index].reviewObj;
-  return reviewObject;
+
+// Review User Reviews Empty Conditions
+for (let i = 0; i < replyCont.length; i++) {
+  console.dir(replyCont);
+  repliesRepCont = replyContList[i].children[1];
+  userRevText = repliesRepCont.previousElementSibling;
+  rChildChild = repliesRepCont.children.length;
+  if (rChildChild == 0) {
+    repliesRepCont.style.display = "none";
+    userRevText.style.display = "none";
+  }
 }
+
 
 // more/less event listener
 function checkTextTrunc() {
@@ -227,6 +230,12 @@ editBar.forEach((cell) =>
     }
   })
 );
+
+
+function reviewObjHelper(index) {
+  reviewObject = reviewList[index].reviewObj;
+  return reviewObject;
+}
 
 function checkReviewsCount() {
   if (divSec.children[0].children.length == 1) {

@@ -55,6 +55,10 @@ const reviewsSchema = new mongoose.Schema({
       required: false,
     },
   ],
+  restoLink: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Reviews", reviewsSchema);
