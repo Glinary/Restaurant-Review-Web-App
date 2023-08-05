@@ -126,7 +126,7 @@ editBar.forEach((cell) =>
       deleteButton = optionPath[1];
 
       editButton.addEventListener("click", function () {
-        console.log("Reply clicked!");
+        console.log("Edit clicked!");
 
         // Parent cell called
         cellParent = cell.parentElement;
@@ -333,4 +333,24 @@ function checkReviewsCount() {
   if (revSec.children.length == 1) {
     revSec.innerHTML += '<h1 id="empty-alert">No Reviews Yet</h1>';
   }
+}
+
+// Check if the URL has the editedReview parameter
+const urlParamss = new URLSearchParams(window.location.search);
+const editedReviewID = urlParamss.get("editedReview");
+
+if (editedReviewID) {
+  // Use the editedReviewID to find the corresponding review element
+  const editedReviewElement = document.getElementById(editedReviewID);
+
+  if (editedReviewElement) {
+    // Scroll to the edited review element
+    editedReviewElement.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function hideForm(event) {
+  console.log(event.target);
+  event.target.parentElement.remove();
+  location.reload();
 }

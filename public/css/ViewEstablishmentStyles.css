@@ -548,7 +548,7 @@ header {
   background-color: #f6f6f6;
 }
 
-.review-edit input[type="submit"] {
+.review-edit #formOp {
   font-weight: bold;
   margin: 0.5rem;
   padding: 0.3rem;

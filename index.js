@@ -661,11 +661,13 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       reactionInfo: {
         likeCount: 1,
       },
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}`,
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${newReviewId}`,
     });
     review.save().then(() => {
       console.log("review submitted");
-      res.redirect(`/restoview?restaurantName=${restaurantName}`);
+      res.redirect(
+        `/restoview?restaurantName=${restaurantName}&editedReview=${newReviewId}`
+      );
     });
   } else {
     res.status(400);
@@ -1384,6 +1386,43 @@ app.get("/loadReactionPostMin", async (req, res) => {
     console.error("Error fetching review:", error);
     return res.status(500).json({ error: "Error fetching review" });
   }
+});
+
+app.post("/editReview", async (req, res) => {
+  const { editRevBox, reviewID } = req.body;
+  console.log(reviewID);
+
+  Reviews.findByIdAndUpdate(
+    reviewID,
+    {
+      $set: {
+        reviewDesc: editRevBox,
+      }, // Use $set to update the specific field
+    },
+    { new: true } // Return the updated document
+  )
+    .then(async (updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+
+      const reviews = await Reviews.findById(reviewID);
+
+      // Accessing likeCount from the review
+      const restaurantName = reviews.restaurantName;
+      console.log("REST NAME", restaurantName);
+
+      // Redirect to the resto view:
+      res.redirect(
+        `/restoview?restaurantName=${restaurantName}&editedReview=${reviewID}`
+      );
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
 });
 
 // ---------- ROUTES SECTION ---------- //

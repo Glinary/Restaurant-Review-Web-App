@@ -140,17 +140,19 @@
             </p>
           </div>
           <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
+
           <div class="review-edit">
-            <form action="#" method="post">
-              <div class="review-edit-form">
-                <textarea
-                  name="edit-rev-box"
-                  id="edit-rev-box"
-                  rows="4"
-                  maxlength="350"></textarea>
+                <form action="/editReview" method="post">
+                  <div class="review-edit-form">
+                    <textarea
+                      name="editRevBox"
+                      id="editRevBox"
+                      rows="4"
+                      maxlength="350"></textarea>
                 
-                  <input type="submit" value="Submit" />
-                <input type="submit" value="Cancel" />
+                    <input type="submit" id="formOp" value="Submit" />
+                    <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
+                    <input type="hidden" id="reviewID" name="reviewID" value={{this._id}}>
               </div>
             </form>
           </div>

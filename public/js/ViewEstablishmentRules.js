@@ -34,12 +34,10 @@ let reviewList = [];
 
 /* -----------------------  END OF VARIABLES  --------------------------- */
 
-
 checkTextTrunc();
 checkReviewsCount();
 
-
-// menu bar Mobile View hovering 
+// menu bar Mobile View hovering
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
   menuLinks.classList.toggle("active");
@@ -52,7 +50,6 @@ userPage.addEventListener("mouseout", function () {
   userPic.classList.toggle("hovered");
 });
 
-
 // Review User Reviews Empty Conditions
 for (let i = 0; i < replyCont.length; i++) {
   console.dir(replyCont);
@@ -64,7 +61,6 @@ for (let i = 0; i < replyCont.length; i++) {
     userRevText.style.display = "none";
   }
 }
-
 
 // more/less event listener
 function checkTextTrunc() {
@@ -230,7 +226,6 @@ editBar.forEach((cell) =>
     }
   })
 );
-
 
 function reviewObjHelper(index) {
   reviewObject = reviewList[index].reviewObj;
@@ -400,4 +395,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
+}
+
+// Check if the URL has the editedReview parameter
+const urlParamss = new URLSearchParams(window.location.search);
+const editedReviewID = urlParamss.get("editedReview");
+
+if (editedReviewID) {
+  // Use the editedReviewID to find the corresponding review element
+  const editedReviewElement = document.getElementById(editedReviewID);
+
+  if (editedReviewElement) {
+    // Scroll to the edited review element
+    editedReviewElement.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function hideForm(event) {
+  console.log(event.target);
+  event.target.parentElement.remove();
+  location.reload();
 }
