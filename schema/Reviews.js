@@ -59,6 +59,11 @@ const reviewsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isEdited: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Reviews", reviewsSchema);
