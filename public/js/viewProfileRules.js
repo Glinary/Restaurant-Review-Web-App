@@ -37,14 +37,16 @@ checkTextTrunc();
 checkReviewsCount();
 
 // Review User Reviews Empty Conditions
-for (let i = 0; i < replyCont.length; i++) {
-  console.dir(replyCont);
-  repliesRepCont = replyContList[i].children[1];
-  userRevText = repliesRepCont.previousElementSibling;
-  rChildChild = repliesRepCont.children.length;
-  if (rChildChild == 0) {
-    repliesRepCont.style.display = "none";
-    userRevText.style.display = "none";
+function replyCountCheck() {
+  for (let i = 0; i < replyCont.length; i++) {
+    console.dir(replyCont);
+    repliesRepCont = replyContList[i].children[1];
+    userRevText = repliesRepCont.previousElementSibling;
+    rChildChild = repliesRepCont.children.length;
+    if (rChildChild == 0) {
+      repliesRepCont.style.display = "none";
+      userRevText.style.display = "none";
+    }
   }
 }
 
