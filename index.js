@@ -89,19 +89,6 @@ const ifCondHelper = function (v1, operator, v2, options) {
   }
 };
 
-const orHelper = function () {
-  const args = Array.prototype.slice.call(arguments, 0, -1);
-  const options = arguments[arguments.length - 1];
-
-  for (let i = 0; i < args.length; i++) {
-    if (args[i]) {
-      return options.fn(this);
-    }
-  }
-
-  return options.inverse(this);
-};
-
 // State hbs as view engine and views folder for views
 app.engine(
   "hbs",
