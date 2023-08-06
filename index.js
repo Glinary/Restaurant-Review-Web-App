@@ -184,6 +184,26 @@ async function run() {
     avatar: "assets\\bilbo.jpg",
   });
 
+  //OWNERS
+  const user6 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
+    email: "sb19@gmail.com",
+    userName: "Starbucks",
+    accountType: "owner",
+    password: "sb123",
+    userDescription: "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
+    avatar: "assets/starbucks.jpg",
+  });
+  const user7 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
+    email: "tnb123@gmail.com",
+    userName: "Tinuhog ni Benny",
+    accountType: "owner",
+    password: "tnb123",
+    userDescription: "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
+    avatar: "assets/TNB.jpeg",
+  });
+
   //GALLERY
   const pic1 = await Gallery.create({
     link: "assets\\AD1.jpg",
@@ -830,6 +850,38 @@ app.post("/viewprofileRev", async (req, res) => {
     });
 });
 
+app.post("/viewOwnerRev", async (req, res) => {
+  const { reviewReply, reviewDesc, reviewId } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log(reviewId);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { _id: reviewId }, // find the matching reviewDesc
+    {
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect(`/viewOwner?editedReview=${reviewId}`);
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
 app.post("/visitprofileRev", async (req, res) => {
   const { reviewReply, reviewDesc, reviewId, reviewerEmail } = req.body;
   console.log("----");
@@ -1143,7 +1195,7 @@ app.get("/editProfile", async (req, res) => {
     console.log(user);
 
     res.render("editProfile", {
-      title: "User Review Page",
+      title: "Edit Profile",
       script1: "static/js/ViewEstablishmentRules.js",
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "/static/css/editProfStyles.css",
@@ -1277,6 +1329,181 @@ app.get("/viewprofileU1", async (req, res) => {
     res.status(500).send("Error querying reviews");
   }
   //
+});
+
+app.get("/viewOwner", async (req, res) => {
+  //query here
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+    const reviews = await Reviews.find({ restaurantName: user.userName }).lean();
+    console.log(reviews);
+    console.log("done");
+
+    res.render("viewOwner", {
+      title: user.userName,
+      script: "static/js/ViewProfileRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "static/css/ViewEstablishmentStyles.css",
+      css2: "static/css/styles.css",
+      user: user,
+      reviews: reviews,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+  //
+});
+
+app.get("/editRestaurant", async (req, res) => {
+  try {
+    // Query everything that has a restaurant name of "Starbucks"
+    // TODO: set query to current user object
+    const user = await Users.findOne({ email: currentAccount.email }).lean();
+    console.log(user);
+
+    res.render("editRestaurant", {
+      title: "Edit Restaurant",
+      script1: "static/js/ViewEstablishmentRules.js",
+      script2: "https://kit.fontawesome.com/78bb10c051.js",
+      css1: "/static/css/editProfStyles.css",
+      css2: "static/css/ViewEstablishmentStyles.css",
+      css3: "static/css/styles.css",
+      user: user,
+    });
+  } catch (error) {
+    console.error("Error querying reviews:", error);
+    res.status(500).send("Error querying reviews");
+  }
+});
+
+app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
+  email = currentAccount.email;
+  let prevName = currentAccount.userName;
+  console.log(email);
+
+  const { userName, userDescription } = req.body;
+  console.log(userName);
+  console.log(userDescription);
+  let img = null;
+
+  if (userName && userDescription) {
+    //update query
+    if (req.file) {
+      let fileName = req.file.path;
+      if (fileName.includes("public/")) {
+        img = fileName.replace(/public\//g, "");
+      } else {
+        img = fileName.replace(/public\\/g, "");
+      }
+
+      Users.findOneAndUpdate(
+        { email: email }, //find based on matching email
+        { avatar: img },
+        { new: true } // return the updated document
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            console.log("User not found!");
+            return res.status(404).json({ error: "User not found" });
+          }
+          console.log("Avatar updated:", updatedUser);
+        })
+        .catch((err) => {
+          console.error("Error updating user:", err);
+          res.status(500).json({ error: "Error updating user" });
+        });
+      Restaurant.findOneAndUpdate(
+        { name: prevName }, //find based on matching email
+        { img: img },
+        { new: true } // return the updated document
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            console.log("Resto not found!");
+            return res.status(404).json({ error: "Resto not found" });
+          }
+          console.log("RestoPic updated:", updatedUser);
+        })
+        .catch((err) => {
+          console.error("Error updating Resto", err);
+          res.status(500).json({ error: "Error updating Resto" });
+        });
+    }
+    Users.findOneAndUpdate(
+      { email: email }, //find based on matching email
+      { userName: userName, userDescription: userDescription },
+      { new: true } // return the updated document
+    )
+      .then((updatedUser) => {
+        if (!updatedUser) {
+          console.log("User not found!");
+          return res.status(404).json({ error: "User not found" });
+        }
+        console.log("User updated:", updatedUser);
+        //update reviews if there is:
+        Restaurant.findOneAndUpdate(
+          { name: prevName }, //find based on matching email
+          { name: userName, desc: userDescription },
+          { new: true } // return the updated document
+        )
+          .then((updatedUser) => {
+            if (!updatedUser) {
+              console.log("Resto not found!");
+              return res.status(404).json({ error: "Resto not found" });
+            }
+            console.log("RestoPic updated:", updatedUser);
+          })
+          .catch((err) => {
+            console.error("Error updating Resto", err);
+            res.status(500).json({ error: "Error updating Resto" });
+          });
+        const reviews = Reviews.find({ restaurantName: prevName }).lean();
+        if (reviews) {
+            Reviews.updateMany({ restaurantName: prevName }, { restaurantName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          }
+        const gallery = Gallery.find({ restaurantName: prevName }).lean();
+        if (gallery) {
+            Gallery.updateMany({ restaurantName: prevName }, { restaurantName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Pics not found!");
+                  return res.status(404).json({ error: "Pics not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating gallery:", err);
+                res.status(500).json({ error: "Error updating gallery" });
+              });
+          }
+        
+        // redirect to the user's profile page:
+        res.redirect("/viewOwner");
+      })
+      .catch((err) => {
+        console.error("Error updating user:", err);
+        res.status(500).json({ error: "Error updating user" });
+      });
+  } else {
+    res.status(400);
+    res.redirect("/editRestaurant");
+    console.log("Invalid request");
+  }
 });
 
 app.get("/visitProfile", async (req, res) => {

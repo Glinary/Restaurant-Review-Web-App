@@ -37,13 +37,13 @@
               <ul>
                 <li>
                   <div class="view-profile">
-                    <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
+                    <a href="/viewOwner" id="prof-page">MY RESTAURANT</a>
                     <img src="{{user.avatar}}" id="prof-pic" />
                   </div>
                   <div class="dropdown-m">
                     <ul>
-                      <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
-                      <li><a href="/editProfile">EDIT PROFILE</a></li>
+                      <li><a href="/viewOwner">MY RESTAURANT</a></li>
+                      <li><a href="/editRestaurant">EDIT RESTAURANT</a></li>
                       <li><a href="/">LOGOUT</a></li>
                     </ul>
                   </div>
@@ -84,8 +84,8 @@
               </div>
           </div>
           <div class="edit-profile-section">
-              <h4>Edit Profile</h4>
-              <a href="/editProfile"><img src="assets/book_icon.png" /></a>
+              <h4>Edit Restaurant</h4>
+              <a href="/editRestaurant"><img src="assets/book_icon.png" /></a>
           </div>
         </div>
         <div class="box"></div>
@@ -141,22 +141,6 @@
             </p>
           </div>
           <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
-
-          <div class="review-edit">
-                <form action="/editReviewVP" method="post">
-                  <div class="review-edit-form">
-                    <textarea
-                      name="editRevBox"
-                      id="editRevBox"
-                      rows="4"
-                      maxlength="350"></textarea>
-                
-                    <input type="submit" id="formOp" value="Submit" />
-                    <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
-                    <input type="hidden" id="reviewID" name="reviewID" value={{this._id}}>
-              </div>
-            </form>
-          </div>
         </div>
 
         <div class="reviews-pictures">
@@ -173,8 +157,6 @@
           <div id="EditNav">
             <ul>
               <li>Reply</li>
-              <li>Edit</li>
-              <li>Delete</li>
             </ul>
           </div>
         </div>
@@ -183,7 +165,7 @@
       <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
             <div class="review-reply-form">
-              <form action="/viewprofileRev" method="POST">
+              <form action="/viewOwnerRev" method="POST">
               <textarea
                 name="reviewReply"
                 id="reply-rev-box"

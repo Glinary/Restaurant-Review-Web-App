@@ -42,8 +42,13 @@
                   </div>
                   <div class="dropdown-m">
                     <ul>
+                      {{#ifCond user.accountType '==' "viewer"}}
                       <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
                       <li><a href="/editProfile">EDIT PROFILE</a></li>
+                      {{else}}
+                      <li><a href="/viewOwner">MY RESTAURANT</a></li>
+                      <li><a href="/editRestaurant">EDIT RESTAURANT</a></li>
+                      {{/ifCond}}
                       <li><a href="/">LOGOUT</a></li>
                     </ul>
                   </div>
@@ -96,12 +101,13 @@
             </p>
             </div>
             </div>
-
+            {{#ifCond user.accountType '==' "viewer"}}
             <div class="edit-profile-section">
             <h4>Add Review</h4>
             <a href="/reviewPage?restaurantName={{restaurant.name}}">
             <img src="assets/book_icon.png" /></a>
             </div>
+            {{/ifCond}}
         {{#if highestRated}}
         <div class="top-reviews-section">
             <div class="top-label-and-navigator" id="review">
