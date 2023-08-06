@@ -3,6 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
 const path = require("path");
+
 // ---------- Dependencies #1 ---------- //
 
 // ---------- Dependencies #2 ---------- //
@@ -88,6 +89,19 @@ const ifCondHelper = function (v1, operator, v2, options) {
   }
 };
 
+const orHelper = function () {
+  const args = Array.prototype.slice.call(arguments, 0, -1);
+  const options = arguments[arguments.length - 1];
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i]) {
+      return options.fn(this);
+    }
+  }
+
+  return options.inverse(this);
+};
+
 // State hbs as view engine and views folder for views
 app.engine(
   "hbs",
@@ -108,6 +122,7 @@ app.set("views", "./views");
 //run(); // run only once
 async function run() {
   //RESTAURANTS
+
   const restaurant1 = await Restaurant.create({
     link: "/RestoView-SB",
     img: "assets/starbucks.jpg",
@@ -268,138 +283,168 @@ async function run() {
   });
 
   //REVIEWS
-  const rev1 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Starbucks",
-    avatar: "assets\\harry.jpg",
-    userName: "Harry Potter",
-    reviewDesc:
-      "The coffee was tasty as usual. The café was very clean as well. Definitely going back again.",
-    starRating: 5,
-    email: "harry@yahoo.com",
-    reviewTitle: "Best Coffee In Town!",
-    images: ["assets\\SB1.jpg", "assets\\SB2.jpg"],
-    restoLink: "/restoview?restaurantName=Starbucks",
-  });
-  const rev2 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "David's Tea House",
-    avatar: "assets\\harry.jpg",
-    userName: "Harry Potter",
-    reviewDesc:
-      "The taste is not that consistent. Sometimes the broccoli was cooked very well and sometimes it gets too salty. Sometimes the serving is too little for its price. Overall, most of their food is still delicious but it’s not consistent and not so affordable.",
-    starRating: 4,
-    email: "harry@yahoo.com",
-    reviewTitle: "Need Taste Improvement",
-    images: ["assets\\DT1.jpg", "assets\\DT2.jpg"],
-    restoLink: "/restoview?restaurantName=David' Tea House",
-  });
-
-  const rev3 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Tinuhog ni Benny",
-    avatar: "assets\\granger.jpg",
-    userName: "Hermoine Granger",
-    reviewDesc:
-      "I wasnt a fan of grilled food, but TNB made me crave grilled delicacies every day!",
-    starRating: 5,
-    email: "granger@yahoo.com",
-    reviewTitle: "Yummy Grilled Foods",
-    images: ["assets\\TNBF1.jpg", "assets\\TNBF2.jpg"],
-    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
-  });
-  const rev4 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Angry Dobo",
-    avatar: "assets\\granger.jpg",
-    userName: "Hermoine Granger",
-    reviewDesc: "For years, they still have the best adobo ever!",
-    starRating: 5,
-    email: "granger@yahoo.com",
-    reviewTitle: "BEST ADOBO PA REN",
-    images: ["assets\\AD1.jpg", "assets\\AD2.jpg"],
-    restoLink: "/restoview?restaurantName=Angry Dobo",
-  });
-
-  const rev5 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Tinuhog ni Benny",
-    avatar: "assets\\ronald.jpg",
-    userName: "Ronald Weasly",
-    reviewDesc: "B E S T  S I S I G  E V E R !!!!!!!!!!!!!!!",
-    starRating: 5,
-    email: "ronald@gmail.com",
-    reviewTitle: "Sisig Forevs",
-    images: ["assets\\TNBF3.jpg", "assets\\TNBF4.jpg"],
-    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
-  });
-
-  const rev6 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "David's Tea House",
-    avatar: "assets\\ronald.jpg",
-    userName: "Ronald Weasly",
-    reviewDesc:
-      "I'm a huge fan of Chinese cuisine and all the comforting tastes that I was looking for are found only at David's Teahouse!",
-    starRating: 5,
-    email: "ronald@gmail.com",
-    reviewTitle: "Yummy Chinese",
-    images: ["assets\\DT3.jpg", "assets\\DT4.jpg"],
-    restoLink: "/restoview?restaurantName=David's Tea House",
-  });
-
-  const rev7 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Starbucks",
-    avatar: "assets\\dumbo.jpg",
-    userName: "Albus Dumbledore",
-    reviewDesc:
-      "Service is excellent. Coffee is very nice. The area was very clean. Overall, 5/5.",
-    starRating: 5,
-    email: "dumbo@gmail.com",
-    reviewTitle: "Best Cafe to Stay At!",
-    images: ["assets\\SB3.jpg", "assets\\SB4.jpg"],
-    restoLink: "/restoview?restaurantName=Starbucks",
-  });
-
-  const rev8 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Angry Dobo",
-    avatar: "assets\\dumbo.jpg",
-    userName: "Albus Dumbledore",
-    reviewDesc: "Their sizzling delicacies never fails to amaze me!",
-    starRating: 5,
-    email: "dumbo@gmail.com",
-    reviewTitle: "Sizzling all the way!",
-    images: ["assets\\AD3.jpg", "assets\\AD4.jpg"],
-    restoLink: "/restoview?restaurantName=Angry Dobo",
-  });
-
-  const rev9 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Tinuhog ni Benny",
-    avatar: "assets\\bilbo.jpg",
-    userName: "Bilbo Baggins",
-    reviewDesc: "BEST INIHAW PLACE EVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR!",
-    starRating: 5,
-    email: "bilbo@gmail.com",
-    reviewTitle: "WALA NANG ISASARAP PA!",
-    images: ["assets\\TNBF5.jpg", "assets\\TNBF6.jpg"],
-    restoLink: "/restoview?restaurantName=Tinuhog ni Benny",
-  });
-
-  const rev10 = await Reviews.create({
-    _id: new mongoose.Types.ObjectId(),
-    restaurantName: "Starbucks",
-    avatar: "assets\\bilbo.jpg",
-    userName: "Bilbo Baggins",
-    reviewDesc: "Bad service sometimes but I love their coffee so 3/5.",
-    starRating: 3,
-    email: "bilbo@gmail.com",
-    reviewTitle: "Meh Service",
-    images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
-    restoLink: "/restoview?restaurantName=Starbucks",
-  });
+  {
+    const id = new mongoose.Types.ObjectId();
+    const rev1 = await Reviews.create({
+      _id: id,
+      restaurantName: "Starbucks",
+      avatar: "assets\\harry.jpg",
+      userName: "Harry Potter",
+      reviewDesc:
+        "The coffee was tasty as usual. The café was very clean as well. Definitely going back again.",
+      starRating: 5,
+      email: "harry@yahoo.com",
+      reviewTitle: "Best Coffee In Town!",
+      images: ["assets\\SB1.jpg", "assets\\SB2.jpg"],
+      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("David's Tea House");
+    const rev2 = await Reviews.create({
+      _id: id,
+      restaurantName: "David's Tea House",
+      avatar: "assets\\harry.jpg",
+      userName: "Harry Potter",
+      reviewDesc:
+        "The taste is not that consistent. Sometimes the broccoli was cooked very well and sometimes it gets too salty. Sometimes the serving is too little for its price. Overall, most of their food is still delicious but it’s not consistent and not so affordable.",
+      starRating: 4,
+      email: "harry@yahoo.com",
+      reviewTitle: "Need Taste Improvement",
+      images: ["assets\\DT1.jpg", "assets\\DT2.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
+    const rev3 = await Reviews.create({
+      _id: id,
+      restaurantName: "Tinuhog ni Benny",
+      avatar: "assets\\granger.jpg",
+      userName: "Hermoine Granger",
+      reviewDesc:
+        "I wasnt a fan of grilled food, but TNB made me crave grilled delicacies every day!",
+      starRating: 5,
+      email: "granger@yahoo.com",
+      reviewTitle: "Yummy Grilled Foods",
+      images: ["assets\\TNBF1.jpg", "assets\\TNBF2.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("Angry Dobo");
+    const rev4 = await Reviews.create({
+      _id: id,
+      restaurantName: "Angry Dobo",
+      avatar: "assets\\granger.jpg",
+      userName: "Hermoine Granger",
+      reviewDesc: "For years, they still have the best adobo ever!",
+      starRating: 5,
+      email: "granger@yahoo.com",
+      reviewTitle: "BEST ADOBO PA REN",
+      images: ["assets\\AD1.jpg", "assets\\AD2.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
+    const rev5 = await Reviews.create({
+      _id: id,
+      restaurantName: "Tinuhog ni Benny",
+      avatar: "assets\\ronald.jpg",
+      userName: "Ronald Weasly",
+      reviewDesc: "B E S T  S I S I G  E V E R !!!!!!!!!!!!!!!",
+      starRating: 5,
+      email: "ronald@gmail.com",
+      reviewTitle: "Sisig Forevs",
+      images: ["assets\\TNBF3.jpg", "assets\\TNBF4.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("David's Tea House");
+    const rev6 = await Reviews.create({
+      _id: id,
+      restaurantName: "David's Tea House",
+      avatar: "assets\\ronald.jpg",
+      userName: "Ronald Weasly",
+      reviewDesc:
+        "I'm a huge fan of Chinese cuisine and all the comforting tastes that I was looking for are found only at David's Teahouse!",
+      starRating: 5,
+      email: "ronald@gmail.com",
+      reviewTitle: "Yummy Chinese",
+      images: ["assets\\DT3.jpg", "assets\\DT4.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const rev7 = await Reviews.create({
+      _id: id,
+      restaurantName: "Starbucks",
+      avatar: "assets\\dumbo.jpg",
+      userName: "Albus Dumbledore",
+      reviewDesc:
+        "Service is excellent. Coffee is very nice. The area was very clean. Overall, 5/5.",
+      starRating: 5,
+      email: "dumbo@gmail.com",
+      reviewTitle: "Best Cafe to Stay At!",
+      images: ["assets\\SB3.jpg", "assets\\SB4.jpg"],
+      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("Angry Dobo");
+    const rev8 = await Reviews.create({
+      _id: id,
+      restaurantName: "Angry Dobo",
+      avatar: "assets\\dumbo.jpg",
+      userName: "Albus Dumbledore",
+      reviewDesc: "Their sizzling delicacies never fails to amaze me!",
+      starRating: 5,
+      email: "dumbo@gmail.com",
+      reviewTitle: "Sizzling all the way!",
+      images: ["assets\\AD3.jpg", "assets\\AD4.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
+    const rev9 = await Reviews.create({
+      _id: id,
+      restaurantName: "Tinuhog ni Benny",
+      avatar: "assets\\bilbo.jpg",
+      userName: "Bilbo Baggins",
+      reviewDesc: "BEST INIHAW PLACE EVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR!",
+      starRating: 5,
+      email: "bilbo@gmail.com",
+      reviewTitle: "WALA NANG ISASARAP PA!",
+      images: ["assets\\TNBF5.jpg", "assets\\TNBF6.jpg"],
+      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
+    });
+  }
+  {
+    const id = new mongoose.Types.ObjectId();
+    const rev10 = await Reviews.create({
+      _id: id,
+      restaurantName: "Starbucks",
+      avatar: "assets\\bilbo.jpg",
+      userName: "Bilbo Baggins",
+      reviewDesc: "Bad service sometimes but I love their coffee so 3/5.",
+      starRating: 3,
+      email: "bilbo@gmail.com",
+      reviewTitle: "Meh Service",
+      images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
+      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
+    });
+  }
 }
 
 // ---- ACCOUNT SWITCH ---- //
@@ -791,6 +836,40 @@ app.post("/viewprofileRev", async (req, res) => {
       console.log("Review updated:", updatedReview);
       // redirect to the resto view:
       res.redirect(`/viewprofileU1?editedReview=${reviewId}`);
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
+app.post("/visitprofileRev", async (req, res) => {
+  const { reviewReply, reviewDesc, reviewId, reviewerEmail } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log(reviewId);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { _id: reviewId }, // find the matching reviewDesc
+    {
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect(
+        `/visitProfile?visitEmail=${reviewerEmail}&editedReview=${reviewId}`
+      );
     })
     .catch((err) => {
       console.error("Error updating review:", err);
@@ -1230,7 +1309,7 @@ app.get("/visitProfile", async (req, res) => {
 
     res.render("visitProfile", {
       title: "View Profile",
-      script: "static/js/ViewProfileRules.js",
+      script: "static/js/viewProfileRules.js",
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "static/css/ViewEstablishmentStyles.css",
       css2: "static/css/styles.css",
@@ -1271,7 +1350,7 @@ app.post("/reactionPost", async (req, res) => {
         }
         console.log("Review updated:", updatedReview);
         // Redirect to the resto view:
-        res.redirect("RestoView-DTH");
+        res.status(200);
       })
       .catch((err) => {
         console.error("Error updating review:", err);
@@ -1430,6 +1509,7 @@ app.post("/editReview", async (req, res) => {
     {
       $set: {
         reviewDesc: editRevBox,
+        isEdited: true,
       }, // Use $set to update the specific field
     },
     { new: true } // Return the updated document
@@ -1467,6 +1547,7 @@ app.post("/editReviewVP", async (req, res) => {
     {
       $set: {
         reviewDesc: editRevBox,
+        isEdited: true,
       }, // Use $set to update the specific field
     },
     { new: true } // Return the updated document

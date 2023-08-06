@@ -424,8 +424,9 @@ header {
 }
 
 .reviews-left-container .left {
-  flex: 2;
   display: flex;
+  max-height: min-content;
+  min-height: min-content;
 }
 
 .reviews-left-container .review {
@@ -434,6 +435,7 @@ header {
 
 .further-details {
   flex-grow: 6;
+  height: fit-content;
   /* FOR LIKE BUTTONS */
 }
 
@@ -503,9 +505,11 @@ header {
 .reviews-left-container {
   flex-grow: 1;
   padding: 0.5rem;
-  display: block;
-  max-height: max-content;
+  max-height: min-content;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .reviews-pictures {
@@ -593,8 +597,8 @@ header {
 /*!  ================ REACTION SYSTEM: Review Box thumbs down/up ================= */
 
 #reaction {
-  flex-grow: 1;
-  display: flex;
+  flex-grow: 0;
+  display: block;
   justify-content: space-evenly;
   width: max-content;
 }
@@ -685,6 +689,13 @@ header {
 #editedIndc {
   color: gray;
   font-size: 0.8rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  right: 0;
+  bottom: 0;
 }
 
 /*! ================ EDIT MENU: Delete/ Edit =============== */
@@ -782,12 +793,6 @@ header {
   flex-wrap: wrap;
   flex-basis: 1rem;
 }
-
-#reaction {
-  flex-grow: 1;
-  margin-top: 0rem;
-}
-
 /*end of reviews-section*/
 
 /** User profile Part */
@@ -1016,9 +1021,17 @@ header {
   .reviews-left-container {
     flex-grow: 1;
     padding: 0.5rem;
-    display: block;
-    max-height: fit-content;
+    max-height: inherit;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .reviews-left-container .left {
+    display: flex;
+    max-height: min-content;
+    min-height: min-content;
   }
 
   .reviews-pictures {
@@ -1052,7 +1065,8 @@ header {
   }
 
   #reaction {
-    flex-grow: 1;
+    flex-grow: 0;
+    height: fit-content;
   }
 
   .review {
@@ -1479,10 +1493,19 @@ header {
 
   .reviews-left-container {
     flex-grow: 1;
-    padding: 0.5rem;
-    display: block;
     max-height: inherit;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .reviews-left-container .left {
+    display: flex;
+    max-height: min-content;
+    min-height: min-content;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .reviews-pictures {
@@ -1500,8 +1523,9 @@ header {
     border-radius: 10px;
   }
   #reaction {
-    flex-grow: 1;
+    flex-grow: 0;
     margin-top: 0.1rem;
+    height: fit-content;
   }
 
   #top-helpful,
@@ -1714,7 +1738,7 @@ header {
 
 #titleBl {
   position: relative;
-  margin: 0.2rem 0rem;
+  margin: 0rem 0rem;
   font-weight: bold;
   color: #3a3a3d;
 }

@@ -191,7 +191,7 @@
                   />
                 </div>
 
-              <!-- User Review Information-->
+                <!-- User Review Information-->
                 <div class="further-details">
                   <div class="name">
                     <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{this.userName}}</a>
@@ -204,6 +204,8 @@
                     </div>
                   </div>
                 </div>
+
+
                 <form id="reaction">
                     <label class="reacBut">
                     <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
@@ -236,14 +238,33 @@
                   </div>
                 </form>
               </div>
-            </div>
+
+              <div class="footer">
+                {{#ifCond this.isEdited '==' true}}
+                <p id="editedIndc">Edited</p>
+                {{/ifCond}}
+              </div>
+            </div>          
 
             <!-- User Review Images (right) -->
-            <div class="reviews-pictures">
-              {{#each this.images}}
-                <img src="{{this}}" class="review-image" />
-              {{/each}}
-            </div>
+              <div class="reviews-pictures">
+                {{#ifCond images.length '==' 2}}
+                  {{#each images}}
+                    <img src="{{this}}" class="review-image" />
+                  {{/each}}
+                {{else}}
+                  {{#ifCond images.length '==' 1}}
+                    {{#each images}}
+                      <img src="{{this}}" class="review-image" />
+                    {{/each}}
+                    <div class="review-image"></div>
+                  {{else}}
+                    <div class="review-image"></div>
+                    <div class="review-image"></div>
+                  {{/ifCond}}
+                {{/ifCond}}
+              </div>
+
 
             <!-- User Review Option Bar -->
             <div id="EditMenu">

@@ -140,7 +140,6 @@
               {{this.reviewDesc}}
             </p>
           </div>
-          <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
 
           <div class="review-edit">
                 <form action="/editReviewVP" method="post">
@@ -157,27 +156,51 @@
               </div>
             </form>
           </div>
+
+          <div class="footer">
+            <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
+            {{#ifCond this.isEdited '==' true}}
+                <p id="editedIndc">Edited</p>
+            {{/ifCond}}
+          </div>
         </div>
 
+        <!-- User Review Images (right) -->
         <div class="reviews-pictures">
-              {{#each this.images}}
+          {{#ifCond images.length '==' 2}}
+            {{#each images}}
+              <img src="{{this}}" class="review-image" />
+            {{/each}}
+          {{else}}
+            {{#ifCond images.length '==' 1}}
+              {{#each images}}
                 <img src="{{this}}" class="review-image" />
               {{/each}}
+              <div class="review-image"></div>
+            {{else}}
+              <div class="review-image"></div>
+              <div class="review-image"></div>
+            {{/ifCond}}
+          {{/ifCond}}
         </div>
+
+        <!-- User Review Option Bar -->
         <div id="EditMenu">
-          <div id="editBar">
-            <div id="editBars"></div>
-            <div id="editBars"></div>
-            <div id="editBars"></div>
-          </div>
-          <div id="EditNav">
-            <ul>
-              <li>Reply</li>
-              <li>Edit</li>
-              <li>Delete</li>
-            </ul>
-          </div>
-        </div>
+              <div id="editBar">
+                <div id="editBars"></div>
+                <div id="editBars"></div>
+                <div id="editBars"></div>
+              </div>
+              <div id="EditNav">
+                <ul>
+                  <li>Reply</li>
+                  {{#ifCond ../user.email '==' this.email}}
+                <li>Edit</li>
+                <li>Delete</li>
+                {{/ifCond}}
+                </ul>
+              </div>
+            </div>
       </div>
 
       <!-- User Review Replying/ Commenting Box-->

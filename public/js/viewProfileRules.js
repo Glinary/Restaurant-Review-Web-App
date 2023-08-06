@@ -170,8 +170,8 @@ editBar.forEach((cell) =>
         revObj = reviewObjHelper(selectedRevIndex);
         revObj.innerHTML = "";
 
-        revObj.nextElementSibling.nextElementSibling.style.display = "block";
-        editBoxPath = revObj.nextElementSibling.nextElementSibling.children[0];
+        revObj.nextElementSibling.style.display = "block";
+        editBoxPath = revObj.nextElementSibling.children[0];
         editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
 
         console.dir(reviewCont);
