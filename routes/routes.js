@@ -1,5 +1,6 @@
 import { Router } from "express";
 import controller from '../controllers/controller.js'
+import upload from "../middleware/upload.js" //uploading js
 
 import express from "express";
 const router = express.Router();
@@ -17,7 +18,7 @@ router.get(`/reviewPage`, controller.getReviewPage);
 router.post(`/reviewPage`, controller.postReviewPage);
 
 router.get(`/restoView`, controller.getRestoView);
-router.post(`/restoView`, controller.postRestoView);
+router.post(`/restoView`, upload.array("images", 2), controller.postRestoView);
 
 router.get(`/RestoOut`, controller.getRestoOut);
 

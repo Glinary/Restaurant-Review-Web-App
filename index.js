@@ -387,7 +387,7 @@ async function run() {
 
 // ---------- ROUTES SECTION ---------- //
 
-//app.use(express.static(path.join(_dirname, "./public")));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(routes);
 app.listen(3000, () => console.log("Express app is now listening..."));

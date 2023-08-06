@@ -5,7 +5,6 @@ import Users from '../schema/Users.js';
 import path from "path";
 import upload from "../middleware/upload.js" //uploading js
 
-
 // ---- ACCOUNT SWITCH ---- //
 class Account {
     constructor(email) {
@@ -83,15 +82,11 @@ const controller = {
 
         res.render("index", {
             title: "Home",
-            script: "static/js/IndexRules.js",
+            script: "/js/IndexRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "/css/StylesOut.css",
-            script3: "static/css/ViewEstablishmentRules.js",
+            script3: "/css/ViewEstablishmentRules.js",
             css3: "/css/restaurantStyles.css",
-            pic1: "static/assets/starbucks.jpg",
-            pic2: "static/assets/DTH.jpg",
-            pic3: "static/assets/TNB.jpeg",
-            pic4: "static/assets/ADB.png",
             restaurants: restaurants,
         });
     },
@@ -108,7 +103,7 @@ const controller = {
 
             res.render("indexLog", {
             title: "Home",
-            script: "static/js/IndexRules.js",
+            script: "/js/IndexRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
             css1: "/css/styles.css",
             css2: "/css/restaurantStyles.css",
@@ -124,7 +119,7 @@ const controller = {
     getLoginPage: async function(req, res) {
         res.render("loginPage", {
             title: "When In Taft",
-            css1: "static/css/loginStyles.css",
+            css1: "/css/loginStyles.css",
         });
     },
 
@@ -169,10 +164,10 @@ const controller = {
 
         res.render("restaurant", {
             title: "Restaurants",
-            script1: "static/js/RestaurantGridRules.js",
+            script1: "/js/RestaurantGridRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
-            css1: "static/css/restaurantStyles.css",
-            css2: "static/css/styles.css",
+            css1: "/css/restaurantStyles.css",
+            css2: "/css/styles.css",
             restaurants: restaurants,
             user: user,
         });
@@ -184,9 +179,9 @@ const controller = {
 
         res.render("restaurantLogout", {
             title: "Restaurants",
-            script: "static/js/RestaurantGridRules.js",
-            css1: "static/css/restaurantStyles.css",
-            css2: "static/css/StylesOut.css",
+            script: "/js/RestaurantGridRules.js",
+            css1: "/css/restaurantStyles.css",
+            css2: "/css/StylesOut.css",
             restaurants: restaurants,
         });
     },
@@ -196,23 +191,24 @@ const controller = {
         console.log(user);
         res.render("reviewPage", {
             title: "User Review Page",
-            script: "static/js/ViewEstablishmentRules.js",
+            script: "/js/ViewEstablishmentRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
-            script3: "static/js/reviewPageRules.js",
+            script3: "/js/reviewPageRules.js",
             script4: "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js",
-            css1: "static/css/editProfStyles.css",
-            css2: "static/css/ViewEstablishmentStyles.css",
-            css3: "static/css/styles.css",
-            css4: "static/css/reviewStyles.css",
+            css1: "/css/editProfStyles.css",
+            css2: "/css/ViewEstablishmentStyles.css",
+            css3: "/css/styles.css",
+            css4: "/css/reviewStyles.css",
             user: user,
         });
     },
 
-    postReviewPage: upload.array("images", 2), async function (req, res) {
+    postReviewPage: async function (req, res) {
         //TODO: determine how to get back previous webpage (if galeng kay tnb, dapat tnb)
         //TODO: how to get star rating with the current GUI-like interface of the stars
         const { reviewTitle, reviewDesc, starRating, restaurantName } = req.body;
         console.log("----");
+        console.log("READ MEEEEEEEEEEEEEEEEEE")
         console.log(reviewTitle);
         console.log(reviewDesc);
         console.log(starRating);
@@ -265,7 +261,7 @@ const controller = {
             });
             review.save().then(() => {
             console.log("review submitted");
-            res.redirect(`/restoview?restaurantName=${restaurantName}`);
+            res.redirect(`/restoView?restaurantName=${restaurantName}`);
             });
         } else {
             res.status(400);
@@ -290,12 +286,12 @@ const controller = {
             // Gallery
             const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
         
-            res.render("restoview", {
+            res.render("restoView", {
               title: restaurantName,
-              script: "static/js/ViewEstablishmentRules.js",
+              script: "/js/ViewEstablishmentRules.js",
               script2: "https://kit.fontawesome.com/78bb10c051.js",
-              css1: "static/css/ViewEstablishmentStyles.css",
-              css2: "static/css/styles.css",
+              css1: "/css/ViewEstablishmentStyles.css",
+              css2: "/css/styles.css",
               reviews: reviews,
               highestRated: highestRated,
               user: user,
@@ -333,7 +329,7 @@ const controller = {
             }
             console.log("Review updated:", updatedReview);
             // redirect to the resto view:
-            res.redirect(`/restoview?restaurantName=${restaurantName}`);
+            res.redirect(`/restoView?restaurantName=${restaurantName}`);
             })
             .catch((err) => {
             console.error("Error updating review:", err);
@@ -357,12 +353,12 @@ const controller = {
             // Gallery
             const gallery = await Gallery.find({ restaurantName: restaurantName }).lean();
         
-            res.render("resto-out", {
+            res.render("restoOut", {
               title: restaurantName,
-              script: "static/js/ViewEstablishmentRules.js",
+              script: "/js/ViewEstablishmentRules.js",
               script2: "https://kit.fontawesome.com/78bb10c051.js",
-              css1: "static/css/ViewEstablishmentStyles.css",
-              css2: "static/css/stylesOut.css",
+              css1: "/css/ViewEstablishmentStyles.css",
+              css2: "/css/stylesOut.css",
               reviews: reviews,
               highestRated: highestRated,
               gallery: gallery,
@@ -391,7 +387,7 @@ const controller = {
     getRegistrationPage: function (req, res) {
         res.render("registrationPage", {
             title: "When In Taft",
-            css1: "static/css/loginStyles.css",
+            css1: "/css/loginStyles.css",
           });
     },
 
@@ -477,10 +473,10 @@ const controller = {
             res.render("searchPage", {
               title: "Search Results",
               script2: "https://kit.fontawesome.com/78bb10c051.js",
-              script3: "static/js/SearchPage.js",
-              css1: "static/css/restaurantStyles.css",
-              css2: "static/css/SearchStyle.css",
-              css3: "static/css/styles.css",
+              script3: "/js/SearchPage.js",
+              css1: "/css/restaurantStyles.css",
+              css2: "/css/SearchStyle.css",
+              css3: "/css/styles.css",
               restaurants: restaurants,
               keyword: keyword,
             });
@@ -591,10 +587,10 @@ const controller = {
             res.render("searchPageLogout", {
               title: "Search Results",
               script2: "https://kit.fontawesome.com/78bb10c051.js",
-              script3: "static/js/SearchPage.js",
-              css1: "static/css/restaurantStyles.css",
-              css2: "static/css/SearchStyle.css",
-              css3: "static/css/styles.css",
+              script3: "/js/SearchPage.js",
+              css1: "/css/restaurantStyles.css",
+              css2: "/css/SearchStyle.css",
+              css3: "/css/styles.css",
               restaurants: restaurants,
               keyword: keyword,
             });
@@ -627,11 +623,11 @@ const controller = {
         
             res.render("editProfile", {
               title: "User Review Page",
-              script1: "static/js/ViewEstablishmentRules.js",
+              script1: "/js/ViewEstablishmentRules.js",
               script2: "https://kit.fontawesome.com/78bb10c051.js",
-              css1: "/static/css/editProfStyles.css",
-              css2: "static/css/ViewEstablishmentStyles.css",
-              css3: "static/css/styles.css",
+              css1: "/css/editProfStyles.css",
+              css2: "/css/ViewEstablishmentStyles.css",
+              css3: "/css/styles.css",
               user: user,
             });
           } catch (error) {
@@ -747,10 +743,10 @@ const controller = {
 
             res.render("viewprofileU1", {
             title: "View Profile",
-            script: "static/js/ViewProfileRules.js",
+            script: "/js/ViewProfileRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
-            css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css",
+            css1: "/css/ViewEstablishmentStyles.css",
+            css2: "/css/styles.css",
             user: user,
             reviews: reviews,
             });
@@ -778,10 +774,10 @@ const controller = {
 
             res.render("visitProfile", {
             title: "View Profile",
-            script: "static/js/ViewProfileRules.js",
+            script: "/js/ViewProfileRules.js",
             script2: "https://kit.fontawesome.com/78bb10c051.js",
-            css1: "static/css/ViewEstablishmentStyles.css",
-            css2: "static/css/styles.css",
+            css1: "/css/ViewEstablishmentStyles.css",
+            css2: "/css/styles.css",
             visit: visit,
             user: user,
             reviews: reviews,
