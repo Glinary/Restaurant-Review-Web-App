@@ -17,8 +17,8 @@ The website is live at https://when-in-taft.onrender.com/
 
 # Website developed by
 
-CABUNGCAL, Mary Joselle
-CULALA, Mary Erika
+CABUNGCAL, Mary Joselle <br>
+CULALA, Mary Erika <br>
 UY, Gleezell Vina
 
 # Technologies used
@@ -26,4 +26,4 @@ UY, Gleezell Vina
 ![NodeJS](https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![HandlebarsJS](https://img.shields.io/badge/Handlebars.js-000000.svg?style=for-the-badge&logo=handlebarsdotjs&logoColor=white)
 ![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
-![CSS]((https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
