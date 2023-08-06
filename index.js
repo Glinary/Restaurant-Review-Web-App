@@ -731,7 +731,6 @@ app.post("/deleteReview", async (req, res) => {
   }
 });
 
-app.use(express.json());
 app.post("/restoview", async (req, res) => {
   const { reviewReply, reviewDesc, reviewId, restaurantName } = req.body;
   console.log("----");
@@ -760,6 +759,38 @@ app.post("/restoview", async (req, res) => {
       res.redirect(
         `/restoview?restaurantName=${restaurantName}&editedReview=${reviewId}`
       );
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
+app.post("/viewprofileRev", async (req, res) => {
+  const { reviewReply, reviewDesc, reviewId } = req.body;
+  console.log("----");
+  console.log(reviewReply);
+  console.log(reviewDesc);
+  console.log(reviewId);
+  console.log("----");
+
+  Reviews.findOneAndUpdate(
+    { _id: reviewId }, // find the matching reviewDesc
+    {
+      $push: {
+        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+      },
+    },
+    { new: true } // return the updated document
+  )
+    .then((updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+      // redirect to the resto view:
+      res.redirect(`/viewprofileU1?editedReview=${reviewId}`);
     })
     .catch((err) => {
       console.error("Error updating review:", err);
@@ -1420,6 +1451,41 @@ app.post("/editReview", async (req, res) => {
       res.redirect(
         `/restoview?restaurantName=${restaurantName}&editedReview=${reviewID}`
       );
+    })
+    .catch((err) => {
+      console.error("Error updating review:", err);
+      res.status(500).json({ error: "Error updating review" });
+    });
+});
+
+app.post("/editReviewVP", async (req, res) => {
+  const { editRevBox, reviewID } = req.body;
+  console.log(reviewID);
+
+  Reviews.findByIdAndUpdate(
+    reviewID,
+    {
+      $set: {
+        reviewDesc: editRevBox,
+      }, // Use $set to update the specific field
+    },
+    { new: true } // Return the updated document
+  )
+    .then(async (updatedReview) => {
+      if (!updatedReview) {
+        console.log("Review not found!");
+        return res.status(404).json({ error: "Review not found" });
+      }
+      console.log("Review updated:", updatedReview);
+
+      const reviews = await Reviews.findById(reviewID);
+
+      // Accessing likeCount from the review
+      const restaurantName = reviews.restaurantName;
+      console.log("REST NAME", restaurantName);
+
+      // Redirect to the resto view:
+      res.redirect(`/viewprofileU1?editedReview=${reviewID}`);
     })
     .catch((err) => {
       console.error("Error updating review:", err);

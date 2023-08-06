@@ -93,6 +93,7 @@
 <!-- END OF PROFILE SECTION -->
 
 <!-- START OF REVIEW SECTION -->
+<div class="dividerSec"> 
     <div class="reviews-section">
       
       <div class="label-and-navigator" id="review">
@@ -101,7 +102,7 @@
       </div>
       
       {{#each reviews}}
-      <div class="reviews-content-container">
+      <div class="reviews-content-container" id="{{this._id}}">
       
         <div class="reviews-left-container">
           
@@ -142,7 +143,7 @@
           <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
 
           <div class="review-edit">
-                <form action="/editReview" method="post">
+                <form action="/editReviewVP" method="post">
                   <div class="review-edit-form">
                     <textarea
                       name="editRevBox"
@@ -171,8 +172,9 @@
           </div>
           <div id="EditNav">
             <ul>
+              <li>Reply</li>
               <li>Edit</li>
-              <li>Delete  </li>
+              <li>Delete</li>
             </ul>
           </div>
         </div>
@@ -181,34 +183,22 @@
       <!-- User Review Replying/ Commenting Box-->
         <div class="review-reply">
             <div class="review-reply-form">
-              <form action="/restoview?restaurantName={{restaurant.name}}" method="POST">
+              <form action="/viewprofileRev" method="POST">
               <textarea
                 name="reviewReply"
                 id="reply-rev-box"
                 rows="4"
                 maxlength="180"
-                placeholder="Write comment here">
-              </textarea>
+                placeholder="Write comment here"></textarea>
               <!-- Add a hidden input field to store the reviewDesc -->
               <!-- Add a hidden input field to store the restaurant name -->
               <input type="hidden" id="restaurantName" name="restaurantName" value="{{../restaurant.name}}">
               <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
               <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
               
-              <input type="submit" value="Comment" />
-              <input type="submit" value="Cancel" />
+              <input type="submit" id="formOp" value="Submit" />
+              <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
             </div>
-            <script>
-              const urlParams = new URLSearchParams(window.location.search);
-              const restaurantName = urlParams.get('restaurantName');
-              console.log("Inside HTML:", restaurantName);
-              const restaurantNameInput = document.getElementById('restaurantNameInput');
-
-                // Set the value of the hidden input field to the retrieved restaurant name
-              if (restaurantNameInput) {
-                restaurantNameInput.value = restaurantName;
-              }
-            </script>
           </form>
         </div>
         
@@ -226,6 +216,7 @@
             </div>
             {{/each}}   
         </div>
+      </div>
 
       
 <!-- ->
