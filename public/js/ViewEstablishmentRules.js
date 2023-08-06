@@ -412,6 +412,14 @@ if (editedReviewID) {
   if (editedReviewElement) {
     // Scroll to the edited review element
     editedReviewElement.scrollIntoView({ behavior: "smooth" });
+
+    // Add highlight-outline class to the edited review element
+    editedReviewElement.classList.add("highlight-outline");
+
+    // Remove the highlight-outline class after a few seconds
+    setTimeout(function () {
+      editedReviewElement.classList.remove("highlight-outline");
+    }, 2000); // 2 seconds (2000 milliseconds)
   }
 }
 

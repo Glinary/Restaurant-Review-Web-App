@@ -1725,3 +1725,9 @@ header {
   text-decoration: none;
   margin: 0rem 0rem;
 }
+
+/* Add this to your existing CSS or styles.css */
+.highlight-outline {
+  box-shadow: 0 0 10px 2px rgb(250, 250, 147); /* Adjust spread, blur, and color as needed */
+  transition: box-shadow 0.5s ease-in-out;
+}
