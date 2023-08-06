@@ -128,7 +128,11 @@
                     <!-- User Review Information-->
                     <div class="top-further-details">
                       <div class="top-name">
+                        {{#ifCond user.email '==' highestRated.email}}
+                         <a class="top-firstname" href="/viewprofileU1">{{highestRated.userName}}</a>
+                        {{else}}
                         <a class="top-firstname" href="/visitProfile?visitEmail={{highestRated.email}}">{{highestRated.userName}}</a>
+                        {{/ifCond}}
                       </div>
                       <div class="top-others">
                         <p class="top-review-count"></p>
@@ -200,7 +204,11 @@
                 <!-- User Review Information-->
                 <div class="further-details">
                   <div class="name">
+                    {{#ifCond ../user.email '==' this.email}}
+                    <a class="firstname" href="/viewprofileU1">{{this.userName}}</a>
+                    {{else}}
                     <a class="firstname" href="/visitProfile?visitEmail={{this.email}}">{{this.userName}}</a>
+                    {{/ifCond}}
                   </div>
                   <div class="others">
                     <p class="review-count"></p>
