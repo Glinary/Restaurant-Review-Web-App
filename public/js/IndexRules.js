@@ -44,7 +44,7 @@ if (swidth > 960 && copies % 3 == 2) {
     '<div class="hidden"></div>';
 }
 
-// Rules for submitting upon hitting Enter key. 
+// Rules for submitting upon hitting Enter key.
 searchForm.addEventListener("keydown", function (e) {
   if (e.keyCode == 13) {
     submitForm();
@@ -54,3 +54,9 @@ searchForm.addEventListener("keydown", function (e) {
 function submitForm() {
   searchForm.submit();
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+  result = await fetch("/updateRestoDOM", {
+    method: "GET",
+  });
+});

@@ -191,7 +191,8 @@ async function run() {
     userName: "Starbucks",
     accountType: "owner",
     password: "sb123",
-    userDescription: "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
+    userDescription:
+      "Indulge in the ultimate coffee experience along with its exceptional brews, comfortable ambiance, and everlasting uniqueness.",
     avatar: "assets/starbucks.jpg",
   });
   const user7 = await Users.create({
@@ -200,7 +201,8 @@ async function run() {
     userName: "Tinuhog ni Benny",
     accountType: "owner",
     password: "tnb123",
-    userDescription: "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
+    userDescription:
+      "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
     avatar: "assets/TNB.jpeg",
   });
 
@@ -1319,7 +1321,9 @@ app.get("/viewOwner", async (req, res) => {
     // TODO: set query to current user object
     const user = await Users.findOne({ email: currentAccount.email }).lean();
     console.log(user);
-    const reviews = await Reviews.find({ restaurantName: user.userName }).lean();
+    const reviews = await Reviews.find({
+      restaurantName: user.userName,
+    }).lean();
     console.log(reviews);
     console.log("done");
 
@@ -1444,7 +1448,9 @@ app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
           });
         const reviews = Reviews.find({ restaurantName: prevName }).lean();
         if (reviews) {
-            Reviews.updateMany({ restaurantName: prevName }, { restaurantName: userName})
+            Reviews.updateMany(
+              { restaurantName: prevName }, 
+              { restaurantName: userName })
               .then((updatedReviews) => {
                 if (!updatedReviews) {
                   console.log("Review not found!");
@@ -1459,20 +1465,23 @@ app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
           }
         const gallery = Gallery.find({ restaurantName: prevName }).lean();
         if (gallery) {
-            Gallery.updateMany({ restaurantName: prevName }, { restaurantName: userName })
-              .then((updatedReviews) => {
-                if (!updatedReviews) {
-                  console.log("Pics not found!");
-                  return res.status(404).json({ error: "Pics not Found" });
-                }
-                console.log("Review updated:", updatedReviews);
-              })
-              .catch((err) => {
-                console.error("Error updating gallery:", err);
-                res.status(500).json({ error: "Error updating gallery" });
-              });
-          }
-        
+          Gallery.updateMany(
+            { restaurantName: prevName },
+            { restaurantName: userName }
+          )
+            .then((updatedReviews) => {
+              if (!updatedReviews) {
+                console.log("Pics not found!");
+                return res.status(404).json({ error: "Pics not Found" });
+              }
+              console.log("Review updated:", updatedReviews);
+            })
+            .catch((err) => {
+              console.error("Error updating gallery:", err);
+              res.status(500).json({ error: "Error updating gallery" });
+            });
+        }
+
         // redirect to the user's profile page:
         res.redirect("/viewOwner");
       })
@@ -1767,6 +1776,25 @@ app.post("/editReviewVP", async (req, res) => {
       console.error("Error updating review:", err);
       res.status(500).json({ error: "Error updating review" });
     });
+});
+
+app.get("/updateRestoDOM", async (req, res) => {
+  try {
+    const restaurants = await Restaurant.find().lean();
+    console.log(restaurants);
+
+    for (const restaurant of restaurants) {
+      console.log(restaurant.name);
+      await updateAverageStarRating(restaurant.name);
+    }
+
+    res
+      .status(200)
+      .json({ message: "Average star ratings updated for all restaurants" });
+  } catch (error) {
+    console.error("Error updating average star ratings:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // ---------- ROUTES SECTION ---------- //
