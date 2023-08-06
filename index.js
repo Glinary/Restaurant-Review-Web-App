@@ -999,7 +999,7 @@ app.get("/resto-out", async (req, res) => {
       script: "static/js/ViewEstablishmentRules.js",
       script2: "https://kit.fontawesome.com/78bb10c051.js",
       css1: "static/css/ViewEstablishmentStyles.css",
-      css2: "static/css/stylesOut.css",
+      css2: "static/css/StylesOut.css",
       reviews: reviews,
       highestRated: highestRated,
       gallery: gallery,
