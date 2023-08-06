@@ -1,0 +1,243 @@
+<!--START OF HEADER--> 
+    <header>
+      <div class="RP-app-name">
+        <h1>WhenInTaft</h1>
+      </div>
+      <div class="toggle-bars" id="mobile-menu">
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+        <div class="toggle"></div>
+      </div>
+      <div class="divide-this"></div>
+        
+      <div class="menu-bar">
+        <div class="menu-list">
+          <div class="part1">
+            <a href="/indexLog" id="current">HOME</a>
+            <a href="/restaurant">RESTAURANTS</a>
+          </div>
+          <div class="menu-line"></div>
+          <div class="search-container2">
+          <i class="fa-solid fa-magnifying-glass fa-2x" style="color: #ceb9a7; margin-left:0.5rem;"></i>
+          <form action="SearchPage.html" id="searchform" method="get">
+              <input
+                type="text"
+                placeholder="Type to search"
+                name="searchBar"
+                id="searchBar"
+              />
+              <input 
+                type="submit"
+                value="submit"
+                />
+          </form>
+          </div>
+          <div class="menu-bar2">
+            <nav>
+              <ul>
+                <li>
+                  <div class="view-profile">
+                    <a href="/viewprofileU1" id="prof-page">VIEW PROFILE</a>
+                    <img src="{{user.avatar}}" id="prof-pic" />
+                  </div>
+                  <div class="dropdown-m">
+                    <ul>
+                      <li><a href="/viewprofileU1">VIEW PROFILE</a></li>
+                      <li><a href="/editProfile">EDIT PROFILE</a></li>
+                      <li><a href="/">LOGOUT</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>            
+            </nav>
+          </div>
+        </div>
+      </div>    
+    </header>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Type to search"
+        name="searchBar"
+        id="searchBar"
+      /><a href="/SearchPage"></a>
+    </div>
+    <div class="search-line"></div>
+        
+<!-- END OF HEADER SECTION -->
+
+<!-- START OF PROFILE SECTION -->
+    <div id="profilee">
+        <div class="box"></div>
+        <div class="yohoo">
+          <div class="Rest-profile-section" id="Rest-profile">
+              <div class="Rest-profile-pictures-section">
+                  <div class="Rest-profile-picture">
+                    <img src="{{user.avatar}}" />
+                  </div>
+              </div>
+              <div class="Rest-profile-description">
+                <h1>{{user.userName}}</h1>
+                <p>
+                  {{user.userDescription}}
+                </p>
+              </div>
+          </div>
+          <div class="edit-profile-section">
+              <h4>Edit Profile</h4>
+              <a href="/editProfile"><img src="assets/book_icon.png" /></a>
+          </div>
+        </div>
+        <div class="box"></div>
+    </div>
+<!-- END OF PROFILE SECTION -->
+
+<!-- START OF REVIEW SECTION -->
+<div class="dividerSec"> 
+    <div class="reviews-section">
+      
+      <div class="label-and-navigator" id="review">
+        <h3>User's Reviews</h3>
+        <h4>View All</h4>
+      </div>
+      
+      {{#each reviews}}
+      <div class="reviews-content-container" id="{{this._id}}">
+      
+        <div class="reviews-left-container">
+          
+          <div class="left">
+            
+            <div class="reviews-user-details">
+              <img
+                src="{{this.avatar}}"
+                class="reviews-profile-pic"
+              />
+            </div>
+            <div class="further-details">
+              <div class="name">
+                <a class="firstname" href="#">{{this.userName}}</a>
+              </div>
+              <div class="others">
+                <p class="review-count"></p>
+                <div class="overall-stars">
+                        {{this.starRating}}<div id="Ostar"><i class="fa-solid fa-star" style="color: #d1ba29;"></i></div>
+                    </div>
+              </div>
+            </div>
+            <form id="reaction">
+              <label class="reacBut">
+              <input type="checkbox" id="reacBut"  onclick="sendFunc(event)" data-id={{this._id}}> 
+                <span class="icon" id="helpful"><img src="assets/tbUP0.png" ></span>  
+                <span class="count" value={{this.reactionInfo.likeCount}} data-toggle={{user.LikedPost}}>{{this.reactionInfo.likeCount}}</span>
+              </label>
+            </form>
+          </div>
+          
+          <div id="titleBl">{{this.reviewTitle}}</div>
+          <div class="review">
+            <p>
+              {{this.reviewDesc}}
+            </p>
+          </div>
+          <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
+
+          <div class="review-edit">
+                <form action="/editReviewVP" method="post">
+                  <div class="review-edit-form">
+                    <textarea
+                      name="editRevBox"
+                      id="editRevBox"
+                      rows="4"
+                      maxlength="350"></textarea>
+                
+                    <input type="submit" id="formOp" value="Submit" />
+                    <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
+                    <input type="hidden" id="reviewID" name="reviewID" value={{this._id}}>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="reviews-pictures">
+              {{#each this.images}}
+                <img src="{{this}}" class="review-image" />
+              {{/each}}
+        </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li>Reply</li>
+              <li>Edit</li>
+              <li>Delete</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Review Replying/ Commenting Box-->
+        <div class="review-reply">
+            <div class="review-reply-form">
+              <form action="/viewprofileRev" method="POST">
+              <textarea
+                name="reviewReply"
+                id="reply-rev-box"
+                rows="4"
+                maxlength="180"
+                placeholder="Write comment here"></textarea>
+              <!-- Add a hidden input field to store the reviewDesc -->
+              <!-- Add a hidden input field to store the restaurant name -->
+              <input type="hidden" id="restaurantName" name="restaurantName" value="{{../restaurant.name}}">
+              <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+              <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
+              
+              <input type="submit" id="formOp" value="Submit" />
+              <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
+            </div>
+          </form>
+        </div>
+        
+          <!-- User Review Replies/ Comments List Box -->
+            <div class="reply">
+              <h4>Review Comments</h4>
+              <div class="reply-container">
+                {{#each this.reviewReplyInfo}}
+                <div id="single-reply-container">
+                  <p id="user-commentName">{{this.user}}</p>
+                  <p id="user-comm">{{this.reply}}</p>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/each}}   
+        </div>
+      </div>
+
+      
+<!-- ->
+
+        <div class="reviews-pictures">
+          <img src="assets/DT1.jpg" class="review-image" />
+          <img src="assets/DT2.jpg" class="review-image" />
+        </div>
+        <div id="EditMenu">
+          <div id="editBar">
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+            <div id="editBars"></div>
+          </div>
+          <div id="EditNav">
+            <ul>
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- END OF REVIEW SECTION -->
