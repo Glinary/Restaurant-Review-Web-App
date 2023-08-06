@@ -35,6 +35,7 @@ let reviewList = [];
 
 checkTextTrunc();
 checkReviewsCount();
+replyCountCheck();
 
 // Review User Reviews Empty Conditions
 function replyCountCheck() {
