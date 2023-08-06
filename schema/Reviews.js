@@ -34,6 +34,9 @@ const reviewsSchema = new mongoose.Schema({
   },
   reviewReplyInfo: [
     {
+      email: {
+        type: String,
+      },
       reply: {
         type: String,
       },
