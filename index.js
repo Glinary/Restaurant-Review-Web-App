@@ -106,7 +106,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA
-//run(); // run only once
+//run(); // run only once to get initial contents for the db
 async function run() {
   //RESTAURANTS
 
@@ -1212,49 +1212,98 @@ app.get("/editProfile", async (req, res) => {
   }
 });
 
-app.post("/editProfile", upload.single("avatar"), async (req, res) => {
-  try {
-    const email = currentAccount.email;
-    const { userName, userDescription } = req.body;
-    let img = null;
+app.post("/editProfile", upload.single("avatar"), (req, res) => {
+  email = currentAccount.email;
+  console.log(email);
 
-    if (userName && userDescription) {
-      // Update user information
-      if (req.file) {
-        let fileName = req.file.path;
-        img = fileName.replace(/public[\/\\]/g, "");
+  const { userName, userDescription } = req.body;
+  console.log(userName);
+  console.log(userDescription);
+  let img = null;
 
-        await Users.findOneAndUpdate(
-          { email: email },
-          { avatar: img },
-          { new: true }
-        );
+  if (userName && userDescription) {
+    //update query
+    if (req.file) {
+      let fileName = req.file.path;
+      if (fileName.includes("public/")) {
+        img = fileName.replace(/public\//g, "");
+      } else {
+        img = fileName.replace(/public\\/g, "");
       }
-      const updatedUser = await Users.findOneAndUpdate(
-        { email: email },
-        { userName: userName, userDescription: userDescription },
-        { new: true }
-      );
 
-      console.log("User updated:", updatedUser);
-
-      // Update reviewReplyInfo.user field for matching email in all reviews
-      const updatedUserName = userName;
-      await Reviews.updateMany(
-        { email: email, "reviewReplyInfo.user": { $exists: true } },
-        { $set: { "reviewReplyInfo.$[].user": updatedUserName } }
-      );
-
-      // Redirect to the user's profile page
-      res.redirect("/viewprofileU1");
-    } else {
-      res.status(400);
-      res.redirect("/editProfile");
-      console.log("Invalid request");
+      Users.findOneAndUpdate(
+        { email: email }, //find based on matching email
+        { avatar: img },
+        { new: true } // return the updated document
+      )
+        .then((updatedUser) => {
+          if (!updatedUser) {
+            console.log("User not found!");
+            return res.status(404).json({ error: "User not found" });
+          }
+          console.log("Avatar updated:", updatedUser);
+        })
+        .catch((err) => {
+          console.error("Error updating user:", err);
+          res.status(500).json({ error: "Error updating user" });
+        });
     }
-  } catch (error) {
-    console.error("Error updating data:", error);
-    res.status(500).json({ error: "Internal server error" });
+    Users.findOneAndUpdate(
+      { email: email }, //find based on matching email
+      { userName: userName, userDescription: userDescription },
+      { new: true } // return the updated document
+    )
+      .then((updatedUser) => {
+        if (!updatedUser) {
+          console.log("User not found!");
+          return res.status(404).json({ error: "User not found" });
+        }
+        console.log("User updated:", updatedUser);
+        //update reviews if there is:
+        const reviews = Reviews.find({ email: email }).lean();
+        if (reviews) {
+          if (req.file) {
+            Reviews.updateMany(
+              { email: email },
+              { userName: userName, avatar: img }
+            )
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          } else {
+            Reviews.updateMany({ email: email }, { userName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          }
+        }
+        // redirect to the user's profile page:
+        res.redirect("/viewprofileU1");
+      })
+      .catch((err) => {
+        console.error("Error updating user:", err);
+        res.status(500).json({ error: "Error updating user" });
+      });
+  } else {
+    res.status(400);
+    res.redirect("/editProfile");
+    console.log("Invalid request");
   }
 });
 
@@ -1419,22 +1468,21 @@ app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
           });
         const reviews = Reviews.find({ restaurantName: prevName }).lean();
         if (reviews) {
-          Reviews.updateMany(
-            { restaurantName: prevName },
-            { restaurantName: userName }
-          )
-            .then((updatedReviews) => {
-              if (!updatedReviews) {
-                console.log("Review not found!");
-                return res.status(404).json({ error: "Reviews not Found" });
-              }
-              console.log("Review updated:", updatedReviews);
-            })
-            .catch((err) => {
-              console.error("Error updating reviews:", err);
-              res.status(500).json({ error: "Error updating reviews" });
-            });
-        }
+            Reviews.updateMany(
+              { restaurantName: prevName }, 
+              { restaurantName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          }
         const gallery = Gallery.find({ restaurantName: prevName }).lean();
         if (gallery) {
           Gallery.updateMany(
