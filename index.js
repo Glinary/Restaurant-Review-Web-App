@@ -205,6 +205,26 @@ async function run() {
       "Experience the mouthwatering savory taste of grilled delicacies that everyone crave for.",
     avatar: "assets/TNB.jpeg",
   });
+  const user8 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
+    email: "dthwho@gmail.com",
+    userName: "David's Tea House",
+    accountType: "owner",
+    password: "dth246",
+    userDescription:
+      "Let the authentic taste of Chinese cuisine from delicate dim sum to tantalizing stir-fries be at your reach anytime.",
+    avatar: "assets/DTH.jpg",
+  });
+  const user9 = await Users.create({
+    _id: new mongoose.Types.ObjectId(),
+    email: "angry@gmail.com",
+    userName: "Angry Dobo",
+    accountType: "owner",
+    password: "angry123",
+    userDescription:
+      "Ignite your senses with one of the all-time Filipino favorite Adobo where every bite is burst of culinary passion.",
+    avatar: "assets/ADB.png",
+  });
 
   //GALLERY
   const pic1 = await Gallery.create({
