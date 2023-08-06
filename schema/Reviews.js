@@ -55,10 +55,6 @@ const reviewsSchema = new mongoose.Schema({
       required: false,
     },
   ],
-  restoLink: {
-    type: String,
-    required: true,
-  },
   isEdited: {
     type: Boolean,
     required: true,
