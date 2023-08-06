@@ -3,7 +3,6 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
 const path = require("path");
-require('dotenv').config();
 
 // ---------- Dependencies #1 ---------- //
 
