@@ -502,6 +502,19 @@ async function deleteReviewFromDatabase(reviewID) {
   }
 }
 
+async function deleteReplyFromDatabase(reviewReplyID) {
+  try {
+    // Delete reviews with the specified reviewReplyID from reviewReplyInfo array
+    await Reviews.updateMany(
+      { "reviewReplyInfo.repID": reviewReplyID },
+      { $pull: { reviewReplyInfo: { repID: reviewReplyID } } }
+    );
+  } catch (error) {
+    // Handle any errors that occur during deletion
+    console.error("Error deleting reviews from database:", error);
+    throw error;
+  }
+}
 async function updateAverageStarRating(restaurantName) {
   try {
     const reviews = await Reviews.find({ restaurantName });
@@ -793,6 +806,20 @@ app.post("/deleteReview", async (req, res) => {
   }
 });
 
+app.post("/deleteReply", async (req, res) => {
+  const { reviewID } = req.body;
+
+  // Call the function to delete the review from the database
+  try {
+    await deleteReplyFromDatabase(reviewID);
+    console.log("Review Successfully Deleted: ", reviewID);
+    res.sendStatus(200); // Send a success response to the client
+  } catch (error) {
+    console.error("Error deleting review:", error);
+    res.status(500).json({ error: "Error deleting review" });
+  }
+});
+
 app.post("/restoview", async (req, res) => {
   const { reviewReply, reviewDesc, reviewId, restaurantName } = req.body;
   console.log("----");
@@ -802,11 +829,17 @@ app.post("/restoview", async (req, res) => {
   console.log(restaurantName);
   console.log("----");
 
+  let newRepId = new mongoose.Types.ObjectId();
   Reviews.findOneAndUpdate(
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { email: currentAccount.email, reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: {
+          email: currentAccount.email,
+          reply: reviewReply,
+          user: currentAccount.userName,
+          repID: newRepId,
+        },
       },
     },
     { new: true } // return the updated document
@@ -840,7 +873,11 @@ app.post("/viewprofileRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { email: currentAccount.email, reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: {
+          email: currentAccount.email,
+          reply: reviewReply,
+          user: currentAccount.userName,
+        },
       },
     },
     { new: true } // return the updated document
@@ -872,7 +909,11 @@ app.post("/viewOwnerRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { email: userAccount.email, reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: {
+          email: userAccount.email,
+          reply: reviewReply,
+          user: currentAccount.userName,
+        },
       },
     },
     { new: true } // return the updated document
@@ -904,7 +945,11 @@ app.post("/visitprofileRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { email: userAccount.email, reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: {
+          email: userAccount.email,
+          reply: reviewReply,
+          user: currentAccount.userName,
+        },
       },
     },
     { new: true } // return the updated document
@@ -1309,7 +1354,6 @@ app.post("/editProfile", upload.single("avatar"), async (req, res) => {
   }
 });
 
-
 app.get("/viewprofileU1", async (req, res) => {
   //query here
   try {
@@ -1471,21 +1515,22 @@ app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
           });
         const reviews = Reviews.find({ restaurantName: prevName }).lean();
         if (reviews) {
-            Reviews.updateMany(
-              { restaurantName: prevName }, 
-              { restaurantName: userName })
-              .then((updatedReviews) => {
-                if (!updatedReviews) {
-                  console.log("Review not found!");
-                  return res.status(404).json({ error: "Reviews not Found" });
-                }
-                console.log("Review updated:", updatedReviews);
-              })
-              .catch((err) => {
-                console.error("Error updating reviews:", err);
-                res.status(500).json({ error: "Error updating reviews" });
-              });
-          }
+          Reviews.updateMany(
+            { restaurantName: prevName },
+            { restaurantName: userName }
+          )
+            .then((updatedReviews) => {
+              if (!updatedReviews) {
+                console.log("Review not found!");
+                return res.status(404).json({ error: "Reviews not Found" });
+              }
+              console.log("Review updated:", updatedReviews);
+            })
+            .catch((err) => {
+              console.error("Error updating reviews:", err);
+              res.status(500).json({ error: "Error updating reviews" });
+            });
+        }
         const gallery = Gallery.find({ restaurantName: prevName }).lean();
         if (gallery) {
           Gallery.updateMany(

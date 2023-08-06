@@ -35,6 +35,7 @@ let reviewList = [];
 
 checkTextTrunc();
 checkReviewsCount();
+replyCountCheck();
 
 // menu bar Mobile View hovering
 menu.addEventListener("click", function () {
@@ -50,14 +51,16 @@ userPage.addEventListener("mouseout", function () {
 });
 
 // Review User Reviews Empty Conditions
-for (let i = 0; i < replyCont.length; i++) {
-  console.dir(replyCont);
-  repliesRepCont = replyContList[i].children[1];
-  userRevText = repliesRepCont.previousElementSibling;
-  rChildChild = repliesRepCont.children.length;
-  if (rChildChild == 0) {
-    repliesRepCont.style.display = "none";
-    userRevText.style.display = "none";
+function replyCountCheck() {
+  for (let i = 0; i < replyCont.length; i++) {
+    console.dir(replyCont);
+    repliesRepCont = replyContList[i].children[1];
+    userRevText = repliesRepCont.previousElementSibling;
+    rChildChild = repliesRepCont.children.length;
+    if (rChildChild == 0) {
+      repliesRepCont.style.display = "none";
+      userRevText.style.display = "none";
+    }
   }
 }
 
@@ -427,4 +430,48 @@ function hideForm(event) {
   console.log(event.target);
   event.target.parentElement.remove();
   location.reload();
+}
+
+function replyIcon(event) {
+  console.log("Reply clicked!");
+  cell = event.target;
+
+  cellParent = cell.parentElement.parentElement;
+  trueCellP = cellParent.parentElement.parentElement;
+  replyBox = trueCellP.nextElementSibling;
+  replyBox.style.display = "block";
+}
+
+function deleteIcon(event) {
+  console.log("Delete clicked!");
+
+  cellPath = event.target.getAttribute("data-id");
+  cell = event.target;
+  cellRem = cell.parentElement.parentElement;
+
+  // Get the reviewDesc value from the hidden input field
+  const reviewID = cellPath;
+  console.log("Review ID to be deleted:", reviewID);
+
+  // Make the AJAX request to delete the review
+  fetch("/deleteReply", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ reviewID }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      console.log("Review successfully deleted");
+
+      cellRem.remove();
+      replyCountCheck();
+    })
+    .catch((error) => {
+      console.error("Error deleting review:", error);
+      // Handle any errors that occur during the deletion process
+    });
 }
