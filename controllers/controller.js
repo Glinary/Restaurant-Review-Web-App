@@ -1047,6 +1047,7 @@ const controller = {
             const reviews = await Reviews.find({ email: currentAccount.email }).lean();
             console.log(reviews);
             console.log("done");
+            console.log(user.userName);
 
             res.render("viewprofileU1", {
             title: "View Profile",
