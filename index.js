@@ -799,7 +799,7 @@ app.post("/restoview", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: { email: currentAccount.email, reply: reviewReply, user: currentAccount.userName },
       },
     },
     { new: true } // return the updated document
@@ -833,7 +833,7 @@ app.post("/viewprofileRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: { email: currentAccount.email, reply: reviewReply, user: currentAccount.userName },
       },
     },
     { new: true } // return the updated document
@@ -865,7 +865,7 @@ app.post("/viewOwnerRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: { email: userAccount.email, reply: reviewReply, user: currentAccount.userName },
       },
     },
     { new: true } // return the updated document
@@ -897,7 +897,7 @@ app.post("/visitprofileRev", async (req, res) => {
     { _id: reviewId }, // find the matching reviewDesc
     {
       $push: {
-        reviewReplyInfo: { reply: reviewReply, user: currentAccount.userName },
+        reviewReplyInfo: { email: userAccount.email, reply: reviewReply, user: currentAccount.userName },
       },
     },
     { new: true } // return the updated document
@@ -1212,8 +1212,10 @@ app.get("/editProfile", async (req, res) => {
   }
 });
 
-app.post("/editProfile", upload.single("avatar"), (req, res) => {
-  email = currentAccount.email;
+// ...
+
+app.post("/editProfile", upload.single("avatar"), async (req, res) => {
+  const email = currentAccount.email;
   console.log(email);
 
   const { userName, userDescription } = req.body;
@@ -1222,7 +1224,7 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
   let img = null;
 
   if (userName && userDescription) {
-    //update query
+    // Update query for the user's avatar
     if (req.file) {
       let fileName = req.file.path;
       if (fileName.includes("public/")) {
@@ -1231,81 +1233,74 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
         img = fileName.replace(/public\\/g, "");
       }
 
-      Users.findOneAndUpdate(
-        { email: email }, //find based on matching email
-        { avatar: img },
-        { new: true } // return the updated document
-      )
-        .then((updatedUser) => {
-          if (!updatedUser) {
-            console.log("User not found!");
-            return res.status(404).json({ error: "User not found" });
-          }
-          console.log("Avatar updated:", updatedUser);
-        })
-        .catch((err) => {
-          console.error("Error updating user:", err);
-          res.status(500).json({ error: "Error updating user" });
-        });
-    }
-    Users.findOneAndUpdate(
-      { email: email }, //find based on matching email
-      { userName: userName, userDescription: userDescription },
-      { new: true } // return the updated document
-    )
-      .then((updatedUser) => {
+      try {
+        const updatedUser = await Users.findOneAndUpdate(
+          { email: email },
+          { userName: userName, userDescription: userDescription, avatar: img },
+          { new: true }
+        );
+
         if (!updatedUser) {
           console.log("User not found!");
           return res.status(404).json({ error: "User not found" });
         }
         console.log("User updated:", updatedUser);
-        //update reviews if there is:
-        const reviews = Reviews.find({ email: email }).lean();
-        if (reviews) {
-          if (req.file) {
-            Reviews.updateMany(
-              { email: email },
-              { userName: userName, avatar: img }
-            )
-              .then((updatedReviews) => {
-                if (!updatedReviews) {
-                  console.log("Review not found!");
-                  return res.status(404).json({ error: "Reviews not Found" });
-                }
-                console.log("Review updated:", updatedReviews);
-              })
-              .catch((err) => {
-                console.error("Error updating reviews:", err);
-                res.status(500).json({ error: "Error updating reviews" });
-              });
-          } else {
-            Reviews.updateMany({ email: email }, { userName: userName })
-              .then((updatedReviews) => {
-                if (!updatedReviews) {
-                  console.log("Review not found!");
-                  return res.status(404).json({ error: "Reviews not Found" });
-                }
-                console.log("Review updated:", updatedReviews);
-              })
-              .catch((err) => {
-                console.error("Error updating reviews:", err);
-                res.status(500).json({ error: "Error updating reviews" });
-              });
-          }
-        }
-        // redirect to the user's profile page:
-        res.redirect("/viewprofileU1");
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Error updating user:", err);
         res.status(500).json({ error: "Error updating user" });
-      });
+        return;
+      }
+    } else {
+      // Update query for the user's information without avatar
+      try {
+        const updatedUser = await Users.findOneAndUpdate(
+          { email: email },
+          { userName: userName, userDescription: userDescription },
+          { new: true }
+        );
+
+        if (!updatedUser) {
+          console.log("User not found!");
+          return res.status(404).json({ error: "User not found" });
+        }
+        console.log("User updated:", updatedUser);
+      } catch (err) {
+        console.error("Error updating user:", err);
+        res.status(500).json({ error: "Error updating user" });
+        return;
+      }
+    }
+
+    try {
+      // Update reviews if there are any associated with the user's email
+      await Reviews.updateMany(
+        { email: email },
+        { $set: { userName: userName } }
+      );
+
+      // Update the user's name in the reviewReplyInfo array where the email matches
+      await Reviews.updateMany(
+        { "reviewReplyInfo.email": email },
+        { $set: { "reviewReplyInfo.$.user": userName } }
+      );
+
+      console.log("Reviews updated.");
+
+      // Redirect to the user's profile page:
+      res.redirect("/viewprofileU1");
+      let account = new Account(email);
+      switchAccount(account);
+    } catch (err) {
+      console.error("Error updating reviews:", err);
+      res.status(500).json({ error: "Error updating reviews" });
+    }
   } else {
     res.status(400);
     res.redirect("/editProfile");
     console.log("Invalid request");
   }
 });
+
 
 app.get("/viewprofileU1", async (req, res) => {
   //query here
