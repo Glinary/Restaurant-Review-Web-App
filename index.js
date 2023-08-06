@@ -1329,6 +1329,13 @@ app.post("/editProfile", upload.single("avatar"), async (req, res) => {
         { $set: { userName: userName } }
       );
 
+      if (req.file) {
+        await Reviews.updateMany(
+          { email: email },
+          { $set: { avatar: img } }
+        );
+      }
+
       // Update all occurrences of the matching email in reviewReplyInfo
       await Reviews.updateMany(
         { "reviewReplyInfo.email": email },
