@@ -43,6 +43,12 @@ const reviewsSchema = new mongoose.Schema({
       user: {
         type: String,
       },
+      repID: {
+        type: mongoose.Types.ObjectId,
+      },
+      replyTo: {
+        type: mongoose.Types.ObjectId,
+      },
     },
   ],
   reactionInfo: {

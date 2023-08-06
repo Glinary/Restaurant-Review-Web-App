@@ -339,11 +339,51 @@
               <div class="reply-container">
                 {{#each this.reviewReplyInfo}}
                 <div id="single-reply-container">
-                  <p id="user-commentName">{{this.user}}</p>
-                  <p id="user-comm">{{this.reply}}</p>
+                  <div class="cont1">
+                    <p id="user-commentName">{{this.user}}</p>
+                    <p id="user-comm">{{this.reply}}</p>
+                  </div>
+                  <div class="cont2">
+                    <p onclick="replyIcon(event)">Edit</p>
+                    <img src="../assets/replyIcon.png" class="replyOptions" id="replyicon" onclick="replyIcon(event)" />
+                    <img src="../assets/deleteIcon.png"class="replyOptions" id="deleteicon" onclick="deleteIcon(event)"  data-id={{this.repID}} />
+                  </div>
                 </div>
                 {{/each}}
               </div>
+            </div>
+            <!-- User Review Replying/ Commenting Box-->
+            <div class="review-reply">
+                <div class="review-reply-form">
+                  <form action="/restoview?restaurantName={{restaurant.name}}" method="POST">
+                  <textarea
+                    name="ReplyReply"
+                    id="replyReplyBox"
+                    rows="4"
+                    maxlength="180"
+                    placeholder="Write comment here"></textarea>
+                    <!-- Add a hidden input field to store the reviewDesc -->
+                    <!-- Add a hidden input field to store the restaurant name -->
+                    <input type="hidden" id="restaurantName" name="restaurantName" value="{{../restaurant.name}}">
+                    <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+                    <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
+                    <input type="hidden" id="replyTo" name="replyTo" value ="{{this._id}}">
+                  
+                  <input type="submit" id="formOp" value="Submit" />
+                  <input type="button" id="formOp" value="Cancel"  onclick="hideForm(event)" />
+                </div>
+                <script>
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const restaurantName = urlParams.get('restaurantName');
+                  console.log("Inside HTML:", restaurantName);
+                  const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+                    // Set the value of the hidden input field to the retrieved restaurant name
+                  if (restaurantNameInput) {
+                    restaurantNameInput.value = restaurantName;
+                  }
+                </script>
+              </form>
             </div>
             {{/each}}
           </div>
