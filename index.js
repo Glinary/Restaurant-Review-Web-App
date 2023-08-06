@@ -305,12 +305,10 @@ async function run() {
       email: "harry@yahoo.com",
       reviewTitle: "Best Coffee In Town!",
       images: ["assets\\SB1.jpg", "assets\\SB2.jpg"],
-      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("David's Tea House");
     const rev2 = await Reviews.create({
       _id: id,
       restaurantName: "David's Tea House",
@@ -322,12 +320,10 @@ async function run() {
       email: "harry@yahoo.com",
       reviewTitle: "Need Taste Improvement",
       images: ["assets\\DT1.jpg", "assets\\DT2.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
     const rev3 = await Reviews.create({
       _id: id,
       restaurantName: "Tinuhog ni Benny",
@@ -339,12 +335,10 @@ async function run() {
       email: "granger@yahoo.com",
       reviewTitle: "Yummy Grilled Foods",
       images: ["assets\\TNBF1.jpg", "assets\\TNBF2.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("Angry Dobo");
     const rev4 = await Reviews.create({
       _id: id,
       restaurantName: "Angry Dobo",
@@ -355,12 +349,10 @@ async function run() {
       email: "granger@yahoo.com",
       reviewTitle: "BEST ADOBO PA REN",
       images: ["assets\\AD1.jpg", "assets\\AD2.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
     const rev5 = await Reviews.create({
       _id: id,
       restaurantName: "Tinuhog ni Benny",
@@ -371,12 +363,10 @@ async function run() {
       email: "ronald@gmail.com",
       reviewTitle: "Sisig Forevs",
       images: ["assets\\TNBF3.jpg", "assets\\TNBF4.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("David's Tea House");
     const rev6 = await Reviews.create({
       _id: id,
       restaurantName: "David's Tea House",
@@ -388,7 +378,6 @@ async function run() {
       email: "ronald@gmail.com",
       reviewTitle: "Yummy Chinese",
       images: ["assets\\DT3.jpg", "assets\\DT4.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
@@ -404,12 +393,10 @@ async function run() {
       email: "dumbo@gmail.com",
       reviewTitle: "Best Cafe to Stay At!",
       images: ["assets\\SB3.jpg", "assets\\SB4.jpg"],
-      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("Angry Dobo");
     const rev8 = await Reviews.create({
       _id: id,
       restaurantName: "Angry Dobo",
@@ -420,12 +407,10 @@ async function run() {
       email: "dumbo@gmail.com",
       reviewTitle: "Sizzling all the way!",
       images: ["assets\\AD3.jpg", "assets\\AD4.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
     const id = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent("Tinuhog ni Benny");
     const rev9 = await Reviews.create({
       _id: id,
       restaurantName: "Tinuhog ni Benny",
@@ -436,7 +421,6 @@ async function run() {
       email: "bilbo@gmail.com",
       reviewTitle: "WALA NANG ISASARAP PA!",
       images: ["assets\\TNBF5.jpg", "assets\\TNBF6.jpg"],
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${id}`,
     });
   }
   {
@@ -451,7 +435,6 @@ async function run() {
       email: "bilbo@gmail.com",
       reviewTitle: "Meh Service",
       images: ["assets\\SB5.jpg", "assets\\SB6.jpg"],
-      restoLink: `/restoview?restaurantName=Starbucks&editedReview=${id}`,
     });
   }
 }
@@ -701,7 +684,6 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       updateAverageStarRating(restaurantName);
     }
     const newReviewId = new mongoose.Types.ObjectId();
-    const encodedRestoLink = encodeURIComponent(restaurantName);
     const review = new Reviews({
       _id: newReviewId,
       email: currentAccount.email,
@@ -715,7 +697,6 @@ app.post("/reviewPage", upload.array("images", 2), async (req, res) => {
       reactionInfo: {
         likeCount: 1,
       },
-      restoLink: `/restoview?restaurantName=${encodedRestoLink}&editedReview=${newReviewId}`,
     });
     review.save().then(() => {
       console.log("review submitted");
@@ -1467,22 +1448,21 @@ app.post("/editRestaurant", upload.single("avatar"), (req, res) => {
           });
         const reviews = Reviews.find({ restaurantName: prevName }).lean();
         if (reviews) {
-          Reviews.updateMany(
-            { restaurantName: prevName },
-            { restaurantName: userName }
-          )
-            .then((updatedReviews) => {
-              if (!updatedReviews) {
-                console.log("Review not found!");
-                return res.status(404).json({ error: "Reviews not Found" });
-              }
-              console.log("Review updated:", updatedReviews);
-            })
-            .catch((err) => {
-              console.error("Error updating reviews:", err);
-              res.status(500).json({ error: "Error updating reviews" });
-            });
-        }
+            Reviews.updateMany(
+              { restaurantName: prevName }, 
+              { restaurantName: userName })
+              .then((updatedReviews) => {
+                if (!updatedReviews) {
+                  console.log("Review not found!");
+                  return res.status(404).json({ error: "Reviews not Found" });
+                }
+                console.log("Review updated:", updatedReviews);
+              })
+              .catch((err) => {
+                console.error("Error updating reviews:", err);
+                res.status(500).json({ error: "Error updating reviews" });
+              });
+          }
         const gallery = Gallery.find({ restaurantName: prevName }).lean();
         if (gallery) {
           Gallery.updateMany(

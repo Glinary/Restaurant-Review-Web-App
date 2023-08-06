@@ -158,7 +158,7 @@
           </div>
 
           <div class="footer">
-            <a href={{this.restoLink}} class="revLink">Go to Establishment</a>
+            <a href="/restoview?restaurantName={{this.restaurantName}}&editedReview={{this._id}}" class="revLink">Go to Establishment</a>
             {{#ifCond this.isEdited '==' true}}
                 <p id="editedIndc">Edited</p>
             {{/ifCond}}
