@@ -1323,10 +1323,11 @@ app.post("/editProfile", upload.single("avatar"), async (req, res) => {
         { $set: { userName: userName } }
       );
 
-      // Update the user's name in the reviewReplyInfo array where the email matches
+      // Update all occurrences of the matching email in reviewReplyInfo
       await Reviews.updateMany(
         { "reviewReplyInfo.email": email },
-        { $set: { "reviewReplyInfo.$.user": userName } }
+        { $set: { "reviewReplyInfo.$[elem].user": userName } },
+        { arrayFilters: [{ "elem.email": email }] }
       );
 
       console.log("Reviews updated.");
