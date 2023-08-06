@@ -106,7 +106,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 //INSERT RESTAURANTS TO SCHEMA
-//run(); // run only once
+//run(); // run only once to get initial contents for the db
 async function run() {
   //RESTAURANTS
 
