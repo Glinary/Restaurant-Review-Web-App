@@ -1295,6 +1295,8 @@ app.post("/editProfile", upload.single("avatar"), (req, res) => {
         }
         // redirect to the user's profile page:
         res.redirect("/viewprofileU1");
+        let account = new Account(email);
+        switchAccount(account);
       })
       .catch((err) => {
         console.error("Error updating user:", err);
