@@ -3,6 +3,7 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
 const path = require("path");
+require('dotenv').config();
 
 // ---------- Dependencies #1 ---------- //
 
@@ -29,14 +30,20 @@ mongoose
     console.error("Error connecting to mongodb:", error);
   });
 */
-mongoose
-  .connect(connectionString)
-  .then(() => {
-    console.log("Connected to mongodb");
-  })
-  .catch((error) => {
-    console.error("Error connecting to mongodb:", error);
-  });
+
+const dbURL = 'mongodb+srv://whenintaft2:whenintaft2@cluster0.evafs9j.mongodb.net/?retryWrites=true&w=majority';
+
+const connectionParams = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
+
+mongoose.connect(dbURL, connectionParams).then(() => {
+  console.info("connected to db");
+}).catch((e) => {
+  console.log("Error", e);
+});
+
 
 //Connect to Schemas
 const Reviews = require(path.join(__dirname, "./schema/Reviews"));
