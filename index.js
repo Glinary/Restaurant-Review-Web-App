@@ -11,24 +11,7 @@ import mongoose from "mongoose";
 import upload from "./middleware/upload.js"; //uploading js
 const connectionString = "mongodb://127.0.0.1:27017/reviews";
 
-//CAUTION: UNCOMMENT TO DROP SCHEMA DATA
-/*
-mongoose
-  .connect(connectionString)
-  .then(() => {
-    console.log("Connected to mongodb");
-    // Drop the Reviews collection
-    return Reviews.collection.drop();
-  })
-  .then(() => {
-    console.log("The Reviews collection has been dropped.");
-    // Optionally, you can close the connection after the operation is done.
-    mongoose.connection.close();
-  })
-  .catch((error) => {
-    console.error("Error connecting to mongodb:", error);
-  });
-*/
+
 mongoose
   .connect(connectionString)
   .then(() => {

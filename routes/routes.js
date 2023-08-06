@@ -37,7 +37,7 @@ router.get(`/searchPageLogout`, controller.getSearchPageLogout);
 router.post(`/searchPageLogout`, controller.postSearchPageLogout);
 
 router.get(`/editProfile`, controller.getEditProfile);
-router.post(`/editProfile`, controller.postEditProfile);
+router.post(`/editProfile`, upload.single("avatar"), controller.postEditProfile);
 
 router.get(`/viewProfileU1`, controller.getViewProfileU1);
 router.get(`/visitProfile`, controller.getVisitProfile);
