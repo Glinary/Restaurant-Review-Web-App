@@ -16,7 +16,6 @@ const replyCont = document.querySelectorAll(".reply");
 const replyContList = Array.from(replyCont);
 
 const divSec = document.querySelector(".dividerSec");
-const revRep = document.querySelector(".review-reply");
 
 let flag2 = true;
 
@@ -188,11 +187,16 @@ editBar.forEach((cell) =>
           console.log("Delete clicked!");
 
           cellParent = cell.parentElement;
+          console.log("Parent: ");
+          console.dir(cellParent);
           replyBox = cellParent.nextElementSibling;
+          console.log("Reply Box: ");
+          console.dir(replyBox);
           repliesBox = replyBox.nextElementSibling;
+          console.log("User Comments: ");
+          console.dir(repliesBox);
 
-          path = replyBox.childNodes[1].lastChild[0];
-          path = path.nextElementSibling.value;
+          path = replyBox.childNodes[1].lastChild[3].value;
 
           // Get the reviewDesc value from the hidden input field
           const reviewID = path;
@@ -214,7 +218,7 @@ editBar.forEach((cell) =>
 
               cellParent.remove();
               repliesBox.remove();
-              revRep.remove();
+              replyBox.remove();
               checkReviewsCount();
             })
             .catch((error) => {

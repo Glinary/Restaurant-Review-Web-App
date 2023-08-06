@@ -14,6 +14,9 @@ const searchBar = document.querySelector(".search-container");
 
 const revSec = document.querySelector(".reviews-section");
 
+const replyCont = document.querySelectorAll(".reply");
+const replyContList = Array.from(replyCont);
+
 let flag2 = true;
 
 // GIVEN: Create a User constructor
@@ -28,8 +31,22 @@ const Review = function (reviewObj) {
 
 let reviewList = [];
 
+/* -----------------------  END OF VARIABLES  --------------------------- */
+
 checkTextTrunc();
 checkReviewsCount();
+
+// Review User Reviews Empty Conditions
+for (let i = 0; i < replyCont.length; i++) {
+  console.dir(replyCont);
+  repliesRepCont = replyContList[i].children[1];
+  userRevText = repliesRepCont.previousElementSibling;
+  rChildChild = repliesRepCont.children.length;
+  if (rChildChild == 0) {
+    repliesRepCont.style.display = "none";
+    userRevText.style.display = "none";
+  }
+}
 
 menu.addEventListener("click", function () {
   menu.classList.toggle("is-active");
@@ -144,8 +161,8 @@ editBar.forEach((cell) =>
         revObj = reviewObjHelper(selectedRevIndex);
         revObj.innerHTML = "";
 
-        revObj.nextElementSibling.style.display = "block";
-        editBoxPath = revObj.nextElementSibling.children[0];
+        revObj.nextElementSibling.nextElementSibling.style.display = "block";
+        editBoxPath = revObj.nextElementSibling.nextElementSibling.children[0];
         editBoxPath[0].value = reviewList[selectedRevIndex].OrigText;
 
         console.dir(reviewCont);
@@ -155,16 +172,44 @@ editBar.forEach((cell) =>
         console.log("Delete clicked!");
 
         cellParent = cell.parentElement;
-        cellGrandP = cellParent.parentElement;
-        cellParent.remove();
+        console.log("Parent: ");
+        console.dir(cellParent);
+        replyBox = cellParent.nextElementSibling;
+        console.log("Reply Box: ");
+        console.dir(replyBox);
+        repliesBox = replyBox.nextElementSibling;
+        console.log("User Comments: ");
+        console.dir(repliesBox);
 
-        // if (cellGrandP.children.length == 1) {
-        //   cellGrandP.innerHTML += '<p id="empty-alert">No reviews.</p>';
-        // }
+        path = replyBox.childNodes[1].lastChild[3].value;
 
-        checkReviewsCount();
+        // Get the reviewDesc value from the hidden input field
+        const reviewID = path;
+        console.log("Review ID to be deleted:", reviewID);
 
-        console.log("Review Successfully Deleted");
+        // Make the AJAX request to delete the review
+        fetch("/deleteReview", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ reviewID }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            console.log("Review successfully deleted");
+
+            cellParent.remove();
+            repliesBox.remove();
+            replyBox.remove();
+            checkReviewsCount();
+          })
+          .catch((error) => {
+            console.error("Error deleting review:", error);
+            // Handle any errors that occur during the deletion process
+          });
       });
     }
   })

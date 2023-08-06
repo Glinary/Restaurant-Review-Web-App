@@ -1091,7 +1091,7 @@ header {
   }
 
   .review-reply {
-    display: block;
+    display: none;
     box-sizing: border-box;
     height: 15vh;
     border-radius: 20px;

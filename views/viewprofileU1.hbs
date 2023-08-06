@@ -171,14 +171,61 @@
           </div>
           <div id="EditNav">
             <ul>
-              <li><a href="#">Edit</a></li>
-              <li><a href="#">Delete</a></li>
+              <li>Edit</li>
+              <li>Delete  </li>
             </ul>
           </div>
         </div>
       </div>
-      {{/each}}
 
+      <!-- User Review Replying/ Commenting Box-->
+        <div class="review-reply">
+            <div class="review-reply-form">
+              <form action="/restoview?restaurantName={{restaurant.name}}" method="POST">
+              <textarea
+                name="reviewReply"
+                id="reply-rev-box"
+                rows="4"
+                maxlength="180"
+                placeholder="Write comment here">
+              </textarea>
+              <!-- Add a hidden input field to store the reviewDesc -->
+              <!-- Add a hidden input field to store the restaurant name -->
+              <input type="hidden" id="restaurantName" name="restaurantName" value="{{../restaurant.name}}">
+              <input type="hidden" id="reviewDesc" name="reviewDesc" value ="{{this.reviewDesc}}">
+              <input type="hidden" id="reviewId" name="reviewId" value ="{{this._id}}">
+              
+              <input type="submit" value="Comment" />
+              <input type="submit" value="Cancel" />
+            </div>
+            <script>
+              const urlParams = new URLSearchParams(window.location.search);
+              const restaurantName = urlParams.get('restaurantName');
+              console.log("Inside HTML:", restaurantName);
+              const restaurantNameInput = document.getElementById('restaurantNameInput');
+
+                // Set the value of the hidden input field to the retrieved restaurant name
+              if (restaurantNameInput) {
+                restaurantNameInput.value = restaurantName;
+              }
+            </script>
+          </form>
+        </div>
+        
+          <!-- User Review Replies/ Comments List Box -->
+            <div class="reply">
+              <h4>Review Comments</h4>
+              <div class="reply-container">
+                {{#each this.reviewReplyInfo}}
+                <div id="single-reply-container">
+                  <p id="user-commentName">{{this.user}}</p>
+                  <p id="user-comm">{{this.reply}}</p>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/each}}   
+        </div>
 
       
 <!-- ->
