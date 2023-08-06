@@ -757,7 +757,9 @@ app.post("/restoview", async (req, res) => {
       }
       console.log("Review updated:", updatedReview);
       // redirect to the resto view:
-      res.redirect(`/restoview?restaurantName=${restaurantName}`);
+      res.redirect(
+        `/restoview?restaurantName=${restaurantName}&editedReview=${reviewId}`
+      );
     })
     .catch((err) => {
       console.error("Error updating review:", err);
